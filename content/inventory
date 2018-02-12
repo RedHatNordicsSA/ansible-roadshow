@@ -1,4 +1,12 @@
-[my hosts]
+[all hosts]
 loadbalancer
 host1
 host2
+
+[loadbalancer]
+loadbalancer
+
+[wildfly]
+host1
+host2
+
