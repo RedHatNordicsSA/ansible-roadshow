@@ -75,6 +75,6 @@ For a more detailed explanation of, what is going on, try running
 ansible all -vvv -m ping
 ```
 
-Basically the command will ssh to each host and run the command *echo \'pong\' on the host. The result is captured by Ansible in a return variable.
+Basically the command will ssh to each host and run the ping module on the host. The result is captured by Ansible in a return variable.
 
 In the next lab, you'll write your first playbook, using the ping module, to get a better understanding of how Ansible works.
