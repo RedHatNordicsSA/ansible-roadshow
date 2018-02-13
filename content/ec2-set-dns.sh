@@ -13,7 +13,7 @@ AWS_ACCESS_KEY_ID=
 # Set to AWS secret key
 AWS_SECRET_ACCESS_KEY=
 
-# Set to Route 53 Zone ID
+# Set to Route 53 Hosted Zone ID
 ZONE=
 
 # EC2 instance tag to look at
@@ -39,6 +39,9 @@ AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
 AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
 ZONE="$ZONE"
 EOF
+
+mkdir /root/.aws
+chmod 700 /root/.aws
 
 cat << 'EOF' >/root/.aws/config 
 [default]
