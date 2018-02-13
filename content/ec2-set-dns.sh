@@ -3,7 +3,7 @@
 # Script which sets up automatics to set a route 53 domain name (A record) based on EC2 instance tag
 # which get's pointed to your ec2 instances public ip.
 #
-# To create the A record, then run the 'update-route53-dns' command
+# To create/update the A record, run the 'update-route53-dns' command, which is done automatically at the end of this script
 #
 
 # Needs to be configured below
@@ -78,3 +78,5 @@ fi
 EOF
 
 chmod +rx /usr/sbin/update-route53-dns
+
+update-route53-dns
