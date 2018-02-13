@@ -79,4 +79,6 @@ Now you can see the output from the ping module. Nice right! Return values are u
 
 Another useful feature of Ansible is the PLAY RECAP. Here you can see how running the playbooks went. For now just notice that no state has changed (changed=0 for each server). This is because the ping message never changes state of the server and thus is idempotent. Idempotency is an important concept in Ansible. Idempotency means that the module called will have the same effect on the server, no matter how many times you run it on the server (more about that later).
 
-Try changing the ping message to 'crash'. What happens? HINT do appropriate change in main.yaml and run the playbook again.
+Try changing the ping message to 'crash'. What happens? HINT:
+1. Look in the [source code for the ping module](https://github.com/ansible/ansible-modules-core/blob/devel/system/ping.py)
+2. Do appropriate change in main.yaml and run the playbook again.
