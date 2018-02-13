@@ -13,14 +13,11 @@ AWS_ACCESS_KEY_ID=
 # Set to AWS secret key
 AWS_SECRET_ACCESS_KEY=
 
-# Set to Route 53 Hosted Zone ID
+# Set to Route 53 Zone ID
 ZONE=
 
 # EC2 instance tag to look at
-EC2TAG=
-
-# Uncomment after having configured
-exit 1
+EC2TAG=identity
 
 yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 yum -y install python2-pip wget bind-utils
@@ -34,11 +31,10 @@ chmod 700 /etc/route53
 touch /etc/route53/config
 chmod 600 /etc/route53/config
 
-cat << 'EOF' >/etc/route53/config
-AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
-AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
-ZONE="$ZONE"
-EOF
+echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" >/etc/route53/config
+echo "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >>/etc/route53/config
+echo "ZONE=$ZONE" >>/etc/route53/config
+echo "EC2TAG=$EC2TAG" >>/etc/route53/config
 
 mkdir /root/.aws
 chmod 700 /root/.aws
@@ -48,11 +44,9 @@ cat << 'EOF' >/root/.aws/config
 region = eu-central-1
 EOF
 
-cat << 'EOF' >/root/.aws/credentials 
-[default]
-aws_access_key_id = $AWS_ACCESS_KEY_ID
-aws_secret_access_key = $AWS_SECRET_ACCESS_KEY
-EOF
+echo "[default]" >/root/.aws/credentials
+echo "aws_access_key_id = $AWS_ACCESS_KEY_ID" >>/root/.aws/credentials
+echo "aws_secret_access_key = $AWS_SECRET_ACCESS_KEY" >>/root/.aws/credentials
 
 cat << 'EOF' >/usr/sbin/update-route53-dns
 #!/bin/bash
