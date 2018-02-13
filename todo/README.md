@@ -5,3 +5,6 @@ Magnus:
 
 Jacob/Magnus:
 * Excercise needs description of, what it is the participant is building
+
+Jacob:
+* Ensure that wildfly comes up in case of a restart (lab 3)

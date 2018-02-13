@@ -7,8 +7,8 @@
   copy:
     src: binaries/example-jaxrs-war-swarm.jar
     dest: /opt/wildflyapp/example-jaxrs-war-swarm.jar
-    owner: jborella 
-    group: jborella
+    owner: "{{host_user}}"
+    group: "{{host_user}}"
     mode: 0644
 - name: Create service script
   copy:

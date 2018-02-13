@@ -1,6 +1,0 @@
----
-- hosts: wildflyservers
-  user: jborella
-  become: true
-  roles:
-    - wildflyapp
