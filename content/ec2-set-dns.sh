@@ -7,7 +7,7 @@
 #
 
 # Needs to be configured below
-# Set to AWS access key. Account needs to have write access to route 53 and read access for ec2
+# Set to AWS access key. IAM user needs to have write access to route 53 and read access to ec2 instance
 AWS_ACCESS_KEY_ID=
 
 # Set to AWS secret key
