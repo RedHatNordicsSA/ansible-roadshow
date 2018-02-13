@@ -16,8 +16,8 @@ AWS_SECRET_ACCESS_KEY=
 # Set to Route 53 Hosted Zone ID
 ZONE=
 
-# EC2 instance tag to look at
-EC2TAG=identity
+# EC2 instance tag to look at. If your tag name is 'dnsname' for example, the script will fetch the value of that tag.
+EC2TAG=
 
 yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 yum -y install python2-pip wget bind-utils
