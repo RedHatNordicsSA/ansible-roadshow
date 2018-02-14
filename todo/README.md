@@ -8,3 +8,4 @@ Jacob/Magnus:
 
 Jacob:
 * Ensure that wildfly comes up in case of a restart (lab 3)
+* Add some content about error handling and how this is much better than with shell script.
