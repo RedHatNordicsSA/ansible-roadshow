@@ -92,3 +92,16 @@ EOF
 chmod +rx /usr/sbin/update-route53-dns
 
 update-route53-dns
+
+# Setup tower and tower keys
+if echo "$PUBLIC_HOSTNAME"|grep -q tower; then
+	curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa >/root/.ssh/id_rsa
+	curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa.pub >/root/.ssh/authorized_keys
+	curl -O https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/tower-inventory
+	curl -O https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/inventory
+	curl -O https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/tower-install.yml
+	ansible-playbook -i ./tower-inventory ./tower-install.yml
+else
+	curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa.pub >/root/.ssh/authorized_keys
+fi
+	
