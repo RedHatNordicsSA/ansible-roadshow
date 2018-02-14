@@ -1,12 +1,3 @@
-[all hosts]
-loadbalancer
-host1
-host2
-
-[loadbalancer]
-loadbalancer
-
-[wildfly]
-host1
-host2
-
+system1.sudonet.com
+system2.sudonet.com
+system3.sudonet.com
