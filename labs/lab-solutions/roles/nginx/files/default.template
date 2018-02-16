@@ -1,8 +1,8 @@
 upstream backend {
-    server 10.211.55.23:8080;
-    server 10.211.55.26:8080;
+{% for host in wildfly_servers %}
+    server {{ hostvars[host].inventory_hostname }}:8080;
+{% endfor %}
 }
-
 server {
 
     listen       80;
@@ -27,12 +27,6 @@ server {
     }
 
     # proxy the PHP scripts to Apache listening on 127.0.0.1:80
-    #
-    #location ~ \.php$ {
-    #    proxy_pass   http://127.0.0.1;
-    #}
-
-    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
     #
     #location ~ \.php$ {
     #    proxy_pass   http://127.0.0.1;

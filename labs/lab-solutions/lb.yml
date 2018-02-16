@@ -2,16 +2,16 @@
 - hosts: lbservers
   user: "{{host_user}}"
   become: true
+  vars:
+    wildfly_servers: "{{ groups['wildflyservers'] }}"
+
   tasks:
   - include_role:
       name: nginxinc.nginx
   - name: Setup the http listener to your machines
-    copy:
-      src: roles/nginx/files/default.conf
+    template:
+      src: roles/nginx/files/default.template
       dest: /etc/nginx/conf.d/default.conf
-      owner: root
-      group: root
-      mode: 0644
     register: nginx_cust_config
   - name: Restart nginx to reflect changes
     systemd:
