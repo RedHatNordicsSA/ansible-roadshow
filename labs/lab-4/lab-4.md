@@ -11,3 +11,25 @@ $ansible-galaxy install nginxinc.nginx
 ```
 
 and wait for the role to be installed. When that is done, we can use the role in our playbooks.
+
+To install nginx go to $WORK_DIR and create a new file with the following content:
+
+```
+---
+- hosts: lbservers
+  user: "{{host_user}}"
+  become: true
+  tasks:
+  - include_role:
+      name: nginxinc.nginx
+```
+
+run the playbook with the command
+
+```
+$ansible-playbook --extra-vars "host_user=$MY_HOST_USER" lb.yml
+```
+
+this will install nginx on the servers in the lbservers group. To verify the installation, go to the url *http://<lb server name>*. You should get the nginx default page.
+
+Next step is to configure nginx as a loadbalancer for the two wildflyapp servers.
