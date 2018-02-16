@@ -1,0 +1,26 @@
+---
+- hosts: lbservers
+  user: "{{host_user}}"
+  become: true
+  tasks:
+  - include_role:
+      name: nginxinc.nginx
+  - name: Setup the http listener to your machines
+    copy:
+      src: roles/nginx/files/default.conf
+      dest: /etc/nginx/conf.d/default.conf
+      owner: root
+      group: root
+      mode: 0644
+    register: nginx_cust_config
+  - name: Restart nginx to reflect changes
+    systemd:
+      state: restarted
+      daemon_reload: yes
+      name: nginx
+    when: nginx_cust_config.changed
+  - name: Set (httpd_can_network_connect) flag on and keep it persistent across reboots
+    seboolean:
+      name: httpd_can_network_connect
+      state: yes
+      persistent: yes

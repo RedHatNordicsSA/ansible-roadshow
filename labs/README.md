@@ -5,3 +5,5 @@ This folder contains the lab files.
 [Writing your first playbook](lab-2/lab-2.md)
 
 [Writing the Wildfly playbook](lab-3/lab-3.md)
+
+[Writing the load balancer playbook](lab-4/lab-4.md)

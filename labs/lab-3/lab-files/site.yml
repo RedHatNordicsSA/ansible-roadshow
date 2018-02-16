@@ -1,7 +1,0 @@
----
-- hosts: wildflyservers
-  user: "{{host_user}}"
-  become: true
-  tasks:
-  - include_role:
-      name: wildflyapp
