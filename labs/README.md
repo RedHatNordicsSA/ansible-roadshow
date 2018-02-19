@@ -1,9 +1,11 @@
 This folder contains the lab files.
 
-[Getting started](lab-1/lab-1.md)
+[Getting Started](lab-1/lab-1.md)
 
-[Writing your first playbook](lab-2/lab-2.md)
+[Writing Your First Playbook](lab-2/lab-2.md)
 
-[Writing the Wildfly playbook](lab-3/lab-3.md)
+[Writing the Wildfly Playbook](lab-3/lab-3.md)
 
-[Writing the load balancer playbook](lab-4/lab-4.md)
+[Writing the Load Balancer Playbook](lab-4/lab-4.md)
+
+[Handling Secrets with Ansible Vault](lab-5/lab-5.md)

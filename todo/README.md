@@ -12,3 +12,4 @@ Jacob:
 * Ensure wildflyapp service restarts when new war file is deployed (maybe as an extra assignment to show ansible conditionals, etc?)
 * Maybe start by adding one server with wildfly and add other server later to show idempotence
 * Preconfigured Profile to run EAP / undertow as a load balancer.
+* loadbalancer need to use roles instead of having everything in lb.yml

@@ -108,11 +108,11 @@ you should get a different servername responding each time like in this output:
 
 ```
 $ curl -w '\n' http://10.211.55.23/
-Howdy at 2018-02-19T14:22:03.375+01:00.  Have a JDK class: javax.security.auth.login.LoginException (from jboss-server-2)
+Howdy from unknown at 2018-02-19T14:22:03.375+01:00.  Have a JDK class: javax.security.auth.login.LoginException (from jboss-server-2)
 $ curl -w '\n' http://10.211.55.23/
-Howdy at 2018-02-19T14:22:06.651+01:00.  Have a JDK class: javax.security.auth.login.LoginException (from jboss-server-3)
+Howdy from unknown at 2018-02-19T14:22:06.651+01:00.  Have a JDK class: javax.security.auth.login.LoginException (from jboss-server-3)
 $ curl -w '\n' http://10.211.55.23/
-Howdy at 2018-02-19T14:22:16.939+01:00.  Have a JDK class: javax.security.auth.login.LoginException (from jboss-server-2)
+Howdy from unknown at 2018-02-19T14:22:16.939+01:00.  Have a JDK class: javax.security.auth.login.LoginException (from jboss-server-2)
 ```
 
 Optionally you can create a playbook to collect the two playbooks already made. If you want to do so, you can create a file named *main.yml* in *$WORK_DIR* with the following content:
