@@ -6,22 +6,22 @@ For this excercise we assume that you've already packaged your application, usin
 
 In order to ensure that you don't end up with a large unmaintainable yaml-file, the lead architect of your company has decided that you must structure your playbook using [roles](http://docs.ansible.com/ansible/latest/playbooks_reuse_roles.html). Roles is a way to structure your playbook around different aspects of your configuration. In this case, you will make a role for your wildfly application and only apply that role to your wildflyservers.
 
-In *$WORK_DIR* create a new folder called *lab3*. Furthermore copy the jar file to a binary folder.
+In *$WORK_DIR* copy the jar file to a binary folder.
 
 ```
-$mkdir -p $WORK_DIR/lab3/binaries
-$cp $LAB_DIR/labs/lab-3/lab-files/binaries/example-jaxrs-war-swarm.jar $WORK_DIR/lab3/binaries
+$mkdir -p $WORK_DIR/binaries
+$cp $LAB_DIR/labs/lab-3/lab-files/binaries/example-jaxrs-war-swarm.jar $WORK_DIR/binaries
 ```
 
 Create the rest of the structure for creating the playbook
 
 ```
-$cd $WORK_DIR/lab3
+$cd $WORK_DIR
 $mkdir -p roles/wildflyapp/files
 $mkdir roles/wildflyapp/tasks
 ```
 
-In the folder *$WORK_DIR/lab3/roles/wildflyapp/tasks* create a file named main.yml. This file will contain the tasks needed to configure the wildfly application on the server. Paste the following into the file:
+In the folder *$WORK_DIR/roles/wildflyapp/tasks* create a file named main.yml. This file will contain the tasks needed to configure the wildfly application on the server. Paste the following into the file:
 
 ```
 ---
@@ -55,7 +55,7 @@ In the folder *$WORK_DIR/lab3/roles/wildflyapp/tasks* create a file named main.y
   systemd: state=started name=wildflyapp
 ``` 
 
-As you can see, starting a wildfly swarm application is pretty simple. Copy the jar file to the server, create a service script and run the application. We need to create the service script to be copied to the server. To do so, create a new file named *wildflyapp.service* at location *$WORK_DIR/lab3/roles/wildflyapp/files/*. Put the following content in the file:
+As you can see, starting a wildfly swarm application is pretty simple. Copy the jar file to the server, create a service script and run the application. We need to create the service script to be copied to the server. To do so, create a new file named *wildflyapp.service* at location *$WORK_DIR/roles/wildflyapp/files/*. Put the following content in the file:
 
 ```
 [Unit]
@@ -77,7 +77,7 @@ LimitNOFILE=5555
 WantedBy=multi-user.target
 ```
 
-Finally you need to apply the newly created role to your *wildflyservers* group. In dir *$WORK_DIR/lab3* create a file named *site.yml*. Put the following content into the file:
+Finally you need to apply the newly created role to your *wildflyservers* group. In dir *$WORK_DIR* create a file named *site.yml*. Put the following content into the file:
 
 ```
 ---
