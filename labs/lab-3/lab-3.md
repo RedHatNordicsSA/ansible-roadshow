@@ -89,7 +89,7 @@ Finally you need to apply the newly created role to your *wildflyservers* group.
       name: wildflyapp
 ```
 
-As you can see we now include the role *wildflyapp* for all *wildflyservers*. We use a parameter to control the name of the user looging into the host.
+As you can see we now include the role *wildflyapp* for all *wildflyservers*. We use a parameter to control the name of the user logging into the host.
 
 Now you can run the playbook with the command:
 

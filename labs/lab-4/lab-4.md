@@ -32,7 +32,36 @@ $ansible-playbook --extra-vars "host_user=$MY_HOST_USER" lb.yml
 
 this will install nginx on the servers in the lbservers group. To verify the installation, go to the url *http://$lb_server_name*. You should get the nginx default page.
 
-Next step is to configure nginx as a loadbalancer for the two wildflyapp servers. To do so, we need some additional steps in our playbook. Change lb.yml to have the following content:
+Next step is to configure nginx as a loadbalancer for the two wildflyapp servers. To do so, we'll add an additional role. Create a directory to hold reflect the new role:
+
+```
+$mkdir -p $WORK_DIR/roles/nginx-config/tasks
+```
+
+then create a file *$WORK_DIR/roles/nginx-config/tasks/main.yml* with the following content:
+
+```
+---
+- name: Setup the http listener to your machines
+  template:
+    src: roles/nginx-config/files/default.template
+    dest: /etc/nginx/conf.d/default.conf
+  register: nginx_cust_config
+- name: Restart nginx to reflect changes
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: nginx
+  when: nginx_cust_config.changed
+- name: Set (httpd_can_network_connect) flag on and keep it persistent across reboots
+  seboolean:
+    name: httpd_can_network_connect
+    state: yes
+    persistent: yes
+```
+A template is used to setup the http listener. The template ensures that your configuration file doesn't have to be static. In this case, you need to add the servers to loadbalance between. This is done by introducing a variable *wildfy_servers*, which you'll use when writing the template shortly. The configuration file is saved instead of the default.conf nginx template. Other approaches applies. Please refer to the nginx documentation for more information. If the configuration file is changed, a conditional expression (*when: nginx_cust_config.changed*) ensures, that the nginx process is restarted. Finally a SELinux rule has to be setup, to allow nginx to connect to port 8080.
+
+Edit $WORK_DIR/lb.yaml to include the newly created role:
 
 ```
 ---
@@ -41,32 +70,18 @@ Next step is to configure nginx as a loadbalancer for the two wildflyapp servers
   become: true
   vars:
     wildfly_servers: "{{ groups['wildflyservers'] }}"
+
   tasks:
   - include_role:
       name: nginxinc.nginx
-  - name: Setup the http listener to your machines
-    template:
-      src: roles/nginx/files/default.template
-      dest: /etc/nginx/conf.d/default.conf
-    register: nginx_cust_config
-  - name: Restart nginx to reflect changes
-    systemd:
-      state: restarted
-      daemon_reload: yes
-      name: nginx
-    when: nginx_cust_config.changed
-  - name: Set (httpd_can_network_connect) flag on and keep it persistent across reboots
-    seboolean:
-      name: httpd_can_network_connect
-      state: yes
-      persistent: yes
+  - include_role:
+      name: nginx-config
 ```
-as you can see some additional lines have been added. A template is used to setup the http listener. The template ensures that your configuration file doesn't have to be static. In this case, you need to add the servers to loadbalance between. This is done by introducing a variable *wildfy_servers*, which you'll use when writing the template shortly. The configuration file is saved instead of the default.conf nginx template. Other approaches applies. Please refer to the nginx documentation for more information. If the configuration file is changed, a conditional expression (*when: nginx_cust_config.changed*) ensures, that the nginx process is restarted. Finally a SELinux rule has to be setup, to allow nginx to connect to port 8080.
 
 After having extended the playbook to add the loadbalancer configuration, you need to add the template file for the configuration. First create a folder to store the template
 
 ```
-$mkdir -u $WORK_DIR/roles/nginx/files
+$mkdir -p $WORK_DIR/roles/nginx-config/files
 ```
 
 Then in your favorite editor save a file named *default.template* in dir *$WORK_DIR/roles/nginx/files* with the following content:
@@ -96,7 +111,11 @@ server {
 }
 ```
 
-as you can see, the *wildfly_servers* variable is used to iterate over the servers with the wildfly application deployed.
+as you can see, the *wildfly_servers* variable is used to iterate over the servers with the wildfly application deployed. Apply the new changes to the playbook by running the command:
+
+```
+$ansible-playbook --extra-vars "host_user=$MY_HOST_USER" lb.yml
+```
 
 Now test, that you can access the application on both application servers. In the command promt write:
 
@@ -108,14 +127,14 @@ you should get a different servername responding each time like in this output:
 
 ```
 $ curl -w '\n' http://10.211.55.23/
-Howdy from unknown at 2018-02-19T14:22:03.375+01:00.  Have a JDK class: javax.security.auth.login.LoginException (from jboss-server-2)
+Howdy from unknown at 2018-02-19T14:22:03.375+01:00 (from jboss-server-2)
 $ curl -w '\n' http://10.211.55.23/
-Howdy from unknown at 2018-02-19T14:22:06.651+01:00.  Have a JDK class: javax.security.auth.login.LoginException (from jboss-server-3)
+Howdy from unknown at 2018-02-19T14:22:06.651+01:00 (from jboss-server-3)
 $ curl -w '\n' http://10.211.55.23/
-Howdy from unknown at 2018-02-19T14:22:16.939+01:00.  Have a JDK class: javax.security.auth.login.LoginException (from jboss-server-2)
+Howdy from unknown at 2018-02-19T14:22:16.939+01:00 (from jboss-server-2)
 ```
 
-Optionally you can create a playbook to collect the two playbooks already made. If you want to do so, you can create a file named *main.yml* in *$WORK_DIR* with the following content:
+Finally create a playbook to collect the two playbooks already made, by creating a file named *main.yml* in *$WORK_DIR* with the following content:
 
 ```
 ---
@@ -123,4 +142,4 @@ Optionally you can create a playbook to collect the two playbooks already made. 
 - import_playbook: site.yml
 ```
 
-Otherwise you can wait for the section on Ansible Tower to see a way to manage your playbooks.
+By running this playbook, you can setup everything with one command.

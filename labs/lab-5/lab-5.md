@@ -5,14 +5,14 @@ Most applications have secret properties, which mustn't be shown for every perso
 With Ansible you can create property files and encrypt them afterwards. Once the property file has been encrypted, the content is unreadable. This has one unwanted effect, which is that you'll then be unable to search for the property. Therefore it's considered best practise to have an unencrypted file refer to the encrypted file. This is achieved with the following steps:
 
 ```
-$mkdir -p group_vars/wildflyservers
-$echo 'secret_name: "{{ vault_secret_name }}"' > $WORK_DIR/group_vars/wildflyservers/main.yml
-$echo 'vault_secret_name: Red Hat' > $WORK_DIR/group_vars/wildflyservers/vault
+$mkdir -p $WORK_DIR/environments/dev/group_vars/wildflyservers
+$echo 'secret_name: "{{ vault_secret_name }}"' > $WORK_DIR/environments/dev/group_vars/wildflyservers/main.yml
+$echo 'vault_secret_name: Red Hat' > $WORK_DIR/environments/dev/group_vars/wildflyservers/vault
 ```
 Next let's encrypt the vault file. In the promt write:
 
 ```
-$ansible-vault encrypt $WORK_DIR/group_vars/wildflyservers/vault
+$ansible-vault encrypt $WORK_DIR/environments/dev/group_vars/wildflyservers/vault
 ```
 
 enter a password of your choice when promted and remember the password. This will encrypt your newly created file. Take a look at the content to ensure that it has in fact been encrypted.
@@ -65,7 +65,7 @@ Rename the service script to reflect that it is now a template file:
 $mv $WORK_DIR/roles/wildflyapp/files/wildflyapp.service $WORK_DIR/roles/wildflyapp/files/wildflyapp.template
 ```
 
-Change the content of the service script file *$WORK_DIR/roles/wildflyapp/files/wildflyapp.templat* to have the following content:
+Change the content of the service script file *$WORK_DIR/roles/wildflyapp/files/wildflyapp.template* to have the following content:
 
 ```
 [Unit]
@@ -93,7 +93,7 @@ As you can see the secret name is added to the template.
 To run the playbook with your vault, you'll be required to give Ansible your password. Do so by creating a file named *.mypassword* and put the password in the file. Then run ansible with the following command:
 
 ```
-ansible-playbook -i environments/dev --extra-vars "host_user=jborella" main.yml --vault-password-file .mypassword
+ansible-playbook -i environments/dev --extra-vars "host_user=$MY_HOST_USER" main.yml --vault-password-file .mypassword
 ```
 
 In above change file structure to allow for different environment folders.
