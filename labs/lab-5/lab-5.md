@@ -1,6 +1,6 @@
 # Handling Secrets with Ansible Vault
 
-Most applications have secret properties, which mustn't be shown for every person, working with the playbooks. The application you're working with is no exception, so you've been asked to set an environment variable named *SECRET_NAME* on the wildfly application servers for the application to work properly. Fortunately for you, this is pretty easy with ansible.
+Most applications have secret properties, which mustn't be shown for every person, working with the playbooks. The application you're working with is no exception, so you've been asked to set an environment variable named *SECRET_NAME* on the wildfly application servers for the application to work properly. Fortunately for you, this is pretty easy with Ansible.
 
 With Ansible you can create property files and encrypt them afterwards. Once the property file has been encrypted, the content is unreadable. This has one unwanted effect, which is that you'll then be unable to search for the property. Therefore it's considered best practise to have an unencrypted file refer to the encrypted file. This is achieved with the following steps:
 
@@ -9,7 +9,14 @@ $mkdir -p $WORK_DIR/environments/dev/group_vars/wildflyservers
 $echo 'secret_name: "{{ vault_secret_name }}"' > $WORK_DIR/environments/dev/group_vars/wildflyservers/main.yml
 $echo 'vault_secret_name: Red Hat' > $WORK_DIR/environments/dev/group_vars/wildflyservers/vault
 ```
-Next let's encrypt the vault file. In the promt write:
+
+As you can see, some refactoring has been done to ensure, that it is possible to use different configurations for different environments. This is achieved by having different profiles. In this case a dev profile is created by adding dev specific settings to the folder *$WORK_DIR/environments/dev*. This directory can contain a dev specific *hosts* file as well as dev specific vars. To ensure using a dev specific hosts file, lets copy your hosts file to the dev profile. This is done with the following command:
+
+```
+cp /etc/ansible/hosts $WORK_DIR/environments/dev/
+```
+
+Finally let's encrypt the vault file. In the promt write:
 
 ```
 $ansible-vault encrypt $WORK_DIR/environments/dev/group_vars/wildflyservers/vault
@@ -17,7 +24,7 @@ $ansible-vault encrypt $WORK_DIR/environments/dev/group_vars/wildflyservers/vaul
 
 enter a password of your choice when promted and remember the password. This will encrypt your newly created file. Take a look at the content to ensure that it has in fact been encrypted.
 
-Last step is to add the newly created variable as an environment variable to the playbook. At the same time we'll make some other changes. It's considered best practise to only set the environment variable locally for the wildflyapp service. Thus we are required to change the service script file from a static file to a template file in order to be able to change the secret name. Furthermore we want to restart the wildfly service in order to ensure that the service is restarted in case there are changes in the jar file or in the configuration. To do so, change the content of *$WORK_DIR/roles/wildflyapp/tasks/main.yml* to the following:
+Last step is to add the newly created variable as an environment variable to the playbook for the wildfly app role. At the same time we'll make some other changes. It's considered best practise to only set the environment variable locally for the wildflyapp service. Thus we are required to change the service script file from a static file to a template file in order to be able to change the secret name. Furthermore we want to restart the wildfly service in order to ensure that the service is restarted in case there are changes in the jar file or in the configuration. To do so, change the content of *$WORK_DIR/roles/wildflyapp/tasks/main.yml* to the following:
 
 ```
 ---
