@@ -89,6 +89,12 @@ else
 fi
 EOF
 
+. /etc/route53/config
+PUBLIC_HOSTNAME=$(aws ec2 describe-instances --instance-id $(curl -s http://169.254.169.254/latest/meta-data/instance-id) --query 'Reservations[*].Instances[*].[ImageId,Tags[*]]'|grep $EC2TAG -B1|head -1|awk -F\" '{ print $4 }')
+if [ "$PUBLIC_HOSTNAME" != "tower" ]; then
+	aws ec2 create-tags --resource $(curl --silent http://169.254.169.254/latest/meta-data/instance-id) --tags Key=$EC2TAG,Value=system$(curl --silent http://169.254.169.254/latest/meta-data/ami-launch-index)
+fi
+
 chmod +rx /usr/sbin/update-route53-dns
 
 update-route53-dns
