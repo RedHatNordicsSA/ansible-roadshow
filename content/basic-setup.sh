@@ -97,11 +97,32 @@ update-route53-dns
 if echo "$PUBLIC_HOSTNAME"|grep -q tower; then
 	curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa >/root/.ssh/id_rsa
 	curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa.pub >/root/.ssh/authorized_keys
+	chmod 600 /root/.ssh/*
 	curl -O https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/tower-inventory
 	curl -O https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/inventory
 	curl -O https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/tower-install.yml
 	ansible-playbook -i ./tower-inventory ./tower-install.yml
+	
+	for i in {1..50}; do
+		useradd user$i
+		mkdir ~user$i/.ssh
+		chmod 700 ~user$i/.ssh
+		curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa >~user$i/.ssh/id_rsa
+		chmod 600 ~user$i/.ssh/id_rsa
+	done
 else
+	for i in {1..50}; do
+		useradd user$i
+		mkdir ~user$i/.ssh
+		chmod 700 ~user$i/.ssh
+		curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa.pub >~user$i/.ssh/authorized_keys
+		chmod 600 ~user$i/.ssh/authorized_keys
+	done
+	mkdir /root/.ssh
+	chmod 700 /root/.ssh
 	curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa.pub >/root/.ssh/authorized_keys
+	chmod 600 /root/.ssh/*
+	
+	
 fi
 	
