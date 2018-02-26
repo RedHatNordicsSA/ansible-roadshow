@@ -115,7 +115,8 @@ if echo "$PUBLIC_HOSTNAME"|grep -q tower; then
 		mkdir /home/user$i/.ssh
 		chmod 700 /home/user$i/.ssh
 		curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa >/home/user$i/.ssh/id_rsa
-		chmod 600 /home/user$i/.ssh/id_rsa
+		curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa.pub >/home/user$i/.ssh/authorized_keys
+		chmod 600 /home/user$i/.ssh/*
 		chown user$i:user$i /home/user$i/.ssh -R
 	done
 else
