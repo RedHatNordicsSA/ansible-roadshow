@@ -11,17 +11,11 @@
         path: /opt/tower
         state: directory
 
-    - name: Check if installation has run before
-      stat:
-        path: /opt/tower
-      register: tower_result
-
     - name: Unzip the latest tower software
       unarchive:
         src: "https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz"
         dest: /opt/tower
         remote_src: yes
-      when: tower_result.stat.exists == False 
 
     - name: Find installer absolute path
       shell: "ls /opt/tower/ansible-tower-setup-*/setup.sh"
@@ -59,7 +53,6 @@
 
     - name: Run Ansible Tower installer
       shell: "{{tower_installer_path.stdout}} -i {{tower_inventory_path.stdout}}"
-      when: tower_result.stat.exists == False
 
     - name: Install Python Pip
       yum:
