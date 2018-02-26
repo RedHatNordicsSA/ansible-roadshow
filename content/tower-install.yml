@@ -76,3 +76,12 @@
     - name: Install Ansible Lint
       shell: "pip2 install ansible-lint"
       when: ansible_lint.stat.exists == False
+      
+    - name: Fetch backup
+      get_url: 
+        url: https://github.com/mglantz/ansible-roadshow/blob/master/content/tower-backup.tar.gz
+        dest: /opt/tower/tower-backup.tar.gz
+        
+    - name: Restore from backup
+      shell: "{{tower_installer_path.stdout}} -b /opt/tower/tower-backup.tar.gz"
+      
