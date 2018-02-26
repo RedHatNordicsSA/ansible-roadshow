@@ -89,6 +89,7 @@ else
 fi
 EOF
 
+# If tag does not equal tower, automatically set tag value (and dns name)
 . /etc/route53/config
 PUBLIC_HOSTNAME=$(aws ec2 describe-instances --instance-id $(curl -s http://169.254.169.254/latest/meta-data/instance-id) --query 'Reservations[*].Instances[*].[ImageId,Tags[*]]'|grep $EC2TAG -B1|head -1|awk -F\" '{ print $4 }')
 if [ "$PUBLIC_HOSTNAME" != "tower" ]; then
@@ -104,10 +105,10 @@ if echo "$PUBLIC_HOSTNAME"|grep -q tower; then
 	curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa >/root/.ssh/id_rsa
 	curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa.pub >/root/.ssh/authorized_keys
 	chmod 600 /root/.ssh/*
-	curl -O https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/tower-inventory
-	curl -O https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/inventory
-	curl -O https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/tower-install.yml
-	ansible-playbook -i ./tower-inventory ./tower-install.yml
+	curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/tower-inventory >/root/tower-inventory
+	curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/inventory >/root/inventory
+	curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/tower-install.yml >/root/tower-install.yml
+	ansible-playbook -i /root/tower-inventory /root/tower-install.yml
 	
 	for i in {1..50}; do
 		useradd user$i
@@ -115,6 +116,7 @@ if echo "$PUBLIC_HOSTNAME"|grep -q tower; then
 		chmod 700 /home/user$i/.ssh
 		curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa >/home/user$i/.ssh/id_rsa
 		chmod 600 /home/user$i/.ssh/id_rsa
+		chown user$i:user$i /home/user$i/.ssh -R
 	done
 else
 	for i in {1..50}; do
@@ -123,12 +125,12 @@ else
 		chmod 700 /home/user$i/.ssh
 		curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa.pub >/home/user$i/.ssh/authorized_keys
 		chmod 600 /home/user$i/.ssh/authorized_keys
+		chown user$i:user$i /home/user$i/.ssh -R
 	done
+	
 	mkdir /root/.ssh
 	chmod 700 /root/.ssh
 	curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa.pub >/root/.ssh/authorized_keys
 	chmod 600 /root/.ssh/*
-	
-	
 fi
 	
