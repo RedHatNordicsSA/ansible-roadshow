@@ -106,3 +106,16 @@ ansible-playbook -i environments/dev --extra-vars "host_user=$MY_HOST_USER" main
 In above change file structure to allow for different environment folders.
 
 You should now be able to access the url and observe your changes...
+
+The observant student will note that there are some not so good design in the above approach. Please correct the errors.
+
+Hint:
+* What did you learn about handlers in previous session?
+* Does above solution comply with best practises for handlers?
+
+Consider how you would handle a test environment with the *SECRET_NAME* of 'Red Hat (test)'.
+
+Hint:
+* Take a look at the last run of the playbook.
+* You pointed to a directory, not a specific file.
+* Maybe you can make a copy?
