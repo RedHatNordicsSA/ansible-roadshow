@@ -32,13 +32,26 @@ $ansible-playbook --extra-vars "host_user=$MY_HOST_USER" lb.yml
 
 this will install nginx on the servers in the lbservers group. To verify the installation, go to the url *http://$lb_server_name*. You should get the nginx default page.
 
-Next step is to configure nginx as a loadbalancer for the two wildflyapp servers. To do so, we'll add an additional role. Create a directory to hold reflect the new role:
+Next step is to configure nginx as a loadbalancer for the two wildflyapp servers. To do so, we'll add an additional role for the configuration. We follow the [best practises for Ansible directory layout](http://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html) and place tasks, handlers, and vars in separate directories.
 
 ```
 $mkdir -p $WORK_DIR/roles/nginx-config/tasks
+$mkdir -p $WORK_DIR/roles/nginx-config/handlers
+$mkdir -p $WORK_DIR/roles/nginx-config/vars
 ```
 
-then create a file *$WORK_DIR/roles/nginx-config/tasks/main.yml* with the following content:
+First we'll create a handler for restarting the nginx service in case of configuration changes. Define the handler in a file *$WORK_DIR/roles/nginx-config/handlers/main.yml* with the following content:
+
+```
+---
+- name: restart-nginx-service
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: nginx
+```
+
+This defines a handler named *restart-nginx-service*, which we'll use in a moment. Now create a file *$WORK_DIR/roles/nginx-config/tasks/main.yml* with the following content:
 
 ```
 ---
@@ -46,20 +59,27 @@ then create a file *$WORK_DIR/roles/nginx-config/tasks/main.yml* with the follow
   template:
     src: roles/nginx-config/files/default.template
     dest: /etc/nginx/conf.d/default.conf
-  register: nginx_cust_config
-- name: Restart nginx to reflect changes
+  notify: restart-nginx-service
+- name: Ensure nginx is in state started, so it'll be available on restart
   systemd:
-    state: restarted
-    daemon_reload: yes
     name: nginx
-  when: nginx_cust_config.changed
+    enabled: yes
+    masked: no
+    state: started
 - name: Set (httpd_can_network_connect) flag on and keep it persistent across reboots
   seboolean:
     name: httpd_can_network_connect
     state: yes
     persistent: yes
 ```
-A template is used to setup the http listener. The template ensures that your configuration file doesn't have to be static. In this case, you need to add the servers to loadbalance between. This is done by introducing a variable *wildfy_servers*, which you'll use when writing the template shortly. The configuration file is saved instead of the default.conf nginx template. Other approaches applies. Please refer to the nginx documentation for more information. If the configuration file is changed, a conditional expression (*when: nginx_cust_config.changed*) ensures, that the nginx process is restarted. Finally a SELinux rule has to be setup, to allow nginx to connect to port 8080.
+A template is used to setup the http listener. The template ensures that your configuration file doesn't have to be static. In this case, you need to add the servers to loadbalance between. This is done by introducing a variable *wildfy_servers*, which you'll use when writing the template shortly. The configuration file is saved instead of the default.conf nginx template. Other approaches applies. Please refer to the nginx documentation for more information. If the configuration file is changed, the previously defined handler (*notify: restart-nginx-service*) ensures, that the nginx process is restarted. Finally a SELinux rule has to be setup, to allow nginx to connect to port 8080.
+
+Define the variable *wildfly_servers* in a file named *$WORK_DIR/roles/nginx-config/vars/main.yml* with the following content:
+
+```
+---
+wildfly_servers: "{{ groups['wildflyservers'] }}"
+```
 
 Edit $WORK_DIR/lb.yaml to include the newly created role:
 
@@ -68,9 +88,6 @@ Edit $WORK_DIR/lb.yaml to include the newly created role:
 - hosts: lbservers
   user: "{{host_user}}"
   become: true
-  vars:
-    wildfly_servers: "{{ groups['wildflyservers'] }}"
-
   tasks:
   - include_role:
       name: nginxinc.nginx

@@ -2,9 +2,6 @@
 - hosts: lbservers
   user: "{{host_user}}"
   become: true
-  vars:
-    wildfly_servers: "{{ groups['wildflyservers'] }}"
-
   tasks:
   - include_role:
       name: nginxinc.nginx

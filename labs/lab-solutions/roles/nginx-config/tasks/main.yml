@@ -3,22 +3,15 @@
   template:
     src: roles/nginx-config/files/default.template
     dest: /etc/nginx/conf.d/default.conf
-  register: nginx_cust_config
-- name: Ensure nginx is in state started, so itøll be available on restart
+  notify: restart-nginx-service
+- name: Ensure nginx is in state started, so it'll be available on restart
   systemd:
     name: nginx
     enabled: yes
     masked: no
     state: started
-- name: Restart nginx to reflect changes
-  systemd:
-    state: restarted
-    daemon_reload: yes
-    name: nginx
-  when: nginx_cust_config.changed
 - name: Set (httpd_can_network_connect) flag on and keep it persistent across reboots
   seboolean:
     name: httpd_can_network_connect
     state: yes
     persistent: yes
-
