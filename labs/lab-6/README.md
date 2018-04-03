@@ -9,6 +9,6 @@ When you scale out your Ansible usage (aka. automate all things) you’ll have m
 
 Take some time and think about the different teams or people that you would like to collaborate with.
 
- ![Different Teams](mglantz.github.com/ansible-roadshow/content/different-teams.png?raw=true)
+ ![Different Teams](https://github.com/mglantz/ansible-roadshow/blob/master/content/different-teams.png?raw=true)
 
 
