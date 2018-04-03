@@ -1,7 +1,7 @@
 [Unit]
 Description=Wildfly Swarm Application Script
 After=auditd.service systemd-user-sessions.service time-sync.target
- 
+
 [Service]
 Environment="SECRET_NAME={{ secret_name }}"
 User=root

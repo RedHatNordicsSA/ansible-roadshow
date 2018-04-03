@@ -10,7 +10,7 @@
     owner: "{{host_user}}"
     group: "{{host_user}}"
     mode: 0644
-  register: jar_file_copy
+  notify: restart-wildfly
 - name: Create service script
   template:
     src: roles/wildflyapp/files/wildflyapp.template
@@ -18,7 +18,7 @@
     owner: root
     group: root
     mode: 0644
-  register: service_script_create
+  notify: restart-wildfly
   no_log: true
 - name: Reload systemd
   systemd:
@@ -30,8 +30,3 @@
     masked: no
     state: started
   no_log: true
-- name: Restart the wildfly app if there are any changes
-  systemd: state=restarted name=wildflyapp
-  when: jar_file_copy.changed or service_script_create.changed
-  no_log: true
-
