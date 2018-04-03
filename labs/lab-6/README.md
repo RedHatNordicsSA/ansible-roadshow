@@ -39,3 +39,7 @@ If you are completely new to git and feel you need to review the basics, please 
 5. Yes, I wrote test. If you do not test your Ansible code you cannot keep the master branch releasable and this all fails.
 
  ![GitHub workflow branches](https://github.com/mglantz/ansible-roadshow/blob/master/content/git-branches.png?raw=true)
+
+Now, as an exercise you will try out the GitHub workflow. Try to find a friend to do this exercise with.
+
+
