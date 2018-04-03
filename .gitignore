@@ -1,2 +1,3 @@
 .mypassword
 *.retry
+.DS_Store
