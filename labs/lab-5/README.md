@@ -111,7 +111,8 @@ The observant student will note that there are some not so good design in the ab
 
 Hint:
 * What did you learn about handlers in previous session?
-* Does above solution comply with best practises for handlers?
+* Does above solution use handlers appropriately?
+* Is the when clause in above solution the best approach?
 
 Consider how you would handle a test environment with the *SECRET_NAME* of 'Red Hat (test)'.
 
