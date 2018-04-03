@@ -16,7 +16,7 @@ Take some time and think about the different teams or people that you would like
 2. Access controls are specific to repositories
 3. All changes to all files are tracked
 4. When you want to make a change to a file in a repository, you first make a local copy of the repository which is stored on your computer, you then change the file locally, commit the change locally and then go ahead and tell git to copy this local change to the repository. 
-5. You may have different copies of a repository at the same time, these copies are called branches and are key when collaborating together with other people in the same repository.
+5. You may have different copies of a repository at the same time, these copies are called branches and are key when collaborating together with other people in the same repository. When copying content between branches, that is referred to as merging.
 6. This may seem a bit cumbersome, but you will get used to it. Promise.
 
  ![Git basics](https://github.com/mglantz/ansible-roadshow/blob/master/content/git-repo.png?raw=true)
@@ -38,4 +38,4 @@ If you are completely new to git and feel you need to review the basics, please 
 4. Branches are where you develop and test new features and bugfixes
 5. Yes, I wrote test. If you do not test your Ansible code you cannot keep the master branch releasable and this all fails.
 
-
+ ![GitHub workflow branches](https://github.com/mglantz/ansible-roadshow/blob/master/content/git-branches.png?raw=true)
