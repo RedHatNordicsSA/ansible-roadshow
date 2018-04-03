@@ -7,5 +7,8 @@ When you scale out your Ansible usage (aka. automate all things) you’ll have m
 1. Git was invented to solve common collaboration challenges
 2. Git has earned its worldwide popularity the hard way and is in the core of many of the world’s most popular collaboration services and products
 
+Take some time and think about the different teams or people that you would like to collaborate with.
+
+ ![Different Teams](mglantz.github.com/ansible-roadshow/content/different-teams.png)
 
 
