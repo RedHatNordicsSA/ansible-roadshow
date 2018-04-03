@@ -30,7 +30,7 @@ Wouldn't it be nice if you could actually see the reply from the ping module? Th
   tasks:
   - name: Call the ping module
     ping:
-      data: Ansible!
+      data: pong from Ansible
     register: ping_answer
   - name: Output the value of the ping answer
     debug:
