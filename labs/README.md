@@ -11,3 +11,5 @@ This folder contains the lab files.
 * [Handling Secrets with Ansible Vault](lab-5/README.md)
 
 * [Working with Ansible as code](lab-6/README.md)
+
+* [Introducing Ansible Tower](lab-7/README.md)
