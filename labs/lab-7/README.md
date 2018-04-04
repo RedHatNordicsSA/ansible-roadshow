@@ -1,10 +1,9 @@
 # Introducing Ansible Tower
-Red Hat Ansible Tower (build from the Open Source project, AWX) helps you scale out your Ansible automation
-Running Ansible from a command line is all good, until you start to automate more things. When you do that, you get a number of concerns, primarily:
+Red Hat Ansible Tower (build from the Open Source project, AWX) helps you scale out your Ansible automation. Running Ansible from a command line is all good, until you start to automate more things. When you do that, you get a number of concerns, primarily:
 
 >How can I control who can run what playbooks where?
 
-This is a central concerns which stimms from the fact that sharing access is difficult. Because of this, some companies don't even allow people to share access, because of (valid) security concerns.
+This is a central concerns which stimms from the fact that sharing access is difficult. Because of this, some companies don't even allow people to share access, because of (valid) security concerns, security compliance requirements on separation of duty, and more.
 
 Very often, you fail to automate things because it was not possible to share access. As an example, if you want to automate
 the configuration of SAN storage at your company, your SAN storage switches may not allow granular enough access so that the users which you use to do the automation - can only do what you need it to do (which in that case would be to zone-in a disk to one or more specific servers).
@@ -34,6 +33,8 @@ Credentials authenticate the Tower user to launch Ansible playbooks, which can t
 * Username: root
 * SSH Private Key: the content of: https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa
 
+ ![Creating a new set of credentials](https://github.com/mglantz/ansible-roadshow/blob/master/content/credentials-create.png?raw=true)
+
 When you have saved your credentials, please note that the SSH Private key now reads "ENCRYPED". This is because the key is now encrypted within Tower. It is not possible to get back the cleartext key, ergo, it's now safer to share this access with other people. Even the user (root) used, can also be obscured, only learning the name and description of the credentials visible.
 
 Next thing that we'll do is to create a project. A Project is a logical collection of Ansible playbooks, represented in Tower.
@@ -47,9 +48,15 @@ You can manage playbooks and playbook directories by either placing them manuall
 
 Next you will provide access to the playbook which [you put onto GitHub earlier in lab-6](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-6). This is done using so called job templates. A job template combines an Ansible playbook from a project and the settings required to launch it.
 
->Create a job template called "yourUSERNAME-playbook" which links to the playbok which you created earlier.
+>Create a job template called "yourUSERNAME-playbobok" which links to the playbok which you created earlier, as follows:
+* Associate the playbook to run on your assigned servers located in yourUSERNAME-inventory
+* Associate the playbook with your project: yourUSERNAME-playbooks
+* Select the playbook available in your GitHub repository
+* Select the credentials you earlier created (yourUSERNAME-credentials)
 
+> Now try to run your playbook.
 
+If you now go to the 'Jobs' tab, you can review your specific run of the playbook, it lists information from the playbook run, who ran it and against what systems the playbook was run.
 
 >How can I see who ran what playbook where?
 
