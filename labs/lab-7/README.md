@@ -25,6 +25,17 @@ What we'll do first is to create an inventory in Ansible Tower, an inventory is 
 
  ![Creating an inventory](https://github.com/mglantz/ansible-roadshow/blob/master/content/create-new-inventory.png?raw=true)
 
+Next thing we'll do is to define a set of credentials to our systems. This is what is typically the tricky bit when you run Ansible playbooks from a command line. If you use a SSH key or username to an admin user to run your playbook, how can someone else run the playbook without you risking that person finding out the credentials - giving that person the ability to just SSH in manually to the system and run whatever he/she likes?
+
+Credentials authenticate the Tower user to launch Ansible playbooks, which can then include passwords and SSH keys, against inventory hosts. You can also require the Tower user to enter a password or key phrase when a playbook launches using the credentials feature of Tower.
+
+>Create a new set of credentials which you call 'yourUSERNAME-credentials' as follows.
+* Credentials type: Machine
+* Username: root
+* SSH Private Key: the content of: https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa
+
+When you have saved your credentials, please note that the SSH Private key now reads "ENCRYPED". This is because the key is now encrypted within Tower. It is not possible to get back the cleartext key, ergo, it's now safer to share this access with other people. Even the user (root) used, can also be obscured, only learning the name and description of the credentials visible.
+
 Next thing that we'll do is to create a project. A Project is a logical collection of Ansible playbooks, represented in Tower.
 You can manage playbooks and playbook directories by either placing them manually under the Project Base Path on your Tower server, or by placing your playbooks into a source code management (SCM) system supported by Tower, including Git, Subversion, and Mercurial.
 
@@ -36,7 +47,7 @@ You can manage playbooks and playbook directories by either placing them manuall
 
 Next you will provide access to the playbook which [you put onto GitHub earlier in lab-6](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-6). This is done using so called job templates. A job template combines an Ansible playbook from a project and the settings required to launch it.
 
-
+>Create a job template called "yourUSERNAME-playbook" which links to the playbok which you created earlier.
 
 
 
