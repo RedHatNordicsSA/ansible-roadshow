@@ -57,6 +57,22 @@ Now click on 'Create pull request' to complete the creation of the new branch an
 
  ![Creating a pull request](https://github.com/mglantz/ansible-roadshow/blob/master/content/pull-request.png?raw=true)
 
+You will now get redirected to the page with overviews your pull request. Here you can use the comment function displayed in the 'Conversation' tab to collaborate with other people. Perhaps your change needs a code review or you need some advise on how to solve a specific problem? The 'Commits' and 'Files changed' allows you to overview all changes made into your newly created branch, from now on.
+
+Explore the 'Conversation' feature and try add yet another change to your playbook and review how all your changes are visible on the pull request page.
+
+```
+The pull request has yet another function, which is to allow someone else than you to approve changes, before they get copied into your master branch. Normally, not everyone has access to 'Merge pull request' which will copy all your changes into the master branch from this temporary branch where you do your work.
+```
+
+After having merged your work, select to delete your branch. 
+
+ ![Deleting your branch](https://github.com/mglantz/ansible-roadshow/blob/master/content/delete-branch.png?raw=true)
+ 
+ The reason why you delete your branch afterwards is because that allows people to see when work has been completed. Also, it allows someone to overview the status of the development work being done. For example, if a branch has lived on for too long, the risk of merge conflicts (when several people has changed the same files) becomes greater. Because of that and because code quality usually suffers when you do too much work at once, try biting off a good sized chunk of work. It's better that you do several smaller chunks of work than one huge chunk which takes a long time to do.
+ 
+ 
+
 
 
 
