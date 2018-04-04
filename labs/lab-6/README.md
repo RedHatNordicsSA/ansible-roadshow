@@ -12,6 +12,8 @@ Take some time and think about the different teams or people that you would like
  ![Examples of different teams in a company](https://github.com/mglantz/ansible-roadshow/blob/master/content/different-teams.png?raw=true)
 
 # What is git and how does it work?
+A simplified description of git follows.
+
 1. A git repository stores files
 2. Access controls are specific to repositories
 3. All changes to all files are tracked
