@@ -51,7 +51,12 @@ Next step, go ahead and make a change to your playbook via the GitHub web UI. Wh
 
  ![Select a new branch](https://github.com/mglantz/ansible-roadshow/blob/master/content/new-branch.png?raw=true)
  
-What happens next is that your change is copied into a copy of your repository. This is so that you and others can collaborate on this change, without affecting the code in the master copy (branch) of your repository.
+What happens next is that your change is copied into this new copy of your repository, called a branch. This is so that you and others can collaborate on this change, without affecting the code in the master branch (copy) of your repository. This allows your master branch to be stable, while development is ongoing. This also allows for several people to work on the code in your repository, at the same time.
+
+Now click on 'Create pull request' to complete the creation of the new branch and copying your change to it.
+
+ ![Creating a pull request](https://github.com/mglantz/ansible-roadshow/blob/master/content/pull-request.png?raw=true)
+
 
 
 
