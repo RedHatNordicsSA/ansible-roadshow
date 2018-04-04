@@ -1,6 +1,14 @@
 # Preparations
 
-Open a command promt.
+In this lab, you'll work with a pretty simple, yet usable server setup.
+
+![Image of server setup](demo-env.png)
+
+The Tower server will have the responsibility of provisioning the servers, which are implementing a simple http based service.
+
+The NGINX server is responsible for balancing the load between the two backend servers. The backends are implemented using wildfly swarm, run as a simple java application.
+
+In order to prepare for the labs, open a command promt.
 
 Clone the lab files to your drive:
 1. Navigate to a location of your choice.
@@ -8,5 +16,3 @@ Clone the lab files to your drive:
 3. $LAB_DIR will refer to the root of the cloned repository*.
 
 Create an empty dir, where you will do your assignments. This dir will be refered to as $WORK_DIR
-
-Your assigned user will be refered to as *$MY_HOST_USER*
