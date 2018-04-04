@@ -52,7 +52,7 @@ Next you will provide access to the playbook which [you put onto GitHub earlier 
 * Associate the playbook to run on your assigned servers located in yourUSERNAME-inventory
 * Associate the playbook with your project: yourUSERNAME-playbooks
 * Select the playbook available in your GitHub repository
-* Select the credentials you earlier created (yourUSERNAME-credentials)
+* Select the credentials you earlier created (yourUSERNAME-credentials) as 'machine credentials'.
 
  ![Create a job template](https://github.com/mglantz/ansible-roadshow/blob/master/content/job-template.png?raw=true)
 
