@@ -19,7 +19,7 @@ Ansible tower allows you to share access safely to other people via it's web GUI
 
 What we'll do first is to create an inventory in Ansible Tower, an inventory is a collection of hosts you can run playbooks against in Tower. Inventories are assigned to organizations, while permissions to launch playbooks against inventories are controlled at the user, team or playbook level.
 
->Create an inventory called "<USERNAME>-inventory" by following the instructions below.
+>Create an inventory called "yourUSERNAME-inventory" by following the instructions below.
 
 * To create a new inventory, click on the 'Inventories' tab and click the add button.
 
@@ -28,11 +28,16 @@ What we'll do first is to create an inventory in Ansible Tower, an inventory is 
 Next thing that we'll do is to create a project. A Project is a logical collection of Ansible playbooks, represented in Tower.
 You can manage playbooks and playbook directories by either placing them manually under the Project Base Path on your Tower server, or by placing your playbooks into a source code management (SCM) system supported by Tower, including Git, Subversion, and Mercurial.
 
->Create a project called "<USERNAME>-playbooks" by following the instructions below.
+>Create a project called "yourUSERNAME-playbooks" by following the instructions below.
   
-* To create a new project, click on the 'Projects' tab and click on the add button.
+* To create a new project, click on the 'Projects' tab and click on the add button. Make sure to link your project to the GitHub repository, which [you created earlier in lab-6](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-6).
 
  ![Create a project](https://github.com/mglantz/ansible-roadshow/blob/master/content/create-project.png?raw=true)
+
+Next you will provide access to the playbook which [you put onto GitHub earlier in lab-6](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-6). This is done using so called job templates. A job template combines an Ansible playbook from a project and the settings required to launch it.
+
+
+
 
 
 >How can I see who ran what playbook where?
