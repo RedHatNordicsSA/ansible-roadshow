@@ -54,13 +54,17 @@ Next you will provide access to the playbook which [you put onto GitHub earlier 
 * Select the playbook available in your GitHub repository
 * Select the credentials you earlier created (yourUSERNAME-credentials)
 
+ ![Create a job template](https://github.com/mglantz/ansible-roadshow/blob/master/content/job-template.png?raw=true)
+
 > Now try to run your playbook.
 
-If you now go to the 'Jobs' tab, you can review your specific run of the playbook, it lists information from the playbook run, who ran it and against what systems the playbook was run.
+If you now go to the 'Jobs' tab, you can review your specific run of the playbook, it lists information from the playbook run, who ran it and against what systems the playbook was run. This is all vital information as it allows visability over what's being done in your infrastructure or application landscape.
 
->How can I see who ran what playbook where?
+Next we are going to provide this playbook, as a service to a new user, to see how we (safely) can provide any automation as a self service.
 
->
+> Create a new users, by going to 'Settings (the cog)' and then users. Call the user yourUSERNAME-guest and set a password for it. After saving the user go to it and configure it futher:
+* Click on the 'Permissions' tab and give your user access to run this one playbook. You do not have to provide access to either the project or the inventory, just the job template as a user, not an admin.
 
-Centralize and control your IT infrastructure with a visual dashboard, role-based access control, job scheduling, integrated notifications and graphical inventory management. 
-And Ansible Tower's REST API and CLI make it easy to embed Ansible Tower into existing tools and processes.
+> Login as the user and run the playbook again. Review what you can see and what you can change as this user.
+
+
