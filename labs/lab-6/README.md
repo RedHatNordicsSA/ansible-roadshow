@@ -62,7 +62,9 @@ You will now get redirected to the page with overviews your pull request. Here y
 Explore the 'Conversation' feature and try add yet another change to your playbook and review how all your changes are visible on the pull request page.
 
 ```
-The pull request has yet another function, which is to allow someone else than you to approve changes, before they get copied into your master branch. Normally, not everyone has access to 'Merge pull request' which will copy all your changes into the master branch from this temporary branch where you do your work.
+The pull request has yet another function, which is to allow someone else than you to approve changes, before they get copied
+into your master branch. Normally, not everyone has access to 'Merge pull request' which will copy all your changes into the
+master branch from this temporary branch where you do your work.
 ```
 
 After having merged your work, select to delete your branch. 
