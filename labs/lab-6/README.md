@@ -25,7 +25,7 @@ Take some time and think about the different teams or people that you would like
 
 6. This may seem a bit cumbersome, but you will get used to it. Promise.
 
-If you are completely new to git and feel you need to review the basics, please go here: https://try.github.io and complete the excersises. 
+>If you are completely new to git and feel you need to review the basics, please go here: https://try.github.io and complete the excersises. 
 
 # Git workflows
 1. There are many different workflows for git which describes how to work with git
@@ -45,25 +45,27 @@ If you are completely new to git and feel you need to review the basics, please 
 Now, as an exercise you will try out the GitHub workflow. Try to find a friend to do this exercise with.
 
 # Working with your playbooks on GitHub
-As an example of a git based version handling/collaboration system, we'll use GitHub for simplicity. As a first step, go ahead and create a new repository on GitHub and put the ping playbook [that you created in lab-2](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-2/README.md) there.
+As an example of a git based version handling/collaboration system, we'll use GitHub for simplicity.
 
-Next step, go ahead and make a change to your playbook via the GitHub web UI. When you commit the change, select 'Create a new branch for this commit and start a pull request.' as depicted below.
+>As a first step, go ahead and create a new repository on GitHub and put the ping playbook [that you created in lab-2](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-2/README.md) there.
+
+>Next step, go ahead and make a change to your playbook via the GitHub web UI. When you commit the change, select 'Create a new branch for this commit and start a pull request.' as depicted below.
 
  ![Select a new branch](https://github.com/mglantz/ansible-roadshow/blob/master/content/new-branch.png?raw=true)
  
 What happens next is that your change is copied into this new copy of your repository, called a branch. This is so that you and others can collaborate on this change, without affecting the code in the master branch (copy) of your repository. This allows your master branch to be stable, while development is ongoing. This also allows for several people to work on the code in your repository, at the same time.
 
-Now click on 'Create pull request' to complete the creation of the new branch and copying your change to it.
+>Now click on 'Create pull request' to complete the creation of the new branch and copying your change to it.
 
  ![Creating a pull request](https://github.com/mglantz/ansible-roadshow/blob/master/content/pull-request.png?raw=true)
 
 You will now get redirected to the page with overviews your pull request. Here you can use the comment function displayed in the 'Conversation' tab to collaborate with other people. Perhaps your change needs a code review or you need some advise on how to solve a specific problem? The 'Commits' and 'Files changed' allows you to overview all changes made into your newly created branch, from now on.
 
-Explore the 'Conversation' feature and try add yet another change to your playbook and review how all your changes are visible on the pull request page.
+>Explore the 'Conversation' feature and try add yet another change to your playbook and review how all your changes are visible on the pull request page.
 
->The pull request has yet another function, which is to allow someone else than you to approve changes, before they get copied into your master branch. Normally, not everyone has access to 'Merge pull request' which will copy all your changes into the master branch from this temporary branch where you do your work.
+The pull request has yet another function, which is to allow someone else than you to approve changes, before they get copied into your master branch. Normally, not everyone has access to 'Merge pull request' which will copy all your changes into the master branch from this temporary branch where you do your work.
 
-After having merged your work, select to delete your branch. 
+>After having merged your work, select to delete your branch. 
 
  ![Deleting your branch](https://github.com/mglantz/ansible-roadshow/blob/master/content/delete-branch.png?raw=true)
  
