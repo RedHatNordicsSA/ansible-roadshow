@@ -5,7 +5,7 @@ In the previous lab, you called a module directly from the command line. A modul
 In almost all cases, you will use a playbook for automating the management of your servers. Think of a playbook as a recipe for the state of your servers as well as other infrastructure components. In a playbook you can describe everything from software which needs to be installed on servers to how load balancers should be configured. A playbook can also describe sequences of actions and other process related concerns.
 The ansible runtime is the engine, which interprets and applies the playbooks to the servers.
 
-Let's try to implement the ping example using a playbook. Open a new file for editing called *main.yaml* and paste the following content into the file
+Let's try to implement the ping example using a playbook. Open a new file for editing called *main.yml* and paste the following content into the file
 
 ```
 ---
@@ -19,10 +19,10 @@ Let's try to implement the ping example using a playbook. Open a new file for ed
 This will do the same as the previous lab, except the ping message is different. The ping message takes an argument *data*, which is the reply message from the ping module. You can now run the playbook with the command
 
 ```
-$ansible-playbook main.yaml
+$ansible-playbook -i hosts -u root main.yml
 ```
 
-Wouldn't it be nice if you could actually see the reply from the ping module? This can be done by using return values combined with the *msg* module. Change the main.yaml file to the following
+Wouldn't it be nice if you could actually see the reply from the ping module? This can be done by using return values combined with the *msg* module. Change the main.yml file to the following
 
 ```
 ---
@@ -38,13 +38,13 @@ Wouldn't it be nice if you could actually see the reply from the ping module? Th
 ```
 
 ```
-$ansible-playbook main.yaml
+$ansible-playbook -i hosts -u root main.yml
 ```
 
 this will result in the following output
 
 ```
-[root@ip-172-31-18-241 playbooks]# ansible-playbook main.yaml 
+[root@ip-172-31-18-241 playbooks]# ansible-playbook -i hosts -u root main.yml
 
 PLAY [all] *********************************************************************
 
@@ -81,4 +81,4 @@ Another useful feature of Ansible is the PLAY RECAP. Here you can see how runnin
 
 Try changing the ping message to 'crash'. What happens? HINT:
 1. Look in the [source code for the ping module](https://github.com/ansible/ansible-modules-core/blob/devel/system/ping.py)
-2. Do appropriate change in main.yaml and run the playbook again.
+2. Do appropriate change in main.yml and run the playbook again.

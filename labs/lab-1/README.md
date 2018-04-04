@@ -34,24 +34,24 @@ As you can see Ansible uses python. If you inspect the config file (/etc/ansible
 #module_utils   = /usr/share/my_module_utils/
 ```
 
-most important for a beginning is the default location of the inventory file. The inventory file contains a list of the servers, you are managing. The servers can be grouped in any way you like. For this lab, group the servers into load balancers (lbservers) and wildfly swarm application servers (wildflyservers). To do so at the end of the inventory file, add the following text
+most important for a beginning is the default location of the inventory file. The inventory file contains a list of the servers, you are managing. The servers can be grouped in any way you like. For this lab, group the servers into load balancers (lbservers) and wildfly swarm application servers (wildflyservers). In this lab, you'll share the environment with other users, therefore, you can't write in the shared inventory file. Instead in the folder *$WORK_DIR* create a file named *hosts*. Add the following text in the file:
 
 ```
 [lbservers]
-35.159.18.245
+systemX.sudodemo.net
 
 [wilflyservers]
-54.93.67.223
-54.93.150.126
+systemX.sudodemo.net
+systemX.sudodemo.net
 ```
 
-you are now ready to run your first Ansible module. To do so, run the following command:
+where X are replaced by the numbers for servers assigned to you. You are now ready to run your first Ansible module. To do so, run the following command from *$WORK_DIR*:
 
 ```
-ansible all -m ping
+ansible -i hosts -u root all -m ping
 ```
 
-this will give the following output
+This command will run the ping command on all servers in the hosts file (specified by -i). The -u parameter is used to sign into the servers as the root user. You might be asked to accept the identity of the servers. Type yes for each server. After running the ping command, you'll have following output
 
 ```
 35.159.18.245 | SUCCESS => {
@@ -72,7 +72,7 @@ Congratulations! You've run your first Ansible command.
 For a more detailed explanation of, what is going on, try running
 
 ```
-ansible all -vvv -m ping
+ansible -vvv -i hosts -u root all -m ping
 ```
 
 Basically the command will ssh to each host and run the ping module on the host. The result is captured by Ansible in a return variable. (If you are interested in the content of a module, see the source code for the ping module [in the github repo for modules](https://github.com/ansible/ansible-modules-core/blob/devel/system/ping.py). You don't have to. Modules will be covered in a later lab.)
