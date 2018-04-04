@@ -40,7 +40,7 @@ most important for a beginning is the default location of the inventory file. Th
 [lbservers]
 systemX.sudodemo.net
 
-[wilflyservers]
+[wildflyservers]
 systemX.sudodemo.net
 systemX.sudodemo.net
 ```

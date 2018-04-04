@@ -13,7 +13,7 @@ $echo 'vault_secret_name: Red Hat' > $WORK_DIR/environments/dev/group_vars/wildf
 As you can see, some refactoring has been done to ensure, that it is possible to use different configurations for different environments. This is achieved by having different profiles. In this case a dev profile is created by adding dev specific settings to the folder *$WORK_DIR/environments/dev*. This directory can contain a dev specific *hosts* file as well as dev specific vars. To ensure using a dev specific hosts file, lets copy your hosts file to the dev profile. This is done with the following command:
 
 ```
-cp /etc/ansible/hosts $WORK_DIR/environments/dev/
+cp $WORK_DIR/hosts $WORK_DIR/environments/dev/
 ```
 
 Finally let's encrypt the vault file. In the promt write:
@@ -28,6 +28,9 @@ Last step is to add the newly created variable as an environment variable to the
 
 ```
 ---
+- name: Install java
+  yum:
+    name: java
 - name: Create directory to store binary
   file:
     path: /opt/wildflyapp
@@ -100,7 +103,7 @@ As you can see the secret name is added to the template.
 To run the playbook with your vault, you'll be required to give Ansible your password. Do so by creating a file named *.mypassword* and put the password in the file. Then run ansible with the following command:
 
 ```
-ansible-playbook -i environments/dev --extra-vars "host_user=$MY_HOST_USER" main.yml --vault-password-file .mypassword
+ansible-playbook -i environments/dev --extra-vars "host_user=root" main.yml --vault-password-file .mypassword
 ```
 
 In above change file structure to allow for different environment folders.

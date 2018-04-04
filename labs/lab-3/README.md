@@ -25,6 +25,9 @@ In the folder *$WORK_DIR/roles/wildflyapp/tasks* create a file named main.yml. T
 
 ```
 ---
+- name: Install java
+  yum:
+    name: java
 - name: Create directory to store binary
   file:
     path: /opt/wildflyapp
@@ -83,7 +86,6 @@ Finally you need to apply the newly created role to your *wildflyservers* group.
 ---
 - hosts: wildflyservers
   user: "{{host_user}}"
-  become: true
   tasks:
   - include_role:
       name: wildflyapp
@@ -94,7 +96,7 @@ As you can see we now include the role *wildflyapp* for all *wildflyservers*. We
 Now you can run the playbook with the command:
 
 ```
-$ansible-playbook --extra-vars "host_user=$MY_HOST_USER" site.yml
+$ansible-playbook -i hosts --extra-vars "host_user=root" site.yml
 ```
 
 You should see Ansible executing the playbook. At the end of the Ansible output there is a recap of how running the playbook went:
