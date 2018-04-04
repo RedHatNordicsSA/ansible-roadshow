@@ -67,4 +67,15 @@ Next we are going to provide this playbook, as a service to a new user, to see h
 
 > Login as the user and run the playbook again. Review what you can see and what you can change as this user.
 
+Next we are going to run this playbook via the Tower CLI. You can do it as your normal user or the guest user you created earlier.
+
+> Login via SSH to the Tower server
+
+> The Ansible Tower server has the tower-cli tool installed. Explore using
+```
+$ tower-cli --help
+$ tower-cli job --help
+```
+and launch your playbook.
+
 
