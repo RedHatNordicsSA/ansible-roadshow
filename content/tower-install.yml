@@ -21,6 +21,10 @@
       shell: "ls /opt/tower/ansible-tower-setup-*/setup.sh"
       register: tower_installer_path
 
+    - name: Find base path for installer
+      shell: "ls /opt/tower/ansible-tower-setup-*"
+      register: tower_base_path
+
     - name: Find inventory absolute path
       shell: "ls /opt/tower/ansible-tower-setup-*/inventory"
       register: tower_inventory_path
@@ -65,7 +69,8 @@
       register: tower_cli
 
     - name: Install Tower CLI
-      shell: "pip2 install ansible-tower-cli"
+      pip: ansible-tower-cli
+      state: present
       when: tower_cli.stat.exists == False
 
     - name: Check if Ansible Lint is installed
@@ -74,14 +79,13 @@
       register: ansible_lint
 
     - name: Install Ansible Lint
-      shell: "pip2 install ansible-lint"
+      pip: ansible-lint
+      state: present
       when: ansible_lint.stat.exists == False
       
     - name: Fetch backup
-      get_url: 
-        url: https://github.com/mglantz/ansible-roadshow/blob/master/content/tower-backup.tar.gz
-        dest: /opt/tower/tower-backup.tar.gz
+      shell: curl https://github.com/mglantz/ansible-roadshow/blob/master/content/tower-backup.tar.gz >/opt/tower/tower-backup-latest.tar.gz
         
     - name: Restore from backup
-      shell: "{{tower_installer_path.stdout}} -r /opt/tower/tower-backup.tar.gz"
+      shell: "{{tower_installer_path.stdout}} -r /opt/tower/tower-backup-latest.tar.gz"
       
