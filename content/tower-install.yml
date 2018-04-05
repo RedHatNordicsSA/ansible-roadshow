@@ -84,7 +84,9 @@
       when: ansible_lint.stat.exists == False
       
     - name: Fetch backup
-      shell: curl https://github.com/mglantz/ansible-roadshow/blob/master/content/tower-backup.tar.gz >/opt/tower/tower-backup-latest.tar.gz
+      get_url:
+        url: https://github.com/mglantz/ansible-roadshow/raw/master/content/tower-backup.tar.gz
+        dest: /opt/tower/tower-backup-latest.tar.gz
         
     - name: Restore from backup
       shell: "{{tower_installer_path.stdout}} -r /opt/tower/tower-backup-latest.tar.gz"
