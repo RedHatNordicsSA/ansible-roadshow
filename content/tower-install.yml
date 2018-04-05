@@ -69,8 +69,9 @@
       register: tower_cli
 
     - name: Install Tower CLI
-      pip: ansible-tower-cli
-      state: present
+      pip: 
+        name: ansible-tower-cli
+        state: present
       when: tower_cli.stat.exists == False
 
     - name: Check if Ansible Lint is installed
@@ -79,8 +80,9 @@
       register: ansible_lint
 
     - name: Install Ansible Lint
-      pip: ansible-lint
-      state: present
+      pip: 
+        name: ansible-lint
+        state: present
       when: ansible_lint.stat.exists == False
       
     - name: Fetch backup
