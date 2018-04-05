@@ -22,7 +22,7 @@
       register: tower_installer_path
 
     - name: Find base path for installer
-      shell: "ls /opt/tower/ansible-tower-setup-*"
+      shell: "find /opt/tower/ansible-tower-setup-* -d 0 -type d"
       register: tower_base_path
 
     - name: Find inventory absolute path
@@ -88,7 +88,7 @@
     - name: Fetch backup
       get_url:
         url: https://github.com/mglantz/ansible-roadshow/raw/master/content/tower-backup.tar.gz
-        dest: /opt/tower/tower-backup-latest.tar.gz
+        dest: {{ tower_base_path }}/tower-backup-latest.tar.gz
         
     - name: Restore from backup
       shell: "{{tower_installer_path.stdout}} -r /opt/tower/tower-backup-latest.tar.gz"
