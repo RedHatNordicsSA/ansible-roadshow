@@ -37,6 +37,10 @@
       debug:
         msg: "inventory path: {{ tower_inventory_path.stdout }}"
 
+    - name: Base path
+      debug:
+        msg: "Base path: {{ tower_base_path.stdout }}"
+
     - name: Set admin password in inventory file
       lineinfile:
         path: "{{ tower_inventory_path.stdout }}"
@@ -88,8 +92,7 @@
     - name: Fetch backup
       get_url:
         url: https://github.com/mglantz/ansible-roadshow/raw/master/content/tower-backup.tar.gz
-        dest: "{{ tower_base_path }}/tower-backup-latest.tar.gz"
-        
+        dest: "{{ tower_base_path.stdout }}/tower-backup-latest.tar.gz"
+
     - name: Restore from backup
-      shell: "{{tower_installer_path.stdout}} -r {{ tower_base_path }}/tower-backup-latest.tar.gz"
-      
+      shell: "{{tower_installer_path.stdout}} -r {{ tower_base_path.stdout }}/tower-backup-latest.tar.gz"
