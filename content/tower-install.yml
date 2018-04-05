@@ -91,5 +91,5 @@
         dest: {{ tower_base_path }}/tower-backup-latest.tar.gz
         
     - name: Restore from backup
-      shell: "{{tower_installer_path.stdout}} -r /opt/tower/tower-backup-latest.tar.gz"
+      shell: "{{tower_installer_path.stdout}} -r {{ tower_base_path }}/tower-backup-latest.tar.gz"
       
