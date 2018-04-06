@@ -8,4 +8,8 @@ One day hands on lab with Ansible and Ansible Tower including:
 * Ansible Tower (projects, inventories, job templates, credentials)
 * An introduction to Ansible Galaxy
 * How to create your own Ansible module
+* How to work with Ansible code
+* Ansible Tower basics
 
+>To get started with the lab, the link below:
+* [Overview of labs](labs/README.md)
