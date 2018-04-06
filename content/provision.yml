@@ -2,7 +2,7 @@
   connection: local
   gather_facts: False
   vars:
-    security_group: test
+    security_group: roadshowsecurity
     region: eu-central-1
     ami_id: ami-194cdc76
     ec2_access_key: YOUR AWS ACCESS KEY
