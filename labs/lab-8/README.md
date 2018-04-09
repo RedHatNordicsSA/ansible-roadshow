@@ -17,7 +17,7 @@ ansible-lint your-playbook.yml
 
 * Run your playbook or role and ensure it completes without failures.
 ```
-ansible-playbook your-playbook.yml >test.out 2>&1 || true
+ansible-playbook your-playbook.yml >test.output 2>&1 || true
 if grep -q 'unreachable=0.*failed=0' test.output; then
   echo "Playbook executed without issues."
 else
