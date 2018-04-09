@@ -34,7 +34,11 @@ As you can see Ansible uses python. If you inspect the config file (/etc/ansible
 #module_utils   = /usr/share/my_module_utils/
 ```
 
-most important for a beginning is the default location of the inventory file. The inventory file contains a list of the servers, you are managing. The servers can be grouped in any way you like. For this lab, group the servers into load balancers (lbservers) and wildfly swarm application servers (wildflyservers). In this lab, you'll share the environment with other users, therefore, you can't write in the shared inventory file. Instead in the folder *$WORK_DIR* create a file named *hosts*. Add the following text in the file:
+most important for a beginning is the default location of the inventory file. The inventory file contains a list of the servers, you are managing. The servers can be grouped in any way you like. For this lab, group the servers into load balancers (lbservers) and wildfly swarm application servers (wildflyservers). In this lab, you'll share the environment with other users, therefore, you can't write in the shared inventory file. Instead in the folder *$WORK_DIR* create a file named *hosts*. 
+
+Please note, you got three servers assigned to you, it doesn't matter which one is put in the [lbservers] section and which remaining two are put in the [wildflyservers] section during lab 1.
+
+Add the following text in the file:
 
 ```
 [lbservers]
