@@ -10,6 +10,7 @@ One day hands on lab with Ansible and Ansible Tower including:
 * How to create your own Ansible module
 * How to work with Ansible code
 * Ansible Tower basics
+* How to test your Ansible playbooks and roles
 
 >To get started with the lab, click the link below:
 * [Overview of labs](labs/README.md)
