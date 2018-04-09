@@ -13,3 +13,6 @@ This folder contains the lab files.
 * [Working with Ansible as code](lab-6/README.md)
 
 * [Introducing Ansible Tower](lab-7/README.md)
+
+* [Testing Ansible playbooks](lab-8/README.md)
+
