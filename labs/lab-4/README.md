@@ -101,7 +101,7 @@ After having extended the playbook to add the loadbalancer configuration, you ne
 $mkdir -p $WORK_DIR/roles/nginx-config/files
 ```
 
-Then in your favorite editor save a file named *default.template* in dir *$WORK_DIR/roles/nginx/files* with the following content:
+Then in your favorite editor save a file named *default.template* in dir *$WORK_DIR/roles/nginx-config/files* with the following content:
 
 ```
 upstream backend {
