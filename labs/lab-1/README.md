@@ -83,7 +83,7 @@ This command will run the ping command on all servers in the hosts file (specifi
 }
 ```
 
-Congratulations! :happy: :tada: You've run your first Ansible command.
+Congratulations! :smile: :tada: You've run your first Ansible command.
 For a more detailed explanation of what is going on, try running the same command but add the *-vvv* parameter
 
 ```
