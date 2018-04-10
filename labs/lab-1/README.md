@@ -1,6 +1,6 @@
 # Getting started
 
-You are the operator at Tangible Labs Inc. and tasked with setting up servers for the company's new application, that's based on wildfly-swarm. After attending several sessions on automation, you've decided to give Ansible a go.
+You are the operator at Tangible Labs Inc. and tasked with setting up servers for the company's new application that's based on wildfly-swarm. After attending several sessions on automation, you've decided to give Ansible a go.
 
 The first lab will help you verifying the Ansible installation and getting acquainted with basic Ansible concepts.
 
