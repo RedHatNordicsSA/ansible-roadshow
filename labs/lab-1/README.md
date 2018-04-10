@@ -41,7 +41,7 @@ Now, create a file named *hosts* in the *$WORK_DIR* folder.
 
 Please note: you got three servers assigned to you, it doesn't matter which one is put in the [lbservers] section and which remaining two are put in the [wildflyservers] section during lab 1.
 
-Add the following text in the file:
+Add the following text to the file:
 
 ```
 [lbservers]
@@ -53,14 +53,14 @@ systemZ.sudodemo.net
 ```
 where X,Y,Z are replaced by the numbers for servers assigned to you.
 
-Since this is the first time we're connecting to these servers, you'll need to accept the identity of the servers. (Ansible's ping module will use SSH to connect to the servers)
-To speed up the process, we can use the ssh-keyscan command to accept identities.
+Since this is the first time we're connecting to these servers, you'll need to accept the identity of the servers.
+To speed up the process, we can use the ssh-keyscan command to accept identities. Like so:
 
 ```
 ssh-keyscan -H systemX.sudodemo.net systemY.sudodemo.net systemZ.sudodemo.net >> ~/.ssh/known_hosts
 ```
 
-You are now ready to run your first Ansible module. To do so, run the following command from *$WORK_DIR*:
+You are now ready to run your first Ansible module. To do so, run the following command from *$WORK_DIR*
 
 ```
 ansible -i hosts -u root all -m ping
@@ -84,7 +84,7 @@ This command will run the ping command on all servers in the hosts file (specifi
 ```
 
 Congratulations! :tada: You've run your first Ansible command.
-For a more detailed explanation of what is going on, try running:
+For a more detailed explanation of what is going on, try running the same command but add the *-vvv* parameter
 
 ```
 ansible -vvv -i hosts -u root all -m ping
