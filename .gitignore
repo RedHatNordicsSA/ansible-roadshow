@@ -1,3 +1,4 @@
 .mypassword
 *.retry
 .DS_Store
+.vagrant/
