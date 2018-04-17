@@ -21,7 +21,11 @@ It will create one for ansible tower (2G RAM, IP 10.42.0.2)
 
 After that go to ansible directory and run:
 
+NOTE: this will take 10-15 minutes!
+
 ```ansible-playbook -i hosts -l tower setup.yml tower.yml```
+
+After this you should be able to login to https://10.42.0.2/ using testuser/foobarbaz
 
 # Inventory file for labs
 

@@ -97,3 +97,14 @@
 
     - name: Restore from backup
       shell: "{{tower_installer_path.stdout}} -r {{ tower_base_path.stdout }}/tower-backup-latest.tar.gz"
+
+    - name: Add tower user
+      tower_user:
+        username: testuser
+        password: foobarbaz
+        email: testuser@example.invalid
+        first_name: TestFirst
+        last_name: TestLast
+        state: present
+        tower_username: admin
+        tower_password: redhat123
