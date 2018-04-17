@@ -1,10 +1,10 @@
 [tower]
-ansible-tower ansible_host=10.50.0.2
+ansible-tower ansible_host=10.42.0.2
 
 [machines]
-node-1 ansible_host=10.50.0.6
-node-2 ansible_host=10.50.0.7
-node-3 ansible_host=10.50.0.8
+node-1 ansible_host=10.42.0.6
+node-2 ansible_host=10.42.0.7
+node-3 ansible_host=10.42.0.8
 
 [all:vars]
 ansible_user=vagrant

@@ -8,17 +8,26 @@ This will use VirtualBox (see [www.virtualbox.org](https://www.virtualbox.org) f
 
 Run ```vagrant up```
 
-It will create 3 Virtualbox vm's:  3 nodes with (1G RAM, IPs 10.50.0.6-8).
+It will create 3 Virtualbox vm's:  3 nodes with (1G RAM, IPs 10.42.0.6-8).
 
 After that you should go to directory "ansible" and run:
-```ansible-playbook -i hosts -l machines setup.yml ```
+```ansible-playbook -i hosts -l machines setup.yml```
 To have EPEL repo enabled on those hosts.
 
 If you want to have Tower as well
 Run ```vagrant up ansible-tower```
 
-It will create one for ansible tower (2G RAM, IP 10.50.0.2)
+It will create one for ansible tower (2G RAM, IP 10.42.0.2)
 
 After that go to ansible directory and run:
 
 ```ansible-playbook -i hosts -l tower setup.yml tower.yml```
+
+# Inventory file for labs
+
+[lbservers]
+10.42.0.6
+
+[wildflyservers]
+10.42.0.7
+10.42.0.8
