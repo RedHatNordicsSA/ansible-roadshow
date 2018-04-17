@@ -1,62 +1,50 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-$NODES=3
-$NODEMEM=1024
+NODES   = 3
+NODEMEM = "1024"
+SSHKEY  = "~/.ssh/id_rsa.pub"
 # Overwrite host locale in ssh session
 ENV["LC_ALL"] = "en_US.UTF-8"
 
-# All Vagrant configuration is done here.
-Vagrant.configure("2") do |cluster|
-  # The most common configuration options are documented and commented below.
-  # For more refer to https://www.vagrantup.com/docs/vagrantfile/
+Vagrant.configure("2") do |config|
+  config.vm.provider "virtualbox"
+  # This vagrant box is downloaded from https://vagrantcloud.com/centos/7
+  # Other variants https://app.vagrantup.com/boxes/search
+  config.vm.box = "centos/7"
 
-  # Every Vagrant virtual environment requires a box to build off of.
-
-  # The ordering of these 2 lines expresses a preference for a hypervisor
-  cluster.vm.provider "virtualbox"
-
-  # Avoid using the Virtualbox guest additions
-  cluster.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder ".", "/vagrant", disabled: true
   if Vagrant.has_plugin?("vagrant-vbguest")
-    cluster.vbguest.auto_update = false
+    config.vbguest.auto_update = false
   end
 
-  cluster.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/me.pub"
-  cluster.vm.provision "shell", inline: "cat ~vagrant/.ssh/me.pub >> ~vagrant/.ssh/authorized_keys"
-
-  # For convenience, testing and instruction, all you need is 'vagrant up'
-
-  # host to run ansible and tower
-  cluster.vm.define "ansible", primary: true do |config|
-    config.vm.hostname = "ansible"
-    config.vm.network :private_network, ip: "10.42.0.2"
-    config.vm.provider :virtualbox do |vb, override|
-      # This vagrant box is downloaded from https://vagrantcloud.com/centos/7
-      # Other variants https://app.vagrantup.com/boxes/search
-      override.vm.box = "centos/7"
-
+  # Add your local ssh key
+  config.vm.provision "file", source: SSHKEY, destination: "~/.ssh/me.pub"
+  config.vm.provision "shell", inline: "cat ~vagrant/.ssh/me.pub >> ~vagrant/.ssh/authorized_keys"
+  # host to run ansible tower, not provisioned by default
+  config.vm.define "ansible-tower", autostart: false do |machine|
+    machine.vm.hostname = "ansible-tower"
+    machine.vm.network :private_network, ip: "10.42.0.2"
+    machine.vm.provider :virtualbox do |vb|
       vb.customize [
         "modifyvm", :id,
-        "--name", "ansible",
+        "--name", "ansible-tower",
         "--memory", "2048",
         "--cpus", 1
       ]
     end
   end
 
-  # hosts to run ansible-core
-  (1..$NODES).each do |i|
-    cluster.vm.define "node-#{i}" do |node|
-      node.vm.hostname = "node-#{i}"
-      node.vm.network :private_network, ip: "10.42.0.#{i+5}"
-      node.vm.provider :virtualbox do |vb, override|
-        override.vm.box = "centos/7"
-
+  # Other hosts
+  NODES.times do |i|
+    config.vm.define "node-#{i+1}" do |machine|
+      machine.vm.hostname = "node-#{i+1}"
+      machine.vm.network :private_network, ip: "10.42.0.#{i+6}"
+      machine.vm.provider :virtualbox do |vb|
         vb.customize [
           "modifyvm", :id,
-          "--name", "node-#{i}",
-          "--memory", "#$NODEMEM",
+          "--name", "node-#{i+1}",
+          "--memory", NODEMEM,
           "--cpus", 1
         ]
       end
