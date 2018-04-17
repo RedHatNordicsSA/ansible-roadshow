@@ -1,5 +1,7 @@
 # How to set up local env using Vagrant
 
+NOTE: tested with MacOS and VirtualBox only. May work with other envs as well.
+
 Prerequisites:  Make sure you have a ssh key pair in your $HOME/.ssh/id_rsa(.pub), it will be used with ansible.
 
 Install [Vagrant](https://www.vagrantup.com).
