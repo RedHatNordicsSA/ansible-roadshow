@@ -1,0 +1,99 @@
+- name: Install Ansible Tower
+  hosts: tower
+  become: yes
+  tasks:
+    - name: Enable EPEL yum repo
+      yum:
+        name: http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+        state: present
+
+    - name: Ensure /opt/tower is created
+      file:
+        path: /opt/tower
+        state: directory
+
+    - name: Unzip the latest tower software
+      unarchive:
+        src: "https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz"
+        dest: /opt/tower
+        remote_src: yes
+
+    - name: Find installer absolute path
+      shell: "ls /opt/tower/ansible-tower-setup-*/setup.sh"
+      register: tower_installer_path
+
+    - name: Find base path for installer
+      shell: "find /opt/tower/ansible-tower-setup* -maxdepth 0 -type d"
+      register: tower_base_path
+
+    - name: Find inventory absolute path
+      shell: "ls /opt/tower/ansible-tower-setup-*/inventory"
+      register: tower_inventory_path
+
+    - name: Print installer path
+      debug:
+        msg: "setup path: {{ tower_installer_path.stdout }}"
+
+    - name: Inventory path
+      debug:
+        msg: "inventory path: {{ tower_inventory_path.stdout }}"
+
+    - name: Base path
+      debug:
+        msg: "Base path: {{ tower_base_path.stdout }}"
+
+    - name: Set admin password in inventory file
+      lineinfile:
+        path: "{{ tower_inventory_path.stdout }}"
+        regexp: '^admin_password='
+        line: 'admin_password=redhat123'
+
+    - name: Set PostgreSQL password in inventory file
+      lineinfile:
+        path: "{{ tower_inventory_path.stdout }}"
+        regexp: '^pg_password='
+        line: 'pg_password=redhat123'
+
+    - name: Set rabbitmq password in inventory file
+      lineinfile:
+        path: "{{ tower_inventory_path.stdout }}"
+        regexp: '^rabbitmq_password='
+        line: 'rabbitmq_password=redhat123'
+
+    - name: Run Ansible Tower installer
+      shell: "{{tower_installer_path.stdout}} -i {{tower_inventory_path.stdout}}"
+
+    - name: Install Python Pip
+      yum:
+        name: python2-pip
+        state: present
+
+    - name: Check if Tower CLI is installed
+      stat:
+        path: /bin/tower-cli
+      register: tower_cli
+
+    - name: Install Tower CLI
+      pip:
+        name: ansible-tower-cli
+        state: present
+      when: tower_cli.stat.exists == False
+
+    - name: Check if Ansible Lint is installed
+      stat:
+        path: /bin/ansible-lint
+      register: ansible_lint
+
+    - name: Install Ansible Lint
+      pip:
+        name: ansible-lint
+        state: present
+      when: ansible_lint.stat.exists == False
+
+    - name: Fetch backup
+      get_url:
+        url: https://github.com/mglantz/ansible-roadshow/raw/master/content/tower-backup.tar.gz
+        dest: "{{ tower_base_path.stdout }}/tower-backup-latest.tar.gz"
+
+    - name: Restore from backup
+      shell: "{{tower_installer_path.stdout}} -r {{ tower_base_path.stdout }}/tower-backup-latest.tar.gz"
