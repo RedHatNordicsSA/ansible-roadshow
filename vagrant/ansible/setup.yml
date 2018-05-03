@@ -1,0 +1,11 @@
+- name: Setup centos stuff
+  hosts: all
+  become: yes
+
+  tasks:
+  - name: Add repository
+    yum_repository:
+      name: epel
+      description: EPEL YUM repo
+      baseurl: https://download.fedoraproject.org/pub/epel/7/x86_64/
+      gpgcheck: no
