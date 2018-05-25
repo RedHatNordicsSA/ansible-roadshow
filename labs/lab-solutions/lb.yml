@@ -3,3 +3,5 @@
   tasks:
   - include_role:
       name: nginxinc.nginx
+  - include_role:
+      name: nginx-config
