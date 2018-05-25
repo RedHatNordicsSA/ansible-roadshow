@@ -1,3 +1,0 @@
----
-wildfly_servers: "{{ groups['wildflyservers'] }}"
-

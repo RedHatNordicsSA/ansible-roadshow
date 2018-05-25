@@ -1,5 +1,0 @@
----
-- name: restart-wildfly
-  systemd: state=restarted name=wildflyapp
-  no_log: true
-

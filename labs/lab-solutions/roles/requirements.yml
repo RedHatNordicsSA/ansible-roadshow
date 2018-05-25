@@ -1,4 +1,0 @@
----
-- src: https://github.com/nginxinc/ansible-role-nginx
-  version: 7
-  name: nginxinc.nginx
