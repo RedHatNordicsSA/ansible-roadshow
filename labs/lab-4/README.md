@@ -17,8 +17,6 @@ To install nginx go to $WORK_DIR and create a new file named *lb.yml* with the f
 ```
 ---
 - hosts: lbservers
-  user: "{{host_user}}"
-  become: true
   tasks:
   - include_role:
       name: nginxinc.nginx
@@ -27,7 +25,7 @@ To install nginx go to $WORK_DIR and create a new file named *lb.yml* with the f
 run the playbook with the command
 
 ```
-$ansible-playbook -i hosts --extra-vars "host_user=root" lb.yml
+$ansible-playbook -i hosts lb.yml
 ```
 
 this will install nginx on the servers in the lbservers group. To verify the installation, go to the url *http://$lb_server_name*. You should get the nginx default page.
@@ -86,8 +84,6 @@ Edit $WORK_DIR/lb.yaml to include the newly created role:
 ```
 ---
 - hosts: lbservers
-  user: "{{host_user}}"
-  become: true
   tasks:
   - include_role:
       name: nginxinc.nginx
@@ -131,7 +127,7 @@ server {
 as you can see, the *wildfly_servers* variable is used to iterate over the servers with the wildfly application deployed. Apply the new changes to the playbook by running the command:
 
 ```
-$ansible-playbook  -i hosts --extra-vars "host_user=root" lb.yml
+$ansible-playbook  -i hosts lb.yml
 ```
 
 Now test, that you can access the application on both application servers. In the command promt write:
