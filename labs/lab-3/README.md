@@ -83,18 +83,17 @@ Finally you need to apply the newly created role to your *wildflyservers* group.
 ```
 ---
 - hosts: wildflyservers
-  user: "{{host_user}}"
   tasks:
   - include_role:
       name: wildflyapp
 ```
 
-As you can see we now include the role *wildflyapp* for all *wildflyservers*. We use a parameter to control the name of the user logging into the host.
+As you can see we now include the role *wildflyapp* for all *wildflyservers*.
 
 Now you can run the playbook with the command:
 
 ```
-$ansible-playbook -i hosts --extra-vars "host_user=root" site.yml
+$ansible-playbook -i hosts site.yml
 ```
 
 You should see Ansible executing the playbook. At the end of the Ansible output there is a recap of how running the playbook went:
