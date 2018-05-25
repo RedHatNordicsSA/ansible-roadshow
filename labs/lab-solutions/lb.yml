@@ -1,0 +1,5 @@
+---
+- hosts: lbservers
+  tasks:
+  - include_role:
+      name: nginxinc.nginx
