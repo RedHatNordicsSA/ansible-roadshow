@@ -128,8 +128,3 @@ Hint:
 * Is the when clause in above solution the best approach?
 
 Consider how you would handle a test environment with the *SECRET_NAME* of 'Red Hat (test)'.
-
-Hint:
-* Take a look at the last run of the playbook.
-* You pointed to a directory, not a specific file.
-* Maybe you can make a copy?
