@@ -5,21 +5,35 @@ Most applications have secret properties, which mustn't be shown for every perso
 With Ansible you can create property files and encrypt them afterwards. Once the property file has been encrypted, the content is unreadable. This has one unwanted effect, which is that you'll then be unable to search for the property. Therefore it's considered best practise to have an unencrypted file refer to the encrypted file. This is achieved with the following steps:
 
 ```
-$mkdir -p $WORK_DIR/environments/dev/group_vars/wildflyservers
-$echo 'secret_name: "{{ vault_secret_name }}"' > $WORK_DIR/environments/dev/group_vars/wildflyservers/main.yml
-$echo 'vault_secret_name: Red Hat' > $WORK_DIR/environments/dev/group_vars/wildflyservers/vault
+$mkdir -p $WORK_DIR/group_vars/dev/wildflyservers
+$echo 'secret_name: "{{ vault_secret_name }}"' > $WORK_DIR/group_vars/dev/wildflyservers/vars.yml
+$echo 'vault_secret_name: Red Hat' > $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
 ```
 
-As you can see, some refactoring has been done to ensure, that it is possible to use different configurations for different environments. This is achieved by having different profiles. In this case a dev profile is created by adding dev specific settings to the folder *$WORK_DIR/environments/dev*. This directory can contain a dev specific *hosts* file as well as dev specific vars. To ensure using a dev specific hosts file, lets copy your hosts file to the dev profile. This is done with the following command:
+As you can see, some refactoring has been done to ensure, that it is possible to use different configurations for different environments. This is achieved by having different environment folders in the *group_vars* direcory. In this case a dev profile is created by adding dev specific settings to the folder *$WORK_DIR/group_vars/dev/*. Servers can belong to several groups, so in the hosts file we can add a group *dev* with all servers listed. The *hosts* file should look like this:
 
 ```
-cp $WORK_DIR/hosts $WORK_DIR/environments/dev/
+[lbservers]
+systemX.sudodemo.net
+
+[wildflyservers]
+systemY.sudodemo.net
+systemZ.sudodemo.net
+
+[dev]
+systemX.sudodemo.net
+systemY.sudodemo.net
+systemZ.sudodemo.net
 ```
+
+As before change machine names to those assigned to you.
+
+Now ansible will include all variables defined in *$WORK_DIR/group_vars/dev/* for the servers listed, each time the playbook is run.
 
 Finally let's encrypt the vault file. In the promt write:
 
 ```
-$ansible-vault encrypt $WORK_DIR/environments/dev/group_vars/wildflyservers/vault
+$ansible-vault encrypt $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
 ```
 
 enter a password of your choice when promted and remember the password. This will encrypt your newly created file. Take a look at the content to ensure that it has in fact been encrypted.
@@ -39,8 +53,6 @@ Last step is to add the newly created variable as an environment variable to the
   copy:
     src: binaries/example-jaxrs-war-swarm.jar
     dest: /opt/wildflyapp/example-jaxrs-war-swarm.jar
-    owner: "{{host_user}}"
-    group: "{{host_user}}"
     mode: 0644
   register: jar_file_copy
 - name: Create service script
@@ -103,10 +115,8 @@ As you can see the secret name is added to the template.
 To run the playbook with your vault, you'll be required to give Ansible your password. Do so by creating a file named *.mypassword* and put the password in the file. Then run ansible with the following command:
 
 ```
-ansible-playbook -i environments/dev --extra-vars "host_user=root" main.yml --vault-password-file .mypassword
+$ansible-playbook -i hosts main.yml --vault-password-file .mypassword
 ```
-
-In above change file structure to allow for different environment folders.
 
 You should now be able to access the url and observe your changes...
 
