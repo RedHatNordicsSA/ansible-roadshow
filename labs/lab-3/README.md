@@ -36,8 +36,6 @@ In the folder *$WORK_DIR/roles/wildflyapp/tasks* create a file named main.yml. T
   copy:
     src: binaries/example-jaxrs-war-swarm.jar
     dest: /opt/wildflyapp/example-jaxrs-war-swarm.jar
-    owner: "{{host_user}}"
-    group: "{{host_user}}"
     mode: 0644
 - name: Create service script
   copy:
