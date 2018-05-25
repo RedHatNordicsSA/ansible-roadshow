@@ -14,5 +14,7 @@ This folder contains the lab files.
 
 * [Introducing Ansible Tower](lab-7/README.md)
 
-* [Testing Ansible playbooks](lab-8/README.md)
+* [Installing wildfly and nginx from Tower](lab-8/README.md)
+
+* [Testing Ansible playbooks](lab-9/README.md)
 
