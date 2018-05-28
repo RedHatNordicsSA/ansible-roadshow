@@ -18,3 +18,5 @@ This folder contains the lab files.
 
 * [Testing Ansible playbooks](lab-9/README.md)
 
+* [Developing Ansible Modules](lab-10/README.md)
+

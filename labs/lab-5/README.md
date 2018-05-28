@@ -115,7 +115,7 @@ As you can see the secret name is added to the template.
 To run the playbook with your vault, you'll be required to give Ansible your password. Do so by creating a file named *.mypassword* and put the password in the file. Then run ansible with the following command:
 
 ```
-$ansible-playbook -i hosts main.yml --vault-password-file .mypassword
+$ansible-playbook -i hosts -u root main.yml --vault-password-file .mypassword
 ```
 
 You should now be able to access the url and observe your changes...
