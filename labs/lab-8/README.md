@@ -1,6 +1,6 @@
 # Installing wildfly and nginx from Tower
 
-As the good developer you are, you want to make your playbooks available for the whole organization to run and benefit from. This labs will describe how you can do so.
+As the good developer you are, you want to make your playbooks available for the whole organization to run and benefit from. This lab will describe how you can do so.
 
 First create a new git repo with $WORK_DIR as root directory. If you don't want to spend time on that right now, you can use the one [provided by your instructor](https://github.com/jacobborella/ansible-roadshow-test).
 
