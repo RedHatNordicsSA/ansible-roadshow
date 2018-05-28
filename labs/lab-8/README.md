@@ -4,6 +4,15 @@ As the good developer you are, you want to make your playbooks available for the
 
 First create a new git repo with $WORK_DIR as root directory. If you did [lab 6](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-6), you can reuse that repo. If you don't want to spend time on git right now, you can use the one [provided by your instructor](https://github.com/jacobborella/ansible-roadshow-test).
 
+Next you need to instruct Ansible Tower to use the nginx module. You could install the module on Tower as previously, but this would have the unwanted effect that all projects on the Tower server would rely on this module. Furthermore the Tower server now needs special care if you need to reinstall it. Instead we'll instruct Tower to include the nginx module as part of our project. To do so, add a file *$WORK_DIR/roles* called *requirements.yml*, with the following content
+```
+---
+- src: https://github.com/nginxinc/ansible-role-nginx
+  version: master
+  name: nginxinc.nginx
+```
+Check in the change and you are ready to go.
+
 Login to the Ansible Tower server on the url and username/password provided by the instructor. If you haven't setup the credentials to your system as described in the lab [Introducing Ansible Tower](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-7), please do so now:-)
 
 Next you need to setup the vault password for your playbooks. To do so click the *settings* menu item in top of the menu
