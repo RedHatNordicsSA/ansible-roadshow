@@ -5,7 +5,7 @@ As the good developer you are, you want to make your playbooks available for the
 TODO
 * Check your playbooks into a new git repo
 
-Login to the Ansible Tower server on the url and username/password provided by the instructor. If you haven't setup the credentials to your system as described in the lab [Introducing Ansible Tower]((https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-7), please do so now:-)
+Login to the Ansible Tower server on the url and username/password provided by the instructor. If you haven't setup the credentials to your system as described in the lab [Introducing Ansible Tower](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-7), please do so now:-)
 
 Next you need to setup the vault password for your playbooks. To do so click the *settings* menu item in top of the menu
 ![settings location image](images/img0.png)
