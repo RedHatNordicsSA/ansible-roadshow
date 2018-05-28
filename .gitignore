@@ -2,3 +2,4 @@
 *.retry
 .DS_Store
 .vagrant/
+*.myversion
