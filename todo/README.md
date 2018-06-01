@@ -12,3 +12,4 @@ Jacob:
 * Add some content about error handling and how this is much better than with shell script.
 * Maybe start by adding one server with wildfly and add other server later to show idempotence
 * Preconfigured Profile to run EAP / undertow as a load balancer.
+* Create module for orchestrating module with no SSL (connection: local)
