@@ -1,5 +1,7 @@
 - name: Install Ansible Tower
   hosts: all
+  vars:
+    count: 50
   tasks:
     - name: Enable EPEL yum repo
       yum:
@@ -96,3 +98,16 @@
 
     - name: Restore from backup
       shell: "{{tower_installer_path.stdout}} -r {{ tower_base_path.stdout }}/tower-backup-latest.tar.gz"
+      
+    - name: Set passwords for users
+      user:
+        - name: "{{ item }}"
+          password: redhat123
+          with_nested:
+            - "{{ query('sequence', 'end={{ count }} start=1') }}"
+
+    - name: Set passwords for users
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication no'
+        line: 'PasswordAuthentication yes'
