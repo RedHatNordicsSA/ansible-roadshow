@@ -99,15 +99,19 @@
     - name: Restore from backup
       shell: "{{tower_installer_path.stdout}} -r {{ tower_base_path.stdout }}/tower-backup-latest.tar.gz"
       
-    - name: Set passwords for users
+    - name: Set passwords for users to redhat123
       user:
-        - name: "{{ item }}"
-          password: redhat123
-          with_nested:
-            - "{{ query('sequence', 'end={{ count }} start=1') }}"
+        name: "user{{ item }}"
+        password: $6$eD/E3Yav9Ej8w1R3$.L5Xlxbcx98.bO6zuNPgSloBOsw1UWeCZV4/9ejuO239.I00hq.nZakWOhYRupoowcTHXdYwLeCuPlks1mZPS/
+      with_sequence: start=1 end={{count|int}}
 
-    - name: Set passwords for users
+    - name: Enable password login
       lineinfile:
         path: /etc/ssh/sshd_config
         regexp: '^PasswordAuthentication no'
         line: 'PasswordAuthentication yes'
+
+    - name: Restart service sshd, in all cases
+      service:
+        name: sshd
+        state: restarted
