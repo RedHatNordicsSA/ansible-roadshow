@@ -90,7 +90,7 @@ Having to know the API and extra maintenance work for the module.
 ```
 
 ## Develop a module (Wrap CLI, non-native)
-Our first module will simply wrap a CLI command (echo). It will be non-native, meaning that it will receive it's arguments in a separate arguments file, using a key=value format.
+Our first module will simply wrap a CLI command (_touch_). It will be non-native, meaning that it will receive it's arguments in a separate arguments file as the first argument passed to the module. The arguments file will be using a key=value format.
 
 First, let's create a directory in which we'll develop the module.
 ```
@@ -104,14 +104,15 @@ Secondly, let's create a simple module using Bourne Again SHell (BASH) script.
 vi new-module
 ```
 
-We start with the most simple version of a module, as following:
+We start with the most simple version of this module, as following:
 ```
 #!/bin/sh
-# Module which creates a /tmp/new-module
+# Module which creates the file: /tmp/module-file
 set -e
 # First argument is the arguments file
 source ${1}
-echo "Someone passed: $msg" >/tmp/new-module
+# Create file
+touch /tmp/module-file
 # Output JSON
 echo {\"changed\": true, \"msg\": \"${msg}\"}
 exit 0
@@ -150,32 +151,19 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=1    changed=1    unreachable=0    failed=0   
 ```
 
-Now that we have a working module, let's improve it a bit, handling the case if something goes wrong. Change the module so that it handles the case if it's possible to create a file containing the input passed to it.
-
+Now that we have a working module, let's improve it a bit, handling the case if something goes wrong. Change the module so that it handles the case if it's possible to create a file containing the input passed to it. Create some exception handling in the module and output:
 ```
-#!/bin/sh
-# Module which creates a /tmp/new-module
-set -e
-# First argument is the arguments file
-source ${1}
-echo "Someone passed: $msg" >/tmp/new-module
-
-# Exception handling
-if [ "$?" -eq 0 ]; then
-  # Output JSON
-  echo {\"changed\": true, \"msg\": \"${msg}\"}
-else
-  echo {\"failed\": true, \"msg\": \"${msg}\"}
-fi
-exit 0
+echo {\"failed\": true, \"msg\": \"${msg}\"}
 ```
+If you detect a failure. If you get stuck, have a look at a solution here:
+http://github.com/mglantz/ansible-roadshow/labs/lab-10/lab-solutions/module-v2.sh
 
-Re-run your test.yml playbook to ensure it work, then you can try and replace "/tmp/new-module in the module to /tmp/doesnotexist/new-module" to cause it to fail. As an extra task, add some logic to your module that creates /tmp/doesnotexist if it does not exists. As a tip, look at the built in function _[ -d ]_ to evaluate if the directory exists and _mkdir_ to create the directory. For help, run:
+Re-run your test.yml playbook to ensure your modifications work, then you can try and replace _/tmp/module-arguments_ in the module to _/tmp/doesnotexist/module-arguments_ to cause it to fail. Then change it back to _/tmp/module-arguments_
 
-```
-man bash
-```
+Next step is to create a simple check if the _/tmp/module-arguments_ file already exists and then return JSON output with _changed: false_.
 
+If you get stuck, have a look at a solution here:
+http://github.com/mglantz/ansible-roadshow/labs/lab-10/lab-solutions/module-v3.sh
 
 OLD:
 First of all read the [Ansible Developing Modules](http://docs.ansible.com/ansible/latest/dev_guide/developing_modules.html) page. Especially the 'Should You Develop A Module?' section is relevant:-)
