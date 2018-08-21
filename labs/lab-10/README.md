@@ -90,7 +90,7 @@ Having to know the API and extra maintenance work for the module.
 ```
 
 ## Develop a module (Wrap CLI, non-native)
-Our first module will simply wrap a CLI command (_touch_). It will be non-native, meaning that it will receive it's arguments in a separate arguments file as the first argument passed to the module. The arguments file will be using a key=value format.
+Our first module will simply wrap a CLI command (_touch_). It will be non-native, meaning that it will receive it's arguments in a separate arguments file as the first argument passed to the module. The arguments file will be using a key=value format. Wrapping CLI commands is as stated simple, but is in general less robust and may provide limited value compared to the _command_ or _shell_ modules. Please keep in mind that Ansible modules can be written in any language, to make it as simple as possible, this example in written in BASH script.
 
 First, let's create a directory in which we'll develop the module.
 ```
@@ -151,21 +151,81 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=1    changed=1    unreachable=0    failed=0   
 ```
 
-Now that we have a working module, let's improve it a bit, handling the case if something goes wrong. Change the module so that it handles the case if it's possible to create a file containing the input passed to it. Create some exception handling in the module and output:
+Now that we have a working module, let's improve it a bit, handling the case if something goes wrong. Change the module so that it handles the case if it's possible to create a file containing the input passed to it. Create some exception handling in the module and if you detect a failure, output:
 ```
 echo {\"failed\": true, \"msg\": \"${msg}\"}
 ```
-If you detect a failure. If you get stuck, have a look at a solution here:
+* If you get stuck, have a look at a solution here:
 https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-10/lab-solutions/module-v2.sh
 
 Re-run your test.yml playbook to ensure your modifications work, then you can try and replace _/tmp/module-arguments_ in the module to _/tmp/doesnotexist/module-arguments_ to cause it to fail. Then change it back to _/tmp/module-arguments_
 
 Next step is to create a simple check if the _/tmp/module-arguments_ file already exists and then return JSON output with _changed: false_.
 
-If you get stuck, have a look at a solution here:
+* If you get stuck, have a look at a solution here:
 https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-10/lab-solutions/module-v3.sh
 
-OLD:
+## Develop a module (binary, non-native)
+The next module we'll develop is a binary module. Like we've said, you can develop Ansible modules in any language. Benefits of using a compiled binary module could be performance or containing dependencies. We'll write out simple binary module in C.
+
+First, let's create a directory in which we'll develop the module.
+```
+cd ansible-roadshow/lab-10
+mkdir binary-module
+cd binary-module
+```
+
+Then we'll create a simple module, which creates a file and then prints success. Create the file _binary-module.c_ as follows:
+
+```
+#include <stdio.h>
+
+int main()
+{
+  FILE *fp = fopen("/tmp/binary-module-file", "ab+");
+  printf("\"changed\": true, \"msg\": \"Arguments file: %s\"", argv[1])
+}
+```
+
+To compile the code, run:
+```
+gcc -o binary_module binary_module.c
+```
+
+Next, copy the module into the module directory.
+```
+cp binary_module /usr/share/ansible/plugins/modules/
+```
+
+Now we'll create a playbook to test our module. Create a file called _test-binary-module.yml_ in your local directory, as follows:
+```
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - binary_module:
+       msg: "hello world"
+```
+
+Now let's test our module.
+```
+ansible-playbook -vv ./test-binary-module.yml
+```
+
+Expected output should be something like:
+```
+Using /etc/ansible/ansible.cfg as config file
+1 plays in test-binary-module.yml
+
+PLAY ***************************************************************************
+
+TASK [binary_module] ***************************************************************
+changed: [localhost] => {"changed": true, "msg": "Arguments file: /tmp/asdf.tmp"}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=1    changed=1    unreachable=0    failed=0   
+```
+
+# More to read
 First of all read the [Ansible Developing Modules](http://docs.ansible.com/ansible/latest/dev_guide/developing_modules.html) page. Especially the 'Should You Develop A Module?' section is relevant:-)
 
 Next follow the steps in https://docs.ansible.com/ansible/2.5/dev_guide/developing_modules_general.html, but skip the section 'Prerequisites Via Apt (Ubuntu)'. This has been done for you. Be aware that we use python2, so ignore python3 stuff.
