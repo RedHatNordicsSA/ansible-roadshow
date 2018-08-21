@@ -180,10 +180,10 @@ Then we'll create a simple module, which creates a file and then prints success.
 ```
 #include <stdio.h>
 
-int main()
+int main(int argc, char *argv[])
 {
   FILE *fp = fopen("/tmp/binary-module-file", "ab+");
-  printf("\"changed\": true, \"msg\": \"Arguments file: %s\"", argv[1])
+  printf("\"changed\": true, \"msg\": \"Arguments file: %s \n\"", argv[1]);
 }
 ```
 
