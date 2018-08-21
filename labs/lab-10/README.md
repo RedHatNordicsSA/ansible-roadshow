@@ -156,14 +156,14 @@ Now that we have a working module, let's improve it a bit, handling the case if 
 echo {\"failed\": true, \"msg\": \"${msg}\"}
 ```
 If you detect a failure. If you get stuck, have a look at a solution here:
-http://github.com/mglantz/ansible-roadshow/labs/lab-10/lab-solutions/module-v2.sh
+https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-10/lab-solutions/module-v2.sh
 
 Re-run your test.yml playbook to ensure your modifications work, then you can try and replace _/tmp/module-arguments_ in the module to _/tmp/doesnotexist/module-arguments_ to cause it to fail. Then change it back to _/tmp/module-arguments_
 
 Next step is to create a simple check if the _/tmp/module-arguments_ file already exists and then return JSON output with _changed: false_.
 
 If you get stuck, have a look at a solution here:
-http://github.com/mglantz/ansible-roadshow/labs/lab-10/lab-solutions/module-v3.sh
+https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-10/lab-solutions/module-v3.sh
 
 OLD:
 First of all read the [Ansible Developing Modules](http://docs.ansible.com/ansible/latest/dev_guide/developing_modules.html) page. Especially the 'Should You Develop A Module?' section is relevant:-)
