@@ -8,7 +8,7 @@
 
     - name: Create student user
       user:
-        - name: "student"
+          name: "student"
           group: wheel
           password: $6$eD/E3Yav9Ej8w1R3$.L5Xlxbcx98.bO6zuNPgSloBOsw1UWeCZV4/9ejuO239.I00hq.nZakWOhYRupoowcTHXdYwLeCuPlks1mZPS/
           state: present
