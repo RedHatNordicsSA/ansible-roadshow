@@ -1,5 +1,7 @@
 # Getting started
 
+_Ensure that you are logged in to your Ansible control server._
+
 You are the operator at Tangible Labs Inc. and tasked with setting up servers for the company's new application that's based on wildfly-swarm. After attending several sessions on automation, you've decided to give Ansible a go.
 
 The first lab will help you verifying the Ansible installation and getting acquainted with basic Ansible concepts.
@@ -34,10 +36,10 @@ As you can see Ansible uses python. If you inspect the config file (/etc/ansible
 #module_utils   = /usr/share/my_module_utils/
 ```
 
-The most important for a beginning is the default location of the inventory file. The inventory file contains a list of servers that you are managing. The servers can be grouped in any way you like. For this lab, group the servers into load balancers (lbservers) and wildfly swarm application servers (wildflyservers). 
+The most important for a beginning is the default location of the inventory file. The inventory file contains a list of servers that you are managing. The servers can be grouped in any way you like. For this lab, group the servers into load balancers (lbservers) and wildfly swarm application servers (wildflyservers).
 
-In this lab, you'll share the environment with other users, therefore, you can't write in the shared inventory file. Before we continue on, make sure that the $WORK_DIR variable is defined. If $WORK_DIR is not defined, [take a look at the preparations.](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-0) 
-Now, create a file named *hosts* in the *$WORK_DIR* folder. 
+Before we continue on, make sure that the $WORK_DIR variable is defined. If $WORK_DIR is not defined, [take a look at the preparations.](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-0)
+Now, create a file named *hosts* in the *$WORK_DIR* folder.
 
 Please note: you got three servers assigned to you, it doesn't matter which one is put in the [lbservers] section and which remaining two are put in the [wildflyservers] section during lab 1.
 
@@ -45,11 +47,11 @@ Add the following text to the file:
 
 ```
 [lbservers]
-systemX.sudodemo.net
+systemX
 
 [wildflyservers]
-systemY.sudodemo.net
-systemZ.sudodemo.net
+systemY
+systemZ
 ```
 where X,Y,Z are replaced by the numbers for servers assigned to you.
 
@@ -57,7 +59,7 @@ Since this is the first time we're connecting to these servers, you'll need to a
 To speed up the process, we can use the ssh-keyscan command to accept identities. Like so:
 
 ```
-ssh-keyscan -H systemX.sudodemo.net systemY.sudodemo.net systemZ.sudodemo.net >> ~/.ssh/known_hosts
+ssh-keyscan -H systemX systemY systemZ >> ~/.ssh/known_hosts
 ```
 
 You are now ready to run your first Ansible module. To do so, run the following command from *$WORK_DIR*
@@ -70,15 +72,15 @@ This command will run the ping command on all servers in the hosts file (specifi
 
 ```
 35.159.18.245 | SUCCESS => {
-    "changed": false, 
+    "changed": false,
     "ping": "pong"
 }
 54.93.67.223 | SUCCESS => {
-    "changed": false, 
+    "changed": false,
     "ping": "pong"
 }
 54.93.150.126 | SUCCESS => {
-    "changed": false, 
+    "changed": false,
     "ping": "pong"
 }
 ```

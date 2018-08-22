@@ -4,6 +4,8 @@ In this lab, you'll work with a pretty simple, yet usable server setup.
 
 ![Image of server setup](demo-env.png)
 
+* _Please note that the Ansible control server is from where all labs are executed._
+
 The Tower server will have the responsibility of provisioning the servers, which are implementing a simple http based service.
 
 The NGINX server is responsible for balancing the load between the two backend servers. The backends are implemented using wildfly swarm, run as a simple java application.
