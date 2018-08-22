@@ -25,16 +25,15 @@ chmod 600 /root/.ssh/*
 curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/tower-inventory >/root/tower-inventory
 curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/inventory >/root/inventory
 curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/tower-install.yml >/root/tower-install.yml
-	
-for i in {1..50}; do
-	useradd user$i
-	mkdir /home/user$i/.ssh
-	chmod 700 /home/user$i/.ssh
-	curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa >/home/user$i/.ssh/id_rsa
-	curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa.pub >/home/user$i/.ssh/authorized_keys
-	chmod 600 /home/user$i/.ssh/*
-	chown user$i:user$i /home/user$i/.ssh -R
-done
+
+
+useradd student
+/home/student/.ssh
+chmod 700 /home/student/.ssh
+curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa >/home/student/.ssh/id_rsa
+curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa.pub >/home/student/.ssh/authorized_keys
+chmod 600 /home/student/.ssh/*
+chown student:student /home/student/.ssh -R
 
 # Install Ansible tower
 ansible-playbook -i /root/tower-inventory /root/tower-install.yml
