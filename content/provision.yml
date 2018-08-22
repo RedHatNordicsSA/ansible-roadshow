@@ -4,7 +4,7 @@
   vars:
     number_of_tower_systems: 1
     number_of_client_systems: 3
-    security_group: roadshowsecurity
+    security_group: ansibleroadshow
     region: eu-central-1
     ami_id: ami-194cdc76
     ec2_access_key: my ec2 access key
