@@ -1,6 +1,6 @@
 # Preparations
 
-1. To get started with the labs, you first needs to get your assigned username and servers. This will be provided to you live by the people who operates this lab.
+1. To get started with the labs, you first needs to get your assigned username and servers. This will be provided to you by the people who operates this lab.
 
 2. Please review the overview of the lab environment. Most importantly, the Ansible control servers is from where all the labs are done.
 ```
