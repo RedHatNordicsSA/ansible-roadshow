@@ -2,7 +2,7 @@
   connection: local
   gather_facts: False
   vars:
-    number_of_tower_servers: 1
+    number_of_tower_systems: 1
     number_of_client_systems: 3
     security_group: roadshowsecurity
     region: eu-central-1
