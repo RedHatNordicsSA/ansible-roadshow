@@ -73,7 +73,7 @@
       key_name: redhat-roadshow
       region: "{{ region }}"
       group: "{{ security_group }}"
-      instance_type: t2.large
+      instance_type: t2.medium
       image: "{{ ami_id }}"
       user_data: "{{ lookup('file', '/tmp/tower-prep.sh') }}"
       wait: true

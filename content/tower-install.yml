@@ -1,7 +1,5 @@
 - name: Install Ansible Tower
   hosts: all
-  vars:
-    count: 50
   tasks:
     - name: Enable EPEL yum repo
       yum:
