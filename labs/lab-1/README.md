@@ -47,11 +47,11 @@ Add the following text to the file:
 
 ```
 [lbservers]
-systemX
+client_system_X
 
 [wildflyservers]
-systemY
-systemZ
+client_systemY
+client_systemZ
 ```
 where X,Y,Z are replaced by the numbers for servers assigned to you.
 
@@ -59,7 +59,7 @@ Since this is the first time we're connecting to these servers, you'll need to a
 To speed up the process, we can use the ssh-keyscan command to accept identities. Like so:
 
 ```
-ssh-keyscan -H systemX systemY systemZ >> ~/.ssh/known_hosts
+ssh-keyscan -H client_systemX client_systemY client_systemZ >> ~/.ssh/known_hosts
 ```
 
 You are now ready to run your first Ansible module. To do so, run the following command from *$WORK_DIR*

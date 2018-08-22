@@ -25,6 +25,6 @@ Clone the lab files to your drive:
 
 Create an empty dir, where you will do your assignments. This dir will be refered to as $WORK_DIR, suggestion is that you export $WORK_DIR as a variable in your shell. So, for example:
 ```
-$ mkdir /home/userX/work
-$ WORK_DIR=/home/userX/work
+$ mkdir /home/student/work
+$ WORK_DIR=/home/student/work
 ```
