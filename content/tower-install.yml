@@ -1,6 +1,37 @@
 - name: Install Ansible Tower
   hosts: all
   tasks:
+    - name: Make sure we have a 'wheel' group
+      group:
+        name: wheel
+        state: present
+
+    - name: Set passwords for users
+      user:
+        - name: "student"
+          group: wheel
+          password: $6$eD/E3Yav9Ej8w1R3$.L5Xlxbcx98.bO6zuNPgSloBOsw1UWeCZV4/9ejuO239.I00hq.nZakWOhYRupoowcTHXdYwLeCuPlks1mZPS/
+          state: present
+          
+    - name: Set passwords for users
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication no'
+        line: 'PasswordAuthentication yes'
+
+    - name: Allow 'wheel' group to have passwordless sudo
+      lineinfile:
+        dest: /etc/sudoers
+        state: present
+        regexp: '^%wheel'
+        line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+        validate: visudo -cf %s
+
+    - name: Restart service sshd, in all cases
+      service:
+        name: sshd
+        state: restarted
+  
     - name: Enable EPEL yum repo
       yum:
         name: http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
@@ -96,19 +127,3 @@
 
     - name: Restore from backup
       shell: "{{tower_installer_path.stdout}} -r {{ tower_base_path.stdout }}/tower-backup-latest.tar.gz"
-
-    - name: Set passwords for users
-      user:
-        - name: "student"
-          password: $6$eD/E3Yav9Ej8w1R3$.L5Xlxbcx98.bO6zuNPgSloBOsw1UWeCZV4/9ejuO239.I00hq.nZakWOhYRupoowcTHXdYwLeCuPlks1mZPS/
-
-    - name: Set passwords for users
-      lineinfile:
-        path: /etc/ssh/sshd_config
-        regexp: '^PasswordAuthentication no'
-        line: 'PasswordAuthentication yes'
-
-    - name: Restart service sshd, in all cases
-      service:
-        name: sshd
-        state: restarted
