@@ -6,7 +6,7 @@
         name: wheel
         state: present
 
-    - name: Set passwords for users
+    - name: Create student user
       user:
         - name: "student"
           group: wheel
@@ -36,6 +36,22 @@
       yum:
         name: http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
         state: present
+
+    - name: Install Python Pip
+      yum:
+        name: python2-pip
+        state: present
+
+    - name: Check if Ansible Lint is installed
+      stat:
+        path: /bin/ansible-lint
+      register: ansible_lint
+
+    - name: Install Ansible Lint
+      pip:
+        name: ansible-lint
+        state: present
+      when: ansible_lint.stat.exists == False
 
     - name: Ensure /opt/tower is created
       file:
@@ -93,11 +109,6 @@
     - name: Run Ansible Tower installer
       shell: "{{tower_installer_path.stdout}} -i {{tower_inventory_path.stdout}}"
 
-    - name: Install Python Pip
-      yum:
-        name: python2-pip
-        state: present
-
     - name: Check if Tower CLI is installed
       stat:
         path: /bin/tower-cli
@@ -108,17 +119,6 @@
         name: ansible-tower-cli
         state: present
       when: tower_cli.stat.exists == False
-
-    - name: Check if Ansible Lint is installed
-      stat:
-        path: /bin/ansible-lint
-      register: ansible_lint
-
-    - name: Install Ansible Lint
-      pip:
-        name: ansible-lint
-        state: present
-      when: ansible_lint.stat.exists == False
 
     - name: Fetch backup
       get_url:
