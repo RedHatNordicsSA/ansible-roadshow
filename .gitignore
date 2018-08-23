@@ -3,3 +3,8 @@
 .DS_Store
 .vagrant/
 *.myversion
+content/roles/*
+content/vars.yml
+content/*_servers.out
+content/client_instances.out
+content/vault-password.txt

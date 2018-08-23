@@ -1,0 +1,5 @@
+---
+# do ansible-galaxy install -p roles -r requirements.yml
+
+- src: geerlingguy.gitlab
+  name: gitlab
