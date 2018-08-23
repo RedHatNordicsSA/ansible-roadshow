@@ -41,7 +41,7 @@ Next thing that we'll do is to create a project. A Project is a logical collecti
 You can manage playbooks and playbook directories by either placing them manually under the Project Base Path on your Tower server, or by placing your playbooks into a source code management (SCM) system supported by Tower, including Git, Subversion, and Mercurial.
 
 >Create a project called "yourUSERNAME-playbooks" by following the instructions below.
-  
+
 * To create a new project, click on the 'Projects' tab and click on the add button. Make sure to link your project to the GitHub repository, which [you created earlier in lab-6](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-6).
 
  ![Create a project](https://github.com/mglantz/ansible-roadshow/blob/master/content/create-project.png?raw=true)
@@ -77,5 +77,3 @@ $ tower-cli --help
 $ tower-cli job --help
 ```
 and launch your playbook.
-
-

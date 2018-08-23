@@ -90,7 +90,7 @@ Having to know the API and extra maintenance work for the module.
 ```
 
 ## Develop a module (Wrap CLI, non-native)
-Our first module will simply wrap a CLI command (echo). It will be non-native, meaning that it will receive it's arguments in a separate arguments file, using a key=value format.
+Our first module will simply wrap a CLI command (_touch_). It will be non-native, meaning that it will receive it's arguments in a separate arguments file as the first argument passed to the module. The arguments file will be using a key=value format. Wrapping CLI commands is as stated simple, but is in general less robust and may provide limited value compared to the _command_ or _shell_ modules. Please keep in mind that Ansible modules can be written in any language, to make it as simple as possible, this example in written in BASH script.
 
 First, let's create a directory in which we'll develop the module.
 ```
@@ -104,14 +104,15 @@ Secondly, let's create a simple module using Bourne Again SHell (BASH) script.
 vi new-module
 ```
 
-We start with the most simple version of a module, as following:
+We start with the most simple version of this module, as following:
 ```
 #!/bin/sh
-# Module which creates a /tmp/new-module
+# Module which creates the file: /tmp/module-file
 set -e
 # First argument is the arguments file
 source ${1}
-echo "Someone passed: $msg" >/tmp/new-module
+# Create file
+touch /tmp/module-file
 # Output JSON
 echo {\"changed\": true, \"msg\": \"${msg}\"}
 exit 0
@@ -150,34 +151,81 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=1    changed=1    unreachable=0    failed=0   
 ```
 
-Now that we have a working module, let's improve it a bit, handling the case if something goes wrong. Change the module so that it handles the case if it's possible to create a file containing the input passed to it.
-
+Now that we have a working module, let's improve it a bit, handling the case if something goes wrong. Change the module so that it handles the case if it's possible to create a file containing the input passed to it. Create some exception handling in the module and if you detect a failure, output:
 ```
-#!/bin/sh
-# Module which creates a /tmp/new-module
-set -e
-# First argument is the arguments file
-source ${1}
-echo "Someone passed: $msg" >/tmp/new-module
-
-# Exception handling
-if [ "$?" -eq 0 ]; then
-  # Output JSON
-  echo {\"changed\": true, \"msg\": \"${msg}\"}
-else
-  echo {\"failed\": true, \"msg\": \"${msg}\"}
-fi
-exit 0
+echo {\"failed\": true, \"msg\": \"${msg}\"}
 ```
+* If you get stuck, have a look at a solution here:
+https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-10/lab-solutions/module-v2.sh
 
-Re-run your test.yml playbook to ensure it work, then you can try and replace "/tmp/new-module in the module to /tmp/doesnotexist/new-module" to cause it to fail. As an extra task, add some logic to your module that creates /tmp/doesnotexist if it does not exists. As a tip, look at the built in function _[ -d ]_ to evaluate if the directory exists and _mkdir_ to create the directory. For help, run:
+Re-run your test.yml playbook to ensure your modifications work, then you can try and replace _/tmp/module-arguments_ in the module to _/tmp/doesnotexist/module-arguments_ to cause it to fail. Then change it back to _/tmp/module-arguments_
 
+Next step is to create a simple check if the _/tmp/module-arguments_ file already exists and then return JSON output with _changed: false_.
+
+* If you get stuck, have a look at a solution here:
+https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-10/lab-solutions/module-v3.sh
+
+## Develop a module (binary, non-native)
+The next module we'll develop is a binary module. Like we've said, you can develop Ansible modules in any language. Benefits of using a compiled binary module could be performance or containing dependencies. We'll write out simple binary module in C.
+
+First, let's create a directory in which we'll develop the module.
 ```
-man bash
+cd ansible-roadshow/lab-10
+mkdir binary-module
+cd binary-module
 ```
 
+Then we'll create a simple module, which creates a file and then prints success. Create the file _binary-module.c_ as follows:
 
-OLD:
+```
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+  FILE *fp = fopen("/tmp/binary-module-file", "ab+");
+  printf("\"changed\": true, \"msg\": \"Arguments file: %s \n\"", argv[1]);
+}
+```
+
+To compile the code, run:
+```
+gcc -o binary_module binary_module.c
+```
+
+Next, copy the module into the module directory.
+```
+cp binary_module /usr/share/ansible/plugins/modules/
+```
+
+Now we'll create a playbook to test our module. Create a file called _test-binary-module.yml_ in your local directory, as follows:
+```
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - binary_module:
+       msg: "hello world"
+```
+
+Now let's test our module.
+```
+ansible-playbook -vv ./test-binary-module.yml
+```
+
+Expected output should be something like:
+```
+Using /etc/ansible/ansible.cfg as config file
+1 plays in test-binary-module.yml
+
+PLAY ***************************************************************************
+
+TASK [binary_module] ***************************************************************
+changed: [localhost] => {"changed": true, "msg": "Arguments file: /tmp/asdf.tmp"}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=1    changed=1    unreachable=0    failed=0   
+```
+
+# More to read
 First of all read the [Ansible Developing Modules](http://docs.ansible.com/ansible/latest/dev_guide/developing_modules.html) page. Especially the 'Should You Develop A Module?' section is relevant:-)
 
 Next follow the steps in https://docs.ansible.com/ansible/2.5/dev_guide/developing_modules_general.html, but skip the section 'Prerequisites Via Apt (Ubuntu)'. This has been done for you. Be aware that we use python2, so ignore python3 stuff.

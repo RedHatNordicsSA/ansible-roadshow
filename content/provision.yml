@@ -2,7 +2,9 @@
   connection: local
   gather_facts: False
   vars:
-    security_group: roadshowsecurity
+    number_of_tower_systems: 1
+    number_of_client_systems: 3
+    security_group: ansibleroadshow
     region: eu-central-1
     ami_id: ami-194cdc76
     ec2_access_key: my ec2 access key
@@ -17,6 +19,16 @@
     get_url:
       url: https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/host-prep.sh
       dest: /tmp/host-prep.sh
+      
+  - name: Create empty file to store tower servers public IPs
+    file:
+      path: "./tower_servers.out"
+      state: touch
+
+  - name: Create empty file to store tower clients public IPs
+    file:
+      path: "./client_instances.out"
+      state: touch
 
   - name: Ensure a security group with correct ingress/egress rules are in place
     ec2_group:
@@ -50,14 +62,14 @@
     ec2:
       aws_access_key: "{{ec2_access_key}}"
       aws_secret_key: "{{ec2_secret_key}}"
-      key_name: redhat-roadshow 
+      key_name: redhat-roadshow
       region: "{{ region }}"
       group: "{{ security_group }}"
       instance_type: t2.micro
       image: "{{ ami_id }}"
       user_data: "{{ lookup('file', '/tmp/host-prep.sh') }}"
       wait: true
-      exact_count: 3
+      exact_count: "{{ number_of_client_systems }}"
       count_tag:
         identity: system
       instance_tags:
@@ -71,29 +83,41 @@
       key_name: redhat-roadshow
       region: "{{ region }}"
       group: "{{ security_group }}"
-      instance_type: t2.large
+      instance_type: t2.medium
       image: "{{ ami_id }}"
       user_data: "{{ lookup('file', '/tmp/tower-prep.sh') }}"
       wait: true
-      exact_count: 1
+      exact_count: "{{ number_of_tower_systems }}"
       count_tag:
         identity: tower
       instance_tags:
         identity: tower
     register: ec2large
 
-  - name: Add all instance public IPs to host group
+  - name: Add client instance public IPs to host group
     add_host: hostname={{ item.public_ip }} groups=ec2micro
     with_items: "{{ ec2micro.tagged_instances }}"
 
   - name: Print IP addresses of regular systems
     debug:
       msg: "{{ groups['ec2micro'] }}"
+      
+  - name: Print IP addresses of regular systems to ./client_instances.out
+    lineinfile:
+      path: ./client_instances.out
+      line: "{{ item.public_ip }}"
+    with_items: "{{ ec2micro.tagged_instances }}"
 
-  - name: Add all instance public IPs to host group
+  - name: Add Tower instance public IPs to host group
     add_host: hostname={{ item.public_ip }} groups=ec2large
     with_items: "{{ ec2large.tagged_instances }}"
 
   - name: Print IP address of Ansible Tower server
     debug:
       msg: "{{ groups['ec2large'] }}"
+      
+  - name: Print IP addresses of Tower servers to ./tower_servers.out
+    lineinfile:
+      path: ./tower_servers.out
+      line: "{{ item.public_ip }}"
+    with_items: "{{ ec2large.tagged_instances }}"

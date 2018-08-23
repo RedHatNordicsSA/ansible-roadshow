@@ -1,12 +1,57 @@
 - name: Install Ansible Tower
   hosts: all
-  vars:
-    count: 50
   tasks:
+    - name: Make sure we have a 'wheel' group
+      group:
+        name: wheel
+        state: present
+
+    - name: Create student user
+      user:
+          name: "student"
+          group: wheel
+          password: $6$eD/E3Yav9Ej8w1R3$.L5Xlxbcx98.bO6zuNPgSloBOsw1UWeCZV4/9ejuO239.I00hq.nZakWOhYRupoowcTHXdYwLeCuPlks1mZPS/
+          state: present
+          
+    - name: Set passwords for users
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication no'
+        line: 'PasswordAuthentication yes'
+
+    - name: Allow 'wheel' group to have passwordless sudo
+      lineinfile:
+        dest: /etc/sudoers
+        state: present
+        regexp: '^%wheel'
+        line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+        validate: visudo -cf %s
+
+    - name: Restart service sshd, in all cases
+      service:
+        name: sshd
+        state: restarted
+  
     - name: Enable EPEL yum repo
       yum:
         name: http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
         state: present
+
+    - name: Install Python Pip
+      yum:
+        name: python2-pip
+        state: present
+
+    - name: Check if Ansible Lint is installed
+      stat:
+        path: /bin/ansible-lint
+      register: ansible_lint
+
+    - name: Install Ansible Lint
+      pip:
+        name: ansible-lint
+        state: present
+      when: ansible_lint.stat.exists == False
 
     - name: Ensure /opt/tower is created
       file:
@@ -55,7 +100,7 @@
         regexp: '^pg_password='
         line: 'pg_password=redhat123'
 
-    - name: Set rabbitmq password in inventory file 
+    - name: Set rabbitmq password in inventory file
       lineinfile:
         path: "{{ tower_inventory_path.stdout }}"
         regexp: '^rabbitmq_password='
@@ -64,33 +109,17 @@
     - name: Run Ansible Tower installer
       shell: "{{tower_installer_path.stdout}} -i {{tower_inventory_path.stdout}}"
 
-    - name: Install Python Pip
-      yum:
-        name: python2-pip
-        state: present
-
     - name: Check if Tower CLI is installed
       stat:
         path: /bin/tower-cli
       register: tower_cli
 
     - name: Install Tower CLI
-      pip: 
+      pip:
         name: ansible-tower-cli
         state: present
       when: tower_cli.stat.exists == False
 
-    - name: Check if Ansible Lint is installed
-      stat:
-        path: /bin/ansible-lint
-      register: ansible_lint
-
-    - name: Install Ansible Lint
-      pip: 
-        name: ansible-lint
-        state: present
-      when: ansible_lint.stat.exists == False
-      
     - name: Fetch backup
       get_url:
         url: https://github.com/mglantz/ansible-roadshow/raw/master/content/tower-backup.tar.gz
@@ -98,16 +127,3 @@
 
     - name: Restore from backup
       shell: "{{tower_installer_path.stdout}} -r {{ tower_base_path.stdout }}/tower-backup-latest.tar.gz"
-      
-    - name: Set passwords for users
-      user:
-        - name: "{{ item }}"
-          password: redhat123
-          with_nested:
-            - "{{ query('sequence', 'end={{ count }} start=1') }}"
-
-    - name: Set passwords for users
-      lineinfile:
-        path: /etc/ssh/sshd_config
-        regexp: '^PasswordAuthentication no'
-        line: 'PasswordAuthentication yes'
