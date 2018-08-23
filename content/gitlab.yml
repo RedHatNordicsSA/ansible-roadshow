@@ -1,0 +1,88 @@
+---
+- name: "[Play 1] Deploy gitlab instance"
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  vars:
+    security_group: ansibleroadshow
+    region: eu-west-1
+    ami_id: ami-7c491f05
+    ec2_access_key: my ec2 access key
+    ec2_secret_key: my ec2 secret key
+
+  tasks:
+  - name: Ensure a security group with correct ingress/egress rules are in place
+    ec2_group:
+      name: "{{ security_group }}"
+      description: Security Group for webserver Servers
+      region: "{{ region }}"
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      rules:
+        - proto: tcp
+          from_port: 22
+          to_port: 22
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          from_port: 80
+          to_port: 80
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          from_port: 443
+          to_port: 443
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          from_port: 8080
+          to_port: 8080
+          cidr_ip: 0.0.0.0/0
+      rules_egress:
+        - proto: all
+          cidr_ip: 0.0.0.0/0
+
+  - name: Provision Gitlab Server
+    ec2:
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      key_name: redhat-roadshow
+      region: "{{ region }}"
+      group: "{{ security_group }}"
+      instance_type: t2.medium
+      image: "{{ ami_id }}"
+      wait: true
+      exact_count: 1
+      count_tag:
+        identity: gitlab
+      instance_tags:
+        identity: gitlab
+    register: deploy
+
+  - name: Wait for SSH to come up
+    local_action: wait_for
+                  host="{{ item.public_ip }}"
+                  port=22
+                  state=started
+    with_items: "{{ deploy.instances }}"
+
+  - name: Add all client instance public IPs to host group
+    add_host: hostname={{ item.public_dns_name }} groups=gitlab
+    with_items: "{{ deploy.instances }}"
+
+  - name: Student to lab ebvironment mapping
+    lineinfile:
+      path: ./gitlab_out
+      line: "{{ deploy }}"
+
+- name: "[Play 2]Install Gitlab CE"
+  hosts: gitlab
+  remote_user: ec2-user
+  become: yes
+  vars:
+
+  tasks:
+  - include_role:
+      name: geerlingguy.gitlab
+    vars:
+      gitlab_external_url: "{{'https://'+inventory_hostname}}"
+      gitlab_create_self_signed_cert: "true"
+      gitlab_self_signed_cert_subj: "{{'/C=SE/ST=Stockholm/L=Stockholm/O=Red Hat Nordics/CN='+ansibleroadshow}}"
+      gitlab_time_zone: "UTC"
