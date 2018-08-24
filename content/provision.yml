@@ -1,14 +1,8 @@
 - hosts: localhost
   connection: local
   gather_facts: False
-  vars:
-    number_of_tower_systems: 1
-    number_of_client_systems: 3
-    security_group: ansibleroadshow
-    region: eu-central-1
-    ami_id: ami-194cdc76
-    ec2_access_key: my ec2 access key
-    ec2_secret_key: my ec2 secret key
+  vars_files:
+    - vars.yml
   tasks:
   - name: Download Tower user data file
     get_url:
@@ -19,7 +13,7 @@
     get_url:
       url: https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/host-prep.sh
       dest: /tmp/host-prep.sh
-      
+
   - name: Create empty file to store tower servers public IPs
     file:
       path: "./tower_servers.out"
@@ -62,7 +56,7 @@
     ec2:
       aws_access_key: "{{ec2_access_key}}"
       aws_secret_key: "{{ec2_secret_key}}"
-      key_name: redhat-roadshow
+      key_name: "{{ec2_key}}"
       region: "{{ region }}"
       group: "{{ security_group }}"
       instance_type: t2.micro
@@ -80,7 +74,7 @@
     ec2:
       aws_access_key: "{{ec2_access_key}}"
       aws_secret_key: "{{ec2_secret_key}}"
-      key_name: redhat-roadshow
+      key_name: "{{ec2_key}}"
       region: "{{ region }}"
       group: "{{ security_group }}"
       instance_type: t2.medium
@@ -94,6 +88,23 @@
         identity: tower
     register: ec2large
 
+  - name: Provision Gitlab
+    ec2:
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      key_name: "{{ec2_key}}"
+      region: "{{ region }}"
+      group: "{{ security_group }}"
+      instance_type: t2.medium
+      image: "{{ ami_id }}"
+      wait: true
+      exact_count: "{{ number_of_git_systems }}"
+      count_tag:
+        identity: git
+      instance_tags:
+        identity: git
+    register: git_server
+
   - name: Add client instance public IPs to host group
     add_host: hostname={{ item.public_ip }} groups=ec2micro
     with_items: "{{ ec2micro.tagged_instances }}"
@@ -101,23 +112,48 @@
   - name: Print IP addresses of regular systems
     debug:
       msg: "{{ groups['ec2micro'] }}"
-      
+
   - name: Print IP addresses of regular systems to ./client_instances.out
     lineinfile:
       path: ./client_instances.out
       line: "{{ item.public_ip }}"
+      create: yes
     with_items: "{{ ec2micro.tagged_instances }}"
 
   - name: Add Tower instance public IPs to host group
     add_host: hostname={{ item.public_ip }} groups=ec2large
     with_items: "{{ ec2large.tagged_instances }}"
 
+  - name: Add git instance public IPs and fqdn to host group
+    add_host:
+      hostname: "{{ item.public_ip }}"
+      groups: git
+      ansible_become: true
+      fqdn: "{{item.public_dns_name}}"
+      ansible_ssh_user: ec2-user
+    with_items: "{{ git_server.tagged_instances }}"
+
   - name: Print IP address of Ansible Tower server
     debug:
       msg: "{{ groups['ec2large'] }}"
-      
+
   - name: Print IP addresses of Tower servers to ./tower_servers.out
     lineinfile:
       path: ./tower_servers.out
       line: "{{ item.public_ip }}"
+      create: yes
     with_items: "{{ ec2large.tagged_instances }}"
+
+  - name: Print public ip and fqdn of Git server
+    debug:
+      msg:
+        - "{{ item.public_ip }}"
+        - "{{ item.public_dns_name }}"
+    with_items: "{{ git_server.tagged_instances }}"
+
+  - name: Print IP addresses of Git servers to ./git_servers.out
+    lineinfile:
+      path: ./git_servers.out
+      line: "{{ item.public_ip }}"
+      create: yes
+    with_items: "{{ git_server.tagged_instances }}"

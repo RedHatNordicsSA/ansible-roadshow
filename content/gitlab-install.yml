@@ -1,0 +1,18 @@
+---
+
+- name: setup stuff in Gitlab VMs
+  hosts: git
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: install gitlab
+      include_role:
+        name: gitlab
+      vars:
+        gitlab_email_enabled: "false"
+        gitlab_email_from: "{{gitlab_email}}"
+        gitlab_email_display_name: "Gitlab"
+        gitlab_email_reply_to: "{{gitlab_email}}"
+        gitlab_external_url: "https://{{ fqdn }}"
+    - name: print git server url
+      debug: msg="https://{{ fqdn }}"
