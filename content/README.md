@@ -1,10 +1,11 @@
 # Installing the labs
 
-These instructions guide you how to let Ansible provision the environment to Amazon AWS. All installation material is in ```content/``` -directory, instructions assume you are working in that directory. Start with cloning this repository and moving into working directory:
+These instructions guide you how to let Ansible provision the environment to Amazon AWS. All installation material is in ```content/``` -directory, instructions assume you are working in that directory. Start with cloning this repository, moving into working directory, and adding your ssh key to ssg-agent for ansible to use it:
 
 ```
 git clone https://github.com/mglantz/ansible-roadshow.git
 cd content
+ssh-add
 ```
 
 ## Install Ansible
