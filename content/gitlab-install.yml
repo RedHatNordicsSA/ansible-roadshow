@@ -27,3 +27,4 @@
         line: "student{{ item }}"
         create: yes
       with_sequence: start=1 end={{number_of_tower_systems|int}}
+      delegate_to: 127.0.0.1

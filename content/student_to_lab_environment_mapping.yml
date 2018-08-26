@@ -13,7 +13,7 @@
     register: tower_servers
 
   - name: Source gitlab server
-    command: cat ./gitlab_servers.out
+    command: cat ./git_servers.out
     register: gitlab_server
 
   - name: Set gitlab server fact

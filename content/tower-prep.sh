@@ -29,7 +29,7 @@ curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/t
 
 useradd student
 echo "redhat123" | passwd student --stdin
-/home/student/.ssh
+mkdir /home/student/.ssh
 chmod 700 /home/student/.ssh
 curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa >/home/student/.ssh/id_rsa
 curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa.pub >/home/student/.ssh/authorized_keys

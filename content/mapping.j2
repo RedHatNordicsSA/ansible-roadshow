@@ -1,6 +1,10 @@
 {% for student_row in final_list %}
 Student: {{ student_row.name }}
   Tower Server: {{ student_row.tower_server }}
+    Tower Admin user: admin
+    Tower Admin password: redhat123
+    Tower SSH user: student
+    Tower SSH password: redhat123
   Client Systems: {{ student_row.client1 }}, {{ student_row.client2 }}, {{ student_row.client3 }}
   Gitlab Server: {{ gitlab_server }}
     Gitlab Username: {{ student_row.gitlab_user }}
