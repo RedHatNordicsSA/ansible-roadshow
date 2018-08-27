@@ -47,19 +47,19 @@ Add the following text to the file:
 
 ```
 [lbservers]
-client_system_X
+client_system_1 ansible_host=xxx.xxx.xxx.xxx
 
 [wildflyservers]
-client_systemY
-client_systemZ
+client_system_2 ansible_host=yyy.yyy.yyy.yyy
+client_system_3 ansible_host=zzz.zzz.zzz.zzz
 ```
-where X,Y,Z are replaced by the numbers for servers assigned to you.
+where x, y and z values are replaced by the ip numbers for servers assigned to you.
 
 Since this is the first time we're connecting to these servers, you'll need to accept the identity of the servers.
 To speed up the process, we can use the ssh-keyscan command to accept identities. Like so:
 
 ```
-ssh-keyscan -H client_systemX client_systemY client_systemZ >> ~/.ssh/known_hosts
+ssh-keyscan -H xxx.xxx.xxx.xxx yyy.yyy.yyy.yyy zzz.zzz.zzz.zzz >> ~/.ssh/known_hosts
 ```
 
 You are now ready to run your first Ansible module. To do so, run the following command from *$WORK_DIR*
