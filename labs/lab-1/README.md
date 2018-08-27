@@ -16,12 +16,12 @@ You should see output like the following:
 
 ```
 $ansible --version
-ansible 2.4.2.0
+ansible 2.6.3
   config file = /etc/ansible/ansible.cfg
-  configured module search path = [u\'/root/.ansible/plugins/modules\', u\'/usr/share/ansible/plugins/modules\']
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
   ansible python module location = /usr/lib/python2.7/site-packages/ansible
   executable location = /bin/ansible
-  python version = 2.7.5 (default, May  3 2017, 07:55:04) [GCC 4.8.5 20150623 (Red Hat 4.8.5-14)]
+  python version = 2.7.5 (default, May 31 2018, 09:41:32) [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)]
 ```
 
 As you can see Ansible uses python. If you inspect the config file (/etc/ansible/ansible.cfg) file, you will find the following configuration:
