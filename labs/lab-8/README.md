@@ -1,10 +1,8 @@
 # Installing wildfly and nginx from Tower
 
-As the good developer you are, you want to make your playbooks available for the whole organization to run and benefit from. This lab will describe how you can do so.
+As the good developer you are, you want to make your playbooks for provisioning the wildfly app available for the whole organization to run and benefit from. This lab will describe how you can do so.
 
-First create a new git repo with $WORK_DIR as root directory. If you did [lab 6](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-6), you can reuse that repo. If you don't want to spend time on git right now, you can use the one [provided by your instructor](https://github.com/jacobborella/ansible-roadshow-test).
-
-Next you need to instruct Ansible Tower to use the nginx module. You could install the module on Tower as previously, but this would have the unwanted effect that all projects on the Tower server would rely on this module. Furthermore the Tower server now needs special care if you need to reinstall it. Instead we'll instruct Tower to include the nginx module as part of our project. To do so, add a file *$WORK_DIR/roles* called *requirements.yml*, with the following content
+First you need to instruct Ansible Tower to use the nginx module. You could install the module on Tower as previously, but this would have the unwanted effect that all projects on the Tower server would rely on this module. Furthermore the Tower server now needs special care if you need to reinstall it. Instead we'll instruct Tower to include the nginx module as part of our project. To do so, add a file *$WORK_DIR/roles* called *requirements.yml*, with the following content
 ```
 ---
 - src: https://github.com/nginxinc/ansible-role-nginx
@@ -13,34 +11,35 @@ Next you need to instruct Ansible Tower to use the nginx module. You could insta
 ```
 Check in the change and you are ready to go.
 
-Login to the Ansible Tower server on the url and username/password provided by the instructor. If you haven't setup the credentials to your system as described in the lab [Introducing Ansible Tower](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-7), please do so now:-)
+Login to the Ansible Tower server on the url and username/password provided by the instructor.
 
-First step is to add your code to Tower in form of a project. In this case we'll add the code in form of the git repo, you created earlier.
-First click *PROJECTS* in the top menu. Then click *ADD*. Finally fill in values as provided in below screenshot (replace git url with your repo url)
-![filling in project values](images/img2.png)
-Finally click *SAVE*
+You've made the Inventory and Project for getting started in the previouse lab, but there are some additional stuff you need to do. First you need to create the groups and add hosts to the groups. To do so go to "INVENTORIES" -> "workshop-inventory" -> GROUPS". Here click "+ADD GROUP".
+![create a group](images/create-group.png)
 
-Now your code should be fetched into Tower for use. You can verify this has happened by clicking *PROJECTS* menu item and verify there is a green dot left to your project name.
 
-Next we need to define our inventory. This is the same as using the hosts file, but to have everything under control in Tower, we'll use this mechanism. Click on the *INVENTORIES* menu item, click the green *ADD* button and select *Inventory* from the list. Name the inventory *Ansible Workshop machines* and click *SAVE*. Next select the *GROUPS* tab 
-![filling in groups](images/img3.png)
-
-Add three groups
+Create three groups named:
 * dev
-* lbservers
 * wildflyservers
+* lbservers
 
-![groups done](images/img4.png)
+Click "SAVE" for each group.
 
-Now select the *HOSTS* tab and add the three hosts, which has been assigned to you by the instructor.
+Next add the hosts to the correct groups. For each group click on the group name and then on the "HOSTS" tab. For instance clicking "dev" -> "HOSTS" will bring you to the following screen, where you can add hosts to the group
 
-When that's done, we need to associate the hosts with the groups. This is most easily done by clicking 'Ansible Workshop machines' in the breadcrumb near the top of the screen.
-![hosts done](images/img5.png)
+![Add hosts to a group](images/add-host-to-group.png)
 
-then select the *GROUPS* tab. Then click on the dev group and then the *HOSTS* tab. Now click *ADD* and select existing host. This will give you a menu, where you can select the hosts. For dev select all hosts and click *SAVE*.
-![dev group hosts](images/img6.png)
+* Add all hosts to the dev group.
+* Add client_system_1 to the lbservers group
+* Add client_system_2 and client_system_3 to the wildflyservers group
 
-Repeat the process for lbservers and wildflyservers, but this time only select the appropriate machines as in the *hosts* file.
+Using above described method.
+
+Next you need to setup the vault password for your playbooks. To do so click the *settings* menu item in top of the menu
+![settings location image](../lab-8/images/img0.png)
+
+On the items, which appear click *credentials*. Then click *ADD*. Select Vault as credential type and the fill in values as provided in below screenshot (replace password with whatever you chose).
+![filling in vault values](../lab-8/images/img1.png)
+Click *SAVE* and you're done with this part.
 
 Phew that's a lot of work. Luckily there is other ways of doing this, but the GUI is the easiest way to help you understand what's going on. Maybe grap a cup of cofee at this point - almost there.
 
