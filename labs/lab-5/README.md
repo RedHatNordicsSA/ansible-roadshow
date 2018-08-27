@@ -14,23 +14,23 @@ As you can see, some refactoring has been done to ensure, that it is possible to
 
 ```
 [lbservers]
-systemX.sudodemo.net
+client_system_1 ansible_host=xxx.xxx.xxx.xxx
 
 [wildflyservers]
-systemY.sudodemo.net
-systemZ.sudodemo.net
+client_system_2 ansible_host=yyy.yyy.yyy.yyy
+client_system_3 ansible_host=zzz.zzz.zzz.zzz
 
 [dev]
-systemX.sudodemo.net
-systemY.sudodemo.net
-systemZ.sudodemo.net
+client_system_1 ansible_host=xxx.xxx.xxx.xxx
+client_system_2 ansible_host=yyy.yyy.yyy.yyy
+client_system_3 ansible_host=zzz.zzz.zzz.zzz
 ```
 
 As before change machine names to those assigned to you.
 
 Now ansible will include all variables defined in *$WORK_DIR/group_vars/dev/* for the servers listed, each time the playbook is run.
 
-Finally let's encrypt the vault file. In the promt write:
+Finally let's encrypt the vault file. In the prompt write:
 
 ```
 $ansible-vault encrypt $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
@@ -57,7 +57,7 @@ Last step is to add the newly created variable as an environment variable to the
   register: jar_file_copy
 - name: Create service script
   template:
-    src: roles/wildflyapp/files/wildflyapp.template
+    src: roles/wildflyapp/templates/wildflyapp.template
     dest: /lib/systemd/system/wildflyapp.service
     owner: root
     group: root
@@ -84,10 +84,11 @@ Remark the addition of no_log to ensure that no details about our secret is logg
 Rename the service script to reflect that it is now a template file:
 
 ```
-$mv $WORK_DIR/roles/wildflyapp/files/wildflyapp.service $WORK_DIR/roles/wildflyapp/files/wildflyapp.template
+mkdir -p $WORK_DIR/roles/wildflyapp/templates
+$mv $WORK_DIR/roles/wildflyapp/files/wildflyapp.service $WORK_DIR/roles/wildflyapp/templates/wildflyapp.template
 ```
 
-Change the content of the service script file *$WORK_DIR/roles/wildflyapp/files/wildflyapp.template* to have the following content:
+Change the content of the service script file *$WORK_DIR/roles/wildflyapp/templates/wildflyapp.template* to have the following content:
 
 ```
 [Unit]
@@ -115,7 +116,7 @@ As you can see the secret name is added to the template.
 To run the playbook with your vault, you'll be required to give Ansible your password. Do so by creating a file named *.mypassword* and put the password in the file. Then run ansible with the following command:
 
 ```
-$ansible-playbook -i hosts -u root main.yml --vault-password-file .mypassword
+$ansible-playbook -i hosts site.yml --vault-password-file .mypassword
 ```
 
 You should now be able to access the url and observe your changes...
