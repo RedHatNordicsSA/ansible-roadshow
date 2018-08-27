@@ -83,6 +83,7 @@ Finally you need to apply the newly created role to your *wildflyservers* group.
 ```
 ---
 - hosts: wildflyservers
+  become: true
   tasks:
   - include_role:
       name: wildflyapp
@@ -93,7 +94,7 @@ As you can see we now include the role *wildflyapp* for all *wildflyservers*.
 Now you can run the playbook with the command:
 
 ```
-$ansible-playbook -i hosts -u root site.yml
+$ansible-playbook -i hosts site.yml
 ```
 
 You should see Ansible executing the playbook. At the end of the Ansible output there is a recap of how running the playbook went:

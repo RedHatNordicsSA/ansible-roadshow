@@ -19,7 +19,7 @@ Let's try to implement the ping example using a playbook. Open a new file for ed
 This will do the same as the previous lab, except the ping message is different. The ping message takes an argument *data*, which is the reply message from the ping module. You can now run the playbook with the command
 
 ```
-$ansible-playbook -i hosts -u root main.yml
+$ansible-playbook -i hosts main.yml
 ```
 
 Wouldn't it be nice if you could actually see the reply from the ping module? This can be done by using return values combined with the *msg* module. Change the main.yml file to the following
@@ -38,7 +38,7 @@ Wouldn't it be nice if you could actually see the reply from the ping module? Th
 ```
 
 ```
-$ansible-playbook -i hosts -u root main.yml
+$ansible-playbook -i hosts main.yml
 ```
 
 this will result in the following output
