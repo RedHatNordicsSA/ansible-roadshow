@@ -12,7 +12,7 @@ PLEASE NOTE
 DO NOT execute the labs from your local laptop.
 ```
 
-![Overview of lab environment](demo-env.png)
+![Overview of lab environment](https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/overview.png)
 
 * _Please note that the Ansible control server is from where all labs are executed._
 
