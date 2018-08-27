@@ -67,6 +67,8 @@ Now you can run the workflow template as any other template. Nifty right?
 
 You can also run templates in parallel and sync projects with the repos. If you have spare time, try playing with the features.
 
+A note is that the changes made in lab 8 will break the ping template. This is because the addition of groups to the inventory adds some secrets. The correct solution is to create a new inventory for the ping playbook without the groups added. A quicker fix is to add the vault password to the ping template.
+
 ```
 End of lab
 ```
