@@ -17,6 +17,7 @@ To install nginx go to $WORK_DIR and create a new file named *lb.yml* with the f
 ```
 ---
 - hosts: lbservers
+  become: true
   tasks:
   - include_role:
       name: nginxinc.nginx
@@ -25,7 +26,7 @@ To install nginx go to $WORK_DIR and create a new file named *lb.yml* with the f
 run the playbook with the command
 
 ```
-$ansible-playbook -i hosts -u root lb.yml
+$ansible-playbook -i hosts lb.yml
 ```
 
 this will install nginx on the servers in the lbservers group. To verify the installation, go to the url *http://$lb_server_name*. You should get the nginx default page.
@@ -55,7 +56,7 @@ This defines a handler named *restart-nginx-service*, which we'll use in a momen
 ---
 - name: Setup the http listener to your machines
   template:
-    src: roles/nginx-config/files/default.template
+    src: roles/nginx-config/templates/default.template
     dest: /etc/nginx/conf.d/default.conf
   notify: restart-nginx-service
 - name: Ensure nginx is in state started, so it'll be available on restart
@@ -94,15 +95,15 @@ Edit $WORK_DIR/lb.yml to include the newly created role:
 After having extended the playbook to add the loadbalancer configuration, you need to add the template file for the configuration. First create a folder to store the template
 
 ```
-$mkdir -p $WORK_DIR/roles/nginx-config/files
+$mkdir -p $WORK_DIR/roles/nginx-config/templates
 ```
 
-Then in your favorite editor save a file named *default.template* in dir *$WORK_DIR/roles/nginx-config/files* with the following content:
+Then in your favorite editor save a file named *default.template* in dir *$WORK_DIR/roles/nginx-config/templates/* with the following content:
 
 ```
 upstream backend {
 {% for host in wildfly_servers %}
-    server {{ hostvars[host].inventory_hostname }}:8080;
+    server {{ hostvars[host].ansible_host }}:8080;
 {% endfor %}
 }
 server {
@@ -127,7 +128,7 @@ server {
 as you can see, the *wildfly_servers* variable is used to iterate over the servers with the wildfly application deployed. Apply the new changes to the playbook by running the command:
 
 ```
-$ansible-playbook -i hosts -u root lb.yml
+$ansible-playbook -i hosts lb.yml
 ```
 
 Now test, that you can access the application on both application servers. In the command promt write:
