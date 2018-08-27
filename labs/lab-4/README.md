@@ -56,7 +56,7 @@ This defines a handler named *restart-nginx-service*, which we'll use in a momen
 ---
 - name: Setup the http listener to your machines
   template:
-    src: roles/nginx-config/templates/default.template
+    src: default.template
     dest: /etc/nginx/conf.d/default.conf
   notify: restart-nginx-service
 - name: Ensure nginx is in state started, so it'll be available on restart
