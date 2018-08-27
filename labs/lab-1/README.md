@@ -65,7 +65,7 @@ ssh-keyscan -H xxx.xxx.xxx.xxx yyy.yyy.yyy.yyy zzz.zzz.zzz.zzz >> ~/.ssh/known_h
 You are now ready to run your first Ansible module. To do so, run the following command from *$WORK_DIR*
 
 ```
-ansible -i hosts -u root all -m ping
+ansible -i hosts all -m ping
 ```
 
 This command will run the ping command on all servers in the hosts file (specified by -i). The -u parameter is used to sign into the servers as the root user. ** If the previous step failed, you might be asked to accept the identity of the servers.** Type yes for each server. After running the ping command, you'll have following output
@@ -89,7 +89,7 @@ Congratulations! :smile: :tada: You've run your first Ansible command.
 For a more detailed explanation of what is going on, try running the same command but add the *-vvv* parameter
 
 ```
-ansible -vvv -i hosts -u root all -m ping
+ansible -vvv -i hosts all -m ping
 ```
 
 Basically, the command will ssh to each host and run the ping module on the host. The result is captured by Ansible in a return variable. (If you are interested in the content of a module, see the source code for the ping module [in the github repo for modules](https://github.com/ansible/ansible-modules-core/blob/devel/system/ping.py). You don't have to. Modules will be covered in a later lab.)
