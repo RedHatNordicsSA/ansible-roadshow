@@ -8,11 +8,13 @@
     get_url:
       url: https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/tower-prep.sh
       dest: /tmp/tower-prep.sh
+      validate_certs: no
 
   - name: Download regular hosts user data file
     get_url:
       url: https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/host-prep.sh
       dest: /tmp/host-prep.sh
+      validate_certs: no
 
   - name: Create empty file to store tower servers public IPs
     file:
@@ -26,9 +28,9 @@
 
   - name: Ensure a security group with correct ingress/egress rules are in place
     ec2_group:
-      name: "{{ security_group }}"
+      name: "{{ ec2_security_group }}"
       description: Security Group for webserver Servers
-      region: "{{ region }}"
+      region: "{{ ec2_region }}"
       aws_access_key: "{{ec2_access_key}}"
       aws_secret_key: "{{ec2_secret_key}}"
       rules:
@@ -52,13 +54,30 @@
         - proto: all
           cidr_ip: 0.0.0.0/0
 
+  - name: Provision Gitlab
+    ec2:
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      key_name: "{{ec2_key}}"
+      region: "{{ ec2_region }}"
+      group: "{{ ec2_security_group }}"
+      instance_type: t2.medium
+      image: "{{ ami_id }}"
+      wait: true
+      exact_count: "{{ number_of_git_systems }}"
+      count_tag:
+        identity: git
+      instance_tags:
+        identity: git
+    register: git_server
+
   - name: Provision the systems which are to be managed with Ansible
     ec2:
       aws_access_key: "{{ec2_access_key}}"
       aws_secret_key: "{{ec2_secret_key}}"
       key_name: "{{ec2_key}}"
-      region: "{{ region }}"
-      group: "{{ security_group }}"
+      region: "{{ ec2_region }}"
+      group: "{{ ec2_security_group }}"
       instance_type: t2.micro
       image: "{{ ami_id }}"
       user_data: "{{ lookup('file', '/tmp/host-prep.sh') }}"
@@ -75,8 +94,8 @@
       aws_access_key: "{{ec2_access_key}}"
       aws_secret_key: "{{ec2_secret_key}}"
       key_name: "{{ec2_key}}"
-      region: "{{ region }}"
-      group: "{{ security_group }}"
+      region: "{{ ec2_region }}"
+      group: "{{ ec2_security_group }}"
       instance_type: t2.medium
       image: "{{ ami_id }}"
       user_data: "{{ lookup('file', '/tmp/tower-prep.sh') }}"
@@ -87,23 +106,6 @@
       instance_tags:
         identity: tower
     register: ec2large
-
-  - name: Provision Gitlab
-    ec2:
-      aws_access_key: "{{ec2_access_key}}"
-      aws_secret_key: "{{ec2_secret_key}}"
-      key_name: "{{ec2_key}}"
-      region: "{{ region }}"
-      group: "{{ security_group }}"
-      instance_type: t2.medium
-      image: "{{ ami_id }}"
-      wait: true
-      exact_count: "{{ number_of_git_systems }}"
-      count_tag:
-        identity: git
-      instance_tags:
-        identity: git
-    register: git_server
 
   - name: Add client instance public IPs to host group
     add_host: hostname={{ item.public_ip }} groups=ec2micro

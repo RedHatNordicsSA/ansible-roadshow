@@ -17,15 +17,6 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCR/+C0do9cM9edqeG8y81HQHmPAiviI3s2HDhLPMfS
 EOF
 chmod 600 /root/.ssh/authorized_keys
 
-for i in {1..50}; do
-		useradd user$i
-		mkdir /home/user$i/.ssh
-		chmod 700 /home/user$i/.ssh
-		curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa.pub >/home/user$i/.ssh/authorized_keys
-		chmod 600 /home/user$i/.ssh/authorized_keys
-		chown user$i:user$i /home/user$i/.ssh -R
-done
-	
 mkdir /root/.ssh
 chmod 700 /root/.ssh
 curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa.pub >/root/.ssh/authorized_keys

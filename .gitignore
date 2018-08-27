@@ -8,3 +8,6 @@ content/vars.yml
 content/*_servers.out
 content/client_instances.out
 content/vault-password.txt
+content/student_information.out
+content/registered_users
+content/gitlab_users.out

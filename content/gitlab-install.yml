@@ -5,6 +5,10 @@
   vars_files:
     - vars.yml
   tasks:
+    - name: wait for system to be up
+      wait_for_connection:
+        timeout: 600
+
     - name: install gitlab
       include_role:
         name: gitlab
@@ -16,3 +20,11 @@
         gitlab_external_url: "https://{{ fqdn }}"
     - name: print git server url
       debug: msg="https://{{ fqdn }}"
+
+    - name: Print Gitlab username to ./gitlab_users.out
+      lineinfile:
+        path: ./gitlab_users.out
+        line: "student{{ item }}"
+        create: yes
+      with_sequence: start=1 end={{number_of_tower_systems|int}}
+      delegate_to: 127.0.0.1
