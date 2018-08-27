@@ -13,7 +13,12 @@ One day hands on lab with Ansible and Ansible Tower including:
 * How to test your Ansible playbooks and roles
 
 ```
-BELOW is an overview of the labs
+LOOK HERE for information about installing the lab. This is for operators of the lab.
+```
+https://github.com/mglantz/ansible-roadshow/tree/master/content
+
+```
+BELOW is an overview of the labs. This is for the students in the lab.
 ```
 
 0. [Getting started](labs/lab-0/README.md)
