@@ -2,6 +2,10 @@
 
 1. To get started with the labs, you first needs to get your assigned username and servers. This will be provided to you by the people who operates this lab.
 
+2. Required tools to do the lab is
+* An SSH client. On Linux and Mac, use the native ssh client in a terminal. On Windows, you can use PuTTy: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+* A web browser with internet access
+
 2. Please review the overview of the lab environment. Most importantly, the Ansible control servers is from where all the labs are done.
 ```
 PLEASE NOTE
