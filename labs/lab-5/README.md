@@ -10,7 +10,7 @@ $echo 'secret_name: "{{ vault_secret_name }}"' > $WORK_DIR/group_vars/dev/wildfl
 $echo 'vault_secret_name: Red Hat' > $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
 ```
 
-As you can see, some refactoring has been done to ensure, that it is possible to use different configurations for different environments. This is achieved by having different environment folders in the *group_vars* direcory. In this case a dev profile is created by adding dev specific settings to the folder *$WORK_DIR/group_vars/dev/*. Servers can belong to several groups, so in the hosts file we can add a group *dev* with all servers listed. The *hosts* file should look like this:
+As you can see, some refactoring has been done to ensure, that it is possible to use different configurations for different environments. This is achieved by having different environment folders in the *group_vars* directory. In this case a dev profile is created by adding dev specific settings to the folder *$WORK_DIR/group_vars/dev/*. Servers can belong to several groups, so in the hosts file we can add a group *dev* with all servers listed. The *hosts* file should look like this:
 
 ```
 [lbservers]
@@ -121,7 +121,7 @@ $ansible-playbook -i hosts site.yml --vault-password-file .mypassword
 
 You should now be able to access the url and observe your changes...
 
-The observant student will note that there are some not so good design in the above approach. Please correct the errors.
+The observant student will note that there are some poor design choices in the above approach. Please correct the errors.
 
 Hint:
 * What did you learn about handlers in previous session?
