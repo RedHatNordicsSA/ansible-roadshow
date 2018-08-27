@@ -119,3 +119,7 @@ PLAY RECAP *********************************************************************
 
 Modules in Ansible are idempotent, ensuring that no matter how many times you run the playbook, the result on the server will be the same. Thus on the second run, Ansible detected that no changes were necessary, since the servers were already in the wanted state and thus didn't apply any changes. This is a cool feature of Ansible. For instance if you want to add an extra server, just add the server to the hosts file and run the playbook again without worrying about the existing servers.
 
+```
+End of lab
+```
+[Go to the next lab, lab 4](../lab-4/README.md)
