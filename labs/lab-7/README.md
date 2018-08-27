@@ -65,10 +65,10 @@ Next thing that we'll do is to create a project. A Project is a logical collecti
 You can manage playbooks and playbook directories by either placing them manually under the Project Base Path on your Tower server, or by placing your playbooks into a source code management (SCM) system supported by Tower, including Git, Subversion, and Mercurial.
 
 Next you need to setup the vault password for your playbooks. To do so click the *settings* menu item in top of the menu
-![settings location image](images/img0.png)
+![settings location image](../lab-8/images/img0.png)
 
 On the items, which appear click *credentials*. Then click *ADD*. Select Vault as credential type and the fill in values as provided in below screenshot (replace password with whatever you chose).
-![filling in vault values](images/img1.png)
+![filling in vault values](../lab-8/images/img1.png)
 Click *SAVE* and you're done with this part.
 
 >Create a project called "yourUSERNAME-playbooks" by following the instructions below.
