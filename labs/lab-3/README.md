@@ -16,9 +16,7 @@ $cp $LAB_DIR/labs/lab-3/lab-files/binaries/example-jaxrs-war-swarm.jar $WORK_DIR
 Create the rest of the structure for creating the playbook
 
 ```
-$cd $WORK_DIR
-$mkdir -p roles/wildflyapp/files
-$mkdir roles/wildflyapp/tasks
+$ mkdir -p $WORK_DIR/roles/wildflyapp/files $WORK_DIR/roles/wildflyapp/tasks
 ```
 
 In the folder *$WORK_DIR/roles/wildflyapp/tasks* create a file named main.yml. This file will contain the tasks needed to configure the wildfly application on the server. Paste the following into the file:
