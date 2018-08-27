@@ -16,7 +16,7 @@ One day hands on lab with Ansible and Ansible Tower including:
 BELOW is an overview of the labs
 ```
 
-0. [Getting started](labs/lab-1/README.md)
+0. [Getting started](labs/lab-0/README.md)
 
 1. [Ansible basics](labs/lab-1/README.md)
 
