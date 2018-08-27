@@ -48,7 +48,7 @@ First we'll create a handler for restarting the nginx service in case of configu
     name: nginx
 ```
 
-This defines a handler named *restart-nginx-service*, which we'll use in a moment. Now edit the file *$WORK_DIR/roles/nginx-config/tasks/main.yml* with the following content:
+This defines a handler named *restart-nginx-service*, which we'll use in a moment. Now edit the file *$WORK_DIR/roles/nginx-config/tasks/main.yml* to have the following content:
 
 ```
 ---
