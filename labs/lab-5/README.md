@@ -84,7 +84,6 @@ Remark the addition of no_log to ensure that no details about our secret is logg
 Rename the service script to reflect that it is now a template file:
 
 ```
-mkdir -p $WORK_DIR/roles/wildflyapp/templates
 $mv $WORK_DIR/roles/wildflyapp/files/wildflyapp.service $WORK_DIR/roles/wildflyapp/templates/wildflyapp.template
 ```
 
