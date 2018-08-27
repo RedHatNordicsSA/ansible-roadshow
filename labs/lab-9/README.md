@@ -22,7 +22,7 @@ if grep -q 'unreachable=0.*failed=0' test.output; then
   echo "Playbook executed without issues."
 else
   echo "Issues executing playbook."
-  cat test.out
+  cat test.output
   exit 1
 fi
 ```
@@ -33,7 +33,7 @@ if grep -q 'changed=0.*unreachable=0.*failed=0' test.output; then
   echo "Idempotence test OK"
 else
   echo "Idempotence test failed. Details below:"
-  cat test.out
+  cat test.output
   exit 1
 fi
 ```
