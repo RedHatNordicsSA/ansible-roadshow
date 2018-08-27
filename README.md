@@ -1,5 +1,11 @@
 # ansible-roadshow
-One day hands on lab with Ansible and Ansible Tower including:
+This is a one day hands on lab with Ansible and Ansible Tower. This lab is ment to work as an introduction to Ansible, Ansible Tower, best practices for writing Ansible content and how to work with Ansible.
+```
+Estimated time to complete this lab is 6-8 hours.
+```
+This lab is an open source effort, so if you find any problems with it, feel free to open up an issue or send a pull request. _For information about installing this lab, go to the bottom of this page_.
+
+The lab includes information about:
 
 * Ansible basics (clientless nature, inventory, ansible-playbook basic commands)
 * Git workflows for working with Ansible (GitHub workflow)
@@ -11,11 +17,6 @@ One day hands on lab with Ansible and Ansible Tower including:
 * How to work with Ansible code
 * Ansible Tower basics
 * How to test your Ansible playbooks and roles
-
-```
-LOOK HERE for information about installing the lab. This is for operators of the lab.
-```
-0. [Setting up the Ansible lab on AWS](content/README.md)
 
 ```
 BELOW is an overview of the labs. This is for the students in the lab.
@@ -42,3 +43,8 @@ BELOW is an overview of the labs. This is for the students in the lab.
 9. [Testing Ansible playbooks](labs/lab-9/README.md)
 
 10. [Developing Ansible Modules](labs/lab-10/README.md)
+
+```
+LOOK BELOW for information about installing the lab. This is for operators of the lab.
+```
+[Setting up the Ansible lab on AWS](content/README.md)
