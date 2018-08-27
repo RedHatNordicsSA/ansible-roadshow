@@ -30,3 +30,5 @@ Create an empty dir, where you will do your assignments. This dir will be refere
 $ mkdir /home/student/work
 $ WORK_DIR=/home/student/work
 ```
+
+[Go to the next lab, lab 1](lab-1/README.md)
