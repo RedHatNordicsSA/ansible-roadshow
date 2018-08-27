@@ -156,3 +156,8 @@ Finally create a playbook to collect the two playbooks already made, by creating
 ```
 
 By running this playbook, you can setup everything with one command.
+
+```
+End of lab
+```
+[Go to the next lab, lab 5](../lab-5/README.md)
