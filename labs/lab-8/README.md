@@ -74,3 +74,8 @@ if you now click the *START* button, you get to invoke a template. On the right 
 Now you can run the workflow template as any other template. Nifty right?
 
 You can also run templates in parallel and sync projects with the repos. If you have spare time, try playing with the features.
+
+```
+End of lab
+```
+[Go to the next lab, lab 9](../lab-9/README.md)
