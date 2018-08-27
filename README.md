@@ -15,7 +15,7 @@ One day hands on lab with Ansible and Ansible Tower including:
 ```
 LOOK HERE for information about installing the lab. This is for operators of the lab.
 ```
-https://github.com/mglantz/ansible-roadshow/tree/master/content
+0. [Setting up the Ansible lab on AWS](content/README.md)
 
 ```
 BELOW is an overview of the labs. This is for the students in the lab.
