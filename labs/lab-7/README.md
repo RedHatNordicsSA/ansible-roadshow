@@ -28,7 +28,7 @@ After creating the inventory, we need to add our groups and hosts into the inven
 
 In the inventory, press "Groups" and "Add Group". Add the three groups: lbservers, wildflyservers and dev.
 
- ![Creating Groups](https://github.com/mglantz/ansible-roadshow/blob/master/content/groups.png?raw=true)
+ ![Creating Groups](../../content/groups.png?raw=true)
  
 Now we need to add our hosts, and put them into the correct groups.
 
@@ -36,7 +36,7 @@ From the inventory view, we click "Hosts" and then "Add host"
 * Host name: client_system_1, client_system_2 and client_system_3 
 * Variables: ansible_hostname: <IP-address>
  
- ![Creating Hosts](https://github.com/mglantz/ansible-roadshow/blob/master/content/add-hosts.png?raw=true)
+ ![Creating Hosts](../../content/add-hosts.png?raw=true)
  
 Then we can add our hosts to the correct groups, from the inventory view choose groups and click the groupname (lbservers, wildflyservers or dev). Now press ADD->Existing Host.
 
