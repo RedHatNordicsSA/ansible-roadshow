@@ -48,3 +48,8 @@ If you are interested in how this can be done using Jenkins and Ansible tower, h
 https://github.com/mglantz/tomcat-playbook/
 
 * As a list exercise, create a single script which does testing of arbitrary playbooks. Use any language you like.
+
+```
+End of lab
+```
+[Go to the final lab, lab 10](../lab-10/README.md)
