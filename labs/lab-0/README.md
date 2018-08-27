@@ -31,4 +31,7 @@ $ mkdir /home/student/work
 $ WORK_DIR=/home/student/work
 ```
 
+```
+End of lab
+```
 [Go to the next lab, lab 1](../lab-1/README.md)
