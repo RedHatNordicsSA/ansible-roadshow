@@ -101,7 +101,7 @@ cd new-module
 
 Secondly, let's create a simple module using Bourne Again SHell (BASH) script.
 ```
-vi new-module
+vi new_module
 ```
 
 We start with the most simple version of this module, as following:
@@ -120,7 +120,8 @@ exit 0
 
 Next, copy the module into the module directory.
 ```
-cp new_module /usr/share/ansible/plugins/modules/
+mkdir -p $HOME/.ansible/plugins/modules
+cp new_module  $HOME/.ansible/plugins/modules/
 ```
 
 Now we'll create a playbook to test our module. Create a file called test.yml in your local directory, as follows:
@@ -175,7 +176,7 @@ mkdir binary-module
 cd binary-module
 ```
 
-Then we'll create a simple module, which creates a file and then prints success. Create the file _binary-module.c_ as follows:
+Then we'll create a simple module, which creates a file and then prints success. Create the file _binary_module.c_ as follows:
 
 ```
 #include <stdio.h>
@@ -183,7 +184,7 @@ Then we'll create a simple module, which creates a file and then prints success.
 int main(int argc, char *argv[])
 {
   FILE *fp = fopen("/tmp/binary-module-file", "ab+");
-  printf("\"changed\": true, \"msg\": \"Arguments file: %s \n\"", argv[1]);
+  printf("{\"changed\": true, \"msg\": \"Arguments file: %s \n\"}", argv[1]);
 }
 ```
 
@@ -194,7 +195,7 @@ gcc -o binary_module binary_module.c
 
 Next, copy the module into the module directory.
 ```
-cp binary_module /usr/share/ansible/plugins/modules/
+cp binary_module $HOME/.ansible/plugins/modules/
 ```
 
 Now we'll create a playbook to test our module. Create a file called _test-binary-module.yml_ in your local directory, as follows:
