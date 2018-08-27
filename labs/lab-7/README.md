@@ -42,16 +42,9 @@ Then we can add our hosts to the correct groups, from the inventory view choose 
 
 Create the following layout, same as the hostfile:
 
-* lbservers
-  client_system_1
-* wildflyservers
-  client_system_2
-  client_system_3
-* dev
-  client_system_1
-  client_system_2
-  client_system_3
-
+* lbservers: client_system_1
+* wildflyservers: client_system_2, client_system_3
+* dev: client_system_1, client_system_2, client_system_3
 
 Next thing we'll do is to define a set of credentials to our systems. This is what is typically the tricky bit when you run Ansible playbooks from a command line. If you use a SSH key or username to an admin user to run your playbook, how can someone else run the playbook without you risking that person finding out the credentials - giving that person the ability to just SSH in manually to the system and run whatever he/she likes?
 
@@ -70,6 +63,13 @@ When you have saved your credentials, please note that the SSH Private key now r
 
 Next thing that we'll do is to create a project. A Project is a logical collection of Ansible playbooks, represented in Tower.
 You can manage playbooks and playbook directories by either placing them manually under the Project Base Path on your Tower server, or by placing your playbooks into a source code management (SCM) system supported by Tower, including Git, Subversion, and Mercurial.
+
+Next you need to setup the vault password for your playbooks. To do so click the *settings* menu item in top of the menu
+![settings location image](images/img0.png)
+
+On the items, which appear click *credentials*. Then click *ADD*. Select Vault as credential type and the fill in values as provided in below screenshot (replace password with whatever you chose).
+![filling in vault values](images/img1.png)
+Click *SAVE* and you're done with this part.
 
 >Create a project called "yourUSERNAME-playbooks" by following the instructions below.
 
