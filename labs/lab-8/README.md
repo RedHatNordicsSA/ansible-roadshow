@@ -15,13 +15,6 @@ Check in the change and you are ready to go.
 
 Login to the Ansible Tower server on the url and username/password provided by the instructor. If you haven't setup the credentials to your system as described in the lab [Introducing Ansible Tower](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-7), please do so now:-)
 
-Next you need to setup the vault password for your playbooks. To do so click the *settings* menu item in top of the menu
-![settings location image](images/img0.png)
-
-On the items, which appear click *credentials*. Then click *ADD*. Select Vault as credential type and the fill in values as provided in below screenshot (replace password with whatever you chose).
-![filling in vault values](images/img1.png)
-Click *SAVE* and you're done with this part.
-
 First step is to add your code to Tower in form of a project. In this case we'll add the code in form of the git repo, you created earlier.
 First click *PROJECTS* in the top menu. Then click *ADD*. Finally fill in values as provided in below screenshot (replace git url with your repo url)
 ![filling in project values](images/img2.png)
