@@ -31,4 +31,4 @@ $ mkdir /home/student/work
 $ WORK_DIR=/home/student/work
 ```
 
-[Go to the next lab, lab 1](lab-1/README.md)
+[Go to the next lab, lab 1](../lab-1/README.md)
