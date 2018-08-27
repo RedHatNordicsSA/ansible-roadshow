@@ -73,7 +73,10 @@ The pull request has yet another function, which is to allow someone else than y
  
  The reason why you delete your branch afterwards is because that allows people to see when work has been completed. Also, it allows someone to overview the status of the development work being done. For example, if a branch has lived on for too long, the risk of merge conflicts (when several people has changed the same files) becomes greater. Because of that and because code quality usually suffers when you do too much work at once, try biting off a good sized chunk of work. It's better that you do several smaller chunks of work than one huge chunk which takes a long time to do.
  
- 
+```
+End of lab
+```
+[Go to the next lab, lab 7](../lab-7/README.md)
 
 
 
