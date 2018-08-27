@@ -47,7 +47,7 @@ curl -s http://your-app
 If you are interested in how this can be done using Jenkins and Ansible tower, have a look here:
 https://github.com/mglantz/tomcat-playbook/
 
-* As a list exercise, create a single script which does testing of arbitrary playbooks. Use any language you like.
+* As a last optional exercise, create a single script which does testing of arbitrary playbooks. Use any language you like.
 
 ```
 End of lab
