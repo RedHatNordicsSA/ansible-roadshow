@@ -24,13 +24,44 @@ What we'll do first is to create an inventory in Ansible Tower, an inventory is 
 
  ![Creating an inventory](https://github.com/mglantz/ansible-roadshow/blob/master/content/create-new-inventory.png?raw=true)
 
+After creating the inventory, we need to add our groups and hosts into the inventory.
+
+In the inventory, press "Groups" and "Add Group". Add the three groups: lbservers, wildflyservers and dev.
+
+ ![Creating Groups](https://github.com/mglantz/ansible-roadshow/blob/master/content/groups.png?raw=true)
+ 
+Now we need to add our hosts, and put them into the correct groups.
+
+From the inventory view, we click "Hosts" and then "Add host"
+* Host name: client_system_1, client_system_2 and client_system_3 
+* Variables: ansible_hostname: <IP-address>
+ 
+ ![Creating Hosts](https://github.com/mglantz/ansible-roadshow/blob/master/content/add-hosts.png?raw=true)
+ 
+Then we can add our hosts to the correct groups, from the inventory view choose groups and click the groupname (lbservers, wildflyservers or dev). Now press ADD->Existing Host.
+
+Create the following layout, same as the hostfile:
+
+* lbservers
+  client_system_1
+* wildflyservers
+  client_system_2
+  client_system_3
+* dev
+  client_system_1
+  client_system_2
+  client_system_3
+
+
 Next thing we'll do is to define a set of credentials to our systems. This is what is typically the tricky bit when you run Ansible playbooks from a command line. If you use a SSH key or username to an admin user to run your playbook, how can someone else run the playbook without you risking that person finding out the credentials - giving that person the ability to just SSH in manually to the system and run whatever he/she likes?
 
 Credentials authenticate the Tower user to launch Ansible playbooks, which can then include passwords and SSH keys, against inventory hosts. You can also require the Tower user to enter a password or key phrase when a playbook launches using the credentials feature of Tower.
 
+>Click on the gears in the top right corner, and select credentials
 >Create a new set of credentials which you call 'yourUSERNAME-credentials' as follows.
 * Credentials type: Machine
-* Username: root
+* Username: student
+* Privilege Escalation Method: sudo
 * SSH Private Key: the content of: https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa
 
  ![Creating a new set of credentials](https://github.com/mglantz/ansible-roadshow/blob/master/content/credentials-create.png?raw=true)
@@ -48,7 +79,7 @@ You can manage playbooks and playbook directories by either placing them manuall
 
 Next you will provide access to the playbook which [you put onto GitHub earlier in lab-6](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-6). This is done using so called job templates. A job template combines an Ansible playbook from a project and the settings required to launch it.
 
->Create a job template called "yourUSERNAME-playbobok" which links to the playbok which you created earlier, as follows:
+>Create a job template called "yourUSERNAME-template" which links to the playbook which you created earlier, as follows:
 * Associate the playbook to run on your assigned servers located in yourUSERNAME-inventory
 * Associate the playbook with your project: yourUSERNAME-playbooks
 * Select the playbook available in your GitHub repository
@@ -56,7 +87,7 @@ Next you will provide access to the playbook which [you put onto GitHub earlier 
 
  ![Create a job template](https://github.com/mglantz/ansible-roadshow/blob/master/content/job-template.png?raw=true)
 
-> Now try to run your playbook.
+> Now try to run your playbook. (press the rocket, next to the name of the template)
 
 If you now go to the 'Jobs' tab, you can review your specific run of the playbook, it lists information from the playbook run, who ran it and against what systems the playbook was run. This is all vital information as it allows visability over what's being done in your infrastructure or application landscape.
 
