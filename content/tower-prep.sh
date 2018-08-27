@@ -4,7 +4,7 @@
 
 # RPM prereqs
 yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-yum -y install wget bind-utils ansible nano vim screen emacs joe
+yum -y install wget bind-utils ansible nano vim screen emacs joe gcc
 
 # SSH key prereqs, creation of users for demo
 # Create directory for ssh public key
