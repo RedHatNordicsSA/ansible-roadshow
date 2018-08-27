@@ -57,7 +57,7 @@ Last step is to add the newly created variable as an environment variable to the
   register: jar_file_copy
 - name: Create service script
   template:
-    src: roles/wildflyapp/templates/wildflyapp.template
+    src: wildflyapp.template
     dest: /lib/systemd/system/wildflyapp.service
     owner: root
     group: root
