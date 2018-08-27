@@ -128,3 +128,8 @@ Hint:
 * Is the when clause in above solution the best approach?
 
 Consider how you would handle a test environment with the *SECRET_NAME* of 'Red Hat (test)'.
+
+```
+End of lab
+```
+[Go to the next lab, lab 6](../lab-6/README.md)
