@@ -77,3 +77,8 @@ $ tower-cli --help
 $ tower-cli job --help
 ```
 and launch your playbook.
+
+```
+End of lab
+```
+[Go to the next lab, lab 8](../lab-8/README.md)
