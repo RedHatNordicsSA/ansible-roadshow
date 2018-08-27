@@ -31,15 +31,13 @@ $ansible-playbook -i hosts lb.yml
 
 this will install nginx on the servers in the lbservers group. To verify the installation, go to the url *http://$lb_server_name*. You should get the nginx default page.
 
-Next step is to configure nginx as a loadbalancer for the two wildflyapp servers. To do so, we'll add an additional role for the configuration. We follow the [best practises for Ansible directory layout](http://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html) and place tasks, handlers, and vars in separate directories.
+Next step is to configure nginx as a loadbalancer for the two wildflyapp servers. To do so, we'll add an additional role for the configuration. We follow the [best practises for Ansible directory layout](http://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html) and place tasks, handlers, and vars in separate directories. This is enforced by using the following command:
 
 ```
-$mkdir -p $WORK_DIR/roles/nginx-config/tasks
-$mkdir -p $WORK_DIR/roles/nginx-config/handlers
-$mkdir -p $WORK_DIR/roles/nginx-config/vars
+$ansible-galaxy init roles/nginx-config
 ```
 
-First we'll create a handler for restarting the nginx service in case of configuration changes. Define the handler in a file *$WORK_DIR/roles/nginx-config/handlers/main.yml* with the following content:
+First we'll create a handler for restarting the nginx service in case of configuration changes. Define the handler in the file *$WORK_DIR/roles/nginx-config/handlers/main.yml* with the following content:
 
 ```
 ---
@@ -50,7 +48,7 @@ First we'll create a handler for restarting the nginx service in case of configu
     name: nginx
 ```
 
-This defines a handler named *restart-nginx-service*, which we'll use in a moment. Now create a file *$WORK_DIR/roles/nginx-config/tasks/main.yml* with the following content:
+This defines a handler named *restart-nginx-service*, which we'll use in a moment. Now edit the file *$WORK_DIR/roles/nginx-config/tasks/main.yml* with the following content:
 
 ```
 ---
@@ -73,7 +71,7 @@ This defines a handler named *restart-nginx-service*, which we'll use in a momen
 ```
 A template is used to setup the http listener. The template ensures that your configuration file doesn't have to be static. In this case, you need to add the servers to loadbalance between. This is done by introducing a variable *wildfy_servers*, which you'll use when writing the template shortly. The configuration file is saved instead of the default.conf nginx template. Other approaches applies. Please refer to the nginx documentation for more information. If the configuration file is changed, the previously defined handler (*notify: restart-nginx-service*) ensures, that the nginx process is restarted. Finally a SELinux rule has to be setup, to allow nginx to connect to port 8080.
 
-Define the variable *wildfly_servers* in a file named *$WORK_DIR/roles/nginx-config/vars/main.yml* with the following content:
+Define the variable *wildfly_servers* in the file named *$WORK_DIR/roles/nginx-config/vars/main.yml* with the following content:
 
 ```
 ---
@@ -92,13 +90,7 @@ Edit $WORK_DIR/lb.yml to include the newly created role:
       name: nginx-config
 ```
 
-After having extended the playbook to add the loadbalancer configuration, you need to add the template file for the configuration. First create a folder to store the template
-
-```
-$mkdir -p $WORK_DIR/roles/nginx-config/templates
-```
-
-Then in your favorite editor save a file named *default.template* in dir *$WORK_DIR/roles/nginx-config/templates/* with the following content:
+After having extended the playbook to add the loadbalancer configuration, you need to add the template file for the configuration. In your favorite editor save a file named *default.template* in dir *$WORK_DIR/roles/nginx-config/templates/* with the following content:
 
 ```
 upstream backend {
