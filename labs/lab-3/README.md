@@ -13,13 +13,13 @@ $mkdir -p $WORK_DIR/binaries
 $cp $LAB_DIR/labs/lab-3/lab-files/binaries/example-jaxrs-war-swarm.jar $WORK_DIR/binaries
 ```
 
-Create the rest of the structure for creating the playbook
+Create the rest of the structure for creating the playbook. You can use the Ansible Galaxy init functionality to easily create a template for your new role.
 
 ```
-$ mkdir -p $WORK_DIR/roles/wildflyapp/files $WORK_DIR/roles/wildflyapp/tasks
+$ mkdir $WORK_DIR/roles
+$ ansible-galaxy init --init-path=$WORK_DIR/roles wildflyapp
 ```
-
-In the folder *$WORK_DIR/roles/wildflyapp/tasks* create a file named main.yml. This file will contain the tasks needed to configure the wildfly application on the server. Paste the following into the file:
+This will create a full structure for the wildfly role named *wildflyapp*. In the folder *$WORK_DIR/roles/wildflyapp/tasks* there is a file named main.yml. This file will contain the tasks needed to configure the wildfly application on the server. Paste the following into the file:
 
 ```
 ---
