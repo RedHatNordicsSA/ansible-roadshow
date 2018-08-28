@@ -1,0 +1,45 @@
+---
+
+- name: Create Gitlab Project, copy repo and add users
+  hosts: localhost
+  vars_files:
+    - vars.yml
+  tasks:
+
+    - name: print out gitlab fqdn
+      debug: msg="{{ hostvars['GITLAB']['fqdn'] }}"
+
+    - name: Create project
+      uri:
+        url: "{{ hostvars['GITLAB']['fqdn'] }}/api/v4/projects"
+        method: POST
+        validate_certs: False
+        headers:
+          Content-Type: application/json
+          PRIVATE-TOKEN: "{{ gitlab_token }}"
+        body:
+          name: ansible-roadshow
+          import_url: https://github.com/mglantz/ansible-roadshow.git
+          visibility: public
+        body_format: json
+        status_code: 201,400
+        timeout: 10
+
+    - name: Create users
+      uri:
+        url: "{{ hostvars['GITLAB']['fqdn'] }}/api/v4/users"
+        method: POST
+        validate_certs: False
+        headers:
+          Content-Type: application/json
+          PRIVATE-TOKEN: "{{ gitlab_token }}"
+        body:
+          email: "student{{ item }}@ansible-roadshow.rh"
+          username: "student{{ item }}"
+          name: Ansible student
+          password: redhat123
+          skip_confirmation: True
+        body_format: json
+        status_code: 201
+        timeout: 10
+      with_sequence: start=1 end="{{ number_of_tower_systems }}"

@@ -18,8 +18,14 @@
         gitlab_email_display_name: "Gitlab"
         gitlab_email_reply_to: "{{gitlab_email}}"
         gitlab_external_url: "https://{{ fqdn }}"
+
     - name: print git server url
       debug: msg="https://{{ fqdn }}"
+
+    - name: add fqdn to dummy host
+      add_host:
+        name: "GITLAB"
+        fqdn: "https://{{ fqdn }}"
 
     - name: Print Gitlab username to ./gitlab_users.out
       lineinfile:
