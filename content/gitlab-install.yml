@@ -22,10 +22,11 @@
     - name: print git server url
       debug: msg="https://{{ fqdn }}"
 
-    - name: add fqdn to dummy host
-      add_host:
-        name: "GITLAB"
-        fqdn: "https://{{ fqdn }}"
+    - name: Print Gitlab FQDN to ./gitlab_server.out
+      lineinfile:
+        path: ./gitlab_server.out
+        line: "https://{{ fqdn }}"
+        create: yes
 
     - name: Print Gitlab username to ./gitlab_users.out
       lineinfile:
