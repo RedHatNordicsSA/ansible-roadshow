@@ -1,4 +1,5 @@
 # Testing Ansible playbooks
+
 In order to handle Ansible as code you need to do testing. Without testing, there is no way that you can keep your main git branch releasable.
 It's neither possible for you to keep up the quality of your code or to scale out the usage of Ansible, as without proper testing, less people can contribute.
 
@@ -44,7 +45,7 @@ curl -s http://your-app
 ```
 
 * And last but not least, integrate the testing into your development pipeline. Ensure that when your code merges, it's always tested.
-If you are interested in how this can be done using Jenkins and Ansible tower, have a look here:
+If you are interested in how this can be done using Jenkins and Ansible Tower, have a look here:
 https://github.com/mglantz/tomcat-playbook/
 
 * As a last optional exercise, create a single script which does testing of arbitrary playbooks. Use any language you like.

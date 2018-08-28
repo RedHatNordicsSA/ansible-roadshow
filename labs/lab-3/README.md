@@ -1,10 +1,10 @@
-# Writing the Wildfly playbook
+# Writing the WildFly playbook
 
-In this lab, you'll start the real work and deploy a wildfly swarm application to a number of servers. Running wildfly swarm is a bit different than running traditional application servers. You package your application into a fat jar file, which you run from the command line. The jar file is very small (measured in MB) and only contains the libraries necessary to run your application. In order to ensure that your application is easily maintainable and that it'll come up in the case of a server restart, you'll register the application as a service using systemctl.
+In this lab, you'll start the real work and deploy a WildFly Swarm application to a number of servers. Running WildFly Swarm is a bit different than running traditional application servers. You package your application into a fat jar file, which you run from the command-line interface. The jar file is very small (measured in MB) and only contains the libraries necessary to run your application. In order to ensure that your application is easily maintainable and that it'll come up in the case of a server restart, you'll register the application as a service using systemctl.
 
 For this excercise we assume that you've already packaged your application, using maven and pushed it to Nexus. From there you've pulled the file to the location *$LAB_DIR/labs/lab-3/lab-files/binaries/example-jaxrs-war-swarm.jar*
 
-In order to ensure that you don't end up with a large unmaintainable yaml-file, the lead architect of your company has decided that you must structure your playbook using [roles](http://docs.ansible.com/ansible/latest/playbooks_reuse_roles.html). Roles is a way to structure your playbook around different aspects of your configuration. In this case, you will make a role for your wildfly application and only apply that role to your wildflyservers.
+In order to ensure that you don't end up with a large unmaintainable yaml-file, the lead architect of your company has decided that you must structure your playbook using [roles](http://docs.ansible.com/ansible/latest/playbooks_reuse_roles.html). Roles is a way to structure your playbook around different aspects of your configuration. In this case, you will make a role for your WildFly application and only apply that role to your wildflyservers.
 
 In *$WORK_DIR* copy the jar file to a binary folder.
 
@@ -18,7 +18,7 @@ Create the rest of the structure for creating the playbook. You can use the Ansi
 ```
 $ ansible-galaxy init roles/wildflyapp
 ```
-This will create a full structure for the wildfly role named *wildflyapp*. In the folder *$WORK_DIR/roles/wildflyapp/tasks* there is a file named main.yml. This file will contain the tasks needed to configure the wildfly application on the server. Paste the following into the file:
+This will create a full structure for the WildFly role named *wildflyapp*. In the folder *$WORK_DIR/roles/wildflyapp/tasks* there is a file named main.yml. This file will contain the tasks needed to configure the WildFly application on the server. Paste the following into the file:
 
 ```
 ---
@@ -51,15 +51,15 @@ This will create a full structure for the wildfly role named *wildflyapp*. In th
     masked: no
 - name: Make sure the wildfly app service is running
   systemd: state=started name=wildflyapp
-``` 
+```
 
-As you can see, starting a wildfly swarm application is pretty simple. Copy the jar file to the server, create a service script and run the application. We need to create the service script to be copied to the server. To do so, create a new file named *wildflyapp.service* at location *$WORK_DIR/roles/wildflyapp/files/*. Put the following content in the file:
+As you can see, starting a WildFly Swarm application is pretty simple. Copy the jar file to the server, create a service script and run the application. We need to create the service script to be copied to the server. To do so, create a new file named *wildflyapp.service* at location *$WORK_DIR/roles/wildflyapp/files/*. Put the following content in the file:
 
 ```
 [Unit]
 Description=Wildfly Swarm Application Script
 After=auditd.service systemd-user-sessions.service time-sync.target
- 
+
 [Service]
 User=root
 TimeoutStartSec=0
@@ -70,7 +70,7 @@ ExecStart=/bin/java -jar /opt/wildflyapp/example-jaxrs-war-swarm.jar
 Restart=always
 RestartSec=2
 LimitNOFILE=5555
- 
+
 [Install]
 WantedBy=multi-user.target
 ```
@@ -102,7 +102,7 @@ PLAY RECAP *********************************************************************
 10.211.55.25               : ok=7    changed=4    unreachable=0    failed=0   
 ```
 
-Ansible should complete with no errors. You should see the changes applied to both wildfly swarm servers.
+Ansible should complete with no errors. You should see the changes applied to both WildFly Swarm servers.
 
 You can now access the service at the address *http://$HOSTNAME:8080*, where *$HOSTNAME* points to one of the servers mentioned in the play recap.
 
@@ -114,7 +114,7 @@ PLAY RECAP *********************************************************************
 10.211.55.25               : ok=7    changed=0    unreachable=0    failed=0   
 ```
 
-Modules in Ansible are idempotent, ensuring that no matter how many times you run the playbook, the result on the server will be the same. Thus on the second run, Ansible detected that no changes were necessary, since the servers were already in the wanted state and thus didn't apply any changes. This is a cool feature of Ansible. For instance if you want to add an extra server, just add the server to the hosts file and run the playbook again without worrying about the existing servers.
+Most modules in Ansible are idempotent, ensuring that no matter how many times you run the playbook, the result on the server will be the same. Thus on the second run, Ansible detected that no changes were necessary, since the servers were already in the wanted state and thus didn't apply any changes. This is a cool feature of Ansible. For instance if you want to add an extra server, just add the server to the hosts file and run the playbook again without worrying about the existing servers.
 
 ```
 End of lab

@@ -1,18 +1,18 @@
 # Getting started
 
-_Ensure that you are logged in to your Ansible Tower / control server as the **student** user._
+_Ensure that you are logged in to your Ansible Tower server as the **student** user._
 
-You are the operator at Tangible Labs Inc. and tasked with setting up servers for the company's new application that's based on wildfly-swarm. After attending several sessions on automation, you've decided to give Ansible a go.
+You are the operator at Tangible Labs Inc. and tasked with setting up servers for the company's new application that's based on WildFly Swarm. After attending several sessions on automation, you've decided to give Ansible a go.
 
 The first lab will help you verifying the Ansible installation and getting acquainted with basic Ansible concepts.
 
-But first, let's verify that Ansible has been installed. On the commandline run the following command:
+But first, let's verify that Ansible has been installed. On the command-line interface run the following command:
 
 ```
 $ansible --version
 ```
 
-You should see output like the following:
+You should see output similar to this:
 
 ```
 $ansible --version
@@ -24,7 +24,7 @@ ansible 2.6.3
   python version = 2.7.5 (default, May 31 2018, 09:41:32) [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)]
 ```
 
-As you can see Ansible uses python. If you inspect the config file (/etc/ansible/ansible.cfg) file, you will find the following configuration:
+As you can see Ansible uses Python. If you inspect the config file (/etc/ansible/ansible.cfg) file, you will find the following configuration:
 
 ```
 [defaults]
@@ -36,7 +36,7 @@ As you can see Ansible uses python. If you inspect the config file (/etc/ansible
 #module_utils   = /usr/share/my_module_utils/
 ```
 
-The most important for a beginning is the default location of the inventory file. The inventory file contains a list of servers that you are managing. The servers can be grouped in any way you like. For this lab, group the servers into load balancers (lbservers) and wildfly swarm application servers (wildflyservers).
+The most important for a beginning is the default location of the inventory file. The inventory file contains a list of servers that you are managing. The servers can be grouped in any way you like. For this lab, group the servers into load balancers (lbservers) and WildFly Swarm application servers (wildflyservers).
 
 Before we continue on, make sure that the $WORK_DIR variable is defined. If $WORK_DIR is not defined, [take a look at the preparations.](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-0)
 Now, create a file named *hosts* in the *$WORK_DIR* folder.

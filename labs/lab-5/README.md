@@ -1,6 +1,6 @@
 # Handling Secrets with Ansible Vault
 
-Most applications have secret properties, which mustn't be shown for every person, working with the playbooks. The application you're working with is no exception, so you've been asked to set an environment variable named *SECRET_NAME* on the wildfly application servers for the application to work properly. Fortunately for you, this is pretty easy with Ansible.
+Most applications have secret properties, which mustn't be shown for every person, working with the playbooks. The application you're working with is no exception, so you've been asked to set an environment variable named *SECRET_NAME* on the WildFly application servers for the application to work properly. Fortunately for you, this is pretty easy with Ansible.
 
 With Ansible you can create property files and encrypt them afterwards. Once the property file has been encrypted, the content is unreadable. This has one unwanted effect, which is that you'll then be unable to search for the property. Therefore it's considered best practise to have an unencrypted file refer to the encrypted file. This is achieved with the following steps:
 
@@ -28,7 +28,7 @@ client_system_3 ansible_host=zzz.zzz.zzz.zzz
 
 As before change machine names to those assigned to you.
 
-Now ansible will include all variables defined in *$WORK_DIR/group_vars/dev/* for the servers listed, each time the playbook is run.
+Now Ansible will include all variables defined in *$WORK_DIR/group_vars/dev/* for the servers listed, each time the playbook is run.
 
 Finally let's encrypt the vault file. In the prompt write:
 
@@ -36,9 +36,9 @@ Finally let's encrypt the vault file. In the prompt write:
 $ansible-vault encrypt $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
 ```
 
-enter a password of your choice when promted and remember the password. This will encrypt your newly created file. Take a look at the content to ensure that it has in fact been encrypted.
+enter a password of your choice when prompted and remember the password. This will encrypt your newly created file. Take a look at the content to ensure that it has in fact been encrypted.
 
-Last step is to add the newly created variable as an environment variable to the playbook for the wildfly app role. At the same time we'll make some other changes. It's considered best practise to only set the environment variable locally for the wildflyapp service. Thus we are required to change the service script file from a static file to a template file in order to be able to change the secret name. Furthermore we want to restart the wildfly service in order to ensure that the service is restarted in case there are changes in the jar file or in the configuration. To do so, change the content of *$WORK_DIR/roles/wildflyapp/tasks/main.yml* to the following:
+Last step is to add the newly created variable as an environment variable to the playbook for the WildFly app role. At the same time we'll make some other changes. It's considered best practise to only set the environment variable locally for the wildflyapp service. Thus we are required to change the service script file from a static file to a template file in order to be able to change the secret name. Furthermore we want to restart the WildFly service in order to ensure that the service is restarted in case there are changes in the jar file or in the configuration. To do so, change the content of *$WORK_DIR/roles/wildflyapp/tasks/main.yml* to the following:
 
 ```
 ---
@@ -93,7 +93,7 @@ Change the content of the service script file *$WORK_DIR/roles/wildflyapp/templa
 [Unit]
 Description=Wildfly Swarm Application Script
 After=auditd.service systemd-user-sessions.service time-sync.target
- 
+
 [Service]
 Environment="SECRET_NAME={{ secret_name }}"
 User=root
@@ -105,14 +105,14 @@ ExecStart=/bin/java -jar /opt/wildflyapp/example-jaxrs-war-swarm.jar
 Restart=always
 RestartSec=2
 LimitNOFILE=5555
- 
+
 [Install]
 WantedBy=multi-user.target
 ```
 
 As you can see the secret name is added to the template.
 
-To run the playbook with your vault, you'll be required to give Ansible your password. Do so by creating a file named *.mypassword* and put the password in the file. Then run ansible with the following command:
+To run the playbook with your vault, you'll be required to give Ansible your password. Do so by creating a file named *.mypassword* and put the password in the file. Then run Ansible with the following command:
 
 ```
 $ansible-playbook -i hosts site.yml --vault-password-file .mypassword

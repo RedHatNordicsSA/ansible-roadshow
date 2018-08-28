@@ -1,5 +1,6 @@
 # Introducing Ansible Tower
-Red Hat Ansible Tower (build from the Open Source project, AWX) helps you scale out your Ansible automation. Running Ansible from a command line is all good, until you start to automate more things. When you do that, you get a number of concerns, primarily:
+
+Red Hat Ansible Tower (build from the Open Source project, AWX) helps you scale out your Ansible automation. Running Ansible from a command-line interface is all good, until you start to automate more things. When you do that, you get a number of concerns, primarily:
 
 >How can I control who can run what playbooks where?
 
@@ -12,7 +13,7 @@ Because of this, it's not uncommon that attempts to automate things fails with c
 
 >If I were to give you access to XYZ, you would be able to destroy all data at the company. And you don't even have XYZ training.
 
-Ansible tower allows you to share access safely to other people via it's web GUI, a CLI client and a REST API. Let's explore how this works.
+Ansible Tower allows you to share access safely to other people via it's web GUI, a CLI client and a REST API. Let's explore how this works.
 
 >First step, go unto your Ansible Tower server: https://<your-tower-server> and login with your assigned user.
 
@@ -56,7 +57,7 @@ Credentials authenticate the Tower user to launch Ansible playbooks, which can t
 
  ![Creating a new set of credentials](https://github.com/mglantz/ansible-roadshow/blob/master/content/credentials-create.png?raw=true)
 
-When you have saved your credentials, please note that the SSH Private key now reads "ENCRYPED". This is because the key is now encrypted within Tower. It is not possible to get back the cleartext key, ergo, it's now safer to share this access with other people. Even the user (root) used, can also be obscured, only learning the name and description of the credentials visible.
+When you have saved your credentials, please note that the SSH Private key now reads "ENCRYPTED". This is because the key is now encrypted within Tower. It is not possible to get back the cleartext key, ergo, it's now safer to share this access with other people. Even the user (root) used, can also be obscured, only learning the name and description of the credentials visible.
 
 Next thing that we'll do is to create a project. A Project is a logical collection of Ansible playbooks, represented in Tower.
 You can manage playbooks and playbook directories by either placing them manually under the Project Base Path on your Tower server, or by placing your playbooks into a source code management (SCM) system supported by Tower, including Git, Subversion, and Mercurial.
@@ -78,11 +79,11 @@ and click 'SAVE'.
 
 > Now try to run your playbook. (press the rocket, next to the name of the template). This should run the ping playbook successfully
 
-If you now go to the 'Jobs' tab, you can review your specific run of the playbook, it lists information from the playbook run, who ran it and against what systems the playbook was run. This is all vital information as it allows visability over what's being done in your infrastructure or application landscape.
+If you now go to the 'Jobs' tab, you can review your specific run of the playbook, it lists information from the playbook run, who ran it and against what systems the playbook was run. This is all vital information as it allows visibility over what's being done in your infrastructure or application landscape.
 
 Next we are going to provide this playbook, as a service to a new user, to see how we (safely) can provide any automation as a self service.
 
-> Create a new users, by going to 'Settings (the cog)' and then users. Call the user workshop-guest and set a password for it. After saving the user go to it and configure it futher:
+> Create a new users, by going to 'Settings (the cog)' and then users. Call the user workshop-guest and set a password for it. After saving the user go to it and configure it further:
 * Click on the 'Permissions' tab and give your user access to run this one playbook. You do not have to provide access to either the project or the inventory, just the job template as a user, not an admin.
 
 > Login as the user and run the playbook again. Review what you can see and what you can change as this user.

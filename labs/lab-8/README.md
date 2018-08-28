@@ -1,8 +1,8 @@
-# Installing wildfly and nginx from Tower
+# Installing WildFly and Nginx from Tower
 
-As the good developer you are, you want to make your playbooks for provisioning the wildfly app available for the whole organization to run and benefit from. This lab will describe how you can do so.
+As the good developer you are, you want to make your playbooks for provisioning the WildFly app available for the whole organization to run and benefit from. This lab will describe how you can do so.
 
-First you need to instruct Ansible Tower to use the nginx module. You could install the module on Tower as previously, but this would have the unwanted effect that all projects on the Tower server would rely on this module. Furthermore the Tower server now needs special care if you need to reinstall it. Instead we'll instruct Tower to include the nginx module as part of our project. To do so, add a file *$WORK_DIR/roles* called *requirements.yml*, with the following content
+First you need to instruct Ansible Tower to use the Nginx module. You could install the module on Ansible Tower as previously, but this would have the unwanted effect that all projects on the Ansible Tower server would rely on this module. Furthermore the Ansible Tower server now needs special care if you need to reinstall it. Instead we'll instruct Ansible Tower to include the Nginx module as part of our project. To do so, add a file *$WORK_DIR/roles* called *requirements.yml*, with the following content
 ```
 ---
 - src: https://github.com/nginxinc/ansible-role-nginx
@@ -13,7 +13,7 @@ Check in the change and you are ready to go.
 
 Login to the Ansible Tower server on the url and username/password provided by the instructor.
 
-You've made the Inventory and Project for getting started in the previouse lab, but there are some additional stuff you need to do. First you need to create the groups and add hosts to the groups. To do so go to "INVENTORIES" -> "workshop-inventory" -> GROUPS". Here click "+ADD GROUP".
+You've made the Inventory and Project for getting started in the previous lab, but there are some additional stuff you need to do. First you need to create the groups and add hosts to the groups. To do so go to "INVENTORIES" -> "workshop-inventory" -> GROUPS". Here click "+ADD GROUP".
 ![create a group](images/create-group.png)
 
 
@@ -41,25 +41,25 @@ On the items, which appear click *credentials*. Then click *ADD*. Select Vault a
 ![filling in vault values](../lab-8/images/img1.png)
 Click *SAVE* and you're done with this part.
 
-Phew that's a lot of work. Luckily there is other ways of doing this, but the GUI is the easiest way to help you understand what's going on. Maybe grap a cup of cofee at this point - almost there.
+Phew that's a lot of work. Luckily there is other ways of doing this, but the GUI is the easiest way to help you understand what's going on. Maybe grab a cup of coffee at this point - almost there.
 
 The template is where it all comes together. So now click the *TEMPLATES* menu item and click *ADD* and select *Job Template*. Fill in values as below
-![wildfly template](images/img7.png)
-be aware that in order to select the credentials, you must use the search button and select credential type as appopriate.
+![WildFly template](images/img7.png)
+be aware that in order to select the credentials, you must use the search button and select credential type as appropriate.
 
 ![lb template](images/img8.png)
 
-Now you should be able to launch your playbooks. Click the *TEMPLATES* menu item. Then click the rocket to the right of the 'Install Wildfly App' template.
+Now you should be able to launch your playbooks. Click the *TEMPLATES* menu item. Then click the rocket to the right of the 'Install WildFly App' template.
 
-![wildfly template](images/img9.png)
+![WildFly template](images/img9.png)
 
-This should succeed succesfully. Do the same for the other template.
+This should succeed successfully. Do the same for the other template.
 
 Last step is to create a workflow to pull it all together. To do this, you can create a Workflow Template. So click on the *TEMPLATES* menu item and select *ADD - Workflow Template*. Name the template 'Install full application stack' and click *SAVE*. Now the *WORKFLOW EDITOR* button is active. Click on the button. This will take you to the following screen
 
 ![template editor](images/img10.png)
 
-if you now click the *START* button, you get to invoke a template. On the right side of the screen, you can select the 'Install Wildfly App' template and click *SELECT*. This will add the template to the workflow. When you move the cursor over the added template, a plus sign appears to the right on the box. Click it and a new template is added. Using the same method choose 'Install load balancer' as the template. This template should only run if the previous succeeded. At this time your workflow should look like this
+if you now click the *START* button, you get to invoke a template. On the right side of the screen, you can select the 'Install WildFly App' template and click *SELECT*. This will add the template to the workflow. When you move the cursor over the added template, a plus sign appears to the right on the box. Click it and a new template is added. Using the same method choose 'Install load balancer' as the template. This template should only run if the previous succeeded. At this time your workflow should look like this
 
 ![template editor](images/img11.png)
 
