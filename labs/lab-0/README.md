@@ -18,7 +18,7 @@ DO NOT execute any of the labs from your local laptop.
 
 The Tower server will have the responsibility of provisioning the servers, which are implementing a simple http based service.
 
-The NGINX server is responsible for balancing the load between the two backend servers. The backends are implemented using Wildfly swarm, run as a simple java application.
+The NGINX server is responsible for balancing the load between the two backend servers. The backends are implemented using WildFly Swarm, run as a simple java application.
 
 1. Log in as the **student** user on your assigned Ansible Tower server.
 2. Navigate to the **student** users home directory.
