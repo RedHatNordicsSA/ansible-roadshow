@@ -60,16 +60,20 @@ Password should be set to ```redhat123```, or if you end up choosing something d
 Once you are logged in, it's time to create the access token for the Administrator user(root).
 
 From the top-right corner click on the avatar and choose settings:
+
 ![gitlab settings](images/gitlab-settings-menu.png)
 
 At the settings -page go to menu called "Access Tokens" that is at the left side of the screen:
+
 ![gitlab token](images/gitlab-token-menu.png)
 
 From that menu you can create Access Token(s) to access the API.
 You can name the Access Token how ever you like, but make sure to tick all the boxes under the Scope -section:
+
 ![gitlab token creation](images/gitlab-create-token.png)
 
 Once you click on the "Create personal access token" -button, Access Token will be generated for you, be sure to copy it to your clipboard:
+
 ![gitlab token created](images/gitlab-token-created.png)
 
 Once you have the access token on your clipboard, copy it to gitlab_token -variable in vars.yml and run the gitlab-setup.yml -playbook:
