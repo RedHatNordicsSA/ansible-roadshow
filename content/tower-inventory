@@ -1,2 +1,0 @@
-[tower]
-localhost              ansible_connection=local
