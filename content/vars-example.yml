@@ -22,5 +22,5 @@ ami_id: ami-7c491f05
 number_of_tower_systems: 1
 number_of_client_systems: 3
 number_of_git_systems: 1
-gitlab_emai_: do-not-reply@redhat.com
+gitlab_email: do-not-reply@redhat.com
 gitlab_token: MVG6BGjWVDUynV9Pxykq
