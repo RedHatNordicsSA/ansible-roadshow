@@ -18,28 +18,28 @@ Before running the installer, you need to install Boto on your Ansible machine u
 
 ## Set AWS parameters for Ansible playbooks
 
-Playbooks expect file ```content/vars.yml``` for setting your personal AWS credentials, machine AMI image and some other parameters. Copy ```content/vars-example.yml``` and fill it with your settings. You are recommended to use Ansible vault to encrypt your credentials.
+Playbooks expect file ```content/vars/vars.yml``` for setting your personal AWS credentials, machine AMI image and some other parameters. Copy ```content/vars/vars-example.yml``` and fill it with your settings. You are recommended to use Ansible vault to encrypt your credentials.
 
 ## Encrypting credentials with Ansible Vault
 
-Put whatever password into some file, in this example ```content/vault-password.txt```. Then you can use command ```ansible-vault --vault-password-file content/vault-password.txt encrypt_string``` to encrypt your credentials. The output can be used in the ```content/vars.yml``` file, see example.
+Put whatever password into some file, in this example ```content/vault-password.txt```. Then you can use command ```ansible-vault --vault-password-file content/vault-password.txt encrypt_string``` to encrypt your credentials. The output can be used in the ```content/vars/vars.yml``` file, see example.
 
-You can also just put the credentials in plain text, but make sure you won't commit them into any git! Files ```content/vars.yml``` and ```content/vault-password.txt``` are ignored by git in this repo for safety.
+You can also just put the credentials in plain text, but make sure you won't commit them into any git! Files ```content/vars/vars.yml``` and ```content/vault-password.txt``` are ignored by git in this repo for safety.
 
 ## Install required roles
 
 There are some dependencies for external roles in this setup. You can use Ansible galaxy to install them:
 
 ```
-ansible-galaxy install -p roles -r requirements.yml
+ansible-galaxy install -p roles -r roles/requirements.yml
 ```
 
 ## Run Ansible to provision the lab environment
 
-There is playbook ```provision-all.yml``` which includes some other playbooks to create all necessary resources into AWS, and configure each of them. It will use dynamic inventory provided by ```content/ec2.py```. That's why you need boto setup in addition to credentials in ```content/vars.yml```.
+There is playbook ```provision-all.yml``` which includes some other playbooks to create all necessary resources into AWS, and configure each of them. It will use dynamic inventory provided by ```content/inventory/ec2.py```. That's why you need boto setup in addition to credentials in ```content/vars/vars.yml```.
 
 ```
-ansible-playbook --vault-password-file vault-password.txt -i ec2.py do_all.yml
+ansible-playbook --vault-password-file vault-password.txt -i inventory/ec2.py do_all.yml
 ```
 
 _if you don't use vault, ignore ```vault-password-file``` parameter_
@@ -76,7 +76,7 @@ Once you click on the "Create personal access token" -button, Access Token will 
 
 ![gitlab token created](images/gitlab-token-created.png)
 
-Once you have the access token on your clipboard, copy it to gitlab_token -variable in vars.yml and run the gitlab-setup.yml -playbook:
+Once you have the access token on your clipboard, copy it to gitlab_token -variable in vars.yml -file and run the gitlab-setup.yml -playbook:
 
     ansible-playbook gitlab-setup.yml
 
@@ -87,12 +87,12 @@ Users will be named ```student1``` to ```studentX``` and password for the studen
 
 __Beware this might leave something out, do check yourself from AWS__
 
-There is a helper playbook, which deletes all resources created for this lab from AWS. But you never know if someone adds something to labs, and forgets to also add it into ```delete_instances.yml``` playbook. If you develope this further, do always remember to include your added resources into ```delete_instances.yml```.
+There is a helper playbook, which deletes all resources created for this lab from AWS. But you never know if someone adds something to labs, and forgets to also add it into ```delete_instances.yml``` playbook. If you develop this further, do always remember to include your added resources into ```delete_instances.yml```.
 
 After labs are done, stop billing by running:
 
 ```
-ansible-playbook --vault-password-file vault-password.txt -i ec2.py delete_instances.yml
+ansible-playbook --vault-password-file vault-password.txt -i inventory/ec2.py delete_instances.yml
 ```
 
 _if you don't use vault, ignore ```vault-password-file``` parameter_
