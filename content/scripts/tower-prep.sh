@@ -6,6 +6,30 @@
 yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 yum -y install wget bind-utils ansible nano vim screen emacs joe gcc
 
+ITER=0
+while true; do
+  if [ "$ITER" -eq 10 ]; then
+    echo "This is never going to work."
+    break
+  fi
+  rpm -q ansible
+  if [ "$?" -eq 0 ]; then
+    echo "Ansible installed, going forward with install."
+    break
+  else
+    sleep 30
+    yum -y install wget bind-utils ansible nano vim screen emacs joe gcc
+    rpm -q ansible
+    if [ "$?" -eq 0 ]; then
+      echo "Ansible installed, going forward with install."
+      break
+    else
+      ITER=$(expr $ITER + 1)
+  fi
+done
+    
+  
+
 # SSH key prereqs, creation of users for demo
 # Create directory for ssh public key
 if [ ! -d /root/.ssh ]; then
