@@ -25,6 +25,7 @@ while true; do
       break
     else
       ITER=$(expr $ITER + 1)
+    fi
   fi
 done
     
