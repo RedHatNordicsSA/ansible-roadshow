@@ -4,22 +4,16 @@
   hosts: localhost
   vars_files:
     - vars/vars.yml
+  vars:
+    gitlab_server: "{{lookup('file', './gitlab_server.out')}}"
   tasks:
 
-    - name: Source gitlab server
-      command: cat ./gitlab_server.out
-      register: gitlab_fqdn
-
-    - name: Set gitlab fqdn fact
-      set_fact:
-        gitlab_server: "{{ gitlab_fqdn.stdout_lines }}"
-
     - name: print out gitlab fqdn
-      debug: msg="{{ gitlab }}"
+      debug: msg="{{ gitlab_server }}"
 
     - name: Create project
       uri:
-        url: "{{ gitlab_fqdn }}/api/v4/projects"
+        url: "{{ gitlab_server }}/api/v4/projects"
         method: POST
         validate_certs: False
         headers:
@@ -35,7 +29,7 @@
 
     - name: Create users
       uri:
-        url: "{{ gitlab_fqdn }}/api/v4/users"
+        url: "{{ gitlab_server }}/api/v4/users"
         method: POST
         validate_certs: False
         headers:
