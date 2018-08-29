@@ -12,7 +12,7 @@ ssh-add
 
 This setup was tested at the time of writing this README with Ansible version 2.6. Follow [Ansible install guidance](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) for your favourite OS, Linux :) .
 
-## Prepare the ansible dynamic inventory credentials
+## Prepare the Ansible dynamic inventory credentials
 
 Before running the installer, you need to install Boto on your Ansible machine using [the Ansible AWS documentation](http://docs.ansible.com/ansible/latest/scenario_guides/guide_aws.html).
 
@@ -28,13 +28,13 @@ You can also just put the credentials in plain text, but make sure you won't com
 
 ## Install required roles
 
-There is some dependencies for external roles in this setup. Use Ansible galaxy to install them:
+There are some dependencies for external roles in this setup. You can use Ansible galaxy to install them:
 
 ```
 ansible-galaxy install -p roles -r requirements.yml
 ```
 
-## Run Ansible to provision the labs
+## Run Ansible to provision the lab environment
 
 There is playbook ```provision-all.yml``` which includes some other playbooks to create all necessary resources into AWS, and configure each of them. It will use dynamic inventory provided by ```content/ec2.py```. That's why you need boto setup in addition to credentials in ```content/vars.yml```.
 
@@ -43,6 +43,41 @@ ansible-playbook --vault-password-file vault-password.txt -i ec2.py do_all.yml
 ```
 
 _if you don't use vault, ignore ```vault-password-file``` parameter_
+
+## Create Gitlab access token
+
+Once the environment has been provisioned and if you don't feel like using GitHub, you can use Gitlab that was installed with the lab environment.
+__Due to limitations in the Gitlab API, you have to create access key for the root user, that was created during the installation by hand.__ This has to be done in order to get the ansible-roadshow -project and student users set up to Gitlab.
+
+Gitlab's default administrator account details are below; be sure to login immediately after installation and change these credentials!
+
+    root
+    5iveL!fe
+
+Gitlab will automatically prompt you to change the password.
+Password should be set to ```redhat123```, or if you end up choosing something different you will have to modify gitlab-setup.yml to comply with your password.
+
+Once you are logged in, it's time to create the access token for the Administrator user(root).
+
+From the top-right corner click on the avatar and choose settings:
+![gitlab settings](images/gitlab-settings-menu.png)
+
+At the settings -page go to menu called "Access Tokens" that is at the left side of the screen:
+![gitlab token](images/gitlab-token-menu.png)
+
+From that menu you can create Access Token(s) to access the API.
+You can name the Access Token how ever you like, but make sure to tick all the boxes under the Scope -section:
+![gitlab token creation](images/gitlab-create-token.png)
+
+Once you click on the "Create personal access token" -button, Access Token will be generated for you, be sure to copy it to your clipboard:
+![gitlab token created](images/gitlab-token-created.png)
+
+Once you have the access token on your clipboard, copy it to gitlab_token -variable in vars.yml and run the gitlab-setup.yml -playbook:
+
+    ansible-playbook gitlab-setup.yml
+
+This will copy the content of the workshop from GitHub to your Gitlab server and create as many user accounts as you have Ansible tower systems.
+Users will be named ```student1``` to ```studentX``` and password for the student accounts will be ```redhat123```.
 
 ## Delete all resources after doing labs
 
