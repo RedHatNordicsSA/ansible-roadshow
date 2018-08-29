@@ -3,7 +3,7 @@
 - name: Create Gitlab Project, copy repo and add users
   hosts: localhost
   vars_files:
-    - vars.yml
+    - vars/vars.yml
   tasks:
 
     - name: Source gitlab server

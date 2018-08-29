@@ -4,7 +4,7 @@
   vars:
 
   tasks:
-  - name: Source all client systems 
+  - name: Source all client systems
     command: cat ./client_instances.out
     register: client_systems
 
@@ -48,7 +48,7 @@
 
   - name: Parse CSV To YAML
     template:
-      src: "./mapping.j2"
+      src: "./templates/mapping.j2"
       dest: "./student_information.out"
     run_once: true
 

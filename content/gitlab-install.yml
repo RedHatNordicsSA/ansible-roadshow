@@ -3,7 +3,7 @@
 - name: setup stuff in Gitlab VMs
   hosts: git
   vars_files:
-    - vars.yml
+    - vars/vars.yml
   tasks:
     - name: wait for system to be up
       wait_for_connection:
