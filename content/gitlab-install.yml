@@ -27,6 +27,7 @@
         path: ./gitlab_server.out
         line: "https://{{ fqdn }}"
         create: yes
+      delegate_to: 127.0.0.1
 
     - name: Print Gitlab username to ./gitlab_users.out
       lineinfile:
