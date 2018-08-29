@@ -12,7 +12,7 @@ PLEASE NOTE
 DO NOT execute any of the labs from your local laptop.
 ```
 
-![Overview of lab environment](https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/overview.png)
+![Overview of lab environment](../../content/images/overview.png)
 
 * _Please note that the Ansible Tower server is from where all labs are executed._
 

@@ -10,7 +10,7 @@ When you scale out your Ansible usage (aka. automate all things) you’ll have m
 
 Take some time and think about the different teams or people that you would like to collaborate with, or what teams you would need to collaborate with in order to automate your complete enterprise.
 
- ![Examples of different teams in a company](https://github.com/mglantz/ansible-roadshow/blob/master/content/different-teams.png?raw=true)
+ ![Examples of different teams in a company](../../content/images/different-teams.png)
 
 # What is git and how does it work?
 A simplified description of git follows.
@@ -20,11 +20,11 @@ A simplified description of git follows.
 3. All changes to all files are tracked
 4. When you want to make a change to a file in a repository, you first make a local copy of the repository which is stored on your computer, you then change the file locally, commit the change locally and then go ahead and tell git to copy this local change to the repository.
 
-![Git basics](https://github.com/mglantz/ansible-roadshow/blob/master/content/git-repo.png?raw=true)
+![Git basics](../../content/images/git-repo.png)
 
 5. You may have different copies of a repository at the same time, these copies are called branches and are key when collaborating together with other people in the same repository. When copying content between branches, that is referred to as merging.
 
- ![Examples of commonly used git branches](https://github.com/mglantz/ansible-roadshow/blob/master/content/git-branches.png?raw=true)
+ ![Examples of commonly used git branches](../../content/images/git-branches.png)
 
 6. This may seem a bit cumbersome, but you will get used to it. Promise.
 
@@ -43,7 +43,7 @@ A simplified description of git follows.
 4. Branches are where you develop and test new features and bugfixes
 5. Yes, I wrote test. If you do not test your Ansible code you cannot keep the master branch releasable and this all fails.
 
- ![GitHub workflow branches](https://github.com/mglantz/ansible-roadshow/blob/master/content/git-branches.png?raw=true)
+ ![GitHub workflow branches](../../content/images/git-branches.png)
 
 Now, as an exercise you will try out the GitHub workflow. Try to find a friend to do this exercise with.
 
@@ -54,13 +54,13 @@ As an example of a git based version handling/collaboration system, we'll use Gi
 
 >Next step, go ahead and make a change to your playbook via the GitHub web UI. When you commit the change, select 'Create a new branch for this commit and start a pull request.' as depicted below.
 
- ![Select a new branch](https://github.com/mglantz/ansible-roadshow/blob/master/content/new-branch.png?raw=true)
+ ![Select a new branch](../../content/images/new-branch.png)
 
 What happens next is that your change is copied into this new copy of your repository, called a branch. This is so that you and others can collaborate on this change, without affecting the code in the master branch (copy) of your repository. This allows your master branch to be stable, while development is ongoing. This also allows for several people to work on the code in your repository, at the same time.
 
 >Now click on 'Create pull request' to complete the creation of the new branch and copying your change to it.
 
- ![Creating a pull request](https://github.com/mglantz/ansible-roadshow/blob/master/content/pull-request.png?raw=true)
+ ![Creating a pull request](../../content/images/pull-request.png)
 
 You will now get redirected to the page with overviews your pull request. Here you can use the comment function displayed in the 'Conversation' tab to collaborate with other people. Perhaps your change needs a code review or you need some advise on how to solve a specific problem? The 'Commits' and 'Files changed' allows you to overview all changes made into your newly created branch, from now on.
 
@@ -70,7 +70,7 @@ The pull request has yet another function, which is to allow someone else than y
 
 >After having merged your work, select to delete your branch.
 
- ![Deleting your branch](https://github.com/mglantz/ansible-roadshow/blob/master/content/delete-branch.png?raw=true)
+ ![Deleting your branch](../../content/images/delete-branch.png)
 
  The reason why you delete your branch afterwards is because that allows people to see when work has been completed. Also, it allows someone to overview the status of the development work being done. For example, if a branch has lived on for too long, the risk of merge conflicts (when several people has changed the same files) becomes greater. Because of that and because code quality usually suffers when you do too much work at once, try biting off a good sized chunk of work. It's better that you do several smaller chunks of work than one huge chunk which takes a long time to do.
 

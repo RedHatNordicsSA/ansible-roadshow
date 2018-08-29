@@ -14,7 +14,7 @@ Check in the change and you are ready to go.
 Login to the Ansible Tower server on the url and username/password provided by the instructor.
 
 You've made the Inventory and Project for getting started in the previous lab, but there are some additional stuff you need to do. First you need to create the groups and add hosts to the groups. To do so go to "INVENTORIES" -> "workshop-inventory" -> GROUPS". Here click "+ADD GROUP".
-![create a group](images/create-group.png)
+![create a group](../../content/images/create-group.png)
 
 
 Create three groups named:
@@ -26,7 +26,7 @@ Click "SAVE" for each group.
 
 Next add the hosts to the correct groups. For each group click on the group name and then on the "HOSTS" tab. For instance clicking "dev" -> "HOSTS" will bring you to the following screen, where you can add hosts to the group
 
-![Add hosts to a group](images/add-host-to-group.png)
+![Add hosts to a group](../../content/images/add-host-to-group.png)
 
 * Add all hosts to the dev group.
 * Add client_system_1 to the lbservers group
@@ -35,33 +35,33 @@ Next add the hosts to the correct groups. For each group click on the group name
 Using above described method.
 
 Next you need to setup the vault password for your playbooks. To do so click the *settings* menu item in top of the menu
-![settings location image](../lab-8/images/img0.png)
+![settings location image](../../content/images/img0.png)
 
 On the items, which appear click *credentials*. Then click *ADD*. Select Vault as credential type and the fill in values as provided in below screenshot (replace password with whatever you chose).
-![filling in vault values](../lab-8/images/img1.png)
+![filling in vault values](../../content/images/img1.png)
 Click *SAVE* and you're done with this part.
 
 Phew that's a lot of work. Luckily there is other ways of doing this, but the GUI is the easiest way to help you understand what's going on. Maybe grab a cup of coffee at this point - almost there.
 
 The template is where it all comes together. So now click the *TEMPLATES* menu item and click *ADD* and select *Job Template*. Fill in values as below
-![WildFly template](images/img7.png)
+![WildFly template](../../content/images/img7.png)
 be aware that in order to select the credentials, you must use the search button and select credential type as appropriate.
 
-![lb template](images/img8.png)
+![lb template](../../content/images/img8.png)
 
 Now you should be able to launch your playbooks. Click the *TEMPLATES* menu item. Then click the rocket to the right of the 'Install WildFly App' template.
 
-![WildFly template](images/img9.png)
+![WildFly template](../../content/images/img9.png)
 
 This should succeed successfully. Do the same for the other template.
 
 Last step is to create a workflow to pull it all together. To do this, you can create a Workflow Template. So click on the *TEMPLATES* menu item and select *ADD - Workflow Template*. Name the template 'Install full application stack' and click *SAVE*. Now the *WORKFLOW EDITOR* button is active. Click on the button. This will take you to the following screen
 
-![template editor](images/img10.png)
+![template editor](../../content/images/img10.png)
 
 if you now click the *START* button, you get to invoke a template. On the right side of the screen, you can select the 'Install WildFly App' template and click *SELECT*. This will add the template to the workflow. When you move the cursor over the added template, a plus sign appears to the right on the box. Click it and a new template is added. Using the same method choose 'Install load balancer' as the template. This template should only run if the previous succeeded. At this time your workflow should look like this
 
-![template editor](images/img11.png)
+![template editor](../../content/images/img11.png)
 
 Now you can run the workflow template as any other template. Nifty right?
 

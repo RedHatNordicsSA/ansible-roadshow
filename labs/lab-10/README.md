@@ -5,7 +5,7 @@ This chapter will go through what a module is, what you need to consider before 
 # About Ansible modules and what to consider before writing one
 To reiterate, modules are Ansible's tools in a toolbox. Ansible playbooks calls upon modules to get work done, as can be seen below.
 
- ![Playbooks calls upon modules](https://github.com/mglantz/ansible-roadshow/blob/master/content/modules.png?raw=true)
+ ![Playbooks calls upon modules](../../content/images/modules.png)
 
 ## Should you develop a module?
 The first thing you should ask yourself when developing an Ansible module is, should you develop a module? Before you get started on development, walk through this little checklist.
