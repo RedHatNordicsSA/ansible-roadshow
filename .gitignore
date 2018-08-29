@@ -4,7 +4,8 @@
 .vagrant/
 *.myversion
 content/roles/*
-content/vars.yml
+!content/roles/requirements.yml
+content/vars/vars.yml
 content/*_servers.out
 content/client_instances.out
 content/vault-password.txt
