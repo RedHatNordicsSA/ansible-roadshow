@@ -2,7 +2,7 @@
 
 _Ensure that you are logged in to your Ansible Tower server as the **student** user._
 
-You are the operator at Tangible Labs Inc. and tasked with setting up servers for the company's new application that's based on WildFly Swarm. After attending several sessions on automation, you've decided to give Ansible a go.
+You are the operator at Tangible Labs Inc. and tasked with setting up servers for the company's new application that's based on WildFly Swarm, which is a modern and tiny application server. After attending several sessions on automation, you've decided to give Ansible a go.
 
 The first lab will help you verifying the Ansible installation and getting acquainted with basic Ansible concepts.
 
