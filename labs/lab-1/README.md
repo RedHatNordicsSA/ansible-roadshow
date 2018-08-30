@@ -18,25 +18,52 @@ You should see output similar to this:
 $ ansible --version
 ansible 2.6.3
   config file = /etc/ansible/ansible.cfg
-  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  configured module search path = [u'/home/student/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
   ansible python module location = /usr/lib/python2.7/site-packages/ansible
-  executable location = /bin/ansible
+  executable location = /usr/bin/ansible
   python version = 2.7.5 (default, May 31 2018, 09:41:32) [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)]
 ```
 
-As you can see Ansible uses Python. If you inspect the config file (/etc/ansible/ansible.cfg) file, you will find the following configuration:
+As you can see Ansible uses Python. If you inspect the config file (/etc/ansible/ansible.cfg) file by running:
+```
+more /etc/ansible/ansible.cfg
+```
+You will find the following configuration _in the top of the config file_:
 
 ```
+# config file for ansible -- https://ansible.com/
+# ===============================================
+
+# ...
 [defaults]
 
-# some basic default values...
+# ...
 
 #inventory      = /etc/ansible/hosts
 #library        = /usr/share/my_modules/
 #module_utils   = /usr/share/my_module_utils/
 ```
 
-The most important for a beginning is the default location of the inventory file. The inventory file contains a list of servers that you are managing. The servers can be grouped in any way you like. For this lab, group the servers into load balancers (lbservers) and WildFly Swarm application servers (wildflyservers).
+The most important for a beginning is the default location of the inventory file. The inventory file is used to define servers that you are managing. The servers can be grouped in any way you like. Best practices for grouping service in an inventory is to ask three simple questions, _WHAT_, _WHERE_, _WHEN_ and then fill in the blanks. An example inventory file can look like:
+
+```
+# WHAT                WHERE               WHEN
+[db]                  [east]              [dev]
+db[1:4]               db1                 db1
+                      db3                 web1
+[web]                 web1
+web[1:3]              web3                [test]
+                                          web2
+                      [west]              db2
+                      db2
+                      db4                 [prod]
+                      web2                web[3:4]
+                      web4                db[3:4]
+```
+
+For this lab, we will group the servers into _WHAT_ - load balancers (lbservers) and WildFly Swarm application servers (wildflyservers).
+
+Another inventory best practice is that if you happen to have servers which are named 'srv1234-e445.gdml.oo.sld.foo' or as meaningless, you may want to think about giving your servers meaningful aliases in your inventory, such as web1 or etc. The reason for this is _readability_. Both your playbooks and your playbooks output will become more readable. We will soon implement some meaningful aliases for our systems.
 
 Before we continue on, make sure that the $WORK_DIR variable is defined. If $WORK_DIR is not defined, [take a look at the preparations.](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-0)
 Now, create a file named *hosts* in the *$WORK_DIR* folder.
@@ -50,11 +77,11 @@ touch hosts
 Add the following text to the _$WORK_DIR/hosts_ file using an editor of choice:
 ```
 [lbservers]
-client_system_1 ansible_host=xxx.xxx.xxx.xxx
+loadbalancer1 ansible_host=xxx.xxx.xxx.xxx
 
 [wildflyservers]
-client_system_2 ansible_host=yyy.yyy.yyy.yyy
-client_system_3 ansible_host=zzz.zzz.zzz.zzz
+wildfly1 ansible_host=yyy.yyy.yyy.yyy
+wildfly2 ansible_host=zzz.zzz.zzz.zzz
 ```
 Where x, y and z values are replaced by the ip numbers for **Managed Systems** IP addresses assigned to you.
 
@@ -62,11 +89,11 @@ Where x, y and z values are replaced by the ip numbers for **Managed Systems** I
 ```
 cat << 'EOF' >$WORK_DIR/hosts
 [lbservers]
-client_system_1 ansible_host=xxx.xxx.xxx.xxx
+loadbalancer1 ansible_host=xxx.xxx.xxx.xxx
 
 [wildflyservers]
-client_system_2 ansible_host=yyy.yyy.yyy.yyy
-client_system_3 ansible_host=zzz.zzz.zzz.zzz
+wildfly1 ansible_host=yyy.yyy.yyy.yyy
+wildfly2 ansible_host=zzz.zzz.zzz.zzz
 EOF
 ```
 
@@ -89,15 +116,15 @@ This command will run the ping command on all servers in the hosts file (specifi
 Then: type yes for each server. After running the ping command, you'll have following output
 
 ```
-35.159.18.245 | SUCCESS => {
+loadbalancer1 | SUCCESS => {
     "changed": false,
     "ping": "pong"
 }
-54.93.67.223 | SUCCESS => {
+wildfly1 | SUCCESS => {
     "changed": false,
     "ping": "pong"
 }
-54.93.150.126 | SUCCESS => {
+wildfly2 | SUCCESS => {
     "changed": false,
     "ping": "pong"
 }
