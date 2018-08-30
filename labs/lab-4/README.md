@@ -9,7 +9,7 @@ A role has already been written for installing Nginx with Ansible. The role can 
 First we need to install the role for Nginx. Run:
 
 ```
-$ansible-galaxy install nginxinc.nginx
+ansible-galaxy install nginxinc.nginx
 ```
 
 and wait for the role to be installed. When that is done, we can use the role in our playbooks.
@@ -28,7 +28,7 @@ To install Nginx go to $WORK_DIR and create a new file named *lb.yml* with the f
 run the playbook with the command
 
 ```
-$ansible-playbook -i hosts lb.yml
+ansible-playbook -i hosts lb.yml
 ```
 
 this will install Nginx on the servers in the lbservers group. To verify the installation, go to the url *http://$lb_server_name*. You should get the Nginx default page.
@@ -36,7 +36,8 @@ this will install Nginx on the servers in the lbservers group. To verify the ins
 Next step is to configure Nginx as a loadbalancer for the two wildflyapp servers. To do so, we'll add an additional role for the configuration. We follow the [best practises for Ansible directory layout](http://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html) and place tasks, handlers, and vars in separate directories. This is enforced by using the following command:
 
 ```
-$ansible-galaxy init roles/nginx-config
+cd $WORK_DIR
+ansible-galaxy init roles/nginx-config
 ```
 
 First we'll create a handler for restarting the Nginx service in case of configuration changes. Define the handler in the file *$WORK_DIR/roles/nginx-config/handlers/main.yml* with the following content:
@@ -122,13 +123,13 @@ server {
 as you can see, the *wildfly_servers* variable is used to iterate over the servers with the WildFly application deployed. Apply the new changes to the playbook by running the command:
 
 ```
-$ansible-playbook -i hosts lb.yml
+ansible-playbook -i hosts lb.yml
 ```
 
 Now test, that you can access the application on both application servers. In the command promt write:
 
 ```
-$curl -w '\n' http://<server name for nginx server>/
+curl -w '\n' http://<server name for nginx server>/
 ```
 
 you should get a different servername responding each time like in this output:
@@ -151,6 +152,10 @@ Finally create a playbook to collect the two playbooks already made, by creating
 ```
 
 By running this playbook, you can setup everything with one command.
+
+```
+ansible-playbook -i hosts main.yml
+```
 
 ```
 End of lab
