@@ -84,7 +84,7 @@ LimitNOFILE=5555
 WantedBy=multi-user.target
 ```
 
-Finally you need to apply the newly created role to your *wildflyservers* group. In dir *$WORK_DIR* create a file named *site.yml*. Put the following content into the file:
+Finally you need to apply the newly created role to your *wildflyservers* group. In dir *$WORK_DIR* create a playbook named *site.yml*. Put the following content into the file:
 
 ```
 ---
@@ -127,6 +127,17 @@ Example output should be:
 ```
 $ curl http://18.197.135.122:8080
 Howdy from unknown at 2018-08-30T22:25:09.897Z (from ip-172-31-25-165.eu-central-1.compute.internal)
+```
+
+This is pretty cool, by using the simple role you just created, people can now get their own WilfFly servers, using a 6 lines long playbook.
+
+```
+---
+- hosts: wildflyservers
+  become: yes
+  tasks:
+  - include_role:
+      name: wildflyapp
 ```
 
 Now, try running the playbook again. This time you'll get a different output:
