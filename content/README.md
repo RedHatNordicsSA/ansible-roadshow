@@ -5,7 +5,7 @@ These instructions guide you how to let Ansible provision the environment to Ama
 ```
 git clone https://github.com/mglantz/ansible-roadshow.git
 cd content
-ssh-add
+ssh-add /path/to/your/amazon-ssh-key-file.pem
 ```
 
 ## Install Ansible
