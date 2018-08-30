@@ -2,6 +2,7 @@
   connection: local
   gather_facts: False
   vars:
+    gitlab_server: "{{lookup('file', './gitlab_server.out')}}"
 
   tasks:
   - name: Source all client systems
@@ -11,14 +12,6 @@
   - name: Source all tower servers
     command: cat ./tower_servers.out
     register: tower_servers
-
-  - name: Source gitlab server
-    command: cat ./git_servers.out
-    register: gitlab_server
-
-  - name: Set gitlab server fact
-    set_fact:
-      gitlab_server: "{{ gitlab_server.stdout_lines }}"
 
   - name: Source gitlab users
     command: cat ./gitlab_users.out

@@ -126,3 +126,13 @@
 
     - name: Restore from backup
       shell: "{{tower_installer_path.stdout}} -r {{ tower_base_path.stdout }}/tower-backup-latest.tar.gz"
+      
+    - name: Disable SSL verification
+      lineinfile:
+        path: /etc/tower/settings.py
+        state: present
+        regexp: '.*GIT_SSL_NO_VERIFY.*'
+        line: AWX_TASK_ENV['GIT_SSL_NO_VERIFY'] = 'True'
+      
+    - name: Restart Ansible Tower
+      shell: ansible-tower-service restart

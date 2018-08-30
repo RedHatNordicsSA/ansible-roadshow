@@ -5,7 +5,7 @@ These instructions guide you how to let Ansible provision the environment to Ama
 ```
 git clone https://github.com/mglantz/ansible-roadshow.git
 cd content
-ssh-add
+ssh-add /path/to/your/amazon-ssh-key-file.pem
 ```
 
 # Pre-requisites
@@ -44,7 +44,7 @@ ansible-galaxy install -p roles -r roles/requirements.yml
 Playbook ```provision-all.yml``` includes other playbooks to create all necessary resources into AWS, and configure each of them. It will use dynamic inventory provided by ```content/inventory/ec2.py```. That's why you need boto Python modules installed in addition to AWS credentials in ```content/vars/vars.yml```.
 
 ```
-ansible-playbook --vault-password-file vault-password.txt -i inventory/ec2.py do_all.yml
+ansible-playbook --vault-password-file vault-password.txt -i inventory/ec2.py provision-all.yml
 ```
 
 _if you don't use Ansible Vault, ignore ```vault-password-file``` parameter_
