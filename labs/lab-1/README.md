@@ -69,6 +69,7 @@ ssh-keyscan -H xxx.xxx.xxx.xxx yyy.yyy.yyy.yyy zzz.zzz.zzz.zzz >> ~/.ssh/known_h
 You are now ready to run your first Ansible module. To do so, run the following command from *$WORK_DIR*
 
 ```
+cd $WORK_DIR
 ansible -i hosts all -m ping
 ```
 
@@ -93,6 +94,7 @@ Congratulations! :smile: :tada: You've run your first Ansible command.
 For a more detailed explanation of what is going on, try running the same command but add the *-vvv* parameter
 
 ```
+cd $WORK_DIR
 ansible -vvv -i hosts all -m ping
 ```
 
