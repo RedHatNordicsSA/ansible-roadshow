@@ -18,7 +18,7 @@ The Tower server will have the responsibility of provisioning the managed system
 
 The NGINX server is responsible for balancing the load between the two backend servers. The backends are implemented using WildFly Swarm, run as a simple java application.
 
-4. Once in the system, you have to use one of the text based text editors available. If you are new to Linux, see below for a simple guide for the different available text editors.
+4. Once in the system, you have to use one of the text based text editors available. If you are new to Linux, see below for a simple guide for the different available text editors. Use them as reference when needed. For now, go ahead and proceed in the lab.
 
 * **nano**: https://wiki.gentoo.org/wiki/Nano/Basics_Guide
 * **vi/vim**: https://vim.rtorr.com/ 
