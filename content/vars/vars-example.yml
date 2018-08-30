@@ -16,11 +16,11 @@ ec2_secret_key: !vault |
           33613731393037393636306533303730373330353439643030636463366130343232386466343039
           3763373634353134653637373766633364393761623334623762
 ec2_key: ikke@redhat
-ec2_region: eu-west-1
+ec2_region: eu-west-1, or eu-central-1
 ec2_security_group: ansibleroadshow
-ami_id: ami-7c491f05
+ami_id: ami-7c491f05, if something else than eu-west-1: ami-c86c3f23
 number_of_tower_systems: 1
 number_of_client_systems: 3
 number_of_git_systems: 1
 gitlab_email: do-not-reply@redhat.com
-gitlab_token: MVG6BGjWVDUynV9Pxykq
+gitlab_token: 
