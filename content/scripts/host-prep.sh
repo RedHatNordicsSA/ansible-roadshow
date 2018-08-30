@@ -13,6 +13,10 @@ fi
 
 useradd student
 echo "RHforum18Pass" | passwd student --stdin
+usermod -aG wheel student
+# I know I shouldn't edit the /etc/sudoers file with any sort of script. There's a reason for the visudo command.
+# That being said...
+sed --in-place 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers
 mkdir /home/student/.ssh
 chmod 700 /home/student/.ssh
 curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa >/home/student/.ssh/id_rsa
