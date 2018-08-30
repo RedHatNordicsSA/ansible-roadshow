@@ -45,7 +45,7 @@ Now, create a file named *hosts* in the *$WORK_DIR* folder.
 cd $WORK_DIR
 touch hosts
 ```
->Please note: You got three servers assigned to you, referred to as 'Managed Systems' when given to you. It doesn't matter which one is put in the [lbservers] section and which remaining two are put in the [wildflyservers] section during lab 1.
+>Please note: You got three servers assigned to you, referred to as **'Managed Systems'** when given to you. It doesn't matter which one is put in the [lbservers] section and which remaining two are put in the [wildflyservers] section.
 
 Add the following text to the file using an editor of choice:
 ```
@@ -56,7 +56,7 @@ client_system_1 ansible_host=xxx.xxx.xxx.xxx
 client_system_2 ansible_host=yyy.yyy.yyy.yyy
 client_system_3 ansible_host=zzz.zzz.zzz.zzz
 ```
-where x, y and z values are replaced by the ip numbers for servers assigned to you.
+Where x, y and z values are replaced by the ip numbers for **Managed Systems** IP addresses assigned to you.
 
 **Optionally**, create the content in a text editor on your laptop and paste below (with your IP-addresses) text into a terminal:
 ```
