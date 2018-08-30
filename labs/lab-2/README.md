@@ -101,6 +101,7 @@ wildfly2                   : ok=3    changed=0    unreachable=0    failed=0
 ```
 
 Now you can see the output from the ping module. Nice! Return values are useful for a lot of things.
+> Also, isn't it nice to see loadbalancer1 instead of _ec2-18-184-79-97.eu-central-1.compute.amazonaws.com_? :smile:
 
 Another useful feature of Ansible is the PLAY RECAP. Here you can see how running the playbooks went. For now just notice that no state has changed (changed=0 for each server). This is because the ping message never changes state of the server and thus is idempotent. Idempotency is an important concept in Ansible. Idempotency means that the module called will have the same effect on the server, no matter how many times you run it on the server (more about that later).
 
