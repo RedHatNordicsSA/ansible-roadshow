@@ -9,13 +9,13 @@ The first lab will help you verifying the Ansible installation and getting acqua
 But first, let's verify that Ansible has been installed. On the command-line interface run the following command:
 
 ```
-$ansible --version
+ansible --version
 ```
 
 You should see output similar to this:
 
 ```
-$ansible --version
+$ ansible --version
 ansible 2.6.3
   config file = /etc/ansible/ansible.cfg
   configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
@@ -47,8 +47,7 @@ touch hosts
 ```
 Please note: you got three servers assigned to you, it doesn't matter which one is put in the [lbservers] section and which remaining two are put in the [wildflyservers] section during lab 1.
 
-Add the following text to the file:
-
+Add the following text to the file using an editor of choice:
 ```
 [lbservers]
 client_system_1 ansible_host=xxx.xxx.xxx.xxx
@@ -58,6 +57,18 @@ client_system_2 ansible_host=yyy.yyy.yyy.yyy
 client_system_3 ansible_host=zzz.zzz.zzz.zzz
 ```
 where x, y and z values are replaced by the ip numbers for servers assigned to you.
+
+**Optionally**, create the content in a text editor on your laptop and paste below (with your IP-addresses) text into a terminal:
+```
+cat << 'EOF' >$WORK_DIR/hosts
+[lbservers]
+client_system_1 ansible_host=xxx.xxx.xxx.xxx
+
+[wildflyservers]
+client_system_2 ansible_host=yyy.yyy.yyy.yyy
+client_system_3 ansible_host=zzz.zzz.zzz.zzz
+EOF
+```
 
 Since this is the first time we're connecting to these servers, you'll need to accept the identity of the servers.
 To speed up the process, we can use the ssh-keyscan command to accept identities. Like so:
