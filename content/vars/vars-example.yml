@@ -15,7 +15,7 @@ ec2_secret_key: !vault |
           33613731393037393636306533303730373330353439643030636463366130343232386466343039
           33613731393037393636306533303730373330353439643030636463366130343232386466343039
           3763373634353134653637373766633364393761623334623762
-ec2_key: your-ssh-key-in-amazon
+ec2_key: ec2-ssh-key-needs-to-be-default-from-place-you-run-playbook
 ec2_region: eu-west-1, or whatever-you-like
 ec2_security_group: ansibleroadshow
 ami_id: ami-7c491f05, RHEL7.5 standard image, if something else than eu-west-1: ami-c86c3f23
