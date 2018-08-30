@@ -116,16 +116,16 @@ This command will run the ping command on all servers in the hosts file (specifi
 Then: type yes for each server. After running the ping command, you'll have following output
 
 ```
-loadbalancer1 | SUCCESS => {
-    "changed": false,
-    "ping": "pong"
-}
 wildfly1 | SUCCESS => {
-    "changed": false,
+    "changed": false, 
     "ping": "pong"
 }
 wildfly2 | SUCCESS => {
-    "changed": false,
+    "changed": false, 
+    "ping": "pong"
+}
+loadbalancer1 | SUCCESS => {
+    "changed": false, 
     "ping": "pong"
 }
 ```
