@@ -84,7 +84,9 @@ cd $WORK_DIR
 ansible -i hosts all -m ping
 ```
 
-This command will run the ping command on all servers in the hosts file (specified by -i). The -u parameter is used to sign into the servers as the root user. ** If the previous step failed, you might be asked to accept the identity of the servers.** Type yes for each server. After running the ping command, you'll have following output
+This command will run the ping command on all servers in the hosts file (specified by -i). The -u parameter is used to sign into the servers as the root user. 
+>**If the previous step failed, you might be asked to accept the identity of the servers.**
+Then: type yes for each server. After running the ping command, you'll have following output
 
 ```
 35.159.18.245 | SUCCESS => {
