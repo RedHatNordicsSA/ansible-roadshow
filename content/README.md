@@ -39,7 +39,7 @@ ansible-galaxy install -p roles -r roles/requirements.yml
 There is playbook ```provision-all.yml``` which includes some other playbooks to create all necessary resources into AWS, and configure each of them. It will use dynamic inventory provided by ```content/inventory/ec2.py```. That's why you need boto setup in addition to credentials in ```content/vars/vars.yml```.
 
 ```
-ansible-playbook --vault-password-file vault-password.txt -i inventory/ec2.py do_all.yml
+ansible-playbook --vault-password-file vault-password.txt -i inventory/ec2.py provision-all.yml
 ```
 
 _if you don't use vault, ignore ```vault-password-file``` parameter_
