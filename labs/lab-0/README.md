@@ -14,9 +14,7 @@ DO NOT execute any of the labs from your local laptop.
 
 ![Overview of lab environment](../../content/images/overview.png)
 
-The Tower server will have the responsibility of provisioning the managed systems, which are implementing a simple http based service.
-
-The NGINX server is responsible for balancing the load between the two backend servers. The backends are implemented using WildFly Swarm, run as a simple java application.
+The Ansible Tower server will have the responsibility of provisioning the managed systems in later labs. For now, you will spend time in the Ansible Tower server.
 
 4. Once in the system, you have to use one of the text based text editors available. If you are new to Linux, see below for a simple guide for the different available text editors. Use them as reference when needed. For now, go ahead and proceed in the lab.
 
