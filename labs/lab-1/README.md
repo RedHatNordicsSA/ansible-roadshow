@@ -41,6 +41,10 @@ The most important for a beginning is the default location of the inventory file
 Before we continue on, make sure that the $WORK_DIR variable is defined. If $WORK_DIR is not defined, [take a look at the preparations.](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-0)
 Now, create a file named *hosts* in the *$WORK_DIR* folder.
 
+```
+cd $WORK_DIR
+touch hosts
+```
 Please note: you got three servers assigned to you, it doesn't matter which one is put in the [lbservers] section and which remaining two are put in the [wildflyservers] section during lab 1.
 
 Add the following text to the file:
