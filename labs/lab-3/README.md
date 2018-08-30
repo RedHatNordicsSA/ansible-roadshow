@@ -102,11 +102,10 @@ ansible-playbook -i hosts site.yml
 ```
 
 You should see Ansible executing the playbook. At the end of the Ansible output there is a recap of how running the playbook went:
-
 ```
 PLAY RECAP *********************************************************************
-10.211.55.23               : ok=7    changed=4    unreachable=0    failed=0   
-10.211.55.25               : ok=7    changed=4    unreachable=0    failed=0   
+client_system_2               : ok=7    changed=4    unreachable=0    failed=0   
+client_system_3               : ok=7    changed=4    unreachable=0    failed=0   
 ```
 
 Ansible should complete with no errors. You should see the changes applied to both WildFly Swarm servers.
@@ -117,8 +116,8 @@ Try running the playbook again. This time you'll get a different output:
 
 ```
 PLAY RECAP *********************************************************************
-10.211.55.23               : ok=7    changed=0    unreachable=0    failed=0   
-10.211.55.25               : ok=7    changed=0    unreachable=0    failed=0   
+client_system_2               : ok=7    changed=0    unreachable=0    failed=0   
+client_system_3               : ok=7    changed=0    unreachable=0    failed=0   
 ```
 
 Most modules in Ansible are idempotent, ensuring that no matter how many times you run the playbook, the result on the server will be the same. Thus on the second run, Ansible detected that no changes were necessary, since the servers were already in the wanted state and thus didn't apply any changes. This is a cool feature of Ansible. For instance if you want to add an extra server, just add the server to the hosts file and run the playbook again without worrying about the existing servers.
