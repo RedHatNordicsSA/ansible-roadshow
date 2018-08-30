@@ -23,6 +23,7 @@ This will create a full structure for the WildFly role named *wildflyapp*. In th
 
 ```
 ---
+# tasks file for roles/wildflyapp
 - name: Install java
   yum:
     name: java
