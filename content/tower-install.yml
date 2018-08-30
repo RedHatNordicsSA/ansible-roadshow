@@ -136,3 +136,11 @@
       
     - name: Restart Ansible Tower
       shell: ansible-tower-service restart
+      
+    - name: Git, disable SSL certificate checking. Don't do this in production!!!
+      become_user: "{{ item }}"
+      become: yes
+      command: git config --global http.sslVerify "false"
+      with_items:
+        - student
+        - root
