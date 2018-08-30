@@ -45,7 +45,7 @@ Now, create a file named *hosts* in the *$WORK_DIR* folder.
 cd $WORK_DIR
 touch hosts
 ```
-Please note: you got three servers assigned to you, it doesn't matter which one is put in the [lbservers] section and which remaining two are put in the [wildflyservers] section during lab 1.
+>Please note: You got three servers assigned to you, referred to as 'Managed Systems' when given to you. It doesn't matter which one is put in the [lbservers] section and which remaining two are put in the [wildflyservers] section during lab 1.
 
 Add the following text to the file using an editor of choice:
 ```
