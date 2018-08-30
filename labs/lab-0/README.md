@@ -28,12 +28,12 @@ The NGINX server is responsible for balancing the load between the two backend s
 ```
 git clone https://github.com/mglantz/ansible-roadshow.git
 ```
-7. $LAB_DIR will refer to the root of the cloned repository, export it as an variable using below command:
+7. The variabel **$LAB_DIR** will refer to the root of the cloned repository, export it as an variable using below command:
 ```
 export LAB_DIR=/home/student/ansible-roadshow
 ```
 
-In the **student** users home directory create an empty dir named **work**, where you will do your assignments. This dir will be referred to as $WORK_DIR, suggestion is that you export $WORK_DIR as a variable in your shell. To do this, run:
+In the **student** user's home directory create an empty dir named **work**, where you will do your assignments. This dir will be referred to as **$WORK_DIR**, suggestion is that you export $WORK_DIR as a variable in your shell. To do this, run:
 ```
 cd
 mkdir work
