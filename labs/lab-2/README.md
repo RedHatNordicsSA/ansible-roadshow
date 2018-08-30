@@ -8,7 +8,15 @@ In almost all cases, you will use a playbook for automating the management of yo
 
 A playbook can also describe sequences of actions and other process related concerns. The Ansible runtime is the (_state_) engine, which interprets and applies the playbooks to the servers.
 
-Let's try to implement the ping example using a playbook. But before we start, let's details some basic best practices when writing playbooks. First, there are several ways you can write a playbook. Looking at the internet, you'll find them all. What we recommend is to use the native YAML syntax. The reason for that is that reading vertically is _easier_ than reading horizontally. Observe below two example where both are valid Ansible, which one do you prefer reading? Which one is easier to scan for a specific value?
+Let's try to implement the ping example using a playbook. But before we start, let's details some basic best practices when writing playbooks. We recommend following three guiding principles regarding all Ansible related.
+
+* Complexity kills productivity (keep it simple, it makes it robust, scalable and easy to maintain)
+* Optimize for readability (makes for easier collaboration, maintenence and makes it more robust)
+* Think declaritively (Ansible is a state engine, do not try to 'code' with playbooks)
+
+> When in doubt, always go back to these three principles.
+
+There are several ways you can write a playbook. Looking at the internet, you'll find them all. What we recommend is to use the native YAML syntax. The reason for that is that reading vertically is _easier_ than reading horizontally. Observe below two example where both are valid Ansible, which one do you prefer reading? Which one is easier to scan for a specific value?
 
 * Valid syntax
 ```
