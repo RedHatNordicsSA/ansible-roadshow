@@ -5,7 +5,7 @@ Student: {{ student_row.name }}
     Tower Admin password: redhat123
     Tower SSH user: student
     Tower SSH password: redhat123
-  Client Systems: {{ student_row.client1 }}, {{ student_row.client2 }}, {{ student_row.client3 }}
+  Managed Systems: {{ student_row.client1 }}, {{ student_row.client2 }}, {{ student_row.client3 }}
   Gitlab Server: {{ gitlab_server }}
     Gitlab Username: {{ student_row.gitlab_user }}
 {% endfor %}
