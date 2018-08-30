@@ -20,8 +20,8 @@ The NGINX server is responsible for balancing the load between the two backend s
 
 4. Once in the system, you have to use one of the text based text editors available. If you are new to Linux, see below for a simple guide for the different available text editors.
 
-**nano**: https://wiki.gentoo.org/wiki/Nano/Basics_Guide
-**vi/vim**: https://vim.rtorr.com/ 
+> **nano**: https://wiki.gentoo.org/wiki/Nano/Basics_Guide
+> **vi/vim**: https://vim.rtorr.com/ 
 
 5. Log in as the **student** user on your assigned Ansible Tower server.
 6. Run below command to pull the code to your system:
