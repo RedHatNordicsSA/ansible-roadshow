@@ -47,7 +47,7 @@ touch hosts
 ```
 >Please note: You got three servers assigned to you, referred to as **'Managed Systems'** when given to you. It doesn't matter which one is put in the [lbservers] section and which remaining two are put in the [wildflyservers] section.
 
-Add the following text to the file using an editor of choice:
+Add the following text to the _$WORK_DIR/hosts_ file using an editor of choice:
 ```
 [lbservers]
 client_system_1 ansible_host=xxx.xxx.xxx.xxx
