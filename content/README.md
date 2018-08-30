@@ -1,6 +1,6 @@
 # Installing the labs
 
-These instructions guide you how to let Ansible provision the environment to Amazon AWS. All installation material is in ```content/``` -directory, instructions assume you are working in that directory. Start with cloning this repository, moving into working directory, and adding your ssh key to ssg-agent for ansible to use it:
+These instructions guide you how to let Ansible provision the environment to Amazon AWS. All installation material is in ```content/``` -directory, instructions assume you are working in that directory. Start with cloning this repository, moving into working directory, and adding your ssh key to ssh-agent for Ansible to use it:
 
 ```
 git clone https://github.com/mglantz/ansible-roadshow.git
@@ -8,43 +8,48 @@ cd content
 ssh-add
 ```
 
+# Pre-requisites
+
 ## Install Ansible
 
-This setup was tested at the time of writing this README with Ansible version 2.6. Follow [Ansible install guidance](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) for your favourite OS, Linux :) .
+This setup was tested at the time of writing this README with Ansible version 2.6.
+To install Ansible follow [Ansible install guidance](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) for your favourite OS, Linux :) .
 
-## Prepare the Ansible dynamic inventory credentials
+## Ansible dynamic inventory
 
-Before running the installer, you need to install Boto on your Ansible machine using [the Ansible AWS documentation](http://docs.ansible.com/ansible/latest/scenario_guides/guide_aws.html).
+Before running the installer, you need to install boto Python modules on your Ansible machine using [the Ansible AWS documentation](http://docs.ansible.com/ansible/latest/scenario_guides/guide_aws.html).
 
-## Set AWS parameters for Ansible playbooks
+## Set parameters to Ansible variables file
 
-Playbooks expect file ```content/vars/vars.yml``` for setting your personal AWS credentials, machine AMI image and some other parameters. Copy ```content/vars/vars-example.yml``` and fill it with your settings. You are recommended to use Ansible vault to encrypt your credentials.
+Playbooks expect file ```content/vars/vars.yml``` for setting your personal AWS credentials, machine AMI image and some other parameters. Copy ```content/vars/vars-example.yml``` and fill it with your settings. It is recommended to use Ansible Vault to encrypt your credentials.
 
 ## Encrypting credentials with Ansible Vault
 
-Put whatever password into some file, in this example ```content/vault-password.txt```. Then you can use command ```ansible-vault --vault-password-file content/vault-password.txt encrypt_string``` to encrypt your credentials. The output can be used in the ```content/vars/vars.yml``` file, see example.
+Put password of your choice into a text file. In this example ```content/vault-password.txt```. Then you can use command ```ansible-vault --vault-password-file content/vault-password.txt encrypt_string``` to encrypt your credentials. The output can be used in the ```content/vars/vars.yml``` file, see example in ```content/vars/vars-example.yml -file.
 
-You can also just put the credentials in plain text, but make sure you won't commit them into any git! Files ```content/vars/vars.yml``` and ```content/vault-password.txt``` are ignored by git in this repo for safety.
+You can also put the credentials in plain text, but you should make sure that you don't commit them into any git repository! Files ```content/vars/vars.yml``` and ```content/vault-password.txt``` are ignored by git in this repository for your safety.
 
 ## Install required roles
 
-There are some dependencies for external roles in this setup. You can use Ansible galaxy to install them:
+There are some dependencies for external roles in this setup. You can use Ansible Galaxy to install them:
 
 ```
 ansible-galaxy install -p roles -r roles/requirements.yml
 ```
 
-## Run Ansible to provision the lab environment
+# Provision the lab environment
 
-There is playbook ```provision-all.yml``` which includes some other playbooks to create all necessary resources into AWS, and configure each of them. It will use dynamic inventory provided by ```content/inventory/ec2.py```. That's why you need boto setup in addition to credentials in ```content/vars/vars.yml```.
+## Ansible run
+
+Playbook ```provision-all.yml``` includes other playbooks to create all necessary resources into AWS, and configure each of them. It will use dynamic inventory provided by ```content/inventory/ec2.py```. That's why you need boto Python modules installed in addition to AWS credentials in ```content/vars/vars.yml```.
 
 ```
 ansible-playbook --vault-password-file vault-password.txt -i inventory/ec2.py do_all.yml
 ```
 
-_if you don't use vault, ignore ```vault-password-file``` parameter_
+_if you don't use Ansible Vault, ignore ```vault-password-file``` parameter_
 
-## Create Gitlab access token
+# Create Gitlab access token
 
 Once the environment has been provisioned and if you don't feel like using GitHub, you can use Gitlab that was installed with the lab environment.
 __Due to limitations in the Gitlab API, you have to create access key for the root user, that was created during the installation by hand.__ This has to be done in order to get the ansible-roadshow -project and student users set up to Gitlab.
@@ -85,7 +90,7 @@ Users will be named ```student1``` to ```studentX``` and password for the studen
 
 ## Delete all resources after doing labs
 
-__Beware this might leave something out, do check yourself from AWS__
+__Beware this might leave something out, do check yourself from your AWS account__
 
 There is a helper playbook, which deletes all resources created for this lab from AWS. But you never know if someone adds something to labs, and forgets to also add it into ```delete_instances.yml``` playbook. If you develop this further, do always remember to include your added resources into ```delete_instances.yml```.
 
