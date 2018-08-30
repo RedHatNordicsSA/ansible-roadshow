@@ -5,9 +5,9 @@ Most applications have secret properties, which mustn't be shown for every perso
 With Ansible you can create property files and encrypt them afterwards. Once the property file has been encrypted, the content is unreadable. This has one unwanted effect, which is that you'll then be unable to search for the property. Therefore it's considered best practise to have an unencrypted file refer to the encrypted file. This is achieved with the following steps:
 
 ```
-$mkdir -p $WORK_DIR/group_vars/dev/wildflyservers
-$echo 'secret_name: "{{ vault_secret_name }}"' > $WORK_DIR/group_vars/dev/wildflyservers/vars.yml
-$echo 'vault_secret_name: Red Hat' > $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
+mkdir -p $WORK_DIR/group_vars/dev/wildflyservers
+echo 'secret_name: "{{ vault_secret_name }}"' > $WORK_DIR/group_vars/dev/wildflyservers/vars.yml
+echo 'vault_secret_name: Red Hat' > $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
 ```
 
 As you can see, some refactoring has been done to ensure, that it is possible to use different configurations for different environments. This is achieved by having different environment folders in the *group_vars* directory. In this case a dev profile is created by adding dev specific settings to the folder *$WORK_DIR/group_vars/dev/*. Servers can belong to several groups, so in the hosts file we can add a group *dev* with all servers listed. The *hosts* file should look like this:
@@ -33,7 +33,7 @@ Now Ansible will include all variables defined in *$WORK_DIR/group_vars/dev/* fo
 Finally let's encrypt the vault file. In the prompt write:
 
 ```
-$ansible-vault encrypt $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
+ansible-vault encrypt $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
 ```
 
 enter a password of your choice when prompted and remember the password. This will encrypt your newly created file. Take a look at the content to ensure that it has in fact been encrypted.
@@ -84,7 +84,7 @@ Remark the addition of no_log to ensure that no details about our secret is logg
 Rename the service script to reflect that it is now a template file:
 
 ```
-$mv $WORK_DIR/roles/wildflyapp/files/wildflyapp.service $WORK_DIR/roles/wildflyapp/templates/wildflyapp.template
+mv $WORK_DIR/roles/wildflyapp/files/wildflyapp.service $WORK_DIR/roles/wildflyapp/templates/wildflyapp.template
 ```
 
 Change the content of the service script file *$WORK_DIR/roles/wildflyapp/templates/wildflyapp.template* to have the following content:
@@ -115,7 +115,7 @@ As you can see the secret name is added to the template.
 To run the playbook with your vault, you'll be required to give Ansible your password. Do so by creating a file named *.mypassword* and put the password in the file. Then run Ansible with the following command:
 
 ```
-$ansible-playbook -i hosts site.yml --vault-password-file .mypassword
+ansible-playbook -i hosts site.yml --vault-password-file .mypassword
 ```
 
 You should now be able to access the url and observe your changes...
