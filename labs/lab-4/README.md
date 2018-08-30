@@ -1,6 +1,8 @@
 # Writing the load balancer playbook
 
-In the previous lab, we created two WildFly Swarm servers running our application. The next step is to setup a loadbalancer. We will use Nginx as the loadbalancer in this lab.
+In the previous lab, we created two WildFly Swarm servers running our application. The next step is to setup a loadbalancer. We will use Nginx as the loadbalancer in this lab. Let's overview which part of the system which you will be working on.
+
+![Overview of lab environment](../../content/images/app-arch2.png)
 
 A role has already been written for installing Nginx with Ansible. The role can be found at the Ansible Galaxy site (https://galaxy.ansible.com/nginxinc/nginx/). [Ansible Galaxy](https://galaxy.ansible.com) is the place where roles and modules are shared. As always be critical when using content on the internet. In this case the Nginx organisation has made an official role for Nginx, so we should be good.
 
