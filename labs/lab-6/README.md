@@ -56,7 +56,8 @@ If you are using GitHub (not default), follow the instructions below:
 # Working with your playbooks on GitLab
 This example uses Gitlab that is part of the lab environment.
 
->As a first step, go ahead and create a new repository on Gitlab:
+>First step, with your web browser, go to the Gitlab server: https://$gitlab_server and login with gitlab user and the password provided to you at the start of the lab.
+>When logged in go ahead and create a new repository on Gitlab:
 
  ![Creating a Gitlab project](../../content/images/gitlab_frontpage.png)
 
