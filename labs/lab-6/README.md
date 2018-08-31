@@ -47,42 +47,13 @@ A simplified description of git follows.
 
 Now, as an exercise you will try out the GitHub workflow. Try to find a friend to do this exercise with.
 
-If you are using the Gitlab that is part of the lab environment:
+If you are using the GitLab environment that is setup as a part of the lab environment, follow the instructions below:
  [Working with your playbooks on Gitlab](#working-with-your-playbooks-on-gitlab)
-
-# Working with your playbooks on GitHub
-As an example of a git based version handling/collaboration system, we'll use GitHub for simplicity.
-
->As a first step, go ahead and create a new repository on GitHub and put the ping playbook [that you created in lab-2](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-2/README.md) there.
-
->Next step, go ahead and make a change to your playbook via the GitHub web UI. When you commit the change, select 'Create a new branch for this commit and start a pull request.' as depicted below.
-
- ![Select a new branch](../../content/images/new-branch.png)
-
-What happens next is that your change is copied into this new copy of your repository, called a branch. This is so that you and others can collaborate on this change, without affecting the code in the master branch (copy) of your repository. This allows your master branch to be stable, while development is ongoing. This also allows for several people to work on the code in your repository, at the same time.
-
->Now click on 'Create pull request' to complete the creation of the new branch and copying your change to it.
-
- ![Creating a pull request](../../content/images/pull-request.png)
-
-You will now get redirected to the page with overviews your pull request. Here you can use the comment function displayed in the 'Conversation' tab to collaborate with other people. Perhaps your change needs a code review or you need some advise on how to solve a specific problem? The 'Commits' and 'Files changed' allows you to overview all changes made into your newly created branch, from now on.
-
->Explore the 'Conversation' feature and try add yet another change to your playbook and review how all your changes are visible on the pull request page.
-
-The pull request has yet another function, which is to allow someone else than you to approve changes, before they get copied into your master branch. Normally, not everyone has access to 'Merge pull request' which will copy all your changes into the master branch from this temporary branch where you do your work.
-
->After having merged your work, select to delete your branch.
-
- ![Deleting your branch](../../content/images/delete-branch.png)
-
- The reason why you delete your branch afterwards is because that allows people to see when work has been completed. Also, it allows someone to overview the status of the development work being done. For example, if a branch has lived on for too long, the risk of merge conflicts (when several people has changed the same files) becomes greater. Because of that and because code quality usually suffers when you do too much work at once, try biting off a good sized chunk of work. It's better that you do several smaller chunks of work than one huge chunk which takes a long time to do.
-
-```
-End of lab
-```
-[Go to the next lab, lab 7](../lab-7/README.md)
-
-# Working with your playbooks on Gitlab
+ 
+If you are using GitHub (not default), follow the instructions below:
+ [Working with your playbooks on Gitlab](#working-with-your-playbooks-on-github)
+ 
+# Working with your playbooks on GitLab
 This example uses Gitlab that is part of the lab environment.
 
 >As a first step, go ahead and create a new repository on Gitlab:
@@ -156,6 +127,38 @@ Also, it allows someone to overview the status of the development work being don
 Because of that and because code quality usually suffers when you do too much work at once, try biting off a good sized chunk of work.
 It's better that you do several smaller chunks of work than one huge chunk which takes a long time to do.
 
+
+```
+End of lab
+```
+[Go to the next lab, lab 7](../lab-7/README.md)
+
+# Working with your playbooks on GitHub
+As an example of a git based version handling/collaboration system, we'll use GitHub for simplicity.
+
+>As a first step, go ahead and create a new repository on GitHub and put the ping playbook [that you created in lab-2](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-2/README.md) there.
+
+>Next step, go ahead and make a change to your playbook via the GitHub web UI. When you commit the change, select 'Create a new branch for this commit and start a pull request.' as depicted below.
+
+ ![Select a new branch](../../content/images/new-branch.png)
+
+What happens next is that your change is copied into this new copy of your repository, called a branch. This is so that you and others can collaborate on this change, without affecting the code in the master branch (copy) of your repository. This allows your master branch to be stable, while development is ongoing. This also allows for several people to work on the code in your repository, at the same time.
+
+>Now click on 'Create pull request' to complete the creation of the new branch and copying your change to it.
+
+ ![Creating a pull request](../../content/images/pull-request.png)
+
+You will now get redirected to the page with overviews your pull request. Here you can use the comment function displayed in the 'Conversation' tab to collaborate with other people. Perhaps your change needs a code review or you need some advise on how to solve a specific problem? The 'Commits' and 'Files changed' allows you to overview all changes made into your newly created branch, from now on.
+
+>Explore the 'Conversation' feature and try add yet another change to your playbook and review how all your changes are visible on the pull request page.
+
+The pull request has yet another function, which is to allow someone else than you to approve changes, before they get copied into your master branch. Normally, not everyone has access to 'Merge pull request' which will copy all your changes into the master branch from this temporary branch where you do your work.
+
+>After having merged your work, select to delete your branch.
+
+ ![Deleting your branch](../../content/images/delete-branch.png)
+
+ The reason why you delete your branch afterwards is because that allows people to see when work has been completed. Also, it allows someone to overview the status of the development work being done. For example, if a branch has lived on for too long, the risk of merge conflicts (when several people has changed the same files) becomes greater. Because of that and because code quality usually suffers when you do too much work at once, try biting off a good sized chunk of work. It's better that you do several smaller chunks of work than one huge chunk which takes a long time to do.
 
 ```
 End of lab
