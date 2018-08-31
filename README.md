@@ -1,5 +1,8 @@
 # ansible-roadshow
-This is a one day hands on lab with Ansible and Ansible Tower. This lab is ment to work as an introduction to Ansible, Ansible Tower, best practices for writing Ansible content and how to work with Ansible.
+This is a one day hands on lab with Ansible and Ansible Tower. This lab is ment to work as an introduction to Ansible, Ansible Tower, best practices for writing Ansible content and how to work with Ansible. At the end of the day, you know enough to go out and do real useful stuff.
+
+_This lab is maintained by Red Hat's Nordics Solution Architect team._
+
 ```
 Estimated time to complete this lab is 6-8 hours.
 ```
