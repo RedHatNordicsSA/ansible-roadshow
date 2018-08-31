@@ -64,9 +64,13 @@ You can manage playbooks and playbook directories by either placing them manuall
 
 >Create a project called "workshop-playbooks" by following the instructions below.
 
-* To create a new project, click on the 'Projects' tab and click on the add button. Make sure to link your project to the GitHub repository, which [you created earlier in lab-6](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-6).
+* To create a new project, click on the 'Projects' tab and click on the add button. Make sure to link your project to the GitHub repository, which [you created earlier in lab-6](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-6). To get the correct URL, go to the GitLab server and click on the indicated button below.
+![Create a project](../../content/images/copy-gitlab-url.png)
 
+Then go ahead and put the information into the create project page.
 ![Create a project](../../content/images/create-project.png)
+
+> Please note that we've selected the _Update on launch_, so that when a playbook launch from this Git repository, we ensure that we have the latest version available.
 
 Next you will provide access to the playbook which [you put onto GitHub earlier in lab-6](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-6). This is done using so called job templates. A job template combines an Ansible playbook from a project and the settings required to launch it.
 
