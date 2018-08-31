@@ -74,6 +74,10 @@
           from_port: 8080
           to_port: 8080
           cidr_ip: 0.0.0.0/0
+        - proto: icmp
+          from_port: -1
+          to_port: -1
+          group_name: "{{ ec2_security_group_tower}}"
       rules_egress:
         - proto: all
           cidr_ip: 0.0.0.0/0
