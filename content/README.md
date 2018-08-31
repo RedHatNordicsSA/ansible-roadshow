@@ -21,7 +21,7 @@ Before running the installer, you need to install boto Python modules on your An
 
 ## Set parameters to Ansible variables file
 
-Playbooks expect file ```content/vars/vars.yml``` for setting your personal AWS credentials, machine AMI image and some other parameters. Copy ```content/vars/vars-example.yml``` and fill it with your settings. It is recommended to use Ansible Vault to encrypt your credentials.
+Playbooks expect file ```content/vars/vars.yml``` to contain settings your personal AWS credentials, machine AMI image and some other parameters. Copy ```content/vars/vars-example.yml``` and fill it with your settings. It is recommended to use Ansible Vault to encrypt your credentials.
 
 ## Encrypting credentials with Ansible Vault
 
@@ -47,7 +47,7 @@ Playbook ```provision-all.yml``` includes other playbooks to create all necessar
 ansible-playbook --vault-password-file vault-password.txt -i inventory/ec2.py provision-all.yml
 ```
 
-_if you don't use Ansible Vault, ignore ```vault-password-file``` parameter_
+:boom: _If you don't use Ansible Vault, ignore ```vault-password-file``` parameter_
 
 # Create Gitlab access token
 
@@ -104,7 +104,7 @@ _if you don't use vault, ignore ```vault-password-file``` parameter_
 
 # HAPPY LABS!
 
-Systems should be up in 15 minutes. Happy learning!
+Systems should be up in 10 minutes. Ansible Tower servers will be up in aproximately 30 minutes. Happy learning!
 
 # ToD0
 
