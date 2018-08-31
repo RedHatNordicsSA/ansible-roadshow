@@ -36,6 +36,22 @@ Finally let's encrypt the vault file, which contains our secret. Please note tha
 ansible-vault encrypt $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
 ```
 
+Have a look at the content of the file by running below command.
+```
+cat $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
+```
+The output should be like something like below:
+```
+$ cat $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
+$ANSIBLE_VAULT;1.1;AES256
+36333739306564633634663666363663336632326433303766346165313232336162353965313335
+3130343933373237643233346433663666626337303162380a303637346561666132333862643965
+64386439373839346566616364653930623565663439643563313237626365383838303636336638
+6264303836646235300a356630393765653435393837363964616365353466616166616631646339
+30353632643365626562343863633165656632313365656532306335636435663365
+$
+```
+
 Enter a password of your choice when prompted and **remember the password**. This will encrypt your newly created file. Take a look at the content to ensure that it has in fact been encrypted. Without the password, you will not be able to access the encrypted information.
 
 Last step is to add the newly created variable as an environment variable to the playbook for the WildFly app role. At the same time we'll make some other changes. It's considered best practise to only set the environment variable locally for the wildflyapp service. Thus we are required to change the service script file from a static file to a template file in order to be able to change the secret name. Furthermore we want to restart the WildFly service in order to ensure that the service is restarted in case there are changes in the jar file or in the configuration. To do so, change the content of *$WORK_DIR/roles/wildflyapp/tasks/main.yml* to the following:
