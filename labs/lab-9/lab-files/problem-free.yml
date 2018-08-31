@@ -1,0 +1,12 @@
+- name: Create directory and restart tomcat
+  hosts: wildflyservers
+  tasks:
+    - name: Create directory
+      file:
+        path: /tmp/logs
+        state: directory
+
+    - name: Restart Tomcat
+      service:
+        name: tomcat
+        state: restarted
