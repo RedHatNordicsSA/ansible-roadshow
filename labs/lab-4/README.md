@@ -131,7 +131,7 @@ server {
 }
 ```
 
-As you can see, the *wildfly_servers* variable is used to iterate over the servers with the WildFly application deployed. Apply the new changes to the playbook by running the command:
+As you can see, the *wildfly_servers* variable is used to iterate over the servers with the WildFly application deployed. Apply the changes to the nginx configuration by running the playbook:
 
 ```
 cd $WORK_DIR
