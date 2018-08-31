@@ -53,6 +53,7 @@ A simplified description of git follows.
 
 Now, as an exercise you will try out the GitHub workflow. Try to find a friend to do this exercise with.
 
+If you are using the Gitlab that is part of the lab environment: 
  [Working with your playbooks on Gitlab](#working-with-your-playbooks-on-gitlab)
 
 # Working with your playbooks on GitHub
