@@ -48,10 +48,10 @@ A simplified description of git follows.
 Now, as an exercise you will try out the GitHub workflow. Try to find a friend to do this exercise with.
 
 If you are using the GitLab environment that is setup as a part of the lab environment, follow the instructions below:
- [Working with your playbooks on Gitlab](#working-with-your-playbooks-on-gitlab)
+ [Working with your playbooks on GitLab](#working-with-your-playbooks-on-gitlab)
  
 If you are using GitHub (not default), follow the instructions below:
- [Working with your playbooks on Gitlab](#working-with-your-playbooks-on-github)
+ [Working with your playbooks on GitHub](#working-with-your-playbooks-on-github)
  
 # Working with your playbooks on GitLab
 This example uses Gitlab that is part of the lab environment.
