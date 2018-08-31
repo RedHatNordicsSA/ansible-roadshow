@@ -1,8 +1,8 @@
 {% for student_row in final_list %}
-Student: {{ student_row.name }}
+Student: {{ student_row.gitlab_user }}
   Ansible Tower Server: {{ student_row.tower_server }}
     Ansible Tower Admin user: admin
-    Ansible Tower Admin password: RHforum18Pass
+    Ansible Tower Admin password: redhat123
     Ansible Tower SSH user: student
     Ansible Tower SSH password: RHforum18Pass
   Managed Systems: {{ student_row.client1 }}, {{ student_row.client2 }}, {{ student_row.client3 }}
@@ -10,5 +10,6 @@ Student: {{ student_row.name }}
     Managed Systems SSH password: RHforum18Pass
   Gitlab Server: {{ gitlab_server }}
     Gitlab Username: {{ student_row.gitlab_user }}
+    Gitlab password: redhat123
 {% endfor %}
 
