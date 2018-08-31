@@ -189,11 +189,11 @@ Using above described method.
 Next you need to setup the vault password for your playbooks. To do so click the *settings* menu item in top of the menu
 ![settings location image](../../content/images/img0.png)
 
-On the items, which appear click *credentials*. Then click *ADD*. Select Vault as credential type and the fill in values as provided in below screenshot (replace password with whatever you chose).
+On the items, which appear click *credentials*. Then click *ADD*. Select Vault as credential type and the fill in values as provided in below screenshot (the password should be what you selected earlier and saved in _/home/student/work/mypassword_).
 ![filling in vault values](../../content/images/img1.png)
 Click *SAVE* and you're done with this part.
 
-Phew that's a lot of work. Luckily there is other ways of doing this, but the GUI is the easiest way to help you understand what's going on. Maybe grab a cup of coffee at this point - almost there.
+Phew that's a lot of work. Luckily there is other ways of doing this, but the GUI is the easiest way to help you understand what's going on. Maybe grab a cup of :coffee: at this point - almost there.
 
 The template is where it all comes together. So now click the *TEMPLATES* menu item and click *ADD* and select *Job Template*. Fill in values as below
 ![WildFly template](../../content/images/img7.png)
