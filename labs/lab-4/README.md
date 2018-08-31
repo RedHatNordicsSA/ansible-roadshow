@@ -6,7 +6,7 @@ In the previous lab, we created two WildFly Swarm servers running our applicatio
 
 A role has already been written for installing Nginx with Ansible. The role can be found at the Ansible Galaxy site (https://galaxy.ansible.com/nginxinc/nginx/). [Ansible Galaxy](https://galaxy.ansible.com) is the place where roles and modules are shared. As always be critical when using content on the internet. When it comes to roles on Ansible Galaxy it's easy to do a quick review of the health of the role. 
 
-![Evaluate quality of content](../../content/images/nginix.png)
+![Evaluate quality of content](../../content/images/nginx.png)
 
 Look at development activity of the role. Ansible Galaxy makes this evaulation easy by putting it on the front page of each role, as marked above.
 
