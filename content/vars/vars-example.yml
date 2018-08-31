@@ -17,10 +17,12 @@ ec2_secret_key: !vault |
           3763373634353134653637373766633364393761623334623762
 ec2_key: ec2-ssh-key-needs-to-be-default-from-place-you-run-playbook
 ec2_region: eu-west-1, or whatever-you-like
-ec2_security_group: ansibleroadshow
+ec2_security_group_tower: ansibleroadshow-tower
+ec2_security_group_client_systems: ansibleroadshow-client
+ec2_security_group_gitlab: ansibleroadshow-gitlab
 ami_id: ami-7c491f05, RHEL7.5 standard image, if something else than eu-west-1: ami-c86c3f23
 number_of_tower_systems: 1
 number_of_client_systems: 3
 number_of_git_systems: 1
 gitlab_email: do-not-reply@redhat.com
-gitlab_token: 
+gitlab_token:
