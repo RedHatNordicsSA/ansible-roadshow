@@ -16,8 +16,9 @@ DO NOT execute any of the labs from your local laptop.
 
 The Ansible Tower server will have the responsibility of provisioning the managed systems in later labs. For now, you will spend time in the Ansible Tower server.
 
-4. Once in the system, you have to use one of the text based text editors available. If you are new to Linux, see below for a simple guide for the different available text editors. Use them as reference when needed. For now, go ahead and proceed in the lab.
+4. Once in the system, you have to use one of the text based text editors available. If you are new to Linux, see below for a simple guide for common commands and text editors. Use below links as reference when needed. For now, go ahead and proceed in the lab.
 
+* **Linux cheat sheet**: https://files.fosswire.com/2007/08/fwunixref.pdf
 * **nano**: https://wiki.gentoo.org/wiki/Nano/Basics_Guide
 * **vi/vim**: https://vim.rtorr.com/ 
 
