@@ -4,9 +4,9 @@ This is a one day hands on lab with Ansible and Ansible Tower. This lab is ment 
 Estimated time to complete this lab is 6-8 hours.
 ```
 
-> Some basic advise; This lab is not about doing it as fast as possible. It's about learning. Take your time to read the labs properly.
+:boom: Some basic advise; This lab is not about doing it as fast as possible. It's about learning. Take your time to read the labs properly.
 
-This lab is an open source effort, so if you find any problems with it, feel free to open up an issue or send a pull request. _For information about installing this lab, go to the bottom of this page_.
+This lab is an open source effort, so if you find any problems with it, feel free to open up an issue or send a pull request. **_For information about installing this lab, go to the bottom of this page_.**
 
 The lab includes information about:
 
@@ -23,6 +23,7 @@ The lab includes information about:
 
 ```
 BELOW is an overview of the labs. This is for the students in the lab.
+Start at 0 and go forward to 10. The labs depends on each other, so don't skip stuff.
 ```
 
 0. [Getting started](labs/lab-0/README.md)
