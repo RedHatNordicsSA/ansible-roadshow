@@ -37,9 +37,9 @@ Click "INVENTORIES" -> "workshop-inventory"
 From the inventory view, we click "Hosts" and then "Add host"
 ![Inventory add hosts](../../content/images/inventory-add-hosts-ii.png)
 
-Fill in values
-* Host name: client_system_1, client_system_2 and client_system_3
-* Variables: ansible_host: *IP-address*
+Fill in values as according to your **$WORK_DIR/hosts** file.
+* Host names: _wildfly1, wildfly2 and loadbalancer1_
+* Variables: _ansible_host: IP-address-of-system_
 
 For instance in the following screenshot example values are provided for *client_system_1*. Refer to the previously created *hosts* file for IP values.
 ![Inventory add hosts](../../content/images/inventory-add-hosts-iii.png)
