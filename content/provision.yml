@@ -61,7 +61,7 @@
         - proto: tcp
           from_port: 22
           to_port: 22
-          group_name: {{ ec2_security_group_tower}}
+          group_name: "{{ ec2_security_group_tower}}"
         - proto: tcp
           from_port: 80
           to_port: 80
