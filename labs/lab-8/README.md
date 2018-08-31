@@ -82,6 +82,7 @@ $ git commit -m 'Added workshop workspace to git'
 There is now only one last thing to do, that is to upload the files to the central GitLab server. _Ensure you are in the /home/student/studentX-project directory_ and run below command. You will there be queried for the studentX credentials to the GitLab server:
 ```
 git push
+git config --global push.default matching
 ```
 
 Output should be something similair as this:
@@ -128,13 +129,39 @@ Now you need to instruct Ansible Tower to use the Nginx module. You could instal
   version: master
   name: nginxinc.nginx
 ```
-Check in the change and you are ready to go.
+Check in the change and you are ready to go. Do that by running below in a terminal:
+```
+cd $WORK_DIR/roles
+git add requirements.yml
+git commit -m 'Requirements file for roles'
+git push
+```
 
-Login to the Ansible Tower server on the url and username/password provided by the instructor.
+The output should be similair as this:
+```
+$ cd $WORK_DIR/roles
+$ git add requirements.yml
+$ git commit -m 'Requirements file for roles'
+[master 234de4e] Requirements file for roles
+ 1 file changed, 4 insertions(+)
+ create mode 100644 roles/requirements.yml
+$ git push
+Username for 'https://ec2-52-57-173-62.eu-central-1.compute.amazonaws.com': student1
+Password for 'https://student1@ec2-52-57-173-62.eu-central-1.compute.amazonaws.com': 
+Counting objects: 6, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 476 bytes | 0 bytes/s, done.
+Total 4 (delta 1), reused 0 (delta 0)
+To https://ec2-52-57-173-62.eu-central-1.compute.amazonaws.com/student1/student1-project.git
+   a8a991b..234de4e  master -> master
+$
+```
+
+Now, login to the Ansible Tower server using your web browser on with the url and username/password provided to you by the instructor.
 
 You've made the Inventory and Project for getting started in the previous lab, but there are some additional stuff you need to do. First you need to create the groups and add hosts to the groups. To do so go to "INVENTORIES" -> "workshop-inventory" -> GROUPS". Here click "+ADD GROUP".
 ![create a group](../../content/images/create-group.png)
-
 
 Create three groups named:
 * dev
