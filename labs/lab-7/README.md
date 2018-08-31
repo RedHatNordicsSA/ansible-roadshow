@@ -11,11 +11,11 @@ the configuration of SAN storage at your company, your SAN storage switches may 
 
 Because of this, it's not uncommon that attempts to automate things fails with conversations like:
 
->If I were to give you access to XYZ, you would be able to destroy all data at the company. And you don't even have XYZ training.
+![Typical situation](../../content/images/no-you-cannot-have-access.png)
 
 Ansible Tower allows you to share access safely to other people via it's web GUI, a CLI client and a REST API. Let's explore how this works.
 
->First step, go unto your Ansible Tower server: https://<your-tower-server> and login with your assigned user.
+1. First step, with your web browser, go to your Ansible Tower server: https://$Tower_Server and login with the _admin_ user and the password provided to you at the start of the lab.
 
 What we'll do first is to create an inventory in Ansible Tower, an inventory is a collection of hosts you can run playbooks against in Tower; just like your *hosts* file in the previous examples. Inventories are assigned to organizations, while permissions to launch playbooks against inventories are controlled at the user, team or playbook level.
 
