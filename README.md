@@ -9,7 +9,7 @@ Estimated time to complete this lab is 6-8 hours.
 
 :boom: Some basic advise; This lab is not about doing it as fast as possible. It's about learning. Take your time to read the labs properly.
 
-This lab is an open source effort, so if you find any problems with it, feel free to open up an issue or send a pull request. **_For information about installing this lab, go to the bottom of this page_.**
+This lab is an open source (GPL 3.0) project, so if you find any problems with it, feel free to open up an issue or send a pull request. **_For information about installing this lab, go to the bottom of this page_.**
 
 The lab includes information about:
 
