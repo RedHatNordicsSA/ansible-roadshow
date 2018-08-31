@@ -45,5 +45,6 @@ chmod 600 /root/.ssh/*
 #curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa.pub >/root/.ssh/authorized_keys
 #chmod 600 /root/.ssh/*
 
-
+cp /root/.ssh/authorized_keys /home/student/.ssh/authorized_keys
+echo "%student        ALL=(ALL)       NOPASSWD: ALL" >>/etc/sudoers
 	
