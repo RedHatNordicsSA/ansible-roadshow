@@ -1,8 +1,8 @@
 # Handling Secrets with Ansible Vault
 
-Most applications have secret properties, which mustn't be shown for every person, working with the playbooks. The application you're working with is no exception, so you've been asked to set an environment variable named *SECRET_NAME* on the WildFly application servers for the application to work properly. Fortunately for you, this is pretty easy with Ansible.
+Most applications have secret properties, which mustn't be shown for every person, working with the playbooks. The application you're working with is no exception, so you've been asked to set a environment variable named *SECRET_NAME* on the WildFly application servers for the application to work properly - and that environment variable needs to be encrypted. Fortunately for you, this is pretty easy with Ansible.
 
-With Ansible you can create property files and encrypt them afterwards. Once the property file has been encrypted, the content is unreadable. Ansible uses strong 256 bit symmetric encryption. This has one unwanted effect, which is that you'll then be unable to search for the property. Therefore it's considered best practise to have an unencrypted file refer to the encrypted file. This is achieved with below following steps. In your terminal, run:
+With Ansible you can encrypt any part of your playbooks or property files. Once the content or files has been encrypted, the content is unreadable. Ansible uses strong 256 bit symmetric encryption. This has one unwanted effect, which is that you'll then be unable to search for the property. Therefore it's considered best practise to have an unencrypted file refer to the encrypted file. Below, we're going to put our secret information into a a file named **$WORK_DIR/group_vars/dev/wildflyservers/vault.yml** and refer to it from a file called **$WORK_DIR/group_vars/dev/wildflyservers/vars.yml**. This is achieved with below following steps. In your terminal, run:
 
 ```
 mkdir -p $WORK_DIR/group_vars/dev/wildflyservers
@@ -10,7 +10,7 @@ echo 'secret_name: "{{ vault_secret_name }}"' > $WORK_DIR/group_vars/dev/wildfly
 echo 'vault_secret_name: Red Hat' > $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
 ```
 
-As you can see, some refactoring has been done to ensure that it is possible to use different configurations for different environments. This is achieved by having different environment folders in the *group_vars* directory. In this case a dev profile is created by adding dev specific settings to the folder *$WORK_DIR/group_vars/dev/*. Servers can belong to several groups, so in the **$WORK_DIR/hosts** file we will now add the group *dev* with all servers listed. The *hosts* file should look like this:
+As you can see, some refactoring has been done to ensure that it is possible to use different configurations for different environments. This is achieved by having different environment folders in the *group_vars* directory. In this case a dev profile is created by adding dev specific settings to the folder *$WORK_DIR/group_vars/dev/*. Servers can belong to several groups, so in the **$WORK_DIR/hosts** file we will now add the group *dev* with all servers listed. Change the content of **$WORK_DIR/hosts** so that it looks like below:
 
 ```
 [lbservers]
@@ -30,7 +30,7 @@ wildfly2 ansible_host=zzz.zzz.zzz.zzz
 
 Now Ansible will include all variables defined in *$WORK_DIR/group_vars/dev/* for the servers listed, each time the playbook is run.
 
-Finally let's encrypt the vault file. In the prompt write:
+Finally let's encrypt the vault file, which contains our secret. Please note that you will be prompted for a password, it's important that you remember which password to choose. In the prompt write:
 
 ```
 ansible-vault encrypt $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
