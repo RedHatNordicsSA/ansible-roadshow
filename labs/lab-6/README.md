@@ -97,7 +97,7 @@ What you need to do is
 >1. Give your project(repository) a nice name
 >2. Tick the box, so that a README.md -file will be pre-populated to your new project(repository)
 >3. ```Create project```
->Once the project(repository) has been done, you should copy & paste contents of the ping playbook [that you created in lab-2](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-2/README.md) there:
+>Once the project(repository) has been done, you should copy & paste contents of the ping playbook [that you created in lab-2](https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-2/lab-files/ping.yml) there:
 
   ![Add a file to Gitlab project](../../content/images/gitlab_add_file.png)
 
