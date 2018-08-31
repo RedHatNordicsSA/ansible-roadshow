@@ -105,7 +105,7 @@ After you will be directed to a page like this:
 
  ![Create a new file to Gitlab project](../../content/images/gitlab_new_file.png)
 
->Copy & paste contents of the ping playbook [that you created in lab-2](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-2/README.md) here and give the file a name i.e. __ping.yml__ and hit ```Commit changes``` -button on the bottom of the page.
+>Copy & paste contents of the ping playbook [that you created in lab-2](https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-2/lab-files/ping.yml) here and give the file a name i.e. __ping.yml__ and hit ```Commit changes``` -button on the bottom of the page.
 
 Once the file has been created, you will be redirected to another page.
 >On this section you should modify the playbook on the web UI by pushing ```Edit``` -button:
