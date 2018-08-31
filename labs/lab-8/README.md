@@ -220,15 +220,17 @@ Last step is to create a workflow to pull it all together. To do this, you can c
 
 ![template editor](../../content/images/img10.png)
 
-if you now click the *START* button, you get to invoke a template. On the right side of the screen, you can select the 'Install WildFly App' template and click *SELECT*. This will add the template to the workflow. When you move the cursor over the added template, a plus sign appears to the right on the box. Click it and a new template is added. Using the same method choose 'Install load balancer' as the template. This template should only run if the previous succeeded. At this time your workflow should look like this
+if you now click the *START* button, you get to invoke a template. On the right side of the screen, you can select the 'Install WildFly App' template and click *SELECT*. This will add the template to the workflow. When you move the cursor over the added template, a plus sign appears to the right on the box. Click it and a new template is added. Using the same method choose 'Install load balancer' as the template. This template should only run if the previous succeeded. Then click again at the 'Install WildFly' template and select the 'Ping playbook' and select to run that on failure. At this time your workflow should look like this:
 
 ![template editor](../../content/images/img11.png)
 
-Now you can run the workflow template as any other template. Nifty right?
+Now you can run the workflow template as any other template. Nifty right? Try it out!
 
-You can also run templates in parallel and sync projects with the repos. If you have spare time, try playing with the features.
+```
+You can also schedule _job templates_ to run at a later date. If you have spare time, try playing around with that and others features. Imagine that you had playbooks which patched servers and applications, for example. Or a playbook which triggered a backup.
+```
 
-The changes made in lab 8 will break the ping template. This is because the addition of groups to the inventory also adds some secrets. If you also want to run the ping template, create a new inventory for the ping playbook without the groups added. Alternatively add the vault password to the ping template as you did with the other templates made.
+:boom: The changes made in lab 8 will break the ping template. This is because the addition of groups to the inventory also adds some secrets. If you also want to run the ping template, add the vault password to the ping template as you did with the other templates made. :boom:
 
 ```
 End of lab
