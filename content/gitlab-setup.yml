@@ -39,7 +39,7 @@
           email: "student{{ item }}@ansible-roadshow.rh"
           username: "student{{ item }}"
           name: Ansible student
-          password: redhat123
+          password: RHforum18Pass
           skip_confirmation: True
         body_format: json
         status_code: 201
