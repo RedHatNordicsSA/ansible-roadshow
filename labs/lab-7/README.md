@@ -106,6 +106,12 @@ $ tower-cli job --help
 ```
 and launch your playbook.
 
+Then also try adding the
+```
+--monitor
+```
+Flag.
+
 ```
 End of lab
 ```
