@@ -1,6 +1,6 @@
 # Developing Ansible Modules
 
-This chapter will go through what a module is, what you need to consider before writing a module and how to write some different types of Ansible modules. Don't worry, it's not that complicated.
+This is the final chapter, which will go through what a module is, what you need to consider before writing a module and how to write some different types of Ansible modules. After this, you can without any problem state that you know one or two things about Ansible. And don't worry, it's not that complicated.
 
 # About Ansible modules and what to consider before writing one
 To reiterate, modules are Ansible's tools in a toolbox. Ansible playbooks calls upon modules to get work done, as can be seen below.
@@ -21,7 +21,7 @@ See: https://ansible.sivel.net/pr/byfile.html
 * Should you write one or multiple modules? (Remember that complexity kills productivity)
 
 ## Different types of Ansible modules
-If you've decided to develop a module, let's review the different types of modules that exists.
+If you've decided to develop a module, let's review the different types of modules that exists. Don't worry if it doesn't stick at first, this is more for you to see and less for you to memorize.
 
 * Action plugins - always execute server-side and are sometimes able to do all work there (example: debug, template)
 * New-style modules - all that ship with Ansible. Arguments embedded in module instead of separate file, reducing the need for a transfer of a separate file containing arguments.
@@ -47,7 +47,7 @@ Modules can be written in any language an author wishes, they just need to speci
 6. Internal arguments - parameters which implements global features. Often you do not need to know about these.
 
 # Writing your first Ansible modules
-You're now stuffed with some good to know information and is ready to write your first Ansible modules. At the end of this chapter you will have written two simple Ansible modules which you can extend with arbitrary functionality to fit your real world use case.
+You're now stuffed with some good to know information and are soon ready to write your first Ansible modules. At the end of this chapter you will have written two simple Ansible modules which you can extend with arbitrary functionality to fit your real world use case.
 
 ## Module writing strategies
 There are three different strategies when writing Ansible modules, each one with some different pros and cons.
@@ -95,18 +95,14 @@ Our first module will simply wrap a CLI command (_touch_). It will be non-native
 
 First, let's create a directory in which we'll develop the module.
 ```
-cd ansible-roadshow/lab-10
+cd
 mkdir new-module
 cd new-module
 ```
 
-Secondly, let's create a simple module using Bourne Again SHell (BASH) script.
+Secondly, let's create a simple module using Bourne Again SHell (BASH) script. We start with the most simple version of this module, create it by pasting below content into your terminal:
 ```
-vi new_module
-```
-
-We start with the most simple version of this module, as following:
-```
+cat << 'EOF' >new_module
 #!/bin/sh
 # Module which creates the file: /tmp/module-file
 set -e
@@ -117,6 +113,7 @@ touch /tmp/module-file
 # Output JSON
 echo {\"changed\": true, \"msg\": \"${msg}\"}
 exit 0
+EOF
 ```
 
 Next, copy the module into the module directory.
@@ -127,11 +124,13 @@ cp new_module  $HOME/.ansible/plugins/modules/
 
 Now we'll create a playbook to test our module. Create a file called test.yml in your local directory, as follows:
 ```
+cat << 'EOF' >test.yml
 - hosts: localhost
   gather_facts: no
   tasks:
     - new_module:
        msg: "hello world"
+EOF
 ```
 
 Now let's test our module.
@@ -141,16 +140,33 @@ ansible-playbook -vv ./test.yml
 
 Expected output should be something like:
 ```
+$ ansible-playbook -vv ./test.yml
+ansible-playbook 2.6.3
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = [u'/home/student/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /usr/bin/ansible-playbook
+  python version = 2.7.5 (default, May 31 2018, 09:41:32) [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)]
 Using /etc/ansible/ansible.cfg as config file
-1 plays in test.yml
+ [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match
+'all'
 
-PLAY ***************************************************************************
 
-TASK [new_module] ***************************************************************
+PLAYBOOK: test.yml *********************************************
+1 plays in ./test.yml
+
+PLAY [localhost] ***********************************************
+META: ran handlers
+
+TASK [new_module] **********************************************
+task path: /home/student/new-module/test.yml:4
 changed: [localhost] => {"changed": true, "msg": "hello world"}
+META: ran handlers
+META: ran handlers
 
-PLAY RECAP *********************************************************************
-localhost                  : ok=1    changed=1    unreachable=0    failed=0   
+PLAY RECAP ******************************************************
+localhost                  : ok=1    changed=1    unreachable=0    failed=0 
+$
 ```
 
 Now that we have a working module, let's improve it a bit, handling the case if something goes wrong. Change the module so that it handles the case if it's possible to create a file containing the input passed to it. Create some exception handling in the module and if you detect a failure, output:
@@ -162,7 +178,7 @@ https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-10/la
 
 Re-run your test.yml playbook to ensure your modifications work, then you can try and replace _/tmp/module-arguments_ in the module to _/tmp/doesnotexist/module-arguments_ to cause it to fail. Then change it back to _/tmp/module-arguments_
 
-Next step is to create a simple check if the _/tmp/module-arguments_ file already exists and then return JSON output with _changed: false_.
+Next step is to create a simple check if the _/tmp/module-arguments_ file already exists and then return JSON output with _changed: false_. Remember that idempotency is key in Ansible, so ofcourse we want our module to be idempotent.
 
 * If you get stuck, have a look at a solution here:
 https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-10/lab-solutions/module-v3.sh
@@ -172,21 +188,23 @@ The next module we'll develop is a binary module. Like we've said, you can devel
 
 First, let's create a directory in which we'll develop the module.
 ```
-cd ansible-roadshow/lab-10
+cd
 mkdir binary-module
 cd binary-module
 ```
 
-Then we'll create a simple module, which creates a file and then prints success. Create the file _binary_module.c_ as follows:
+Then we'll create a simple module, which creates a file and then prints success. Create the file _binary_module.c_ by pasting in below content into your terminal:
 
 ```
+cat << 'EOF' >binary_module.c
 #include <stdio.h>
 
 int main(int argc, char *argv[])
 {
   FILE *fp = fopen("/tmp/binary-module-file", "ab+");
-  printf("{\"changed\": true, \"msg\": \"Arguments file: %s \n\"}", argv[1]);
+  printf("{\"changed\": true, \"msg\": \"Arguments file: %s\"}", argv[1]);
 }
+EOF
 ```
 
 To compile the code, run:
@@ -199,13 +217,15 @@ Next, copy the module into the module directory.
 cp binary_module $HOME/.ansible/plugins/modules/
 ```
 
-Now we'll create a playbook to test our module. Create a file called _test-binary-module.yml_ in your local directory, as follows:
+Now we'll create a playbook to test our module. Create a file called _test-binary-module.yml_ in your local directory, as by pasting in below content in your terminal:
 ```
+cat << 'EOF' >test-binary-module.yml
 - hosts: localhost
   gather_facts: no
   tasks:
     - binary_module:
        msg: "hello world"
+EOF
 ```
 
 Now let's test our module.
@@ -215,17 +235,33 @@ ansible-playbook -vv ./test-binary-module.yml
 
 Expected output should be something like:
 ```
+ansible-playbook 2.6.3
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = [u'/home/student/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /usr/bin/ansible-playbook
+  python version = 2.7.5 (default, May 31 2018, 09:41:32) [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)]
 Using /etc/ansible/ansible.cfg as config file
-1 plays in test-binary-module.yml
+ [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match
+'all'
 
-PLAY ***************************************************************************
 
-TASK [binary_module] ***************************************************************
-changed: [localhost] => {"changed": true, "msg": "Arguments file: /tmp/asdf.tmp"}
+PLAYBOOK: test-binary-module.yml ***************************************************************************************
+1 plays in ./test-binary-module.yml
 
-PLAY RECAP *********************************************************************
-localhost                  : ok=1    changed=1    unreachable=0    failed=0   
+PLAY [localhost] *******************************************************************************************************
+META: ran handlers
+
+TASK [binary_module] ***************************************************************************************************
+task path: /home/student/binary-module/test-binary-module.yml:4
+changed: [localhost] => {"changed": true, "msg": "Arguments file: /home/student/.ansible/tmp/ansible-tmp-1535738564.44-26021666473567/args"}
+META: ran handlers
+META: ran handlers
+
+PLAY RECAP *************************************************************************************************************
+localhost                  : ok=1    changed=1    unreachable=0    failed=0 
 ```
+Interestingly enough, we can here observe where the temporary arguments file is put, when running the module.
 
 # More to read
 First of all read the [Ansible Developing Modules](http://docs.ansible.com/ansible/latest/dev_guide/developing_modules.html) page. Especially the 'Should You Develop A Module?' section is relevant:-)
