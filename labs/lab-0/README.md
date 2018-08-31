@@ -24,6 +24,7 @@ The Ansible Tower server will have the responsibility of provisioning the manage
 5. Log in as the **student** user on your assigned Ansible Tower server.
 6. Run below command to pull the code to your system:
 ```
+cd
 git clone https://github.com/mglantz/ansible-roadshow.git
 ```
 7. The variabel **$LAB_DIR** will refer to the root of the cloned repository, export it as an variable using below command:
