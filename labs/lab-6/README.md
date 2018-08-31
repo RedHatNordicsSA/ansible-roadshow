@@ -47,7 +47,7 @@ A simplified description of git follows.
 
 Now, as an exercise you will try out the GitHub workflow. Try to find a friend to do this exercise with.
 
-If you are using the Gitlab that is part of the lab environment: 
+If you are using the Gitlab that is part of the lab environment:
  [Working with your playbooks on Gitlab](#working-with-your-playbooks-on-gitlab)
 
 # Working with your playbooks on GitHub
@@ -97,17 +97,17 @@ What you need to do is
 >1. Give your project(repository) a nice name
 >2. Tick the box, so that a README.md -file will be pre-populated to your new project(repository)
 >3. ```Create project```
->Once the project(repository) has been done, you should put the ping playbook the ping playbook [that you created in lab-2](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-2/README.md) there:
+>Once the project(repository) has been done, you should copy & paste contents of the ping playbook [that you created in lab-2](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-2/README.md) there:
 
   ![Add a file to Gitlab project](../../content/images/gitlab_add_file.png)
 
-After you will see a popup window like this:
+After you will be directed to a page like this:
 
- ![Upload a file to Gitlab project](../../content/images/gitlab_upload_file.png)
+ ![Create a new file to Gitlab project](../../content/images/gitlab_new_file.png)
 
->You should drag&drop the ping.yml playbook to that window and hit ```Upload file``` -button.
+>Copy & paste contents of the ping playbook [that you created in lab-2](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-2/README.md) here and give the file a name i.e. __ping.yml__ and hit ```Commit changes``` -button on the bottom of the page.
 
-Once the file has been uploaded, you will be redirected to another page.
+Once the file has been created, you will be redirected to another page.
 >On this section you should modify the playbook on the web UI by pushing ```Edit``` -button:
  ![Edit file](../../content/images/gitlab_edit_file.png)
 
