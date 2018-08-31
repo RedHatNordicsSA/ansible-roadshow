@@ -227,7 +227,10 @@ if you now click the *START* button, you get to invoke a template. On the right 
 Now you can run the workflow template as any other template. Nifty right? Try it out!
 
 ```
-You can also schedule _job templates_ to run at a later date. If you have spare time, try playing around with that and others features. Imagine that you had playbooks which patched servers and applications, for example. Or a playbook which triggered a backup.
+You can also schedule _job templates_ to run at a later date. 
+If you have spare time, try playing around with that and others features.
+Imagine that you had playbooks which patched servers and applications, for example.
+Or a playbook which triggered a backup.
 ```
 
 :boom: The changes made in lab 8 will break the ping template. This is because the addition of groups to the inventory also adds some secrets. If you also want to run the ping template, add the vault password to the ping template as you did with the other templates made. :boom:
