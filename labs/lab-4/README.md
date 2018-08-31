@@ -24,16 +24,18 @@ To install Nginx go to $WORK_DIR and create a new file named *lb.yml* with the f
 ---
 - hosts: lbservers
   become: true
+  name: Install NGNIX
   tasks:
   - include_role:
       name: nginxinc.nginx
 ```
 
-run the playbook with the command
+Run the playbook with the command
 
 ```
 ansible-playbook -i hosts lb.yml
 ```
+You can again run the playbook multiple times, to ensure that this role is idempotent and that nothing changes the second or third time you run it.
 
 This will install Nginx on the servers in the lbservers group. 
 * To verify the installation, in your web browser, go to: *http://$loadbalancer1-ip-address*. 
@@ -62,26 +64,26 @@ This defines a handler named *restart-nginx-service*, which we'll use in a momen
 
 ```
 ---
-- name: Setup the http listener to your machines
+- name: Configure ngnix to listen for http
   template:
     src: default.template
     dest: /etc/nginx/conf.d/default.conf
   notify: restart-nginx-service
-- name: Ensure nginx is in state started, so it'll be available on restart
+- name: Ensure nginx is started and persisted across reboot
   systemd:
     name: nginx
     enabled: yes
     masked: no
     state: started
-- name: Set (httpd_can_network_connect) flag on and keep it persistent across reboots
+- name: Set and persist httpd_can_network_connect SELinux flag for ngnix
   seboolean:
     name: httpd_can_network_connect
     state: yes
     persistent: yes
 ```
-A template is used to setup the http listener. The template ensures that your configuration file doesn't have to be static. In this case, you need to add the servers to loadbalance between. This is done by introducing a variable *wildfy_servers*, which you'll use when writing the template shortly. The configuration file is saved instead of the default.conf Nginx template. Other approaches applies. Please refer to the nginx documentation for more information. If the configuration file is changed, the previously defined handler (*notify: restart-nginx-service*) ensures, that the Nginx process is restarted. Finally a SELinux rule has to be setup, to allow Nginx to connect to port 8080.
+A template is used to setup the ngnix http listener. The template ensures that your configuration file doesn't have to be static. In this case, you need to add the servers to loadbalance between. This is done by introducing a variable *wildfy_servers*, which you'll use when writing the template shortly. The configuration file is saved instead of the default.conf nginx template. Other approaches applies. Please refer to the nginx documentation for more information. If the configuration file is changed, the previously defined handler (*notify: restart-nginx-service*) ensures that the Nginx process is restarted. Finally a SELinux rule has to be setup, to allow Nginx to connect to port 8080.
 
-Define the variable *wildfly_servers* in the file named *$WORK_DIR/roles/nginx-config/vars/main.yml* with the following content:
+Define the variable *wildfly_servers* by replacing *$WORK_DIR/roles/nginx-config/vars/main.yml* with below content:
 
 ```
 ---
