@@ -75,7 +75,7 @@ cd $WORK_DIR
 
 5. Check result of change (Check webpage of http server, etc)
 ```
-curl http://client_system_1
+curl http://wildfly1
 ```
 
 ```
@@ -84,10 +84,11 @@ Lab exercises below
 
 1. Let's apply this framework on below playbook. Create a new playbook $WORK_DIR/problem.yml by copying below code into your terminal:
 ```
+cd $WORK_DIR
 cat << 'EOF' >problem.yml
-- name: Create directory and restart tomcat
+- name: Create directory and restart tomcat 
   hosts: wildflyservers
-  tasks:
+  tasks: 
     - name: Create directory
       command: mkdir /tmp/logs
 
@@ -96,20 +97,19 @@ cat << 'EOF' >problem.yml
 EOF
 ```
 
-2. Use the above testing framework and fix all issues in the above playbook:
-Output such as below, can be ignored.
+2. Use the above testing framework and fix all issues in the above playbook. The playbook should pass all steps of this test framework to be deemed OK for production. Output such as below, can be ignored.
 ```
 [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match
 'all'
 ```
-If you get stuck or want to compare with your _fixed_ playbook, have a look here at a problem free playbook:
-<insert link>
 
-3. As an optional exercise, create a single script which implements the testing framework and which can be run on arbitrary playbooks. Use any language you like.
+If you get stuck or want to compare with your _fixed_ playbook, have a look here at a problem free version of the playbook:
+https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-9/lab-files/problem-free.yml
 
-> More reading
-You should integrate the testing into your development pipeline. Ensure that when your code merges, it's always tested.
-If you are interested in how this can be done using Jenkins and Ansible Tower, have a look here:
+3. As an optional exercise, if you have time, create a single script which implements the testing framework and which can be run on arbitrary playbooks. Use any language you like.
+
+> :boom: More reading
+Best practice is to integrate testing into your development pipeline for Ansible playbooks. Ensure that when your code merges, it's always tested. If you are interested in how this can be done using Jenkins and Ansible Tower, have a look here:
 https://github.com/mglantz/tomcat-playbook/
 
 ```
