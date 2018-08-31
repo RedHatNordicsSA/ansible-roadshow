@@ -49,10 +49,10 @@ Now, as an exercise you will try out the GitHub workflow. Try to find a friend t
 
 If you are using the GitLab environment that is setup as a part of the lab environment, follow the instructions below:
  [Working with your playbooks on GitLab](#working-with-your-playbooks-on-gitlab)
- 
+
 If you are using GitHub (not default), follow the instructions below:
  [Working with your playbooks on GitHub](#working-with-your-playbooks-on-github)
- 
+
 # Working with your playbooks on GitLab
 This example uses Gitlab that is part of the lab environment.
 
@@ -67,7 +67,8 @@ Once you click the ```Create a project``` -button, you will be taken here:
 What you need to do is
 >1. Give your project(repository) a nice name
 >2. Tick the box, so that a README.md -file will be pre-populated to your new project(repository)
->3. ```Create project```
+>3. Make the project public, so you can access the contents from Ansible Tower without using credentials (lab7)
+>4. ```Create project```
 >Once the project(repository) has been done, you should copy & paste contents of the ping playbook [that you created in lab-2](https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-2/lab-files/ping.yml) there:
 
   ![Add a file to Gitlab project](../../content/images/gitlab_add_file.png)
