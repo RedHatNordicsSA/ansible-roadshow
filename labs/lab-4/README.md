@@ -143,9 +143,9 @@ TASK [nginx-config : Configure ngnix to listen for http] ***********************
 fatal: [loadbalancer1]: FAILED! => {"changed": false, "checksum": "8301491f8f0f72dd743fe8babc12e11bc2462a73", "msg": "Destination /etc/nginx/conf.d not writable"}
 ```
 
-Can you figure out what we have forgotten? Hint: _playbooks executed as the student user, will without special directives, also execute as the student user on the hosts.
+Can you figure out what we have forgotten? Hint: _playbooks executed as the student user, will without special directives, also execute as the student user on the hosts._
 
-Modify $WORK_DIR/lb.yml and add the privledge escalation directive as shown below.
+Modify $WORK_DIR/lb.yml and add the _become_ privledge escalation directive as shown below.
 ```
 ---
 - hosts: lbservers
@@ -169,21 +169,20 @@ PLAY RECAP *****************************************************************
 loadbalancer1              : ok=8    changed=3    unreachable=0    failed=0 
 ```
 
-Now test, that you can access the application on both application servers. In the command promt write:
+Now test, that you can access the application on both application servers. For this we'll use a simple http client, called _curl_, in your terminal write:
 
 ```
-curl -w '\n' http://<server name for nginx server>/
+curl -w '\n' http://IP-address-of-loadbalancer1/
 ```
 
-you should get a different servername responding each time like in this output:
+When running the command multiple times, you should see different wildfly servers responding, as shown below:
 
 ```
-$ curl -w '\n' http://10.211.55.23/
-Howdy from unknown at 2018-02-19T14:22:03.375+01:00 (from jboss-server-2)
-$ curl -w '\n' http://10.211.55.23/
-Howdy from unknown at 2018-02-19T14:22:06.651+01:00 (from jboss-server-3)
-$ curl -w '\n' http://10.211.55.23/
-Howdy from unknown at 2018-02-19T14:22:16.939+01:00 (from jboss-server-2)
+$ curl -w '\n' http://18.184.24.113/
+Howdy from unknown at 2018-08-31T08:07:32.948Z (from ip-172-31-25-165.eu-central-1.compute.internal)
+$ curl -w '\n' http://18.184.24.113/
+Howdy from unknown at 2018-08-31T08:07:48.816Z (from ip-172-31-28-91.eu-central-1.compute.internal)
+$
 ```
 
 Finally create a playbook to collect the two playbooks already made, by creating a file named *main.yml* in *$WORK_DIR* with the following content:
@@ -194,10 +193,18 @@ Finally create a playbook to collect the two playbooks already made, by creating
 - import_playbook: site.yml
 ```
 
-By running this playbook, you can setup everything with one command.
+By running this playbook, you can setup everything with one command. Try it out.
 
 ```
 ansible-playbook -i hosts main.yml
+```
+
+The playbook should complete as such:
+```
+PLAY RECAP ****************************************************************
+loadbalancer1              : ok=7    changed=0    unreachable=0    failed=0   
+wildfly1                   : ok=8    changed=0    unreachable=0    failed=0   
+wildfly2                   : ok=8    changed=0    unreachable=0    failed=0 
 ```
 
 ```
