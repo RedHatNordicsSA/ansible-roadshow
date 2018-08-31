@@ -13,7 +13,7 @@ Look at development activity of the role. Ansible Galaxy makes this evaulation e
 First we need to install the role for Nginx. Run:
 
 ```
-ansible-galaxy install nginxinc.nginx
+ansible-galaxy install --roles-path=$WORK_DIR/roles nginxinc.nginx
 ```
 
 and wait for the role to be installed. When that is done, we can use the role in our playbooks.
