@@ -1,0 +1,10 @@
+---
+- hosts: all
+  tasks:
+  - name: Call the ping module
+    ping:
+      data: pong from Ansible
+    register: ping_answer
+  - name: Output the value of the ping answer
+    debug:
+      msg: "Return value from ping is '{{ping_answer.ping}}'"
