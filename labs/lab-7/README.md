@@ -11,7 +11,7 @@ the configuration of SAN storage at your company, your SAN storage switches may 
 
 Because of this, it's not uncommon that attempts to automate things fails with conversations like:
 
-![Typical situation](../../content/images/no-you-cannot-have-access.png)
+![Typical situation](../../content/images/you-cannot-have-access.png)
 
 Ansible Tower allows you to share access safely to other people via it's web GUI, a CLI client and a REST API. Let's explore how this works.
 
