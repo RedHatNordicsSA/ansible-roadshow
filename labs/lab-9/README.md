@@ -3,7 +3,7 @@
 In order to handle Ansible as code you need to do testing. Without testing, there is no way that you can keep your main git branch releasable.
 It's neither possible for you to keep up the quality of your code or to scale out the usage of Ansible, as without proper testing, less people can contribute.
 
-Take the time to apply this basic 6 step framework for testing your Ansible.
+Take the time to apply this basic 5 step framework for testing your Ansible.
 
 A basic framework for Ansible testing is:
 
@@ -79,10 +79,10 @@ curl http://wildfly1
 ```
 
 ```
-Lab exercises below
+Lab exercise below
 ```
 
-1. Let's apply this framework on below playbook. Create a new playbook $WORK_DIR/problem.yml by copying below code into your terminal:
+1. Let's apply above test framework on below playbook. Create a new playbook $WORK_DIR/problem.yml by copying below code into your terminal:
 ```
 cd $WORK_DIR
 cat << 'EOF' >problem.yml
@@ -97,11 +97,12 @@ cat << 'EOF' >problem.yml
 EOF
 ```
 
-2. Use the above testing framework and fix all issues in the above playbook. The playbook should pass all steps of this test framework to be deemed OK for production. Output such as below, can be ignored.
+2. Use the testing framework your learned and fix all issues in the above playbook. The playbook should pass all steps of this test framework to be deemed OK for production. Output such as below, can be ignored.
 ```
 [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match
 'all'
 ```
+:boom: _Hint_: Have a look at other available modules, listed here: https://docs.ansible.com/ansible/latest/modules/modules_by_category.html
 
 If you get stuck or want to compare with your _fixed_ playbook, have a look here at a problem free version of the playbook:
 https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-9/lab-files/problem-free.yml
