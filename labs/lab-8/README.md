@@ -205,7 +205,16 @@ Now you should be able to launch your playbooks. Click the *TEMPLATES* menu item
 
 ![WildFly template](../../content/images/img9.png)
 
-This should succeed successfully. Do the same for the other template.
+Except a simlair output as below:
+![WildFly run](../../content/images/wildfly-tower-run.png)
+
+Isn't that beautiful? You are now in control of who runs what Ansible automation, on what systems. Everything is logged and kept safe. It's no longer just an Ansible playbook and a role, it's _automation as a service_, available via GUI, CLI and RestAPI.
+
+:boom: Now, we'll do the same for installing the _loadbalancer_. Everything should be the same, except for the playbook, which should be lb.yml, as shown below:
+
+![WildFly run](../../content/images/loadbalancer-template.png)
+
+Try running it as well, when you're done.
 
 Last step is to create a workflow to pull it all together. To do this, you can create a Workflow Template. So click on the *TEMPLATES* menu item and select *ADD - Workflow Template*. Name the template 'Install full application stack' and click *SAVE*. Now the *WORKFLOW EDITOR* button is active. Click on the button. This will take you to the following screen
 
