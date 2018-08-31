@@ -108,8 +108,7 @@ https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-9/lab
 
 3. As an optional exercise, if you have time, create a single script which implements the testing framework and which can be run on arbitrary playbooks. Use any language you like.
 
-> :boom: More reading
-Best practice is to integrate testing into your development pipeline for Ansible playbooks. Ensure that when your code merges, it's always tested. If you are interested in how this can be done using Jenkins and Ansible Tower, have a look here:
+> :boom: The testing practice is to integrate testing into your development pipeline for Ansible playbooks. Ensure that when your code merges, it's always tested. If you are interested in how this can be done using Jenkins and Ansible Tower, have a look here:
 https://github.com/mglantz/tomcat-playbook/
 
 ```
