@@ -17,6 +17,14 @@ Ansible Tower allows you to share access safely to other people via it's web GUI
 
 1. First step, with your web browser, go to your Ansible Tower server: https://$Tower_Server and login with the _admin_ user and the password provided to you at the start of the lab.
 
+:boom: Because of limitations in the lab's automatics, you need to start with resetting a simple parameters, which allows you get get streaming information about playbooks run in Tower. If you can figure out how to automate this, feel free to send us a pull request. :boom:
+
+2. Click on the little cogg wheel, next to the admin icon and then, select _CONFIGURE TOWER_, as shown below:
+![Base URL, step 1](../../content/images/base-url1.png)
+
+3. Click the _SYSTEM_ tab and then click on _REVERT_ just above of _* BASE URL OF THE TOWER HOST_, then click _SAVE_, as shown below.
+![Base URL, step 1](../../content/images/base-url1.png)
+
 What we'll do first is to create an inventory in Ansible Tower, an inventory is a collection of hosts you can run playbooks against in Tower; just like your *hosts* file in the previous examples. Inventories are assigned to organizations, while permissions to launch playbooks against inventories are controlled at the user, team or playbook level.
 
 >Create an inventory called "workshop-inventory" by following the instructions below.
