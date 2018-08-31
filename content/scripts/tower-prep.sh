@@ -61,5 +61,12 @@ curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/i
 chmod 600 /home/student/.ssh/*
 chown student:student /home/student/.ssh -R
 
+
+cat << 'EOF' >/etc/motd
+
+Welcome to the Ansible lab. This is the Ansible Tower server, from this system you will do all the labs.
+
+EOF
+
 # Install Ansible tower
 ansible-playbook -i /root/tower-inventory /root/tower-install.yml
