@@ -37,7 +37,7 @@ ansible-playbook -i hosts lb.yml
 
 This will install Nginx on the servers in the lbservers group. 
 * To verify the installation, in your web browser, go to: *http://$loadbalancer1-ip-address*. 
-![Evaluate quality of content](../../content/images/nginx-welcome.png)
+![NGNIX welcome page](../../content/images/ngnix-welcome.png)
 You should get the Nginx default page, as shown above.
 
 Next step is to configure Nginx as a loadbalancer for the two wildflyapp servers. To do so, we'll add an additional role for the configuration. We follow the [best practises for Ansible directory layout](http://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html) and place tasks, handlers, and vars in separate directories. This is enforced by using the following command:
