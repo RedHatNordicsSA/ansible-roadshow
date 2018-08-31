@@ -95,6 +95,7 @@ Edit $WORK_DIR/lb.yml to include the newly created role:
 ```
 ---
 - hosts: lbservers
+  become: true
   name: Install and configure NGNIX as a load balancer
   tasks:
   - include_role:
@@ -132,32 +133,6 @@ server {
 
 As you can see, the *wildfly_servers* variable is used to iterate over the servers with the WildFly application deployed. Apply the new changes to the playbook by running the command:
 
-```
-cd $WORK_DIR
-ansible-playbook -i hosts lb.yml
-```
-
-This is going to fail with below error message:
-```
-TASK [nginx-config : Configure ngnix to listen for http] ***************************************************************
-fatal: [loadbalancer1]: FAILED! => {"changed": false, "checksum": "8301491f8f0f72dd743fe8babc12e11bc2462a73", "msg": "Destination /etc/nginx/conf.d not writable"}
-```
-
-Can you figure out what we have forgotten? Hint: _playbooks executed as the student user, will without special directives, also execute as the student user on the hosts._
-
-Modify $WORK_DIR/lb.yml and add the _become_ privledge escalation directive as shown below.
-```
----
-- hosts: lbservers
-  name: Install and configure NGNIX as a load balancer
-  become: yes
-  tasks:
-  - include_role:
-      name: nginxinc.nginx
-  - include_role:
-      name: nginx-config
-```
-Now re-run the playbook:
 ```
 cd $WORK_DIR
 ansible-playbook -i hosts lb.yml
