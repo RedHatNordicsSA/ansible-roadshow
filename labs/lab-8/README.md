@@ -175,8 +175,8 @@ Next add the hosts to the correct groups. For each group click on the group name
 ![Add hosts to a group](../../content/images/add-host-to-group.png)
 
 * Add all hosts to the dev group.
-* Add client_system_1 to the lbservers group
-* Add client_system_2 and client_system_3 to the wildflyservers group
+* Add loadbalancer1 to the lbservers group
+* Add wilfly1 and wildfly2 to the wildflyservers group
 
 Using above described method.
 
