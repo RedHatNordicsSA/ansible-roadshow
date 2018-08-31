@@ -160,7 +160,13 @@ $
 
 Now, login to the Ansible Tower server using your web browser on with the url and username/password provided to you by the instructor.
 
-You've made the Inventory and Project for getting started in the previous lab, but there are some additional stuff you need to do. First you need to create the groups and add hosts to the groups. To do so go to "INVENTORIES" -> "workshop-inventory" -> GROUPS". Here click "+ADD GROUP".
+You created a project in Ansible Tower in **lab 7**. Let's go to the Project tab and issue a sync of that project, as there is quite a lot of new stuff there now (all playbooks and roles you added from /home/student/work).
+
+![create a group](../../content/images/start-project-sync.png)
+
+Ensure that the sync updates the _REVISION_ number. 
+
+Now it's time to modify the Inventory you created in **lab 7** so that it also has the same groups you have in your 'hosts' inventory file. To do so go to "INVENTORIES" -> "workshop-inventory" -> GROUPS". Here click "+ADD GROUP".
 ![create a group](../../content/images/create-group.png)
 
 Create three groups named:
