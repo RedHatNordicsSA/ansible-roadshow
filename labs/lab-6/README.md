@@ -1,11 +1,5 @@
 # Working with Ansible as code
 
-```
-Do you already know git? Do you work with version control on a daily basis?
-Do you not need to be told why it's not only useful, but a requirement for collaboration?
-```
--Then you can skip this chapter and jump forward to [lab 7](../lab-7/README.md). Otherwise, carry on.
-
 A challenge when doing larger scale automation is to enable collaboration for people to work on the same pieces of automation together. Luckily for us, programmers has since long solved this issue for us using version handling systems, such as git.
 
 Ansible does not require you to use git version handling, but there are some good reasons why you should familiarize yourself with it.
