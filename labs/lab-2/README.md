@@ -84,7 +84,7 @@ cat << 'EOF' >$WORK_DIR/ping.yml
 - name: Ping all servers
   hosts: all
   tasks:
-  - name: Call the ping module
+  - name: Ping a server using the ping module
     ping:
       data: pong from Ansible
 EOF
@@ -103,7 +103,7 @@ ansible-playbook -i hosts ping.yml
 - name: Ping all servers
   hosts: all
   tasks:
-  - name: Call the ping module
+  - name: Ping a server using the ping module
     ping:
       data: pong from Ansible
     register: ping_answer
