@@ -210,7 +210,7 @@ Phew that's a lot of work. Luckily there is other ways of doing this, but the GU
 
 ![WildFly template](../../content/images/img9.png)
 
-Except a simlair output as below:
+Expect a simlair output as below:
 ![WildFly run](../../content/images/wildfly-tower-run.png)
 
 Isn't that beautiful? You are now in control of who runs what Ansible automation, on what systems. Everything is logged and kept safe. It's no longer just an Ansible playbook and a role, it's _automation as a service_, available via GUI, CLI and RestAPI.
