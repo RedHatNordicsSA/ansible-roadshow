@@ -3,7 +3,54 @@
 # Prep hosts to be managed by Tower
 
 yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+ITER=0
+while true; do
+  if [ "$ITER" -eq 10 ]; then
+    echo "This is never going to work."
+    break
+  fi
+  rpm -q epel-release
+  if [ "$?" -eq 0 ]; then
+    echo "EPEL installed, going forward with install."
+    break
+  else
+    sleep 30
+    yum clean all
+    yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    rpm -q epel-release
+    if [ "$?" -eq 0 ]; then
+      echo "EPEL installed, going forward with install."
+      break
+    else
+      ITER=$(expr $ITER + 1)
+    fi
+  fi
+done
+
 yum -y install python2-pip wget bind-utils ansible nano vim screen emacs joe
+ITER=0
+while true; do
+  if [ "$ITER" -eq 10 ]; then
+    echo "This is never going to work."
+    break
+  fi
+  rpm -q ansible
+  if [ "$?" -eq 0 ]; then
+    echo "Ansible installed, going forward with install."
+    break
+  else
+    sleep 30
+    yum clean all
+    yum -y install python2-pip wget bind-utils ansible nano vim screen emacs joe
+    rpm -q ansible
+    if [ "$?" -eq 0 ]; then
+      echo "Ansible installed, going forward with install."
+      break
+    else
+      ITER=$(expr $ITER + 1)
+    fi
+  fi
+done
 
 # Create directory for ssh public key
 if [ ! -d /root/.ssh ]; then
