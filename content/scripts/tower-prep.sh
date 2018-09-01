@@ -113,6 +113,8 @@ cat << 'EOF' >/root/tower-inventory
 localhost              ansible_connection=local
 EOF
 
+PUBLIC_IPV4=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
+
 cat << 'EOF' >/root/tower-install.yml
 - name: Install Ansible Tower
   hosts: all
@@ -237,7 +239,9 @@ cat << 'EOF' >/root/tower-install.yml
 
     - name: Add license
       uri:
-        url: https://localhost/api/v2/config/
+EOF
+echo "        url: https://${PUBLIC_IPV4}/api/v2/config/" >>/root/tower-install.yml
+cat << 'EOF' >>/root/tower-install.yml
         method: POST
         user: admin
         password: RHforum18Pass
