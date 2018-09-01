@@ -1,4 +1,4 @@
-# Working with Ansible as code
+# :thumbsup: Working with Ansible as code
 
 A challenge when doing larger scale automation is to enable collaboration for people to work on the same pieces of automation together. Luckily for us, programmers has since long solved this issue for us using version handling systems, such as git.
 
@@ -28,8 +28,6 @@ A simplified description of git follows.
 
 6. This may seem a bit cumbersome, but you will get used to it. Promise.
 
->If you are completely new to git and feel you need to review the basics, please go here: https://try.github.io and complete the excersises.
-
 # Git workflows
 1. There are many different workflows for git which describes how to work with git
 2. Some of these workflows are more complicated and all have their own challenges
@@ -54,23 +52,26 @@ If you are using GitHub (not default), follow the instructions below:
  [Working with your playbooks on GitHub](#working-with-your-playbooks-on-github)
 
 # Working with your playbooks on GitLab
-This example uses Gitlab that is part of the lab environment.
+This is for students who use GitLab, which is part of the lab environment.
 
->First step, with your web browser, go to the Gitlab server: https://$gitlab_server and login with gitlab user and the password provided to you at the start of the lab.
->When logged in go ahead and create a new repository on Gitlab:
+:boom: First step, with your web browser, go to the GitLab server: https://$gitlab_server and login with gitlab user and the password provided to you at the start of the lab. 
+
+GitLab is an open core software which provides both provides a git server and a place where you can collaborate easily around the code put in git.
+
+:boom: When logged in go ahead and create a new repository on Gitlab. This is where you will store your files:
 
  ![Creating a Gitlab project](../../content/images/gitlab_frontpage.png)
 
-Once you click the ```Create a project``` -button, you will be taken here:
+:boom: Once you click the ```Create a project``` -button, you will be taken here:
 
  ![Gitlab project creation](../../content/images/gitlab_project_creation.png)
 
-What you need to do is
->1. Give your project(repository) a nice name
->2. Tick the box, so that a README.md -file will be pre-populated to your new project(repository)
->3. Make the project public, so you can access the contents from Ansible Tower without using credentials (lab7)
->4. ```Create project```
->Once the project(repository) has been done, you should copy & paste contents of the ping playbook [that you created in lab-2](https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-2/lab-files/ping.yml) there:
+What you need to do is\
+:boom: Give your project(repository) a nice name\
+:boom: Tick the box, so that a README.md -file will be pre-populated to your new project(repository)\
+:boom: Make the project public, so you can access the contents from Ansible Tower without using credentials (lab7)\
+:boom: ```Create project```\
+:boom: Once the project(repository) has been done, you should copy & paste contents of the ping playbook [that you created in lab-2](https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-2/lab-files/ping.yml) there:
 
   ![Add a file to Gitlab project](../../content/images/gitlab_add_file.png)
 
@@ -78,27 +79,28 @@ After you will be directed to a page like this:
 
  ![Create a new file to Gitlab project](../../content/images/gitlab_new_file.png)
 
->Copy & paste contents of the ping playbook [that you created in lab-2](https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-2/lab-files/ping.yml) here and give the file a name i.e. __ping.yml__ and hit ```Commit changes``` -button on the bottom of the page.
+:boom: Copy & paste contents of the ping playbook [that you created in lab-2](https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-2/lab-files/ping.yml) here and give the file a name i.e. __ping.yml__ and hit ```Commit changes``` -button on the bottom of the page.
 
 Once the file has been created, you will be redirected to another page.
->On this section you should modify the playbook on the web UI by pushing ```Edit``` -button:
+
+Now let's try the so called GitHub workflow. Which is that when we make a modification, we add that to a separate branch first, allowing us to do review of the code, before it get's copied into the main (production) branch.
+
+:boom: On this section you should modify the playbook on the web UI by pushing ```Edit``` -button:
  ![Edit file](../../content/images/gitlab_edit_file.png)
 
 Once you've done some modifications, on the bottom of the page you can see this:
 
 ![Commit changes](../../content/images/gitlab_commit_changes.png)
 
-This section will save your modifications on a separate branch if you like to.
+:boom: This section will save your modifications on a separate branch. Do that. By default the setting on __1.__ is master, but you should change it to something different i.e. feature-1
 
->By default the setting on __1.__ is master, but you should change it to something different i.e. branch-1
+:thumbsup: What happens is that your change is copied into this new copy of your project, called a branch. As explained before, this is so that you and others can collaborate on this change, without affecting the code in the master branch (copy) of your project. This allows your master branch to be stable, while development is ongoing. This also allows for several people to work on the code in your repository, at the same time.
 
-What happens is that your change is copied into this new copy of your project, called a branch. This is so that you and others can collaborate on this change, without affecting the code in the master branch (copy) of your project. This allows your master branch to be stable, while development is ongoing. This also allows for several people to work on the code in your repository, at the same time.
-
->By ticking the box __2.__ Gitlab will automatically create merge(pull) request for you:
+:boom: By ticking the box __2.__ Gitlab will automatically create merge(pull) request for you:
 
 ![Create merge request](../../content/images/gitlab_merge_request.png)
 
-It is a good practice to write a brief description of the changes you've done, so that anyone going through the merge(pull) requests doesn't necessarily have to read your code to figure out what was done.
+:thumbsup: A merge requestion (also called pull request) is a place where you can collaborate around ongoing development. It is a good practice to write a brief description of the changes you've done, so that anyone reviewing or collaborating with you doesn't necessarily have to read your code to figure out what was done.
 
 Once you've written the description for you modifications, at the bottom of the page you will see this:
 
@@ -106,33 +108,34 @@ Once you've written the description for you modifications, at the bottom of the 
 
 Source branch allows you to choose which branch you would like to merge to the target branch of your choice, which is master in this case.
 
-As we know that we won't be doing more modifications on that branch, we can tick the box for Gitlab to automatically remove it once the merge(pull) request has been accepted.
+:boom: Let's tick the box for Gitlab to automatically remove it once the merge(pull) request has been accepted.
+
+:thumbsup: This is considered a best practice, to remove any branches which has been merged as this allows you to keep tabs on ongoing development. If a branch has existed for a long time, this may indicate that someone has bitten off a bit too large chunk to swallow in a reasonable time. If a branch lives for a longer time, that often means it will be more difficult to merge it, as there is risk that the development conflicts with other ongoing developmen. Rather than doing everything in one large merge/pull request, do it several small ones, if you are doing significant development.
 
 You will now get redirected to the page which overviews your merge(pull) request. Here you can use the comment function displayed in the 'Discussions' tab to collaborate with other people.
 Perhaps your change needs a code review or you need some advise on how to solve a specific problem? The 'Commits' and 'Changes' allow you to overview all changes made into your newly created branch.
 
 ![Accept merge](../../content/images/gitlab_accept_merge2.png)
 
->Explore the 'Discussions' feature and try add yet another change to your playbook and review how all your changes are visible on the merge(pull) request page.
+:boom: Explore the 'Discussions' feature and try add yet another change to your playbook and review how all your changes are visible on the merge(pull) request page.
 
-The merge(pull) request has yet another function, which is to allow someone else than you to approve changes, before they get copied into your master branch.
-Normally, not everyone have rights to accept merge(pull) request which will copy all your changes into the master branch from this temporary branch where you do your work.
+The merge(pull) request has yet another function, which is to allow someone else than you to approve changes, before they get copied into your master branch. Normally, not everyone have rights to accept merge(pull) request which will copy all your changes into the master branch from this temporary branch where you do your work.
 
-In this case, we accept the absolutely terrific changes that you've made.
+:boom: In this case, accept the absolutely terrific changes that you've made.
 
 After the merge(pull) request has been accepted on the main page of the project you will se the merge as commit to the main branch of the project:
 
 ![Merge committed](../../content/images/gitlab_merge_committed.png)
 
-The reason why you delete your branch afterwards is because that allows people to see when work has been completed.
-Also, it allows someone to overview the status of the development work being done. For example, if a branch has lived on for too long, the risk of merge conflicts (when several people has changed the same files) becomes greater.
-Because of that and because code quality usually suffers when you do too much work at once, try biting off a good sized chunk of work.
-It's better that you do several smaller chunks of work than one huge chunk which takes a long time to do.
+Again. The reason why you delete your branch afterwards is because that allows people to see when work has been completed.
 
 
 ```
 End of lab
 ```
+
+:star: If you want to try out the basics of git, go here: https://try.github.io and complete the excersises.
+
 [Go to the next lab, lab 7](../lab-7/README.md)
 
 # Working with your playbooks on GitHub
@@ -161,6 +164,8 @@ The pull request has yet another function, which is to allow someone else than y
  ![Deleting your branch](../../content/images/delete-branch.png)
 
  The reason why you delete your branch afterwards is because that allows people to see when work has been completed. Also, it allows someone to overview the status of the development work being done. For example, if a branch has lived on for too long, the risk of merge conflicts (when several people has changed the same files) becomes greater. Because of that and because code quality usually suffers when you do too much work at once, try biting off a good sized chunk of work. It's better that you do several smaller chunks of work than one huge chunk which takes a long time to do.
+ 
+:star: If you want to try out the basics of git, go here: https://try.github.io and complete the excersises.
 
 ```
 End of lab
