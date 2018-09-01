@@ -42,6 +42,7 @@ while true; do
     break
   else
     sleep 30
+    yum clean all
     yum -y install python2-pip wget bind-utils ansible nano vim screen emacs joe
     rpm -q ansible
     if [ "$?" -eq 0 ]; then
