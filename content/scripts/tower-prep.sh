@@ -207,19 +207,19 @@ cat << 'EOF' >/root/tower-install.yml
       lineinfile:
         path: "{{ tower_inventory_path.stdout }}"
         regexp: '^admin_password='
-        line: 'admin_password=redhat123'
+        line: 'admin_password=RHforum18Pass'
 
     - name: Set PostgreSQL password in inventory file
       lineinfile:
         path: "{{ tower_inventory_path.stdout }}"
         regexp: '^pg_password='
-        line: 'pg_password=redhat123'
+        line: 'pg_password=RHforum18Pass'
 
     - name: Set rabbitmq password in inventory file
       lineinfile:
         path: "{{ tower_inventory_path.stdout }}"
         regexp: '^rabbitmq_password='
-        line: 'rabbitmq_password=redhat123'
+        line: 'rabbitmq_password=RHforum18Pass'
 
     - name: Run Ansible Tower installer
       shell: "{{tower_installer_path.stdout}} -i {{tower_inventory_path.stdout}}"
@@ -235,13 +235,28 @@ cat << 'EOF' >/root/tower-install.yml
         state: present
       when: tower_cli.stat.exists == False
 
-    - name: Fetch backup
-      get_url:
-        url: https://github.com/mglantz/ansible-roadshow/raw/master/content/tower-backup.tar.gz
-        dest: "{{ tower_base_path.stdout }}/tower-backup-latest.tar.gz"
-
-    - name: Restore from backup
-      shell: "{{tower_installer_path.stdout}} -r {{ tower_base_path.stdout }}/tower-backup-latest.tar.gz"
+    - name: Add license
+      uri:
+        url: https://localhost/api/v2/config/
+        method: POST
+        user: admin
+        password: RHforum18Pass
+        validate_certs: False
+        header: application/json
+        status_code: 200
+        body:
+          eula_accepted : "true"
+          company_name: "Red Hat"
+          contact_email: "sudo@redhat.com"
+          contact_name: "Red Hat"
+          hostname: "b3d94995b8fb44a0978d4b55c3ce3387"
+          instance_count: 5
+          license_date: 1536251747
+          license_key: "a2d38fa12e8317289a125f917620e97562864712f1a2ddc52842b0562a8e04f6"
+          license_type: "enterprise"
+          subscription_name: "Red Hat Ansible Tower, Standard (5 Managed Nodes) Trial" 
+          trial: true
+        body_format: json
       
     - name: Disable SSL verification
       lineinfile:
