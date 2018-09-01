@@ -56,9 +56,7 @@ $ANSIBLE_VAULT;1.1;AES256
 $
 ```
 
-:exclamation: Enter a password of your choice when prompted and **remember the password**. This will encrypt your newly created file. Without the password, you will not be able to access the encrypted information.
-
-Last step is to add the newly created variable as an environment variable to the playbook for the WildFly app role. At the same time we'll make some other changes. It's considered best practise to only set the environment variable locally for the wildflyapp service. Thus we are required to change the service script file from a static file to a template file in order to be able to change the secret name. Furthermore we want to restart the WildFly service in order to ensure that the service is restarted in case there are changes in the jar file or in the configuration. 
+ :thumbsup: Next step is to add the newly created variable as an environment variable to the playbook for the WildFly app role. At the same time we'll make some other changes. It's considered best practise to only set the environment variable locally for the wildflyapp service. Thus we are required to change the service script file from a static file to a template file in order to be able to change the secret name. Furthermore we want to restart the WildFly service in order to ensure that the service is restarted in case there are changes in the jar file or in the configuration. 
 
 :boom: To do so, change the content of *$WORK_DIR/roles/wildflyapp/tasks/main.yml* to the following:
 
