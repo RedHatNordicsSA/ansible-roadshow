@@ -19,6 +19,20 @@ To install Ansible follow [Ansible install guidance](https://docs.ansible.com/an
 
 Before running the installer, you need to install boto Python modules on your Ansible machine using [the Ansible AWS documentation](http://docs.ansible.com/ansible/latest/scenario_guides/guide_aws.html).
 
+## Known issues
+When running the installer, a task regarding the GitLab server may fail as shown below, just wait a minute and then re-run the playbook if that is the case.
+
+```
+PLAY [setup stuff in Gitlab VMs] ***************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************
+The authenticity of host '18.184.66.48 (18.184.66.48)' can't be established.
+ECDSA key fingerprint is SHA256:xdDsD7vJe9GFVbxhXe7/xgwpkyQecmL1NJ0F7bR8Zmo.
+Are you sure you want to continue connecting (yes/no)? yes
+fatal: [18.184.66.48]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Warning: Permanently added '18.184.66.48' (ECDSA) to the list of known hosts.\r\nConnection reset by 18.184.66.48 port 22\r\n", "unreachable": true}
+	to retry, use: --limit @/path/to/ansible-roadshow/content/provision-all.retry
+```
+
 ## Set parameters to Ansible variables file
 
 Playbooks expect file ```content/vars/vars.yml``` to contain settings your personal AWS credentials, machine AMI image and some other parameters. Copy ```content/vars/vars-example.yml``` and fill it with your settings. It is recommended to use Ansible Vault to encrypt your credentials.
