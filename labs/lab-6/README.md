@@ -137,6 +137,12 @@ End of lab
 [Go to the next lab, lab 7](../lab-7/README.md)
 
 # Working with your playbooks on GitHub
+:exclamation:  :exclamation:
+This chapter needs work. Please fix and close associated issues:
+https://github.com/mglantz/ansible-roadshow/issues/36
+https://github.com/mglantz/ansible-roadshow/issues/41
+:exclamation:  :exclamation:
+
 As an example of a git based version handling/collaboration system, we'll use GitHub for simplicity.
 
 >As a first step, go ahead and create a new repository on GitHub and put the ping playbook [that you created in lab-2](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-2/README.md) there.
