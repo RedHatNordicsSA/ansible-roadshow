@@ -24,7 +24,7 @@ The lab includes information about:
 * Ansible Tower basics
 * How to test your Ansible playbooks and roles
 
-**BELOW is an overview of the labs. This is for the students in the lab.**
+**BELOW is an overview of the labs. This is for the students in the lab.**\
 :exclamation: Start at 0 and go forward to 10. The labs depends on each other, so don't skip stuff.
 
 
