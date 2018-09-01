@@ -92,7 +92,8 @@ WantedBy=multi-user.target
 
 ```
 ---
-- hosts: wildflyservers
+- name: Install Wildfly
+  hosts: wildflyservers
   become: yes
   tasks:
   - include_role:
@@ -133,11 +134,12 @@ $ curl http://18.197.135.122:8080
 Howdy from unknown at 2018-08-30T22:25:09.897Z (from ip-172-31-25-165.eu-central-1.compute.internal)
 ```
 
-This is pretty cool, by using the simple role you just created, people can now get their own WilfFly servers, using a 6 lines long playbook.
+This is pretty cool, by using the simple role you just created, people can now get their own WilfFly servers, using a 7 lines long playbook.
 
 ```
 ---
-- hosts: wildflyservers
+- name: Install Wildfly
+  hosts: wildflyservers
   become: yes
   tasks:
   - include_role:
