@@ -78,7 +78,7 @@ Next thing we'll do is to define a set of credentials to our systems. This is wh
 
 Credentials authenticate the Tower user to launch Ansible playbooks, which can then include passwords and SSH keys, against inventory hosts. You can also require the Tower user to enter a password or key phrase when a playbook launches using the credentials feature of Tower.
 
-:boom: Click on the gears in the top right corner, and select credentials
+:boom: Click on the gears in the top right corner, and select credentials\
 :boom: Create a new set of credentials which you call 'machine-credentials' as follows.
 * Credentials type: Machine
 * Username: student
