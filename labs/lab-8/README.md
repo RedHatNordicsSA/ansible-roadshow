@@ -1,15 +1,15 @@
 # Installing WildFly and Nginx from Tower
 
-As the good developer you are, you want to make your playbooks for provisioning the WildFly app available for the whole organization to run and benefit from. This lab will describe how you can do so.
+As the good developer you are, you now you want to make sure your playbooks for provisioning the WildFly app available for the whole organization to run and benefit from. This requires that you handle your Ansible content as code. This lab will describe how you can do so.
 
 The first step is to transfer your work that you did in $WORK_DIR on a local server, to the central git repository. As the whole company is going to run this, you need to version control your work and you would also like to enable people to contribute to your work, to make it better.
 
-First, we need to configure the git client with your information. Replace the X in studentX with your assigned number., then run below commands in a terminal:
+:boom: First, we need to configure the git client with your information. Replace the X in studentX with your assigned number., then run below commands in a terminal:
 ```
 git config --global user.email "studentX@domain.suffix"
 git config --global user.name "studentX"
 ```
-Then we're going to check out the _git repository_ which you created earlier, in **lab 7**, where you again place the X in studentX with your assigned number. Run below commands in a terminal:
+:boom: Then we're going to check out the _git repository_ which you created earlier, in **lab 7**, where you again place the X in studentX with your assigned number. Run below commands in a terminal:
 
 ```
 cd
@@ -27,18 +27,20 @@ remote: Total 7 (delta 1), reused 0 (delta 0)
 Unpacking objects: 100% (7/7), done.
 ```
 
-This will have created a directory called /home/student/studentX-project where your files in the git repository has been copied. Now we're ready to copy your work in $WORK_DIR into this directory. Do this by running below commands (_replace X in studentX with your assigned number_):
+This will have created a directory called /home/student/studentX-project where your files in the git repository has been copied. Now we're ready to copy your work in $WORK_DIR into this directory. 
+
+:boom: Do this by running below commands (_replace X in studentX with your assigned number_):
 ```
 cp -R $WORK_DIR /home/student/studentX-project
 ```
 
-Next we need to tell git that we've added a bunch of new files. Run below commands to do that (_replace X in studentX with your assigned number_):
+:boom: Next we need to tell git that we've added a bunch of new files. Run below commands to do that (_replace X in studentX with your assigned number_):
 ```
 cd ~/studentX-project
 git add *
 ```
 
-Now we can create a commit message for the changes we've made. A commit message is ment to be useful for other people, when scanning a repository for what changes has been made. _Ensure you are in the /home/student/studentX-project directory_ and run:
+:boom: Now we can create a commit message for the changes we've made. A commit message is ment to be useful for other people, when scanning a repository for what changes has been made. _Ensure you are in the /home/student/studentX-project directory_ and run:
 ```
 git commit -m 'Moving my local workspace to git'
 ```
@@ -79,7 +81,7 @@ $ git commit -m 'Added workshop workspace to git'
  $
 ```
 
-There is now only one last thing to do, that is to upload the files to the central GitLab server. _Ensure you are in the /home/student/studentX-project directory_ and run below command. You will there be queried for the studentX credentials to the GitLab server:
+:boom: There is now only one last thing to do, that is to upload the files to the central GitLab server. _Ensure you are in the /home/student/studentX-project directory_ and run below command. You will there be queried for the studentX credentials to the GitLab server:
 ```
 git push
 git config --global push.default matching
@@ -111,25 +113,28 @@ Writing objects: 100% (46/46), 54.50 MiB | 94.66 MiB/s, done.
 Total 46 (delta 1), reused 0 (delta 0)
 To https://ec2-52-57-173-62.eu-central-1.compute.amazonaws.com/student1/student1-project.git
    10ed357..726a864  master -> master
-$ 
+$ git config --global push.default matching
+$
 ```
 
-```
-WARNING! ATTENTION!
-```
- :boom:  :boom: **Now that you have moved all work to _/home/student/studentX-project_ let's change the WORK_DIR variable. Change the X in studentX to your assigned number and run:**  :boom:  :boom:
+:exclamation: **WARNING. SPECIAL ATTENTION TO BELOW TASK.**
+ 
+:boom: **Now that you have moved all work to _/home/student/studentX-project_ let's change the WORK_DIR variable. Change the X in studentX to your assigned number and run:**  :boom:  :boom:
 ```
 export WORK_DIR=/home/student/studentX-project
 ```
 
-Now you need to instruct Ansible Tower to use the Nginx module. You could install the module on Ansible Tower as previously, but this would have the unwanted effect that all projects on the Ansible Tower server would rely on this module. Furthermore the Ansible Tower server now needs special care if you need to reinstall it. Instead we'll instruct Ansible Tower to include the Nginx module as part of our project. To do so, add a file *$WORK_DIR/roles* called *requirements.yml*, with the following content
+Now you need to instruct Ansible Tower to use the Nginx module. You could install the module on Ansible Tower as previously, but this would have the unwanted effect that all projects on the Ansible Tower server would rely on this module. Furthermore the Ansible Tower server now needs special care if you need to reinstall it. Instead we'll instruct Ansible Tower to include the Nginx module as part of our project. 
+
+:boom: To do so, add a file *$WORK_DIR/roles* called *requirements.yml*, with the following content
 ```
 ---
 - src: https://github.com/nginxinc/ansible-role-nginx
   version: master
   name: nginxinc.nginx
 ```
-Check in the change and you are ready to go. Do that by running below in a terminal:
+
+:boom: Check in the change and you are ready to go. Do that by running below in a terminal:
 ```
 cd $WORK_DIR/roles
 git add requirements.yml
@@ -158,50 +163,50 @@ To https://ec2-52-57-173-62.eu-central-1.compute.amazonaws.com/student1/student1
 $
 ```
 
-Now, login to the Ansible Tower server using your web browser on with the url and username/password provided to you by the instructor.
+:boom: Now, login to the Ansible Tower server using your web browser on with the url and username/password provided to you by the instructor.
 
-You created a project in Ansible Tower in **lab 7**. Let's go to the Project tab and issue a sync of that project, as there is quite a lot of new stuff there now (all playbooks and roles you added from /home/student/work).
+:boom: You created a project in Ansible Tower in **lab 7**. Let's go to the Project tab and issue a sync of that project, as there is quite a lot of new stuff there now (all playbooks and roles you added from /home/student/work).
 
 ![create a group](../../content/images/start-project-sync.png)
 
-Ensure that the sync updates the _REVISION_ number. 
+:boom: Ensure that the sync updates the _REVISION_ number. 
 
-Now it's time to modify the Inventory you created in **lab 7** so that it also has the same groups you have in your 'hosts' inventory file. To do so go to "INVENTORIES" -> "workshop-inventory" -> GROUPS". Here click "+ADD GROUP".
+:boom: Now it's time to modify the Inventory you created in **lab 7** so that it also has the same groups you have in your 'hosts' inventory file. To do so go to "INVENTORIES" -> "workshop-inventory" -> GROUPS". Here click "+ADD GROUP".
 ![create a group](../../content/images/create-group.png)
 
-Create three groups named:
+:boom: Create three groups named:
 * dev
 * wildflyservers
 * lbservers
 
-Click "SAVE" for each group.
+:boom: Click "SAVE" for each group.
 
-Next add the hosts to the correct groups. For each group click on the group name and then on the "HOSTS" tab. For instance clicking "dev" -> "HOSTS" will bring you to the following screen, where you can add hosts to the group
+:boom: Next add the hosts to the correct groups. For each group click on the group name and then on the "HOSTS" tab. For instance clicking "dev" -> "HOSTS" will bring you to the following screen, where you can add hosts to the group
 
 ![Add hosts to a group](../../content/images/add-host-to-group.png)
 
-* Add all hosts to the dev group.
-* Add loadbalancer1 to the lbservers group
-* Add wilfly1 and wildfly2 to the wildflyservers group
+:boom: Add all hosts to the dev group.\
+:boom: Add loadbalancer1 to the lbservers group\
+:boom: Add wilfly1 and wildfly2 to the wildflyservers group\
 
 Using above described method.
 
-Next you need to setup the vault password for your playbooks. To do so click the *settings* menu item in top of the menu
+:boom: Next you need to setup the vault password for your playbooks. To do so click the *settings* menu item in top of the menu
 ![settings location image](../../content/images/img0.png)
 
-On the items, which appear click *credentials*. Then click *ADD*. Select Vault as credential type and the fill in values as provided in below screenshot (the password should be what you selected earlier and saved in _/home/student/work/mypassword_).
+:boom: On the items, which appear click *credentials*. Then click *ADD*. Select Vault as credential type and the fill in values as provided in below screenshot (the password should be what you selected earlier and saved in _/home/student/work/mypassword_).
 ![filling in vault values](../../content/images/img1.png)
 Click *SAVE* and you're done with this part.
 
 Phew that's a lot of work. Luckily there is other ways of doing this, but the GUI is the easiest way to help you understand what's going on. Maybe grab a cup of :coffee: at this point - almost there.
 
-The template is where it all comes together. So now click the *TEMPLATES* menu item and click *ADD* and select *Job Template*. Fill in values as below
+:boom: The template is where it all comes together. So now click the *TEMPLATES* menu item and click *ADD* and select *Job Template*. Fill in values as below
 ![WildFly template](../../content/images/img7.png)
-be aware that in order to select the credentials, you must use the search button and select credential type as appropriate.
+ :exclamation: Be aware that to select the credentials you must use the search button and select credential type as appropriate.
 
 ![lb template](../../content/images/img8.png)
 
-Now you should be able to launch your playbooks. Click the *TEMPLATES* menu item. Then click the rocket to the right of the 'Install WildFly App' template.
+:boom: Now you should be able to launch your playbooks. Click the *TEMPLATES* menu item. Then click the rocket to the right of the 'Install WildFly App' template.
 
 ![WildFly template](../../content/images/img9.png)
 
@@ -214,26 +219,24 @@ Isn't that beautiful? You are now in control of who runs what Ansible automation
 
 ![WildFly run](../../content/images/loadbalancer-template.png)
 
-Try running it as well, when you're done.
+:boom: Try running it as well, when you're done.
 
-Last step is to create a workflow to pull it all together. To do this, you can create a Workflow Template. So click on the *TEMPLATES* menu item and select *ADD - Workflow Template*. Name the template 'Install full application stack' and click *SAVE*. Now the *WORKFLOW EDITOR* button is active. Click on the button. This will take you to the following screen
+:boom: Last step is to create a workflow to pull it all together. To do this, you can create a Workflow Template. So click on the *TEMPLATES* menu item and select *ADD - Workflow Template*. Name the template 'Install full application stack' and click *SAVE*. Now the *WORKFLOW EDITOR* button is active. Click on the button. This will take you to the following screen
 
 ![template editor](../../content/images/img10.png)
 
-if you now click the *START* button, you get to invoke a template. On the right side of the screen, you can select the 'Install WildFly App' template and click *SELECT*. This will add the template to the workflow. When you move the cursor over the added template, a plus sign appears to the right on the box. Click it and a new template is added. Using the same method choose 'Install load balancer' as the template. This template should only run if the previous succeeded. Then click again at the 'Install WildFly' template and select the 'Ping playbook' and select to run that on failure. At this time your workflow should look like this:
+:boom: Now click the *START* button, you get to invoke a template. On the right side of the screen, you can select the 'Install WildFly App' template and click *SELECT*. This will add the template to the workflow. When you move the cursor over the added template, a plus sign appears to the right on the box. Click it and a new template is added. Using the same method choose 'Install load balancer' as the template. This template should only run if the previous succeeded. Then click again at the 'Install WildFly' template and select the 'Ping playbook' and select to run that on failure. At this time your workflow should look like this:
 
 ![template editor](../../content/images/img11.png)
 
-Now you can run the workflow template as any other template. Nifty right? Try it out!
+:boom: Now you can run the workflow template as any other template. Nifty right? Try it out!
 
-```
-You can also schedule _job templates_ to run at a later date. 
-If you have spare time, try playing around with that and others features.
+:boom: The changes made in lab 8 will break the ping template. This is because the addition of groups to the inventory also adds some secrets. Add the vault password to the ping template as you did with the other templates made. 
+
+ :star: You can also schedule _job templates_ to run at a later date. If you have spare time, try playing around with that and others features.
+
 Imagine that you had playbooks which patched servers and applications, for example.
 Or a playbook which triggered a backup.
-```
-
-:boom: The changes made in lab 8 will break the ping template. This is because the addition of groups to the inventory also adds some secrets. If you also want to run the ping template, add the vault password to the ping template as you did with the other templates made. :boom:
 
 ```
 End of lab
