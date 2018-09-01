@@ -16,6 +16,7 @@ while true; do
     break
   else
     sleep 30
+    yum clean all
     yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     rpm -q epel-release
     if [ "$?" -eq 0 ]; then
@@ -27,7 +28,7 @@ while true; do
   fi
 done
 
-yum -y install wget bind-utils ansible nano vim screen emacs joe gcc
+yum -y install python2-pip wget bind-utils ansible nano vim screen emacs joe
 
 ITER=0
 while true; do
@@ -41,7 +42,7 @@ while true; do
     break
   else
     sleep 30
-    yum -y install wget bind-utils ansible nano vim screen emacs joe gcc
+    yum -y install python2-pip wget bind-utils ansible nano vim screen emacs joe
     rpm -q ansible
     if [ "$?" -eq 0 ]; then
       echo "Ansible installed, going forward with install."
@@ -51,8 +52,6 @@ while true; do
     fi
   fi
 done
-    
-  
 
 # SSH key prereqs, creation of users for demo
 # Create directory for ssh public key
