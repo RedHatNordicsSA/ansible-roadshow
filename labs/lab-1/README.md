@@ -98,6 +98,17 @@ wildfly2 ansible_host=zzz.zzz.zzz.zzz
 EOF
 ```
 
+:exclamation: Take some extra time, verifying that there are three different IP addresses in your file, when you are done.\
+Your $WORK_DIR/hosts file should look like something like below now:
+```
+[lbservers]
+loadbalancer1 ansible_host=18.184.68.153
+
+[wildflyservers]
+wildfly1 ansible_host=35.157.198.225
+wildfly2 ansible_host=18.184.165.148
+```
+
 :boom: Since this is the first time we're connecting to these servers, you'll need to accept the identity of the servers.
 To speed up the process, we use the ssh-keyscan command to accept identities. Run below command:
 
