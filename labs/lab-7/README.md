@@ -52,6 +52,8 @@ Now we need to add our hosts to the newly created inventory.
 For instance in the following screenshot example values are provided for *wildfly1*. Refer to the previously created *hosts* file for IP values.
 ![Inventory add hosts](../../content/images/inventory-add-hosts-iii.png)
 
+ :thumbsup: Please note that in a normal scenario, the inventory information would get automatically synced into Ansible Tower using a _dynamic inventory script_. There are out-of-the-box inventory scripts for all common cloud providers, including a lot of other infrastructure services and you can create your own custom inventory scripts as well. To use dynamic inventory scripts is the best practice, as it keeps inventories in-sync with the world.
+
 Next thing we'll do is to define a set of credentials to our systems. This is what is typically the tricky bit when you run Ansible playbooks from a command line. If you use a SSH key or username to an admin user to run your playbook, how can someone else run the playbook without you risking that person finding out the credentials - giving that person the ability to just SSH in manually to the system and run whatever he/she likes?
 
 Credentials authenticate the Tower user to launch Ansible playbooks, which can then include passwords and SSH keys, against inventory hosts. You can also require the Tower user to enter a password or key phrase when a playbook launches using the credentials feature of Tower.
