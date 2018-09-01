@@ -123,7 +123,7 @@ If you now go to the 'Jobs' tab, you can review your specific run of the playboo
 Next we are going to provide this playbook, as a service to a new user, to see how we (safely) can provide any automation as a self service.
 
 :boom: Create a new users, by going to 'Settings (the cog)' and then users. Call the user workshop-guest and set a password for it. After saving the user go to it and configure it further:\
-:boom: Click on the 'Permissions' tab and give your user access to run this one playbook. Do not provide access to either the project or the inventory, just the 'job template' as a user, not an admin.
+:boom: Click on the 'Permissions' tab and give your user access to run this one job template with Execute rights, not Admin. Do not provide access to either the project or the inventory, only the 'job template'.
 
 :boom: Login as the user and run the playbook again. Review what you can see and what you can change as this user. This is how you can provide any piece of Ansible automation as a service, in a secure manner, to specific users.
 
