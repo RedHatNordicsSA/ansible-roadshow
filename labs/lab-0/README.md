@@ -1,4 +1,4 @@
-# Preparations
+# Welcome to the lab
 
 Hello and welcome. In this lab, we use some basic graphics to make the lab easier to understand. Such as:
 
@@ -11,6 +11,8 @@ Here is some code that you need to run
 ```
 Here is an example of expected output when running commands
 ```
+
+# Preparations to do the lab
 
 :exclamation: To get started with the labs, you first needs to get your assigned username and servers. This will be provided to you by the people who operates this lab. 
 
