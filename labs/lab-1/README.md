@@ -1,12 +1,12 @@
 # Getting started
 
- :exclamation: _Ensure that you are logged in to your Ansible Tower server as the **student** user._
+:exclamation: _Ensure that you are logged in to your Ansible Tower server as the **student** user._
 
 You are the operator at Tangible Labs Inc. and tasked with setting up servers for the company's new application that's based on WildFly Swarm, which is a modern and tiny application server. After attending several sessions on automation, you've decided to give Ansible a go.
 
 The first lab will help you verifying the Ansible installation and getting acquainted with basic Ansible concepts.
 
- :boom: But first, let's verify that Ansible has been installed. On the command-line interface run the following command:
+:boom: But first, let's verify that Ansible has been installed. On the command-line interface run the following command:
 
 ```
 ansible --version
@@ -73,7 +73,7 @@ For this lab, we will start and group the servers into _WHAT_ - load balancers (
 cd $WORK_DIR
 touch hosts
 ```
- :exclamation: You got three servers assigned to you, referred to as **'Managed Systems'** when given to you. It doesn't matter which one is put in the [lbservers] section and which remaining two are put in the [wildflyservers] section.
+:exclamation: You got three servers assigned to you, referred to as **'Managed Systems'** when given to you. It doesn't matter which one is put in the [lbservers] section and which remaining two are put in the [wildflyservers] section.
 
 :boom: Add the following text to the _$WORK_DIR/hosts_ file using an editor of choice:
 ```
@@ -112,8 +112,9 @@ cd $WORK_DIR
 ansible -i hosts all -m ping
 ```
 
-This command will run the ping command on all servers in the hosts file (specified by -i).
->**If the previous step failed, you might be asked to accept the identity of the servers.**
+This command will run the ping command on all servers in the hosts file (specified by -i).\
+
+:exclamation: **If the previous step failed, you might be asked to accept the identity of the servers.**
 Then: type yes for each server. After running the ping command, you'll have following output
 
 ```
