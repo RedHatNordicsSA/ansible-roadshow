@@ -34,7 +34,7 @@ wildfly2 ansible_host=zzz.zzz.zzz.zzz
 
 Now Ansible will include all variables defined in *$WORK_DIR/group_vars/dev/* for the servers listed, each time the playbook is run.
 
-:boom: Finally let's encrypt the vault file, which contains our secret. Please note that you will be prompted for a password, it's important that you remember which password to choose. In the prompt write:
+:boom: Finally let's encrypt the vault file, which contains our secret. Please note that you will be prompted for a password, **it's important that you remember which password you choose**. In the prompt write:
 
 ```
 ansible-vault encrypt $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
@@ -160,8 +160,33 @@ Howdy from Red Hat at 2018-08-31T08:45:38.084Z (from ip-172-31-25-165.eu-central
 $ curl -w '\n' http://18.184.24.113/
 Howdy from Red Hat at 2018-08-31T08:45:39.489Z (from ip-172-31-28-91.eu-central-1.compute.internal)
 ```
-
 Observe the changes. Hint, you are no longer getting an anonymous greeting.
+
+:exclamation: If the output looks like below, you were just a bit quick to test the curl call. Wait for a second and try again.
+```
+$ curl -w '\n' 18.184.68.153
+<!DOCTYPE html>
+<html>
+<head>
+<title>Error</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>An error occurred.</h1>
+<p>Sorry, the page you are looking for is currently unavailable.<br/>
+Please try again later.</p>
+<p>If you are the system administrator of this resource then you should check
+the error log for details.</p>
+<p><em>Faithfully yours, nginx.</em></p>
+</body>
+</html>
+```
 
 :star: The observant student will note that there are some poor design choices in the above approach. Please correct the errors.
 
