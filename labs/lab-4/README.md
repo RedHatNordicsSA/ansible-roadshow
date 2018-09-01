@@ -24,9 +24,9 @@ and wait for the role to be installed. When that is done, we can use the role in
 
 ```
 ---
-- hosts: lbservers
+- name: Install NGNIX
+  hosts: lbservers
   become: true
-  name: Install NGNIX
   tasks:
   - include_role:
       name: nginxinc.nginx
@@ -39,7 +39,7 @@ ansible-playbook -i hosts lb.yml
 ```
 You can again run the playbook multiple times, to ensure that this role is idempotent and that nothing changes the second or third time you run it.
 
-This will install Nginx on the servers in the lbservers group. 
+This installs _nginx_ on the servers in the lbservers group. 
 
 :boom: To verify the installation, in your web browser, go to: *http://$loadbalancer1-ip-address*.
 ![NGNIX welcome page](../../content/images/ngnix-welcome.png)
@@ -54,7 +54,7 @@ cd $WORK_DIR
 ansible-galaxy init roles/nginx-config
 ```
 
-:boom: First we'll create a handler for restarting the Nginx service in case of configuration changes. Define the handler in the file *$WORK_DIR/roles/nginx-config/handlers/main.yml* with the following content:
+:boom: First we'll create a handler for restarting the Nginx service in case of configuration changes. Define the handler in the file *$WORK_DIR/roles/nginx-config/handlers/main.yml* by replacing the content in the file with:
 
 ```
 ---
@@ -99,9 +99,9 @@ wildfly_servers: "{{ groups['wildflyservers'] }}"
 
 ```
 ---
-- hosts: lbservers
+- name: Install and configure NGINX as a load balancer
+  hosts: lbservers
   become: true
-  name: Install and configure NGNIX as a load balancer
   tasks:
   - include_role:
       name: nginxinc.nginx
