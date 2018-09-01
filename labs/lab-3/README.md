@@ -5,26 +5,28 @@ Let's overview which part of the system which you will be working on in this lab
 
 ![Overview of lab environment](../../content/images/app-arch.png)
 
-Running WildFly Swarm is a bit different than running traditional application servers. You package your application into a fat jar file, which you run from the command-line interface. The jar file is very small (measured in MB) and only contains the libraries necessary to run your application. In order to ensure that your application is easily maintainable and that it'll come up in the case of a server restart, you'll register the application as a service using systemctl.
+Running WildFly Swarm is a bit different than running traditional application servers, which often are often hundreds of MB or even GB in size. You package your application into a fat jar file, which you run from the command-line interface. The jar file is very small (measured in few MB) and only contains the libraries necessary to run your application. In order to ensure that your application is easily maintainable and that it'll come up in the case of a server restart, you'll register the application as a service using systemctl.
 
 For this excercise we assume that you've already packaged your application, using maven and pushed it to Nexus. From there you've pulled the file to the location *$LAB_DIR/labs/lab-3/lab-files/binaries/example-jaxrs-war-swarm.jar*
 
-In order to ensure that you don't end up with a large unmaintainable yaml-file, the lead architect of your company has decided that you must structure your playbook using [roles](http://docs.ansible.com/ansible/latest/playbooks_reuse_roles.html). Roles is a way to structure your playbook around different aspects of your configuration. In this case, you will make a role for your WildFly application and only apply that role to your wildflyservers.
+ :thumbsup: In order to ensure that you don't end up with a large unmaintainable yaml-file and so that you can more easily re-use Ansible automation, the lead architect of your company has decided that you must structure your playbook using [roles](http://docs.ansible.com/ansible/latest/playbooks_reuse_roles.html). Roles is a way to structure your playbook around different aspects of your configuration. In this case, you will make a role for your WildFly application and only apply that role to your wildflyservers.
 
-In *$WORK_DIR* copy the jar file to a binary folder.
+:boom: In *$WORK_DIR* copy the jar file to a binary folder.
 
 ```
 mkdir -p $WORK_DIR/binaries
 cp $LAB_DIR/labs/lab-3/lab-files/binaries/example-jaxrs-war-swarm.jar $WORK_DIR/binaries
 ```
 
-Create the rest of the structure for creating the playbook. You can use the Ansible Galaxy init functionality to easily create a template for your new role.
+:boom: Create the rest of the structure for creating the playbook. Use the Ansible Galaxy init functionality to easily create a template for your new role. Run below commands:
 
 ```
 cd $WORK_DIR
 ansible-galaxy init roles/wildflyapp
 ```
-This will create a full structure for the WildFly role named *wildflyapp*. In the folder *$WORK_DIR/roles/wildflyapp/tasks* there is a file named main.yml. This file will contain the tasks needed to configure the WildFly application on the server. Add the nessicary tasks to install WildFly by pasting in below in a terminal:
+This will create a full structure for the WildFly role named *wildflyapp*. In the folder *$WORK_DIR/roles/wildflyapp/tasks* there is a file named main.yml. This file will contain the tasks needed to configure the WildFly application on the server.
+
+:boom: Add the nessicary tasks to install WildFly by pasting in below in a terminal:
 
 ```
 cat << 'EOF' >$WORK_DIR/roles/wildflyapp/tasks/main.yml
@@ -62,7 +64,9 @@ cat << 'EOF' >$WORK_DIR/roles/wildflyapp/tasks/main.yml
 EOF
 ```
 
-As you can see, starting a WildFly Swarm application is pretty simple. There is no need for a 1 GB app server with a million dependencies here. We only need to copy the jar file to the server, create a service script and run the application. But before we can start our application, we need to create the service script to be copied to the server. To do so, create a new file named *wildflyapp.service* at location *$WORK_DIR/roles/wildflyapp/files/*. Put the following content in the file:
+As you can see, starting a WildFly Swarm application is pretty simple. There is no need for a 1 GB app server with a million dependencies here. We only need to copy the jar file to the server, create a service script (which starts and stops the wildfly) and run the application. But before we can start our application, we need to create the service script to be copied to the server. 
+
+:boom: To do so, create a new file named *wildflyapp.service* at location *$WORK_DIR/roles/wildflyapp/files/*.  Put the following content in the file:
 
 ```
 [Unit]
@@ -84,7 +88,7 @@ LimitNOFILE=5555
 WantedBy=multi-user.target
 ```
 
-Finally you need to apply the newly created role to your *wildflyservers* group. In dir *$WORK_DIR* create a playbook named *site.yml*. Put the following content into the file:
+:boom: Finally you need to apply the newly created role to your *wildflyservers* group. In dir *$WORK_DIR* create a playbook named *site.yml*. Put the following content into the file:
 
 ```
 ---
@@ -101,7 +105,7 @@ As you can see we now include the role *wildflyapp* for all *wildflyservers*. Pl
 ```
 This is because we need a bit more access in order to install software and enable services. This line means that Ansible will (in this case) call upon a software called sudo running on the target systems, to gain admin access when running these tasks. To read more about your ability to control privledge escalation, go here: https://docs.ansible.com/ansible/latest/user_guide/become.html
 
-With this said, you can run the playbook with the command:
+:boom: With this said, now run the playbook with the command:
 
 ```
 ansible-playbook -i hosts site.yml
@@ -116,7 +120,7 @@ wildfly2                   : ok=8    changed=5    unreachable=0    failed=0
 
 Ansible should complete with no errors. You should see the changes applied to both WildFly Swarm servers.
 
-You can now access the service at the address *http://$HOSTNAME:8080*, where *$HOSTNAME* points to one of the servers mentioned in the play recap. Try it out by running below command:
+:boom: You can now access the service at the address *http://$HOSTNAME:8080*, where *$HOSTNAME* points to one of the servers mentioned in the play recap. Try it out by running below command:
 
 ```
 curl http://111.222.333.444:8080
@@ -140,7 +144,7 @@ This is pretty cool, by using the simple role you just created, people can now g
       name: wildflyapp
 ```
 
-Now, try running the playbook again. This time you'll get a different output:
+:boom: Now, try running the playbook again. This time you'll get a different output:
 
 ```
 PLAY RECAP ****************************************************************
