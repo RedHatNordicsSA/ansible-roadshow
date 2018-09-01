@@ -5,6 +5,7 @@ Hello and welcome. In this lab, we use some basic graphics to make the lab easie
 :boom: There is something here which you have to do.\
 :star: If you have time, you can also do this.\
 :exclamation: Take careful notice of this.
+:thumbsup: This text contains information about a best practice
 ```
 Here is some code that you need to run
 ```
