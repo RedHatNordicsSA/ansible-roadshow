@@ -113,13 +113,13 @@ Source branch allows you to choose which branch you would like to merge to the t
 You will now get redirected to the page which overviews your merge(pull) request. Here you can use the comment function displayed in the 'Discussions' tab to collaborate with other people.
 Perhaps your change needs a code review or you need some advise on how to solve a specific problem? The 'Commits' and 'Changes' allow you to overview all changes made into your newly created branch.
 
-![Accept merge](../../content/images/gitlab_accept_merge2.png)
-
-:boom: Explore the 'Discussions' feature and try add yet another change to your playbook and review how all your changes are visible on the merge(pull) request page.
+:boom: Before you press 'Merge'. Explore the 'Discussions' feature and try add yet another change to your playbook and review how all your changes are visible on the merge(pull) request page.
 
 The merge(pull) request has yet another function, which is to allow someone else than you to approve changes, before they get copied into your master branch. Normally, not everyone have rights to accept merge(pull) request which will copy all your changes into the master branch from this temporary branch where you do your work.
 
-:boom: In this case, accept the absolutely terrific changes that you've made.
+:boom: In this case, accept the absolutely terrific changes that you've made and press the Merge button.
+
+![Accept merge](../../content/images/gitlab_accept_merge2.png)
 
 After the merge(pull) request has been accepted on the main page of the project you will se the merge as commit to the main branch of the project:
 
@@ -127,12 +127,11 @@ After the merge(pull) request has been accepted on the main page of the project 
 
 Again. The reason why you delete your branch afterwards is because that allows people to see when work has been completed.
 
+:star: If you want to try out the basics of git, go here: https://try.github.io and complete the excersises.
 
 ```
 End of lab
 ```
-
-:star: If you want to try out the basics of git, go here: https://try.github.io and complete the excersises.
 
 [Go to the next lab, lab 7](../lab-7/README.md)
 
