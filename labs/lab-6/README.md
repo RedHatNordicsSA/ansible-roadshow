@@ -54,8 +54,6 @@ If you are using GitHub (you are not, chapter under construction), follow the in
  [Working with your playbooks on GitHub](#working-with-your-playbooks-on-github)
 
 # Working with your playbooks on GitLab
-This is for students who use GitLab, which is part of the lab environment.
-
 :boom: First step, with your web browser, go to the GitLab server: https://$gitlab_server and login with gitlab user and the password provided to you at the start of the lab. 
 
 GitLab is an open core software which provides both provides a git server and a place where you can collaborate easily around the code put in git.
