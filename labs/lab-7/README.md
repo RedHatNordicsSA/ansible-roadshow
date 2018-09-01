@@ -25,6 +25,26 @@ Ansible Tower allows you to share access safely to other people via it's web GUI
 :boom: Click the _SYSTEM_ tab and then click on _REVERT_ just above of _* BASE URL OF THE TOWER HOST_. When you click _REVERT_ please notice that the IP-address changes to that of your Ansible Tower server, indicated in your browser window, then click _SAVE_, as shown below.
 ![Base URL, step 2](../../content/images/base-url2.png)
 
+:boom: Next, go to your terminal and run the below command:
+```
+sudo ansible-tower-service restart
+```
+
+The output should look like below:
+```
+[student@ip-172-31-17-130 work]$ sudo ansible-tower-service restart
+Restarting Tower
+Redirecting to /bin/systemctl stop postgresql-9.6.service
+Redirecting to /bin/systemctl stop rabbitmq-server.service
+Redirecting to /bin/systemctl stop nginx.service
+Redirecting to /bin/systemctl stop supervisord.service
+Redirecting to /bin/systemctl start postgresql-9.6.service
+Redirecting to /bin/systemctl start rabbitmq-server.service
+Redirecting to /bin/systemctl start nginx.service
+Redirecting to /bin/systemctl start supervisord.service
+[student@ip-172-31-17-130 work]$
+```
+
 Now that your Tower server is all well, what we'll do first is to create an inventory in Ansible Tower, an inventory is a collection of hosts you can run playbooks against in Tower; just like your *hosts* file in the previous examples. Inventories are assigned to organizations, while permissions to launch playbooks against inventories are controlled at the user, team or playbook level.
 
 Create an inventory called "workshop-inventory" by following the instructions below.
