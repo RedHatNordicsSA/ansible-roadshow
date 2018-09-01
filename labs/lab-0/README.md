@@ -17,6 +17,8 @@ Here is an example of expected output when running commands
 
 :exclamation: To get started with the labs, you first needs to get your assigned username and servers. This will be provided to you by the people who operates this lab. 
 
+:exclamation: Do not skip any labs, the labs depends on the previous ones to be completed. You need to do them in order, 0-10.
+
 :boom: Make sure you have the required tools to do the lab. The tools are listed below:
 * An SSH client. On Linux and Mac, use the native ssh client in a terminal. On Windows, you can use PuTTy https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) if nothing else is available.
 * A web browser. Ansible Tower officially supports latest version of Firefox and Chrome, so if you bump into any issues, try one of those web browsers.
