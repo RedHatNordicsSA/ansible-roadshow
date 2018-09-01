@@ -115,8 +115,7 @@ Another useful feature of Ansible is the PLAY RECAP. Here you can see how runnin
 
 :star: Try changing the ping message to 'crash'. What happens? HINT:
 1. Look in the [source code for the ping module](https://github.com/ansible/ansible-modules-core/blob/devel/system/ping.py)
-2. Do appropriate change in ping.yml and run the playbook again.
-:boom: Warning, it may look messy, but don't worry, that's expected.
+2. Do appropriate change in ping.yml and run the playbook again. It may look like an exception, but don't worry, that's expected, read the code...
 
 ```
 End of lab
