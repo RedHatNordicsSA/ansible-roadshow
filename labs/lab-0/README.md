@@ -4,7 +4,13 @@ Hello and welcome. In this lab, we use some basic graphics to make the lab easie
 
 :boom: There is something here which you have to do.\
 :star: If you have time, you can also do this.\
-:exclamation: :exclamation: Take careful notice of this. :exclamation: :exclamation:
+:exclamation: Take careful notice of this.
+```
+Here is some code that you need to run
+```
+```
+Here is an example of expected output when running commands
+```
 
 :exclamation: To get started with the labs, you first needs to get your assigned username and servers. This will be provided to you by the people who operates this lab. 
 
