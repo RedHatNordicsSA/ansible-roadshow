@@ -115,6 +115,18 @@ Once you have the access token on your clipboard, copy it to gitlab_token -varia
 This will copy the content of the workshop from GitHub to your Gitlab server and create as many user accounts as you have Ansible tower systems.
 Users will be named ```student1``` to ```studentX``` and password for the student accounts will be ```redhat123```.
 
+## Installation of Ansible Tower
+The installation of Ansible Tower is completely automatic. If you need to know how the automatic installation happens, read up on: https://github.com/mglantz/ansible-roadshow/blob/master/content/scripts/tower-prep.sh
+
+The tower-prep.sh script dumps an inventory (tower-inventory) and a playbook (tower-install.yml) /root. The tower-install.yml playbook is what installs Tower. 
+
+The reason for this is because fetching the script from GitHub is unreliable when doing large lab environments. Also, it hard codes against this repository, which makes testing branches a nightmare.
+
+After tower-prep.sh has dropped the playbook and the inventory, the installation is then run at the end of tower-prep.sh like so:
+```
+ansible-playbook -i /root/tower-inventory /root/tower-install.yml
+```
+
 ## Delete all resources after doing labs
 
 __Beware this might leave something out, do check yourself from your AWS account__
