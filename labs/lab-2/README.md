@@ -110,6 +110,7 @@ ansible-playbook -i hosts ping.yml
       msg: "Return value from ping is '{{ping_answer.ping}}'"
 ```
 
+:boom: And run the playbook again by running below command:
 ```
 ansible-playbook -i hosts ping.yml
 ```
