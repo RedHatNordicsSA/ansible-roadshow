@@ -1,7 +1,8 @@
 ---
-- hosts: all
+- name: Ping all servers
+  hosts: all
   tasks:
-  - name: Call the ping module
+  - name: Ping a server using the ping module
     ping:
       data: pong from Ansible
     register: ping_answer
