@@ -166,7 +166,9 @@ To https://ec2-52-57-173-62.eu-central-1.compute.amazonaws.com/student1/student1
 $
 ```
 
-:boom: Now, login to the Ansible Tower server using your web browser on with the url and username/password provided to you by the instructor.
+:boom: Now, login to the Ansible Tower server using your web browser on with the url and username/password provided to you by the instructors.
+
+:exclamation: If you are still logged in as your unpriviledged workshop-guest user, you will not see anything ;) Login back as with the credentials provided to you by the instructors.
 
 :boom: You created a project in Ansible Tower in **lab 7**. Let's go to the Project tab and issue a sync of that project, as there is quite a lot of new stuff there now (all playbooks and roles you added from /home/student/work).
 
