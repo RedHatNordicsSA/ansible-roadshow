@@ -1,4 +1,4 @@
-# Testing Ansible playbooks
+#  :thumbsup: Testing Ansible playbooks
 
 In order to handle Ansible as code you need to do testing. Without testing, there is no way that you can keep your main git branch releasable.
 It's neither possible for you to keep up the quality of your code or to scale out the usage of Ansible, as without proper testing, less people can contribute.
@@ -6,6 +6,10 @@ It's neither possible for you to keep up the quality of your code or to scale ou
 Take the time to apply this basic 5 step framework for testing your Ansible.
 
 A basic framework for Ansible testing is:
+
+```
+START OF TEST FRAMEWORK
+```
 
 1. Verify syntax
 ```
@@ -79,10 +83,10 @@ curl http://wildfly1
 ```
 
 ```
-Lab exercise below
+END OF TEST FRAMEWORK
 ```
 
-1. Let's apply above test framework on below playbook. Create a new playbook $WORK_DIR/problem.yml by copying below code into your terminal:
+:boom: Let's apply above test framework on below playbook. Create a new playbook $WORK_DIR/problem.yml by copying below code into your terminal:
 ```
 cd $WORK_DIR
 cat << 'EOF' >problem.yml
@@ -97,19 +101,19 @@ cat << 'EOF' >problem.yml
 EOF
 ```
 
-2. Use the testing framework your learned and fix all issues in the above playbook. The playbook should pass all steps of this test framework to be deemed OK for production. Output such as below, can be ignored.
+:boom: Use the testing framework your learned and fix all issues in the above playbook. The playbook should pass all steps of this test framework to be deemed OK for production. Output such as below, can be ignored.
 ```
 [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match
 'all'
 ```
-:boom: _Hint_: Have a look at other available modules, listed here: https://docs.ansible.com/ansible/latest/modules/modules_by_category.html
+ :exclamation: Have a look at other available modules, listed here: https://docs.ansible.com/ansible/latest/modules/modules_by_category.html and how to use them in a playbook.
 
-If you get stuck or want to compare with your _fixed_ playbook, have a look here at a problem free version of the playbook:
+ :exclamation: If you get stuck or want to compare with your _fixed_ playbook, have a look here at a problem free version of the playbook:
 https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-9/lab-files/problem-free.yml
 
-3. As an optional exercise, if you have time, create a single script which implements the testing framework and which can be run on arbitrary playbooks. Use any language you like.
+:star: As an optional exercise, if you have time, create a single script which implements the testing framework and which can be run on arbitrary playbooks. Use any language you like.
 
-> :boom: The testing practice is to integrate testing into your development pipeline for Ansible playbooks. Ensure that when your code merges, it's always tested. If you are interested in how this can be done using Jenkins and Ansible Tower, have a look here:
+:star: The testing practice is to integrate testing into your development pipeline for Ansible playbooks. Ensure that when your code merges, it's always tested. If you are interested in how this can be done using Jenkins and Ansible Tower, have a look here:
 https://github.com/mglantz/tomcat-playbook/
 
 ```
