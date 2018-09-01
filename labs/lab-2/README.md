@@ -81,7 +81,8 @@ Example playbook to install a Tomcat application server:
 ```
 cat << 'EOF' >$WORK_DIR/ping.yml
 ---
-- hosts: all
+- name: Ping all servers
+  hosts: all
   tasks:
   - name: Call the ping module
     ping:
@@ -99,7 +100,8 @@ ansible-playbook -i hosts ping.yml
 
 ```
 ---
-- hosts: all
+- name: Ping all servers
+  hosts: all
   tasks:
   - name: Call the ping module
     ping:
@@ -120,19 +122,19 @@ This will result in the following output:
 ```
 $ ansible-playbook -i hosts ping.yml
 
-PLAY [all] *************************************************************************************************************
+PLAY [Ping all servers] *****************************************************
 
-TASK [Gathering Facts] *************************************************************************************************
-ok: [wildfly1]
+TASK [Gathering Facts] ******************************************************
 ok: [wildfly2]
+ok: [wildfly1]
 ok: [loadbalancer1]
 
-TASK [Call the ping module] ********************************************************************************************
+TASK [Call the ping module] *************************************************
 ok: [wildfly2]
-ok: [loadbalancer1]
 ok: [wildfly1]
+ok: [loadbalancer1]
 
-TASK [Output the value of the ping answer] *****************************************************************************
+TASK [Output the value of the ping answer] **********************************
 ok: [loadbalancer1] => {
     "msg": "Return value from ping is 'pong from Ansible'"
 }
@@ -143,10 +145,12 @@ ok: [wildfly2] => {
     "msg": "Return value from ping is 'pong from Ansible'"
 }
 
-PLAY RECAP *************************************************************************************************************
+PLAY RECAP *****************************************************************
 loadbalancer1              : ok=3    changed=0    unreachable=0    failed=0   
 wildfly1                   : ok=3    changed=0    unreachable=0    failed=0   
 wildfly2                   : ok=3    changed=0    unreachable=0    failed=0   
+
+ 
 ```
 
 Now you can see the output from the ping module. Nice! Return values are useful for a lot of things.\
