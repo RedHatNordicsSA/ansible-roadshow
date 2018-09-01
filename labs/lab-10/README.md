@@ -8,7 +8,7 @@ To reiterate, modules are Ansible's tools in a toolbox. Ansible playbooks calls 
  ![Playbooks calls upon modules](../../content/images/modules.png)
 
 ## Should you develop a module?
-The first thing you should ask yourself when developing an Ansible module is, should you develop a module? Before you get started on development, walk through this little checklist.
+thumbsup: The first thing you should ask yourself when developing an Ansible module is, should you develop a module? Before you get started on development, walk through this little checklist.
 
 * Does a similar module exist?
 See: http://docs.ansible.com/ansible/latest/modules/modules_by_category.html
@@ -45,9 +45,6 @@ Modules can be written in any language an author wishes, they just need to speci
 4. Module Replacer/Ansiballz - Preprocessors which does substitutions of specific substring patterns in the module file. Read more here: https://docs.ansible.com/ansible/latest/dev_guide/developing_program_flow_modules.html#module-replacer
 5. Passing arguments - module arguments are turned into a JSON-ified string and passed to the module.
 6. Internal arguments - parameters which implements global features. Often you do not need to know about these.
-
-# Writing your first Ansible modules
-You're now stuffed with some good to know information and are soon ready to write your first Ansible modules. At the end of this chapter you will have written two simple Ansible modules which you can extend with arbitrary functionality to fit your real world use case.
 
 ## Module writing strategies
 There are three different strategies when writing Ansible modules, each one with some different pros and cons.
@@ -90,17 +87,20 @@ _CONs:_
 Having to know the API and extra maintenance work for the module.
 ```
 
+# :boom: Writing your first Ansible modules
+You're now stuffed with some good to know information and are soon ready to write your first Ansible modules. At the end of this chapter you will have written two simple Ansible modules which you can extend with arbitrary functionality to fit your real world use case.
+
 ## Develop a module (Wrap CLI, non-native)
 Our first module will simply wrap a CLI command (_touch_). It will be non-native, meaning that it will receive it's arguments in a separate arguments file as the first argument passed to the module. The arguments file will be using a key=value format. Wrapping CLI commands is as stated simple, but is in general less robust and may provide limited value compared to the _command_ or _shell_ modules. Please keep in mind that Ansible modules can be written in any language, to make it as simple as possible, this example in written in BASH script.
 
-First, let's create a directory in which we'll develop the module.
+:boom: First, let's create a directory in which we'll develop the module.
 ```
 cd
 mkdir new-module
 cd new-module
 ```
 
-Secondly, let's create a simple module using Bourne Again SHell (BASH) script. We start with the most simple version of this module, create it by pasting below content into your terminal:
+:boom: Secondly, let's create a simple module using Bourne Again SHell (BASH) script. We start with the most simple version of this module, create it by pasting below content into your terminal:
 ```
 cat << 'EOF' >new_module
 #!/bin/sh
@@ -116,13 +116,13 @@ exit 0
 EOF
 ```
 
-Next, copy the module into the module directory.
+:boom: Next, copy the module into the module directory.
 ```
 mkdir -p $HOME/.ansible/plugins/modules
 cp new_module  $HOME/.ansible/plugins/modules/
 ```
 
-Now we'll create a playbook to test our module. Create a file called test.yml in your local directory, as follows:
+:boom: Now we'll create a playbook to test our module. Create a file called test.yml in your local directory, as follows:
 ```
 cat << 'EOF' >test.yml
 - hosts: localhost
@@ -133,7 +133,7 @@ cat << 'EOF' >test.yml
 EOF
 ```
 
-Now let's test our module.
+:boom: Now let's test our module.
 ```
 ansible-playbook -vv ./test.yml
 ```
@@ -169,31 +169,33 @@ localhost                  : ok=1    changed=1    unreachable=0    failed=0
 $
 ```
 
-Now that we have a working module, let's improve it a bit, handling the case if something goes wrong. Change the module so that it handles the case if it's possible to create a file containing the input passed to it. Create some exception handling in the module and if you detect a failure, output:
+Now that we have a working module, let's improve it a bit, handling the case if something goes wrong. Change the module so that it handles the case if it's possible to create a file containing the input passed to it. 
+
+:boom: Create some exception handling in the module and if you detect a failure, output:
 ```
 echo {\"failed\": true, \"msg\": \"${msg}\"}
 ```
-* If you get stuck, have a look at a solution here:
+:exclamation: If you get stuck, have a look at a solution here:
 https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-10/lab-solutions/module-v2.sh
 
-Re-run your test.yml playbook to ensure your modifications work, then you can try and replace _/tmp/module-arguments_ in the module to _/tmp/doesnotexist/module-arguments_ to cause it to fail. Then change it back to _/tmp/module-arguments_
+:boom: Re-run your test.yml playbook to ensure your modifications work, then you can try and replace _/tmp/module-arguments_ in the module to _/tmp/doesnotexist/module-arguments_ to cause it to fail. Then change it back to _/tmp/module-arguments_
 
-Next step is to create a simple check if the _/tmp/module-arguments_ file already exists and then return JSON output with _changed: false_. Remember that idempotency is key in Ansible, so ofcourse we want our module to be idempotent.
+:boom: Next step is to create a simple check if the _/tmp/module-arguments_ file already exists and then return JSON output with _changed: false_. Remember that idempotency is key in Ansible, so ofcourse we want our module to be idempotent.
 
-* If you get stuck, have a look at a solution here:
+:exclamation: If you get stuck, have a look at a solution here:
 https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-10/lab-solutions/module-v3.sh
 
 ## Develop a module (binary, non-native)
 The next module we'll develop is a binary module. Like we've said, you can develop Ansible modules in any language. Benefits of using a compiled binary module could be performance or containing dependencies. We'll write out simple binary module in C.
 
-First, let's create a directory in which we'll develop the module.
+:boom: First, let's create a directory in which we'll develop the module.
 ```
 cd
 mkdir binary-module
 cd binary-module
 ```
 
-Then we'll create a simple module, which creates a file and then prints success. Create the file _binary_module.c_ by pasting in below content into your terminal:
+:boom: Then we'll create a simple module, which creates a file and then prints success. Create the file _binary_module.c_ by pasting in below content into your terminal:
 
 ```
 cat << 'EOF' >binary_module.c
@@ -207,17 +209,17 @@ int main(int argc, char *argv[])
 EOF
 ```
 
-To compile the code, run:
+:boom: To compile the code, run:
 ```
 gcc -o binary_module binary_module.c
 ```
 
-Next, copy the module into the module directory.
+:boom: Next, copy the module into the module directory.
 ```
 cp binary_module $HOME/.ansible/plugins/modules/
 ```
 
-Now we'll create a playbook to test our module. Create a file called _test-binary-module.yml_ in your local directory, as by pasting in below content in your terminal:
+:boom: Now we'll create a playbook to test our module. Create a file called _test-binary-module.yml_ in your local directory, as by pasting in below content in your terminal:
 ```
 cat << 'EOF' >test-binary-module.yml
 - hosts: localhost
@@ -228,7 +230,7 @@ cat << 'EOF' >test-binary-module.yml
 EOF
 ```
 
-Now let's test our module.
+:boom: Now let's test our module.
 ```
 ansible-playbook -vv ./test-binary-module.yml
 ```
@@ -263,9 +265,9 @@ localhost                  : ok=1    changed=1    unreachable=0    failed=0
 ```
 Interestingly enough, we can here observe where the temporary arguments file is put, when running the module.
 
-# More to read
+# :star: More to read
 First of all read the [Ansible Developing Modules](http://docs.ansible.com/ansible/latest/dev_guide/developing_modules.html) page. Especially the 'Should You Develop A Module?' section is relevant:-)
 
-Next follow the steps in https://docs.ansible.com/ansible/2.5/dev_guide/developing_modules_general.html, but skip the section 'Prerequisites Via Apt (Ubuntu)'. This has been done for you. Be aware that we use python2, so ignore python3 stuff.
+Next follow the steps in https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html, but skip the section 'Prerequisites Via Apt (Ubuntu)'. This has been done for you. Be aware that we use python2, so ignore python3 stuff.
 
 For debugging in python refer to [Python documentation for debugger](https://docs.python.org/2/library/pdb.html)
