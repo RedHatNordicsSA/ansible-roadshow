@@ -2,7 +2,9 @@
 
 A challenge when doing larger scale automation is to enable collaboration for people to work on the same pieces of automation together. Luckily for us, programmers has since long solved this issue for us using version handling systems, such as git.
 
-Ansible does not require you to use git version handling, but there are some good reasons why you should familiarize yourself with it.
+Ansible does not require you to use git version handling, but there are some very good reasons why you should familiarize yourself with it.
+
+If you are familair with git, git workflows and modern collaboration platforms such as GitLab, GitHub or etc, you can skip down to the hands on part of this lab, here: [Working with your playbooks on GitLab](#working-with-your-playbooks-on-gitlab)
 
 When you scale out your Ansible usage (aka. automate all things) you’ll have many different teams collaborating, and:
 1. Git was invented to solve common collaboration challenges
@@ -48,7 +50,7 @@ Now, as an exercise you will try out the GitHub workflow. Try to find a friend t
 If you are using the GitLab environment that is setup as a part of the lab environment, follow the instructions below:
  [Working with your playbooks on GitLab](#working-with-your-playbooks-on-gitlab)
 
-If you are using GitHub (not default), follow the instructions below:
+If you are using GitHub (you are not, chapter under construction), follow the instructions below:
  [Working with your playbooks on GitHub](#working-with-your-playbooks-on-github)
 
 # Working with your playbooks on GitLab
@@ -98,7 +100,7 @@ Now let's try the so called GitHub workflow. Which is that when we make a modifi
 
 ![Create merge request](../../content/images/gitlab_merge_request.png)
 
-:thumbsup: A merge requestion (also called pull request) is a place where you can collaborate around ongoing development. It is a good practice to write a brief description of the changes you've done, so that anyone reviewing or collaborating with you doesn't necessarily have to read your code to figure out what was done.
+:thumbsup: A merge request (also called pull request) is a place where you can collaborate around ongoing development. It is a good practice to write a brief description of the changes you've done, so that anyone reviewing or collaborating with you doesn't necessarily have to read your code to figure out what was done.
 
 Once you've written the description for you modifications, at the bottom of the page you will see this:
 
