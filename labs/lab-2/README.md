@@ -129,7 +129,7 @@ ok: [wildfly2]
 ok: [wildfly1]
 ok: [loadbalancer1]
 
-TASK [Call the ping module] *************************************************
+TASK [Ping a server using the ping module] ***********************************
 ok: [wildfly2]
 ok: [wildfly1]
 ok: [loadbalancer1]
