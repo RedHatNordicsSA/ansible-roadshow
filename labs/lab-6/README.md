@@ -88,11 +88,9 @@ Now let's try the so called GitHub workflow. Which is that when we make a modifi
 :boom: On this section you should modify the playbook on the web UI by pushing ```Edit``` -button:
  ![Edit file](../../content/images/gitlab_edit_file.png)
 
-Once you've done some modifications, on the bottom of the page you can see this:
+:boom: Once you've done some modifications, on the bottom of the page you can see below imagery. This section will save your modifications on a separate branch. Do that. By default the setting on __1.__ is master, but you should change it to something different i.e. feature-1
 
 ![Commit changes](../../content/images/gitlab_commit_changes.png)
-
-:boom: This section will save your modifications on a separate branch. Do that. By default the setting on __1.__ is master, but you should change it to something different i.e. feature-1
 
 :thumbsup: What happens is that your change is copied into this new copy of your project, called a branch. As explained before, this is so that you and others can collaborate on this change, without affecting the code in the master branch (copy) of your project. This allows your master branch to be stable, while development is ongoing. This also allows for several people to work on the code in your repository, at the same time.
 
