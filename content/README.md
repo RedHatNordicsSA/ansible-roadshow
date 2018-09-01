@@ -20,7 +20,7 @@ To install Ansible follow [Ansible install guidance](https://docs.ansible.com/an
 Before running the installer, you need to install boto Python modules on your Ansible machine using [the Ansible AWS documentation](http://docs.ansible.com/ansible/latest/scenario_guides/guide_aws.html).
 
 ## Known issues
-When running the installer, a task regarding the GitLab server may fail as shown below, just wait a minute and then re-run the playbook if that is the case.
+* When running the installer, a task regarding the GitLab server may fail as shown below, just wait a minute and then re-run the playbook if that is the case.
 
 ```
 PLAY [setup stuff in Gitlab VMs] ***************************************************************************************
@@ -31,6 +31,19 @@ ECDSA key fingerprint is SHA256:xdDsD7vJe9GFVbxhXe7/xgwpkyQecmL1NJ0F7bR8Zmo.
 Are you sure you want to continue connecting (yes/no)? yes
 fatal: [18.184.66.48]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Warning: Permanently added '18.184.66.48' (ECDSA) to the list of known hosts.\r\nConnection reset by 18.184.66.48 port 22\r\n", "unreachable": true}
 	to retry, use: --limit @/path/to/ansible-roadshow/content/provision-all.retry
+```
+
+* When doing repeated setups of brand new environments, gitlab server install fails due to gitlab_server.out contains old values. Solve problem by removing old entries.
+
+Playbook fails as such:
+```
+TASK [Create project] **************************************************************************************************
+fatal: [localhost]: FAILED! => {"changed": false, "msg": "Invalid header value 'ec2-52-57-173-62.eu-central-1.compute.amazonaws.com\\nhttps:'"}
+	to retry, use: --limit @/path/to/ansible-roadshow/content/gitlab-setup.retry
+
+PLAY RECAP *************************************************************************************************************
+localhost                  : ok=2    changed=0    unreachable=0    failed=1   
+
 ```
 
 ## Set parameters to Ansible variables file
