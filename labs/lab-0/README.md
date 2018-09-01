@@ -36,8 +36,15 @@ Use below links as reference when needed. For now, continue on:
 * **nano**: https://wiki.gentoo.org/wiki/Nano/Basics_Guide
 * **vi/vim**: https://vim.rtorr.com/ 
 
-:boom: Log in as the **student** user on your assigned Ansible Tower server.\
-:boom: Run below command to pull the code to your system:
+:boom: Using your SSH client, log in as the **student** user on your assigned Ansible Tower server.\
+On Linux/Mac/Windows with shell:
+```
+$ ssh student@IP-ADDRESS-OF-TOWER-SERVER
+```
+On Windows with PuTTy, see this link:\
+https://mediatemple.net/community/products/dv/204404604/using-ssh-in-putty-
+
+:boom: Once logged in, run below commands to pull this repository to your system:
 ```
 cd
 git clone https://github.com/mglantz/ansible-roadshow.git
