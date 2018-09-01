@@ -1,8 +1,10 @@
 # Handling Secrets with Ansible Vault
 
-Most applications have secret properties, which mustn't be shown for every person, working with the playbooks. The application you're working with is no exception, so you've been asked to set a environment variable named *SECRET_NAME* on the WildFly application servers for the application to work properly - and that environment variable needs to be encrypted. Fortunately for you, this is pretty easy with Ansible.
+Most applications have secret properties, which must not be shown to every person working with the playbooks. The application you're working with is no exception, so you've been asked to set a environment variable named *SECRET_NAME* on the WildFly application servers for the application to work properly - and that environment variable needs to be encrypted. Fortunately for you, this is pretty easy with Ansible.
 
-With Ansible you can encrypt any part of your playbooks or property files. Once the content or files has been encrypted, the content is unreadable. Ansible uses strong 256 bit symmetric encryption. This has one unwanted effect, which is that you'll then be unable to search for the property. Therefore it's considered best practise to have an unencrypted file refer to the encrypted file. Below, we're going to put our secret information into a a file named **$WORK_DIR/group_vars/dev/wildflyservers/vault.yml** and refer to it from a file called **$WORK_DIR/group_vars/dev/wildflyservers/vars.yml**. This is achieved with below following steps. In your terminal, run:
+:thumbsup: With Ansible you can encrypt any part of your playbooks or property files. Once the content or files has been encrypted, the content is unreadable. Ansible uses strong 256 bit symmetric encryption to do this. This has one unwanted effect, which is that you'll then be unable to search for the property. Therefore it's considered best practise to have an unencrypted file refer to the encrypted file. 
+
+:boom: Now we're going to put our secret information into a a file named **$WORK_DIR/group_vars/dev/wildflyservers/vault.yml** and refer to it from a file called **$WORK_DIR/group_vars/dev/wildflyservers/vars.yml**. This is achieved with below following steps. In your terminal, run:
 
 ```
 mkdir -p $WORK_DIR/group_vars/dev/wildflyservers
@@ -10,7 +12,9 @@ echo 'secret_name: "{{ vault_secret_name }}"' > $WORK_DIR/group_vars/dev/wildfly
 echo 'vault_secret_name: Red Hat' > $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
 ```
 
-As you can see, some refactoring has been done to ensure that it is possible to use different configurations for different environments. This is achieved by having different environment folders in the *group_vars* directory. In this case a dev profile is created by adding dev specific settings to the folder *$WORK_DIR/group_vars/dev/*. Servers can belong to several groups, so in the **$WORK_DIR/hosts** file we will now add the group *dev* with all servers listed. Change the content of **$WORK_DIR/hosts** so that it looks like below:
+As you can see, some refactoring has been done to ensure that it is possible to use different configurations for different environments. This is achieved by having different environment folders in the *group_vars* directory. In this case a dev group variable file is created by adding specific settings in the folder *$WORK_DIR/group_vars/dev/*. 
+
+:boom: Servers can belong to several groups, so in the **$WORK_DIR/hosts** file we will now add the group *dev* with all servers listed. Change the content of **$WORK_DIR/hosts** so that it looks like below:
 
 ```
 [lbservers]
@@ -26,17 +30,17 @@ wildfly1 ansible_host=yyy.yyy.yyy.yyy
 wildfly2 ansible_host=zzz.zzz.zzz.zzz
 ```
 
->As before, change xxx.yyy.zzz to the IP-addresses assigned to you.
+ :exclamation: As before, change xxx.yyy.zzz to the IP-addresses assigned to you.
 
 Now Ansible will include all variables defined in *$WORK_DIR/group_vars/dev/* for the servers listed, each time the playbook is run.
 
-Finally let's encrypt the vault file, which contains our secret. Please note that you will be prompted for a password, it's important that you remember which password to choose. In the prompt write:
+:boom: Finally let's encrypt the vault file, which contains our secret. Please note that you will be prompted for a password, it's important that you remember which password to choose. In the prompt write:
 
 ```
 ansible-vault encrypt $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
 ```
 
-Have a look at the content of the file by running below command.
+:boom: Have a look at the content of the file by running below command.
 ```
 cat $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
 ```
@@ -52,9 +56,11 @@ $ANSIBLE_VAULT;1.1;AES256
 $
 ```
 
-Enter a password of your choice when prompted and **remember the password**. This will encrypt your newly created file. Take a look at the content to ensure that it has in fact been encrypted. Without the password, you will not be able to access the encrypted information.
+:exclamation: Enter a password of your choice when prompted and **remember the password**. This will encrypt your newly created file. Without the password, you will not be able to access the encrypted information.
 
-Last step is to add the newly created variable as an environment variable to the playbook for the WildFly app role. At the same time we'll make some other changes. It's considered best practise to only set the environment variable locally for the wildflyapp service. Thus we are required to change the service script file from a static file to a template file in order to be able to change the secret name. Furthermore we want to restart the WildFly service in order to ensure that the service is restarted in case there are changes in the jar file or in the configuration. To do so, change the content of *$WORK_DIR/roles/wildflyapp/tasks/main.yml* to the following:
+Last step is to add the newly created variable as an environment variable to the playbook for the WildFly app role. At the same time we'll make some other changes. It's considered best practise to only set the environment variable locally for the wildflyapp service. Thus we are required to change the service script file from a static file to a template file in order to be able to change the secret name. Furthermore we want to restart the WildFly service in order to ensure that the service is restarted in case there are changes in the jar file or in the configuration. 
+
+:boom: To do so, change the content of *$WORK_DIR/roles/wildflyapp/tasks/main.yml* to the following:
 
 ```
 ---
@@ -95,15 +101,15 @@ Last step is to add the newly created variable as an environment variable to the
   when: jar_file_copy.changed or service_script_create.changed
   no_log: true
 ```
->Notice the addition of no_log to ensure that no details about our secret is logged.
+:thumbsup: Notice the addition of no_log to ensure that no details about our secret is logged.
 
-Rename the service script to reflect that it is now a template file:
+:boom: Rename the service script to reflect that it is now a template file:
 
 ```
 mv $WORK_DIR/roles/wildflyapp/files/wildflyapp.service $WORK_DIR/roles/wildflyapp/templates/wildflyapp.template
 ```
 
-Change the content of the service script file to include our secret. *$WORK_DIR/roles/wildflyapp/templates/wildflyapp.template* should now have the below content:
+:boom: Change the content of the service script file to include our secret. *$WORK_DIR/roles/wildflyapp/templates/wildflyapp.template* should now have the below content:
 
 ```
 [Unit]
@@ -128,12 +134,12 @@ WantedBy=multi-user.target
 
 As you can see the secret name is added to the template.
 
-To run the playbook with your vault, you'll be required to give Ansible your password. Do so by creating a file named *.mypassword* and put the password in the file. You can do so by running below command in your terminal:
+:boom: To run the playbook with your vault, you'll be required to give Ansible your password. Do so by creating a file named *.mypassword* and put the password in the file. You can do so by running below command in your terminal:
 ```
 echo "mypass123" >$WORK_DIR/mypassword
 ```
 
-Then run Ansible with the following command:
+:boom: Then run Ansible with the following command:
 
 ```
 cd $WORK_DIR
@@ -147,7 +153,7 @@ wildfly1                   : ok=8    changed=3    unreachable=0    failed=0
 wildfly2                   : ok=8    changed=3    unreachable=0    failed=0
 ```
 
-And you should now be able to access the url of loadbalancer1 by running _curl_ again, as shown below:
+:boom: And you should now be able to access the url of loadbalancer1 by running _curl_ again, try it, as shown below:
 ```
 $ curl -w '\n' http://18.184.24.113/
 Howdy from Red Hat at 2018-08-31T08:45:38.084Z (from ip-172-31-25-165.eu-central-1.compute.internal)
@@ -155,16 +161,16 @@ $ curl -w '\n' http://18.184.24.113/
 Howdy from Red Hat at 2018-08-31T08:45:39.489Z (from ip-172-31-28-91.eu-central-1.compute.internal)
 ```
 
-and observe your changes. Hint, you are no longer getting an anonymous greeting.
+Observe the changes. Hint, you are no longer getting an anonymous greeting.
 
->The observant student will note that there are some poor design choices in the above approach. Please correct the errors.
+:star: The observant student will note that there are some poor design choices in the above approach. Please correct the errors.
 
 Hint:
 * What did you learn about handlers in previous session?
 * Does above solution use handlers appropriately?
 * Is the when clause in above solution the best approach?
 
-Consider how you would handle a test environment with the *SECRET_NAME* of 'Red Hat (test)'.
+:star: Consider how you would handle a test environment with the *SECRET_NAME* of 'Red Hat (test)'.
 
 ```
 End of lab
