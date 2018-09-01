@@ -24,10 +24,8 @@ Here is an example of expected output when running commands
 * A web browser. Ansible Tower officially supports latest version of Firefox and Chrome, so if you bump into any issues, try one of those web browsers.
 
 :boom: Review the overview of the lab environment. Most importantly, the Ansible Tower server is from where all the labs are done.
-```
-PLEASE NOTE
-DO NOT execute any of the labs from your local laptop.
-```
+
+:exclamation: PLEASE NOTE. DO NOT execute any of the labs from your local laptop.
 
 ![Overview of lab environment](../../content/images/overview.png)
 
