@@ -7,7 +7,7 @@ _This lab is maintained by Red Hat's Nordics Solution Architect team._
 Estimated time to complete this lab is 6-8 hours.
 ```
 
-:boom: Some basic advise; This lab is not about doing it as fast as possible. It's about learning. Take your time to read the labs properly.
+:exclamation: Some basic advise; This lab is not about doing it as fast as possible. It's about learning. Take your time to read the labs properly.
 
 This lab is an open source (GPL 3.0) project, so if you find any problems with it, feel free to open up an issue or send a pull request. **_For information about installing this lab, go to the bottom of this page_.**
 
@@ -24,10 +24,9 @@ The lab includes information about:
 * Ansible Tower basics
 * How to test your Ansible playbooks and roles
 
-```
-BELOW is an overview of the labs. This is for the students in the lab.
-Start at 0 and go forward to 10. The labs depends on each other, so don't skip stuff.
-```
+**BELOW is an overview of the labs. This is for the students in the lab.**
+:exclamation: Start at 0 and go forward to 10. The labs depends on each other, so don't skip stuff.
+
 
 0. [Getting started](labs/lab-0/README.md)
 
