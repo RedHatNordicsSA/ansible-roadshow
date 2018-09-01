@@ -1,4 +1,4 @@
-**BELOW is an overview of the labs.**
+**BELOW is an overview of the labs.**\
 :exclamation: Start at 0 and go forward to 10. The labs depends on each other, so don't skip stuff.
 
 0. [Getting started](lab-0/README.md)
