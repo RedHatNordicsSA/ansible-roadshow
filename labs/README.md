@@ -1,10 +1,13 @@
-Overview of labs:
+**BELOW is an overview of the labs.**
+:exclamation: Start at 0 and go forward to 10. The labs depends on each other, so don't skip stuff.
 
-1. [Getting Started](lab-1/README.md)
+0. [Getting started](lab-0/README.md)
+
+1. [Ansible basics](lab-1/README.md)
 
 2. [Writing Your First Playbook](lab-2/README.md)
 
-3. [Writing the WildFly Playbook](lab-3/README.md)
+3. [Writing the Wildfly Playbook](lab-3/README.md)
 
 4. [Writing the Load Balancer Playbook](lab-4/README.md)
 
@@ -14,7 +17,7 @@ Overview of labs:
 
 7. [Introducing Ansible Tower](lab-7/README.md)
 
-8. [Installing WildFly and Nginx from Ansible Tower](lab-8/README.md)
+8. [Installing wildfly and nginx from Tower](lab-8/README.md)
 
 9. [Testing Ansible playbooks](lab-9/README.md)
 
