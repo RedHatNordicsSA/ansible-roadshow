@@ -8,15 +8,15 @@ In almost all cases, you will use a playbook for automating the management of yo
 
 A playbook can also describe sequences of actions and other process related concerns. The Ansible runtime is the (_state_) engine, which interprets and applies the playbooks to the servers.
 
-Let's try to implement the ping example using a playbook. But before we start, let's details some basic best practices when writing playbooks. We recommend following three guiding principles regarding all Ansible related.
+ :thumbsup: Let's try to implement the ping example using a playbook. But before we start, let's details some basic best practices when writing playbooks. We recommend following three guiding principles regarding all Ansible related.
 
-* Complexity kills productivity (keep it simple, it makes it robust, scalable and easy to maintain)
-* Optimize for readability (makes for easier collaboration, maintenence and makes it more robust)
-* Think declaritively (Ansible is a state engine, do not try to 'code' with playbooks)
+* Complexity kills productivity (keep it simple, it makes it robust, scalable and easy to maintain)\
+* Optimize for readability (makes for easier collaboration, maintenence and makes it more robust)\
+* Think declaritively (Ansible is a state engine, do not try to 'code' with playbooks)\
 
-> When in doubt, always go back to these three principles.
+When in doubt about what to do, always go back to these three principles.
 
-There are several ways you can write a playbook. Looking at the internet, you'll find them all. What we recommend is to use the native YAML syntax. The reason for that is that reading vertically is _easier_ than reading horizontally. Observe below two example where both are valid Ansible, which one do you prefer reading? Which one is easier to scan for a specific value?
+ :thumbsup: There are several ways you can write a playbook. Looking at the internet, you'll find them all. What we recommend is to use the native YAML syntax. The reason for that is that reading vertically is _easier_ than reading horizontally. Observe below two example where both are valid Ansible, which one do you prefer reading? Which one is easier to scan for a specific value?
 
 * Valid syntax
 ```
@@ -36,7 +36,7 @@ There are several ways you can write a playbook. Looking at the internet, you'll
   notify: restart telegraf
 ```
 
-Now, we're ready to create our first playbook. Create a playbook: $WORK_DIR/ping.yml, by pasting below into your terminal: 
+:boom: Now, we're ready to create our first playbook. Create a playbook: $WORK_DIR/ping.yml, by pasting below into your terminal: 
 
 ```
 cat << 'EOF' >$WORK_DIR/ping.yml
@@ -49,13 +49,13 @@ cat << 'EOF' >$WORK_DIR/ping.yml
 EOF
 ```
 
-This will do the same as the previous lab, except the ping message is different. The ping message takes an argument *data*, which is the reply message from the ping module. You can now run the playbook with the command
+:boom: This will do the same as the previous lab, except the ping message is different. The ping message takes an argument *data*, which is the reply message from the ping module. You can now run the playbook with the command
 
 ```
 ansible-playbook -i hosts ping.yml
 ```
 
-Wouldn't it be nice if you could actually see the reply from the ping module? This can be done by using return values combined with the *msg* module. Change the *$WORK_DIR/ping.yml* file to the following
+:boom: Wouldn't it be nice if you could actually see the reply from the ping module? This can be done by using return values combined with the *msg* module. Change the *$WORK_DIR/ping.yml* file to the following
 
 ```
 ---
@@ -108,12 +108,12 @@ wildfly1                   : ok=3    changed=0    unreachable=0    failed=0
 wildfly2                   : ok=3    changed=0    unreachable=0    failed=0   
 ```
 
-Now you can see the output from the ping module. Nice! Return values are useful for a lot of things.
-> Also, isn't it nice to see loadbalancer1 instead of _ec2-18-184-79-97.eu-central-1.compute.amazonaws.com_? :smile:
+Now you can see the output from the ping module. Nice! Return values are useful for a lot of things.\
+Also, isn't it nice to see loadbalancer1 instead of _ec2-18-184-79-97.eu-central-1.compute.amazonaws.com_? :smile:
 
 Another useful feature of Ansible is the PLAY RECAP. Here you can see how running the playbooks went. For now just notice that no state has changed (changed=0 for each server). This is because the ping message never changes state of the server and thus is idempotent. Idempotency is an important concept in Ansible. Idempotency means that the module called will have the same effect on the server, no matter how many times you run it on the server (more about that later).
 
-Try changing the ping message to 'crash'. What happens? HINT:
+:star: Try changing the ping message to 'crash'. What happens? HINT:
 1. Look in the [source code for the ping module](https://github.com/ansible/ansible-modules-core/blob/devel/system/ping.py)
 2. Do appropriate change in ping.yml and run the playbook again.
 :boom: Warning, it may look messy, but don't worry, that's expected.
