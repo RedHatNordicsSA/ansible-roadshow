@@ -61,29 +61,206 @@ if [ ! -d /root/.ssh ]; then
   chmod 600 /root/.ssh
 fi
 
-# Create ssh key
-cat << 'EOF' >/root/.ssh/authorized_keys
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCR/+C0do9cM9edqeG8y81HQHmPAiviI3s2HDhLPMfSZ9iqxwS/2Cpt1TDfVVh+Qoo3mVgSe6Y7jlX6TNeG2aFQfCG33/3l3OZaACheAzJZ+vsL+OnIMT8sdzkqkYPeE5yeuutsDzdPj9a6nr/HIn6/BV2GFHCqxP7NswW7v1q8n56ucMto+GU2Ih0pIkEOIbjdQ83npRtukeTtPBIBVQJY7XI6bnbf7m6dJ5sAKe94EnOCqR3h7p19+mrmDNXi7vnWBFIu6ctfsUXEHDewGny6b3A/UKk5x1EGsIPuZkbdXBKDF9nw39171jldawiEN3XLQbG2mcrZ6l/cVlV8be0D
-EOF
-chmod 600 /root/.ssh/authorized_keys
-
-curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa >/root/.ssh/id_rsa
-curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa.pub >/root/.ssh/authorized_keys
-chmod 600 /root/.ssh/*
-curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/inventory/tower-inventory >/root/tower-inventory
-curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/inventory/inventory >/root/inventory
-curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/tower-install.yml >/root/tower-install.yml
-
-
 useradd student
 echo "RHforum18Pass" | passwd student --stdin
 mkdir /home/student/.ssh
+
+for THEDIR in /home/student/.ssh/id_rsa /root/.ssh/id_rsa; do
+cat << 'EOF' >$THEDIR
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEA0VSEb5QMEOKW8MiEo/UXpKcouoSknmMxgpmRtz6u/5oP3HpB
+4YFkUqhTjNdwLCs0eo4khVO9/on0EjNIPKIt0febBQ2OEHhl2rLc4kN2h1IqONGL
+XhP5VAA2kcgcu8No5p7tPrHt4yvMMpqtjMGhW07THlAbzITr7rnYbxtXAf83B9Ey
+52nU1vjqprtgrzaVJaatQyIiNdF1KYWh6RExXzmMiEO0k4ohHeIp5N4j8vMxps4E
+JHiuNXK8+hDXgZ4/LYC+KNqzJmFpUYI4/7fHtrFA898BFcQtiYWQ3sLmeiJidsjS
+7fvMjoXNpE7t6KOKWdn/5HQqJan/wTFzrXz+QQIDAQABAoIBAQCU5fKCT6O5iwPk
+6Cz5V0hnFYQyEFHsXBCGnmf5GXxvUg4APXKJTnmnFhbAMyqWMHFWz68Iq4WU/ln/
+bDzw7Ed9eAvrrzWjX5DL3LijtWslXHuuCNeCpuCOMMygK+DManY+vUNyeiwFkEzi
+ngXe/oihI1Om10K+2rncCJP8jEz6nF6luFEBkJNkRJ9v5+2Hw6fj62zgFyB8AN+i
+WezXZTGgcRUcC8rv5riQpU/V+9cJ/1M2MtpfwhZONJnn0Ei+QmX9AHpeMVh8Gw2f
+b4un4rks130Jl7AAyLnAfsvteAHngDfJhfV4jntMXdG8DFzaAW8mUZBjq+fYHbL7
+yFCrh1mxAoGBAPQLSI6Z2XSmSRDInV/EvPJaJR7R0dGPGUOZ34UY7ePn6zPfu52e
+q+zEts2VwwKG+a7GR/32mulF21nk3LskvyKPx/9+yVLVTcCHZrvkGCVNbnOAdAIQ
+Y8yOSOVbVoNKlWV6j4wDkso4cfH/j5gcqEY4knjcJjViqEcWSq4BxiFtAoGBANuV
+3SAdx1obPJ+PlJX90L1LRsU5PUoESGBgHGIZKLH4FEaKfOGpoUi4URn2v6K0d3sg
+JfwPc5WKye+s6Y3opFQqoIOVG7DvkNMOKdDQOO5SyS0YzaHddx82mQTqHEN4HZLq
+zk/9iZ0Bv6C951jhi5gslo13neY98BIpLwcQql+lAoGAPrVHh5zwy5CO5ckm5xze
+kEepkinICFkE3OIFFWY6en11anbq9q127/f8IQeCfHvCXK6GgTOEyrwwiQDN1yiy
+FGdttLEXejllKTuholYR/kPPRc6UAJPFkSJeiNDXghUAHntHt2qTpXKrlMteUm/K
+rYCL4pJvHvii1OFdfyjliGECgYEAxz9eDYVX3bg3MyWqkstjvE/w4IbGyUHHlsO/
+HXhsx8guRa/mDzHHql+tH50ZWH7ep7eNIAG5RKlSAQvqRR0i90hSq/MB1HQc+pWw
+dcxqzD4MU8Jc3JJDQ+xbvuzbRpFYbHZpTIXnd7MdebK3mJvX+fYDikxO15u+GgyK
+oqOJpQ0CgYBYb2mmQc/xpk/JSd9WRZWu8/KC/68gcMiVScfW2x6gWxWWaMu9ro9y
+FqFZ/vfzypA1isLLp0kVDH195rbjZ7B78DtCLLX8crCSr2U0rXvSQUGqDVJHSVtC
+uY+57Bccfa3Z4lvmRl9ODPpPJhBhlX3694yzxSruue2Ri6UXr/vuNA==
+-----END RSA PRIVATE KEY-----
+EOF
+done
+
+for THEDIR in /home/student/.ssh/authorized_keys /root/.ssh/authorized_keys; do
+cat << 'EOF' >$THEDIR
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDRVIRvlAwQ4pbwyISj9Rekpyi6hKSeYzGCmZG3Pq7/mg/cekHhgWRSqFOM13AsKzR6jiSFU73+ifQSM0g8oi3R95sFDY4QeGXastziQ3aHUio40YteE/lUADaRyBy7w2jmnu0+se3jK8wymq2MwaFbTtMeUBvMhOvuudhvG1cB/zcH0TLnadTW+Oqmu2CvNpUlpq1DIiI10XUphaHpETFfOYyIQ7STiiEd4ink3iPy8zGmzgQkeK41crz6ENeBnj8tgL4o2rMmYWlRgjj/t8e2sUDz3wEVxC2JhZDewuZ6ImJ2yNLt+8yOhc2kTu3oo4pZ2f/kdColqf/BMXOtfP5B
+EOF
+done
+
+chmod 600 /root/.ssh/*
 chmod 700 /home/student/.ssh
-curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa >/home/student/.ssh/id_rsa
-curl https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa.pub >/home/student/.ssh/authorized_keys
 chmod 600 /home/student/.ssh/*
 chown student:student /home/student/.ssh -R
 
+cat << 'EOF' >/root/tower-inventory
+[tower]
+localhost              ansible_connection=local
+EOF
+
+cat << 'EOF' >/root/tower-install.yml
+- name: Install Ansible Tower
+  hosts: all
+  tasks:
+    - name: Make sure we have a 'wheel' group
+      group:
+        name: wheel
+        state: present
+
+    - name: Create student user
+      user:
+          name: "student"
+          group: wheel
+          state: present
+          
+    - name: Set passwords for users
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication no'
+        line: 'PasswordAuthentication yes'
+
+    - name: Allow 'wheel' group to have passwordless sudo
+      lineinfile:
+        dest: /etc/sudoers
+        state: present
+        regexp: '^%wheel'
+        line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+        validate: visudo -cf %s
+
+    - name: Restart service sshd, in all cases
+      service:
+        name: sshd
+        state: restarted
+  
+    - name: Enable EPEL yum repo
+      yum:
+        name: http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+        state: present
+
+    - name: Install Python Pip
+      yum:
+        name: python2-pip
+        state: present
+
+    - name: Check if Ansible Lint is installed
+      stat:
+        path: /bin/ansible-lint
+      register: ansible_lint
+
+    - name: Install Ansible Lint
+      pip:
+        name: ansible-lint
+        state: present
+      when: ansible_lint.stat.exists == False
+
+    - name: Ensure /opt/tower is created
+      file:
+        path: /opt/tower
+        state: directory
+
+    - name: Unzip the latest tower software
+      unarchive:
+        src: "https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz"
+        dest: /opt/tower
+        remote_src: yes
+
+    - name: Find installer absolute path
+      shell: "ls /opt/tower/ansible-tower-setup-*/setup.sh"
+      register: tower_installer_path
+
+    - name: Find base path for installer
+      shell: "find /opt/tower/ansible-tower-setup* -maxdepth 0 -type d"
+      register: tower_base_path
+
+    - name: Find inventory absolute path
+      shell: "ls /opt/tower/ansible-tower-setup-*/inventory"
+      register: tower_inventory_path
+
+    - name: Print installer path
+      debug:
+         msg: "setup path: {{ tower_installer_path.stdout }}"
+
+    - name: Inventory path
+      debug:
+        msg: "inventory path: {{ tower_inventory_path.stdout }}"
+
+    - name: Base path
+      debug:
+        msg: "Base path: {{ tower_base_path.stdout }}"
+
+    - name: Set admin password in inventory file
+      lineinfile:
+        path: "{{ tower_inventory_path.stdout }}"
+        regexp: '^admin_password='
+        line: 'admin_password=redhat123'
+
+    - name: Set PostgreSQL password in inventory file
+      lineinfile:
+        path: "{{ tower_inventory_path.stdout }}"
+        regexp: '^pg_password='
+        line: 'pg_password=redhat123'
+
+    - name: Set rabbitmq password in inventory file
+      lineinfile:
+        path: "{{ tower_inventory_path.stdout }}"
+        regexp: '^rabbitmq_password='
+        line: 'rabbitmq_password=redhat123'
+
+    - name: Run Ansible Tower installer
+      shell: "{{tower_installer_path.stdout}} -i {{tower_inventory_path.stdout}}"
+
+    - name: Check if Tower CLI is installed
+      stat:
+        path: /bin/tower-cli
+      register: tower_cli
+
+    - name: Install Tower CLI
+      pip:
+        name: ansible-tower-cli
+        state: present
+      when: tower_cli.stat.exists == False
+
+    - name: Fetch backup
+      get_url:
+        url: https://github.com/mglantz/ansible-roadshow/raw/master/content/tower-backup.tar.gz
+        dest: "{{ tower_base_path.stdout }}/tower-backup-latest.tar.gz"
+
+    - name: Restore from backup
+      shell: "{{tower_installer_path.stdout}} -r {{ tower_base_path.stdout }}/tower-backup-latest.tar.gz"
+      
+    - name: Disable SSL verification
+      lineinfile:
+        path: /etc/tower/settings.py
+        state: present
+        regexp: '.*GIT_SSL_NO_VERIFY.*'
+        line: AWX_TASK_ENV['GIT_SSL_NO_VERIFY'] = 'True'
+      
+    - name: Restart Ansible Tower
+      shell: ansible-tower-service restart
+      
+    - name: Git, disable SSL certificate checking. Don't do this in production!!!
+      become_user: "{{ item }}"
+      become: yes
+      command: git config --global http.sslVerify "false"
+      with_items:
+        - student
+        - root
+EOF
 
 cat << 'EOF' >/etc/motd
 
