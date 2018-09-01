@@ -36,7 +36,7 @@ Use below links as reference when needed. For now, continue on:
 * **nano**: https://wiki.gentoo.org/wiki/Nano/Basics_Guide
 * **vi/vim**: https://vim.rtorr.com/ 
 
-:boom: Log in as the **student** user on your assigned Ansible Tower server.
+:boom: Log in as the **student** user on your assigned Ansible Tower server.\
 :boom: Run below command to pull the code to your system:
 ```
 cd
