@@ -1,12 +1,12 @@
 # Getting started
 
-_Ensure that you are logged in to your Ansible Tower server as the **student** user._
+ :exclamation: _Ensure that you are logged in to your Ansible Tower server as the **student** user._
 
 You are the operator at Tangible Labs Inc. and tasked with setting up servers for the company's new application that's based on WildFly Swarm, which is a modern and tiny application server. After attending several sessions on automation, you've decided to give Ansible a go.
 
 The first lab will help you verifying the Ansible installation and getting acquainted with basic Ansible concepts.
 
-But first, let's verify that Ansible has been installed. On the command-line interface run the following command:
+ :boom: But first, let's verify that Ansible has been installed. On the command-line interface run the following command:
 
 ```
 ansible --version
@@ -24,7 +24,7 @@ ansible 2.6.3
   python version = 2.7.5 (default, May 31 2018, 09:41:32) [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)]
 ```
 
-As you can see Ansible uses Python. If you inspect the config file (/etc/ansible/ansible.cfg) file by running:
+ :boom: As you can see Ansible uses Python. Inspect the config file (/etc/ansible/ansible.cfg) file by running:
 ```
 more /etc/ansible/ansible.cfg
 ```
@@ -44,7 +44,7 @@ You will find the following configuration _in the top of the config file_:
 #module_utils   = /usr/share/my_module_utils/
 ```
 
-The most important for a beginning is the default location of the inventory file. The inventory file is used to define servers that you are managing. The servers can be grouped in any way you like. Best practices for grouping service in an inventory is to ask three simple questions, _WHAT_, _WHERE_, _WHEN_ and then fill in the blanks. An example inventory file can look like:
+ :thumbsup: The most important for a beginning is the default location of the inventory file. The inventory file is used to define servers that you are managing. The servers can be grouped in any way you like. Best practices for grouping service in an inventory is to ask three simple questions, _WHAT_, _WHERE_, _WHEN_ and then fill in the blanks. An example inventory file can look like:
 
 ```
 # WHAT                WHERE               WHEN
@@ -61,20 +61,21 @@ web[1:3]              web3                [test]
                       web4                db[3:4]
 ```
 
-For this lab, we will group the servers into _WHAT_ - load balancers (lbservers) and WildFly Swarm application servers (wildflyservers).
+For this lab, we will start and group the servers into _WHAT_ - load balancers (lbservers) and WildFly Swarm application servers (wildflyservers).
 
-Another inventory best practice is that if you happen to have servers which are named 'srv1234-e445.gdml.oo.sld.foo' or as meaningless, you may want to think about giving your servers meaningful aliases in your inventory, such as web1 or etc. The reason for this is _readability_. Both your playbooks and your playbooks output will become more readable. We will soon implement some meaningful aliases for our systems.
+ :thumbsup: Another inventory best practice is that if you happen to have servers which are named 'srv1234-e445.gdml.oo.sld.foo' or as meaningless, you may want to think about giving your servers meaningful aliases in your inventory, such as web1 or etc. The reason for this is _readability_. Both your playbooks and your playbooks output will become more readable. We will soon implement some meaningful aliases for our systems.
 
-Before we continue on, make sure that the $WORK_DIR variable is defined. If $WORK_DIR is not defined, [take a look at the preparations.](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-0)
-Now, create a file named *hosts* in the *$WORK_DIR* folder.
+ :exclamation: Before we continue on, make sure that the $WORK_DIR variable is defined. If $WORK_DIR is not defined, [take a look at the preparations.](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-0)\
+
+:boom: Now, create a file named *hosts* in the *$WORK_DIR* folder.
 
 ```
 cd $WORK_DIR
 touch hosts
 ```
->Please note: You got three servers assigned to you, referred to as **'Managed Systems'** when given to you. It doesn't matter which one is put in the [lbservers] section and which remaining two are put in the [wildflyservers] section.
+ :exclamation: You got three servers assigned to you, referred to as **'Managed Systems'** when given to you. It doesn't matter which one is put in the [lbservers] section and which remaining two are put in the [wildflyservers] section.
 
-Add the following text to the _$WORK_DIR/hosts_ file using an editor of choice:
+:boom: Add the following text to the _$WORK_DIR/hosts_ file using an editor of choice:
 ```
 [lbservers]
 loadbalancer1 ansible_host=xxx.xxx.xxx.xxx
@@ -85,7 +86,7 @@ wildfly2 ansible_host=zzz.zzz.zzz.zzz
 ```
 Where x, y and z values are replaced by the ip numbers for **Managed Systems** IP addresses assigned to you.
 
-**Optionally**, create the content in a text editor on your laptop and paste below (with your IP-addresses) text into a terminal:
+:boom: **Optionally**, create the content in a text editor on your laptop and paste below (with your IP-addresses) text into a terminal:
 ```
 cat << 'EOF' >$WORK_DIR/hosts
 [lbservers]
@@ -97,21 +98,21 @@ wildfly2 ansible_host=zzz.zzz.zzz.zzz
 EOF
 ```
 
-Since this is the first time we're connecting to these servers, you'll need to accept the identity of the servers.
-To speed up the process, we can use the ssh-keyscan command to accept identities. Like so:
+:boom: Since this is the first time we're connecting to these servers, you'll need to accept the identity of the servers.
+To speed up the process, we use the ssh-keyscan command to accept identities. Run below command:
 
 ```
 ssh-keyscan -H xxx.xxx.xxx.xxx yyy.yyy.yyy.yyy zzz.zzz.zzz.zzz >> ~/.ssh/known_hosts
 ```
 
-You are now ready to run your first Ansible module. To do so, run the following command from *$WORK_DIR*
+:boom: You are now ready to run your first Ansible module. To do so, run the following command from *$WORK_DIR*
 
 ```
 cd $WORK_DIR
 ansible -i hosts all -m ping
 ```
 
-This command will run the ping command on all servers in the hosts file (specified by -i). The -u parameter is used to sign into the servers as the root user. 
+This command will run the ping command on all servers in the hosts file (specified by -i).
 >**If the previous step failed, you might be asked to accept the identity of the servers.**
 Then: type yes for each server. After running the ping command, you'll have following output
 
@@ -130,15 +131,15 @@ loadbalancer1 | SUCCESS => {
 }
 ```
 
-Congratulations! :smile: :tada: You've run your first Ansible command.
-For a more detailed explanation of what is going on, try running the same command but add the *-vvv* parameter
+Congratulations! :smile: :tada: You've run your first Ansible command.\
+:boom: For a more detailed explanation of what is going on, try running the same command but add the *-vvv* parameter
 
 ```
 cd $WORK_DIR
 ansible -vvv -i hosts all -m ping
 ```
 
-Basically, the command will ssh to each host and run the ping module on the host. The result is captured by Ansible in a return variable. (If you are interested in the content of a module, see the source code for the ping module [in the github repo for modules](https://github.com/ansible/ansible-modules-core/blob/devel/system/ping.py). You don't have to. Modules will be covered in a later lab.)
+ :star: What happens here is that the command will ssh to each host and run the ping module on the host. The result is captured by Ansible in a return variable. (If you are interested in the content of a module, see the source code for the ping module [in the github repo for modules](https://github.com/ansible/ansible-modules-core/blob/devel/system/ping.py). You don't have to. Modules will be covered in a later lab.)
 
 In the next lab, you'll write your first playbook using the ping module to get a better understanding of how Ansible works.
 
