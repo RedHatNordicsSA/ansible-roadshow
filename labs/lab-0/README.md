@@ -1,12 +1,18 @@
 # Preparations
 
-1. To get started with the labs, you first needs to get your assigned username and servers. This will be provided to you by the people who operates this lab.
+Hello and welcome. In this lab, we use some basic graphics to make the lab easier to understand. Such as:
 
-2. Required tools to do the lab is
-* An SSH client. On Linux and Mac, use the native ssh client in a terminal. On Windows, you can use PuTTy: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
-* A web browser with internet access
+:boom: There is something here which you have to do.\
+:star: If you have time, you can also do this.\
+:exclamation: :exclamation: Take careful notice of this. :exclamation: :exclamation:
 
-3. Please review the overview of the lab environment. Most importantly, the Ansible Tower server is from where all the labs are done.
+:exclamation: To get started with the labs, you first needs to get your assigned username and servers. This will be provided to you by the people who operates this lab. 
+
+:boom: Make sure you have the required tools to do the lab. The tools are listed below:
+* An SSH client. On Linux and Mac, use the native ssh client in a terminal. On Windows, you can use PuTTy https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) if nothing else is available.
+* A web browser. Ansible Tower officially supports latest version of Firefox and Chrome, so if you bump into any issues, try one of those web browsers.
+
+:boom: Review the overview of the lab environment. Most importantly, the Ansible Tower server is from where all the labs are done.
 ```
 PLEASE NOTE
 DO NOT execute any of the labs from your local laptop.
@@ -16,31 +22,33 @@ DO NOT execute any of the labs from your local laptop.
 
 The Ansible Tower server will have the responsibility of provisioning the managed systems in later labs. For now, you will spend time in the Ansible Tower server.
 
-4. Once in the system, you have to use one of the text based text editors available. If you are new to Linux, see below for a simple guide for common commands and text editors. Use below links as reference when needed. For now, go ahead and proceed in the lab.
-
+:exclamation: The systems you will be working on runs Red Hat Enterprise Linux (7.5), if you are new to Linux, see below for a simple guide for common commands: 
 * **Linux cheat sheet**: https://files.fosswire.com/2007/08/fwunixref.pdf
+
+:exclamation: Once in the system, you have to use one of the text based text editors (nano, vim, emacs, joe) available.
+Use below links as reference when needed. For now, continue on:
 * **nano**: https://wiki.gentoo.org/wiki/Nano/Basics_Guide
 * **vi/vim**: https://vim.rtorr.com/ 
 
-5. Log in as the **student** user on your assigned Ansible Tower server.
-6. Run below command to pull the code to your system:
+:boom: Log in as the **student** user on your assigned Ansible Tower server.
+:boom: Run below command to pull the code to your system:
 ```
 cd
 git clone https://github.com/mglantz/ansible-roadshow.git
 ```
-7. The variabel **$LAB_DIR** will refer to the root of the cloned repository, export it as an variable using below command:
+:boom: The variabel **$LAB_DIR** will refer to the root of the cloned repository, export it as an variable using below command:
 ```
 export LAB_DIR=/home/student/ansible-roadshow
 ```
 
-In the **student** user's home directory create an empty dir named **work**, where you will do your assignments. This dir will be referred to as **$WORK_DIR**, export $WORK_DIR as a variable in your shell. To do this, run:
+:boom: In the **student** user's home directory create an empty dir named **work**, where you will do your assignments. This dir will be referred to as **$WORK_DIR**, export $WORK_DIR as a variable in your shell. To do this, run:
 ```
 cd
 mkdir work
 export WORK_DIR=/home/student/work
 ```
 
-Keep in mind that if you get logged out from a system, you need to set the **WORK_DIR** and **LAB_DIR** variables again by running the _export_ command as shown above.
+:exclamation: Keep in mind that if you get logged out from a system, you need to set the **WORK_DIR** and **LAB_DIR** variables again by running the _export_ command as shown above.
 
 ```
 End of lab
