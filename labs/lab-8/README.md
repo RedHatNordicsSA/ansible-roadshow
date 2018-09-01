@@ -31,7 +31,8 @@ This will have created a directory called /home/student/studentX-project where y
 
 :boom: Do this by running below commands (_replace X in studentX with your assigned number_):
 ```
-cp -R $WORK_DIR /home/student/studentX-project
+export WORK_DIR=/home/student/work
+cp -R $WORK_DIR/* /home/student/studentX-project
 ```
 
 :boom: Next we need to tell git that we've added a bunch of new files. Run below commands to do that (_replace X in studentX with your assigned number_):
@@ -117,16 +118,18 @@ $ git config --global push.default matching
 $
 ```
 
+Congratulations, all your content is now in git. You can review it by looking in the repo in GitLab.
+
 :exclamation: **WARNING. SPECIAL ATTENTION TO BELOW TASK.**
  
-:boom: **Now that you have moved all work to _/home/student/studentX-project_ let's change the WORK_DIR variable. Change the X in studentX to your assigned number and run:**  :boom:  :boom:
+:boom: :boom: **Now that you have moved all work to _/home/student/studentX-project_ let's change the WORK_DIR variable. Change the X in studentX to your assigned number and run:**
 ```
 export WORK_DIR=/home/student/studentX-project
 ```
 
 Now you need to instruct Ansible Tower to use the Nginx module. You could install the module on Ansible Tower as previously, but this would have the unwanted effect that all projects on the Ansible Tower server would rely on this module. Furthermore the Ansible Tower server now needs special care if you need to reinstall it. Instead we'll instruct Ansible Tower to include the Nginx module as part of our project. 
 
-:boom: To do so, add a file *$WORK_DIR/roles* called *requirements.yml*, with the following content
+:boom: To do so, add a file *$WORK_DIR/roles/requirements.yml*, with the following content
 ```
 ---
 - src: https://github.com/nginxinc/ansible-role-nginx
