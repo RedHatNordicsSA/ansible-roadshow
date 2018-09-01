@@ -4,13 +4,15 @@ In the previous lab, we created two WildFly Swarm servers running our applicatio
 
 ![Overview of lab environment](../../content/images/app-arch2.png)
 
-A role has already been written for installing Nginx with Ansible. The role can be found at the Ansible Galaxy site (https://galaxy.ansible.com/nginxinc/nginx/). [Ansible Galaxy](https://galaxy.ansible.com) is the place where roles and modules are shared. As always be critical when using content on the internet. When it comes to roles on Ansible Galaxy it's easy to do a quick review of the health of the role. 
+A role has already been written for installing Nginx with Ansible. The role can be found at the Ansible Galaxy site (https://galaxy.ansible.com/nginxinc/nginx/). [Ansible Galaxy](https://galaxy.ansible.com) is the place where roles and modules are shared. 
+
+ :thumbsup: As always be critical when using content on the internet. When it comes to roles on Ansible Galaxy it's easy to do a quick review of the general health of the role. 
 
 ![Evaluate quality of content](../../content/images/nginx.png)
 
-Look at development activity of the role. Ansible Galaxy makes this evaulation easy by putting it on the front page of each role, as marked above. If there is not a lot of activity, there may be a risk that the role is not maintained or has not seen a lot of use.
+ :thumbsup: Look at development activity of the role. Ansible Galaxy makes this evaulation easy by putting it on the front page of each role, as marked above. If there is not a lot of activity, there may be a risk that the role is not maintained or has not seen a lot of use.
 
-First we need to install the role for Nginx. Run:
+:boom: First we need to install the role for Nginx. Run:
 
 ```
 ansible-galaxy install --roles-path=$WORK_DIR/roles nginxinc.nginx
@@ -18,7 +20,7 @@ ansible-galaxy install --roles-path=$WORK_DIR/roles nginxinc.nginx
 
 and wait for the role to be installed. When that is done, we can use the role in our playbooks.
 
-To install Nginx go to $WORK_DIR and create a new file named *lb.yml* with the following content:
+:boom: To create a playbook which installs Nginx go to $WORK_DIR and create a new file named *lb.yml* with the following content:
 
 ```
 ---
@@ -30,7 +32,7 @@ To install Nginx go to $WORK_DIR and create a new file named *lb.yml* with the f
       name: nginxinc.nginx
 ```
 
-Run the playbook with the command
+:boom: Now, run the playbook to install NGINX on your server in the lbservers group, use the command
 
 ```
 ansible-playbook -i hosts lb.yml
@@ -38,18 +40,21 @@ ansible-playbook -i hosts lb.yml
 You can again run the playbook multiple times, to ensure that this role is idempotent and that nothing changes the second or third time you run it.
 
 This will install Nginx on the servers in the lbservers group. 
-* To verify the installation, in your web browser, go to: *http://$loadbalancer1-ip-address*. 
+
+:boom: To verify the installation, in your web browser, go to: *http://$loadbalancer1-ip-address*.
 ![NGNIX welcome page](../../content/images/ngnix-welcome.png)
 You should get the Nginx default page, as shown above. Take some extra time to appreciate how very simple it was to install the NGNIX software, even though you may never have done that before.
 
-Next step is to configure Nginx as a loadbalancer for the two wildflyapp servers. To do so, we'll add an additional role for the configuration. We follow the [best practises for Ansible directory layout](http://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html) and place tasks, handlers, and vars in separate directories. This is done so that it's easier to collaborate and maintain your work. To create a boilerplate for our new role, which features these best practices, we use the ansible-galax command. Run below commands:
+Next step is to configure Nginx as a loadbalancer for the two wildflyapp servers. To do so, we'll add an additional role for the configuration. We follow the [best practises for Ansible directory layout](http://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html) and place tasks, handlers, and vars in separate directories. This is done so that it's easier to collaborate and maintain your work. 
+
+:boom: To create a boilerplate for our new role, which features these best practices, we use the ansible-galax command. Run below commands:
 
 ```
 cd $WORK_DIR
 ansible-galaxy init roles/nginx-config
 ```
 
-First we'll create a handler for restarting the Nginx service in case of configuration changes. Define the handler in the file *$WORK_DIR/roles/nginx-config/handlers/main.yml* with the following content:
+:boom: First we'll create a handler for restarting the Nginx service in case of configuration changes. Define the handler in the file *$WORK_DIR/roles/nginx-config/handlers/main.yml* with the following content:
 
 ```
 ---
@@ -60,7 +65,7 @@ First we'll create a handler for restarting the Nginx service in case of configu
     name: nginx
 ```
 
-This defines a handler named *restart-nginx-service*, which we'll use in a moment. Now replace the content in the file *$WORK_DIR/roles/nginx-config/tasks/main.yml* with below:
+:boom: This defines a handler named *restart-nginx-service*, which we'll use in a moment. Now replace the content in the file *$WORK_DIR/roles/nginx-config/tasks/main.yml* with below:
 
 ```
 ---
@@ -83,14 +88,14 @@ This defines a handler named *restart-nginx-service*, which we'll use in a momen
 ```
 A template is used to setup the ngnix http listener. The template ensures that your configuration file doesn't have to be static. In this case, you need to add the servers to loadbalance between. This is done by introducing a variable *wildfy_servers*, which you'll use when writing the template shortly. The configuration file is saved instead of the default.conf nginx template. Other approaches applies. Please refer to the nginx documentation for more information. If the configuration file is changed, the previously defined handler (*notify: restart-nginx-service*) ensures that the Nginx process is restarted. Finally a SELinux rule has to be setup, to allow Nginx to connect to port 8080.
 
-Define the variable *wildfly_servers* by replacing *$WORK_DIR/roles/nginx-config/vars/main.yml* with below content:
+:boom:  Define the variable *wildfly_servers* by replacing *$WORK_DIR/roles/nginx-config/vars/main.yml* with below content:
 
 ```
 ---
 wildfly_servers: "{{ groups['wildflyservers'] }}"
 ```
 
-Edit $WORK_DIR/lb.yml to include the newly created role:
+:boom: Edit $WORK_DIR/lb.yml to include the newly created role:
 
 ```
 ---
@@ -104,7 +109,9 @@ Edit $WORK_DIR/lb.yml to include the newly created role:
       name: nginx-config
 ```
 
-After having extended the playbook to add the loadbalancer configuration, you need to add the template file for the configuration. In your favorite editor create the file *$WORK_DIR/roles/nginx-config/templates/default.template* and add the following content:
+After having extended the playbook to add the loadbalancer configuration, you need to add the template file for the configuration.
+
+:boom: In your favorite editor create the file *$WORK_DIR/roles/nginx-config/templates/default.template* and add the following content:
 
 ```
 upstream backend {
@@ -131,7 +138,9 @@ server {
 }
 ```
 
-As you can see, the *wildfly_servers* variable is used to iterate over the servers with the WildFly application deployed. Apply the changes to the nginx configuration by running the playbook:
+As you can see, the *wildfly_servers* variable is used to iterate over the servers with the WildFly application deployed.
+
+:boom: Apply the changes to the nginx configuration by running the playbook:
 
 ```
 cd $WORK_DIR
@@ -144,7 +153,7 @@ PLAY RECAP *****************************************************************
 loadbalancer1              : ok=8    changed=3    unreachable=0    failed=0 
 ```
 
-Now test, that you can access the application on both application servers. For this we'll use a simple http client, called _curl_, in your terminal write:
+:boom: Now test, that you can access the application on both application servers. For this we'll use a simple http client, called _curl_, in your terminal write:
 
 ```
 curl -w '\n' http://IP-address-of-loadbalancer1/
@@ -160,7 +169,7 @@ Howdy from unknown at 2018-08-31T08:07:48.816Z (from ip-172-31-28-91.eu-central-
 $
 ```
 
-Finally create a playbook to collect the two playbooks already made, by creating a file named *main.yml* in *$WORK_DIR* with the following content:
+:boom: Finally create a playbook to collect the two playbooks already made, by creating a file named *main.yml* in *$WORK_DIR* with the following content:
 
 ```
 ---
@@ -168,7 +177,7 @@ Finally create a playbook to collect the two playbooks already made, by creating
 - import_playbook: site.yml
 ```
 
-By running this playbook, you can setup everything with one command. Try it out.
+:boom: By running this playbook, you can setup everything with one command. Try it out.
 
 ```
 ansible-playbook -i hosts main.yml
