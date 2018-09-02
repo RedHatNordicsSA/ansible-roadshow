@@ -127,6 +127,19 @@ After tower-prep.sh has dropped the playbook and the inventory, the installation
 ansible-playbook -i /root/tower-inventory /root/tower-install.yml
 ```
 
+## Turning off all access to the environment
+Because of security reasons when provisoning the environment in advance, or to ensure that all students starts the labs at the same time, you may want to turn off all access to the environment after having provisioned it.
+Deny all incoming traffic to the environment by running below playbook:
+```
+ansible-playbook -i inventory/ec2.py turn_off_access.yml
+```
+
+## Turning on all access to the environment
+If you have turned off all access to the environment by running the _turn_off_access.yml_ playbook, turn access back to normal by running:
+```
+ansible-playbook -i inventory/ec2.py turn_on_access.yml
+```
+
 ## Delete all resources after doing labs
 
 __Beware this might leave something out, do check yourself from your AWS account__
