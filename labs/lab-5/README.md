@@ -8,8 +8,8 @@ Most applications have secret properties, which must not be shown to every perso
 
 ```
 mkdir -p $WORK_DIR/group_vars/dev/wildflyservers
-echo 'wildfly_secret_content: "{{ vault_secret_name }}"' > $WORK_DIR/group_vars/dev/wildflyservers/vars.yml
-echo 'wildfly_secret_content: Red Hat' > $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
+echo 'wildfly_secret_content: "{{ wildfly_secret_vault }}"' > $WORK_DIR/group_vars/dev/wildflyservers/vars.yml
+echo 'wildfly_secret_vault: Red Hat' > $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
 ```
 
 As you can see, some refactoring has been done to ensure that it is possible to use different configurations for different environments. This is achieved by having different environment folders in the *group_vars* directory. In this case a dev group variable file is created by adding specific settings in the folder *$WORK_DIR/group_vars/dev/*. 
