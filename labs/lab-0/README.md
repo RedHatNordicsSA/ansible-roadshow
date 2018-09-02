@@ -13,6 +13,13 @@ Here is some code that you need to run
 Here is an example of expected output when running commands
 ```
 
+# :exclamation: If something goes wrong
+If by some reason you get stuck in a lab. Or if there are weird error messages not mentioned on the lab webpage. Then here's some solid advice:
+1. This lab has seen plenty of use, so chances are that you have simply not followed the lab instructions. Start by reading the lab instructions again, carefully.
+2. If are sure that you are doing things as ordered, perhaps you typed something wrong or had a copy-paste accident. Double checking your files content and compare them with the content described here in the lab.
+3. Ask the person beside you if that person also had an issue with what you are doing. If so, that may indicate there is actually something wrong.
+4. When you have tried 1-3, raise your hand and someone will come and help you :)
+
 # Preparations to do the lab
 
 :exclamation: To get started with the labs, you first needs to get your assigned username and servers. This will be provided to you by the people who operates this lab. 
