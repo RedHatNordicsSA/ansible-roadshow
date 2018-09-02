@@ -76,7 +76,9 @@ Example playbook to install a Tomcat application server:
 
 # :boom: Writing your first Ansible Playbooks
 
-:boom: Now, we're ready to create our first playbook. Let's try to implement the ping example using a playbook. Create a playbook: $WORK_DIR/ping.yml, by pasting below into your terminal: 
+Now, we're ready to create our first playbook. Let's try to implement the ping example using a playbook. There is a good reason for doing that, which is that _ICMP echo / echo reply_ (aka ping) is not allowed in your network. If you going forward in the lab exercises suspect connectivity issues, you can always execute this playbook. 
+
+:boom: Create the playbook: $WORK_DIR/ping.yml, by pasting below into your terminal: 
 
 ```
 cat << 'EOF' >$WORK_DIR/ping.yml
@@ -94,6 +96,27 @@ EOF
 
 ```
 ansible-playbook -i hosts ping.yml
+```
+
+Excepted output is going to look like this:
+```
+PLAY [Ping all servers] ****************************************************
+
+TASK [Gathering Facts] *****************************************************
+ok: [wildfly1]
+ok: [wildfly2]
+ok: [loadbalancer1]
+
+TASK [Ping a server using the ping module] *********************************
+ok: [wildfly2]
+ok: [wildfly1]
+ok: [loadbalancer1]
+
+PLAY RECAP *****************************************************************
+loadbalancer1              : ok=2    changed=0    unreachable=0    failed=0   
+wildfly1                   : ok=2    changed=0    unreachable=0    failed=0   
+wildfly2                   : ok=2    changed=0    unreachable=0    failed=0   
+
 ```
 
 :boom: Wouldn't it be nice if you could actually see the reply from the ping module? This can be done by using return values combined with the *msg* module. Change the *$WORK_DIR/ping.yml* file to the following
