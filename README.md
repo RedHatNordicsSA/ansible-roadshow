@@ -11,7 +11,9 @@ Estimated time to complete this lab is 4-6 hours, depending on previous experien
 For an overview of the lab, go to: [Lab overview](#lab-overview)
 
 ## What is this NOT?
-A complete walkthrough of all Ansible features and best practices. If you think something important is missing: contribute. For more information about contributing, see: [Contributing](#contributing). You may also want to have a look at https://github.com/ansible/lightbulb which is a more complete walkthrough of all things Ansible.
+A complete walkthrough of all Ansible features and best practices. If you think something important is missing: contribute. For more information about contributing, see: [Contributing](#contributing). 
+
+You may also want to have a look at https://github.com/ansible/lightbulb which is a more complete walkthrough of all things Ansible.
 
 :exclamation: Some basic advise; This lab is not about doing it as fast as possible. It's about learning. Take your time to read the labs properly.
 
