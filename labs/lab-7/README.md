@@ -90,13 +90,15 @@ Next you will provide access to the playbook which [you put onto GitHub earlier 
 ![Create a job template](../../content/images/create-template-ii.png)
 and click 'SAVE'.
 
-:boom: Now try to run your playbook. (press the rocket, next to the name of the template). This should run the ping playbook successfully
+:boom: Now try to run your playbook. (press the rocket, next to the name of the template). This should run the ping playbook successfully. 
 
 If you now go to the 'Jobs' tab, you can review your specific run of the playbook, it lists information from the playbook run, who ran it and against what systems the playbook was run. This is all vital information as it allows visibility over what's being done in your infrastructure or application landscape.
 
-Next we are going to provide this playbook, as a service to a new user, to see how we (safely) can provide any automation as a self service.
+:thumbsup: This may seem as a poor first _playbook as a service_, but the concept is rather useful actually. People often wants to know what the status of systems are, or if two different systems can reach each other or not - to troubleshoot etc network related problems. This very simple playbook does allow people with access to it to check connectivity from the Ansible Tower server to the managed systems - without having terminal/shell access to either the Ansible Tower server or to the managed systems. With a little modifications, your "ping" playbook could for example allow people to ping any server from any server. That could be really useful troubleshooting tool. This is a friendly reminder that you can use Ansible to do more things than setting up complex systems ;)
 
-:boom: Create a new users, by going to 'Settings (the cog)' and then users. Call the user workshop-guest and set a password for it. After saving the user go to it and configure it further:\
+Next we are going to provide this playbook, _as a service_ to a new user, to see how we (safely) can provide any Ansible automation as a self service.
+
+:boom: Create a new user, by going to 'Settings (the cog to the right of the admin user icon)' and then users. Call the user workshop-guest and set a password for it. After saving the user go to it and configure it further:\
 :boom: Click on the 'Permissions' tab and give your user access to run this one job template with Execute rights, not Admin. Do not provide access to either the project or the inventory, only the 'job template'.
 
 :boom: Login as the user and run the playbook again. Review what you can see and what you can change as this user. This is how you can provide any piece of Ansible automation as a service, in a secure manner, to specific users.
