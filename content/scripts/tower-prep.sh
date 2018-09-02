@@ -28,7 +28,7 @@ while true; do
   fi
 done
 
-yum -y install python2-pip wget bind-utils ansible nano vim screen emacs joe
+yum -y install gcc python2-pip wget bind-utils ansible nano vim screen emacs joe
 
 ITER=0
 while true; do
@@ -43,7 +43,7 @@ while true; do
   else
     sleep 30
     yum clean all
-    yum -y install python2-pip wget bind-utils ansible nano vim screen emacs joe
+    yum -y install gcc python2-pip wget bind-utils ansible nano vim screen emacs joe
     rpm -q ansible
     if [ "$?" -eq 0 ]; then
       echo "Ansible installed, going forward with install."
