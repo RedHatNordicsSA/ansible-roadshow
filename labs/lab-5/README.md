@@ -8,8 +8,8 @@ Most applications have secret properties, which must not be shown to every perso
 
 ```
 mkdir -p $WORK_DIR/group_vars/dev/wildflyservers
-echo 'secret_name: "{{ vault_secret_name }}"' > $WORK_DIR/group_vars/dev/wildflyservers/vars.yml
-echo 'vault_secret_name: Red Hat' > $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
+echo 'wildfly_secret_content: "{{ vault_secret_name }}"' > $WORK_DIR/group_vars/dev/wildflyservers/vars.yml
+echo 'wildfly_secret_content: Red Hat' > $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
 ```
 
 As you can see, some refactoring has been done to ensure that it is possible to use different configurations for different environments. This is achieved by having different environment folders in the *group_vars* directory. In this case a dev group variable file is created by adding specific settings in the folder *$WORK_DIR/group_vars/dev/*. 
@@ -95,7 +95,9 @@ $
     state: started
   no_log: true
 - name: Restart the wildfly app if there are any changes
-  systemd: state=restarted name=wildflyapp
+  systemd: 
+    name: wildflyapp
+    state: restarted 
   when: jar_file_copy.changed or service_script_create.changed
   no_log: true
 ```
@@ -115,7 +117,7 @@ Description=Wildfly Swarm Application Script
 After=auditd.service systemd-user-sessions.service time-sync.target
 
 [Service]
-Environment="SECRET_NAME={{ secret_name }}"
+Environment="SECRET_NAME={{ wildfly_secret_content }}"
 User=root
 TimeoutStartSec=0
 Type=simple
@@ -193,7 +195,7 @@ Hint:
 * Does above solution use handlers appropriately?
 * Is the when clause in above solution the best approach?
 
-:star: Consider how you would handle a test environment with the *SECRET_NAME* of 'Red Hat (test)'.
+:star: Consider how you would handle a test environment with the *wildfly_secret_content* of 'Red Hat (test)'.
 
 ```
 End of lab
