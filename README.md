@@ -8,6 +8,8 @@ This is a lab which provides an introduction to Ansible, Ansible Tower, how to w
 Estimated time to complete this lab is 4-6 hours, depending on previous experience.
 ```
 
+For an overview of the lab, go to: [Lab overview](#lab-overview)
+
 ## What is this NOT?
 A complete walkthrough of all Ansible features and best practices. If you think something important is missing: contribute. For more information about contributing, see: [Contributing](#contributing). You may also want to have a look at https://github.com/ansible/lightbulb which is a more complete walkthrough of all things Ansible.
 
