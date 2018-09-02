@@ -1,0 +1,116 @@
+---
+- name: Setup failed managed nodes to work with the labs
+  hosts: all
+  serial: 10
+  become: yes
+  vars:
+    epel_repo_url: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm"
+    epel_repo_gpg_key_url: "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}"
+    epel_repofile_path: "/etc/yum.repos.d/epel.repo"
+
+  tasks:
+  - name: Check if EPEL repo is already configured
+    stat: 
+      path: "{{ epel_repofile_path }}"
+    register: epel_repofile_result
+ 
+  - name: Install EPEL repo
+    yum:
+      name: "{{ epel_repo_url }}"
+      state: present
+    register: result
+    when: epel_repofile_result.stat.exists == False
+ 
+  - name: Import EPEL GPG key.
+    rpm_key:
+      key: "{{ epel_repo_gpg_key_url }}"
+      state: present
+    when: epel_repofile_result.stat.exists == False
+
+  - name: Install required packages
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - python2-pip
+      - wget
+      - bind-utils
+      - ansible
+      - nano
+      - vim
+      - screen
+      - emacs
+      - joe
+
+  - name: Make sure we have a 'wheel' group
+    group:
+      name: wheel
+      state: present
+
+  - name: Create student user
+    user:
+      name: "student"
+      group: wheel
+      password: "$6$GerK3nTbc8bqhzJD$cgMAuG9tglPApQ/pSyKPxYsMg5hEK4KbSYXEk2vs4kkNR0MHxpkSXz/hpBJcz1AgmxwJ3YUXdJ9F9IDjZLXEi."
+      state: present
+          
+  - name: Set passwords for users
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^PasswordAuthentication no'
+      line: 'PasswordAuthentication yes'
+
+  - name: Allow 'wheel' group to have passwordless sudo
+    lineinfile:
+      dest: /etc/sudoers
+      state: present
+      regexp: '^%wheel'
+      line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+      validate: visudo -cf %s
+
+  - name: create .ssh dir for root
+    file:
+      path: /root/.ssh
+      state: directory
+      mode: 0700
+      owner: root
+      group: root
+
+  - name: create .ssh dir for student
+    file:
+      path: /home/student/.ssh
+      state: directory
+      mode: 0700
+      owner: student
+      group: student
+
+  - name: Distribute id_rsa to root
+    copy:
+      src: ./id_rsa
+      dest: /root/.ssh/id_rsa
+      owner: root
+      group: root
+      mode: 0400
+
+  - name: Distribute id_rsa to student
+    copy:
+      src: ./id_rsa
+      dest: /home/student/.ssh/id_rsa
+      owner: student
+      group: student
+      mode: 0400
+
+  - name: Distribute Authorized keys to root
+    authorized_key: 
+      user: root 
+      key: "{{ lookup('file', './id_rsa.pub') }}"
+
+  - name: Distribute Authorized keys to student
+    authorized_key: 
+      user: student
+      key: "{{ lookup('file', './id_rsa.pub') }}"
+
+  - name: Restart service sshd, in all cases
+    service:
+      name: sshd
+      state: restarted
