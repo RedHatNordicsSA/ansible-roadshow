@@ -15,11 +15,11 @@ A 100% complete walkthrough of all Ansible features and best practices. If you t
 
 ## Maintainers
 This lab is maintained by members of Red Hat's Nordic Solution Architect team.
-* Jacob Borella (@jacobborella)
-* Teemu Uotila (@teemu-u)
-* Ilkka Tengvall (@ikke-t)
-* Peter Gustafsson (@pgustafs)
-* Magnus Glantz (@mglantz)
+* Jacob Borella (![@jacobborella](https://github.com/jacobborella))
+* Teemu Uotila (![@teemu-u](https://github.com/teemu-u))
+* Ilkka Tengvall (![@ikke-t](https://github.com/ikke-t)
+* Peter Gustafsson (![@pgustafs](https://github.com/pgustafs)
+* Magnus Glantz (![@mglantz](https://github.com/mglantz)
 
 ## Contributing
 This lab is an open source (GPL 3.0) project, so if you find any problems with it, feel free to open up an issue or send a pull request. For more information about contributing to this project, visit:
