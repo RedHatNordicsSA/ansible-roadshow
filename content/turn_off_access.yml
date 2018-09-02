@@ -1,0 +1,54 @@
+- hosts: localhost
+  name: Turn off all access to the lab environment
+  connection: local
+  gather_facts: False
+  vars_files:
+    - vars/vars.yml
+  tasks:
+  - name: Turn off all access to Ansible Tower servers in place
+    ec2_group:
+      name: "{{ ec2_security_group_tower }}"
+      description: Security Group for Ansible Tower servers
+      region: "{{ ec2_region }}"
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      rules:
+      rules_egress:
+        - proto: all
+          cidr_ip: 0.0.0.0/0
+
+  - name: Turn off all acces to client systems in place
+    ec2_group:
+      name: "{{ ec2_security_group_client_systems }}"
+      description: Security Group for Ansible client systems
+      region: "{{ ec2_region }}"
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      rules:
+        - proto: tcp
+          from_port: 80
+          to_port: 80
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          from_port: 443
+          to_port: 443
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          from_port: 8080
+          to_port: 8080
+          cidr_ip: 0.0.0.0/0
+      rules_egress:
+        - proto: all
+          cidr_ip: 0.0.0.0/0
+
+  - name: Turn off all access to GitLab server
+    ec2_group:
+      name: "{{ ec2_security_group_gitlab }}"
+      description: Security Group for webserver Servers
+      region: "{{ ec2_region }}"
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      rules:
+      rules_egress:
+        - proto: all
+          cidr_ip: 0.0.0.0/0
