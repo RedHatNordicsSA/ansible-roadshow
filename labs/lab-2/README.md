@@ -1,6 +1,6 @@
 # About Ansible Playbooks
 
-In the previous lab, you called a module directly from the command-line interface. Modules are what does all the work in Ansible. The ping module, which we used in lab 1, is part of the module library of Ansible. The module library is included with the Ansible installation, and can be used without installing any extra stuff. For a complete overview of modules, refer to [the module index](http://docs.ansible.com/ansible/latest/modules_by_category.html).
+In the previous lab, you called a module directly from the command-line interface. Modules are what does all the work in Ansible. The ping module, which we used in lab 1, is part of the module library of Ansible. The module library is included with the Ansible installation, and can be used without installing any extra stuff. For a complete overview of modules and information about how to use them, go to [the module index](http://docs.ansible.com/ansible/latest/modules_by_category.html).
 
 In almost all cases, you will use a playbook for automating the management of your servers. Think of a playbook as a recipe for the state of your servers as well as other infrastructure components. In a playbook you can describe everything from software which needs to be installed on servers to how load balancers should be configured. And everything which is done, is done by a module which is called, as shown below.
 
