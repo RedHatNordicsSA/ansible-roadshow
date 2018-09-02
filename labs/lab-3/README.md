@@ -71,7 +71,7 @@ ansible-doc file
 ansible-doc copy
 ansible-doc systemd
 ```
-You can also find a full list of all modules availabe in your system by running (_command will take a couple of seconds to run_):
+:boom: You can also find a full list of all modules availabe in your system by running (_command will take a couple of seconds to run_):
 ```
 ansible-doc -l
 ```
