@@ -14,7 +14,7 @@ Here is an example of expected output when running commands
 ```
 
 # :exclamation: If something goes wrong
-If by some reason you get stuck in a lab. Or if there are weird error messages not mentioned on the lab webpage. Then here's some solid advice:
+If by some reason you get stuck in a lab. Or if there are weird error messages not mentioned on the lab webpage - then here's what you should do:
 1. This lab has seen plenty of use, so chances are that you have simply not followed the lab instructions. Start by reading the lab instructions again, carefully.
 2. If you are sure that you are doing things as describe in the labs, perhaps you typed something wrong or had a copy-paste accident. Double checking your files content and compare them with the content described here in the lab. If you typed things manually, try doing a clean copy-paste from the lab instead.
 3. Ask the person beside you if that person also had an issue with what you are doing. If so, that may indicate there is actually something wrong.
