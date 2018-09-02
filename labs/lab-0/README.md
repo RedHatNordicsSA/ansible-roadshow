@@ -68,9 +68,13 @@ mkdir work
 export WORK_DIR=/home/student/work
 ```
 
-:exclamation: Keep in mind that if you get logged out from a system, you need to set the **WORK_DIR** and **LAB_DIR** variables again by running the _export_ command as shown above.
+:exclamation: Keep in mind that if you get logged out from the Ansible Tower server, you need to set the **WORK_DIR** and **LAB_DIR** variables again by running the _export_ commands again, such as:
 
 ```
+export LAB_DIR=/home/student/ansible-roadshow
+export WORK_DIR=/home/student/work
+```
+
 End of lab
 ```
 [Go to the next lab, lab 1](../lab-1/README.md)
