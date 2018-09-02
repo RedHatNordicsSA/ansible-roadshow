@@ -41,6 +41,8 @@ Now we need to add our hosts to the newly created inventory.
 * Host names: _wildfly1, wildfly2 and loadbalancer1_
 * Variables: _ansible_host: IP-address-of-system_
 
+:exclamation: Be careful. If you make a mistake here and do not fill things in according to $WORK_DIR/hosts it will get messy.
+
 For instance in the following screenshot example values are provided for *wildfly1*. Refer to the previously created *hosts* file for IP values.
 ![Inventory add hosts](../../content/images/inventory-add-hosts-iii.png)
 
