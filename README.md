@@ -2,14 +2,14 @@
 Hello and welcome. This is a hands on lab on using Ansible and Ansible Tower.
 
 ## What is this?
-This is a lab which provides an introduction to Ansible, Ansible Tower, how to write Ansible content and how to work with Ansible. At the end of the day, you will know enough to go out in the real world and do real useful stuff.
+This is a lab which provides an introduction to Ansible, Ansible Tower, how to write Ansible content and how to work with Ansible at scale. At the end of the day, you will know enough to go out in the real world and do real useful stuff.
 
 ```
 Estimated time to complete this lab is 4-6 hours, depending on previous experience.
 ```
 
 ## What is this NOT?
-A 100% complete walkthrough of all Ansible features and best practices. If you think something important is missing: contribute. For more information about contributing, see: [Contributing](#contributing)
+A complete walkthrough of all Ansible features and best practices. If you think something important is missing: contribute. For more information about contributing, see: [Contributing](#contributing) Otherwise, you may want to have a look at https://github.com/ansible/lightbulb which is a more complete walkthrough of all things Ansible.
 
 :exclamation: Some basic advise; This lab is not about doing it as fast as possible. It's about learning. Take your time to read the labs properly.
 
@@ -22,7 +22,7 @@ This lab is maintained by members of Red Hat's Nordic Solution Architect team.
 * Magnus Glantz (![@mglantz](https://github.com/mglantz)
 
 ## Contributing
-This lab is an open source (GPL 3.0) project, so if you find any problems with it, feel free to open up an issue or send a pull request. For more information about contributing to this project, visit:
+This lab is an open source (GPL 3.0) project, so if you find any problems with it, feel free to open up an issue or send a pull request. For more information about contributing to this project, please see:
 
 * [CODE OF CONDUCT](CODE_OF_CONDUCT.md)
 * [CONTRIBUTING](CONTRIBUTING.md)
