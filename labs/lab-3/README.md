@@ -5,7 +5,7 @@ Let's overview which part of the system which you will be working on in this lab
 
 ![Overview of lab environment](../../content/images/app-arch.png)
 
-Running WildFly Swarm is a bit different than running traditional application servers, which often are often hundreds of MB or even GB in size. You package your application into a fat jar file, which you run from the command-line interface. The jar file is very small (measured in few MB) and only contains the libraries necessary to run your application. In order to ensure that your application is easily maintainable and that it'll come up in the case of a server restart, you'll register the application as a service using systemctl.
+Running WildFly Swarm is a bit different than running traditional application servers, which often are hundreds of MB or even GB in size. You package your application into a fat jar file, which you run from the command-line interface. The jar file is very small (measured in few MB) and only contains the libraries necessary to run your application. In order to ensure that your application is easily maintainable and that it'll come up in the case of a server restart, you'll register the application as a service using systemctl.
 
 For this excercise we assume that you've already packaged your application, using maven and pushed it to Nexus. From there you've pulled the file to the location *$LAB_DIR/labs/lab-3/lab-files/binaries/example-jaxrs-war-swarm.jar*
 
