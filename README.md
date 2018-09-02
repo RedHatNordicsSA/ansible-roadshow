@@ -1,5 +1,5 @@
 # ansible-roadshow
-Hello and welcome. This is a hands on lab on using Ansible and Ansible Tower.
+Hello and welcome. This is a hands on lab with Ansible and Ansible Tower.
 
 ## What is this?
 This is a lab which provides an introduction to Ansible, Ansible Tower, how to write Ansible content and how to work with Ansible at scale. At the end of the day, you will know enough to go out in the real world and do real useful stuff.
