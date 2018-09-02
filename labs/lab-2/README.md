@@ -91,6 +91,7 @@ cat << 'EOF' >$WORK_DIR/ping.yml
       data: pong from Ansible
 EOF
 ```
+Please note _hosts: all_, the _all_ keyword ensures that when this playbook is run (if not overridden from the command line with _-l_ or _--limit_), it will be run against all servers defined in your inventory ($WORK_DIR/hosts). Had we used wildflyservers or lbservers in the playbook, we would have hit all the servers defined in those groups.
 
 :boom: This will do the same as the previous lab, except the ping message is different. The ping message takes an argument *data*, which is the reply message from the ping module. You can now run the playbook with the command
 
@@ -116,10 +117,16 @@ PLAY RECAP *****************************************************************
 loadbalancer1              : ok=2    changed=0    unreachable=0    failed=0   
 wildfly1                   : ok=2    changed=0    unreachable=0    failed=0   
 wildfly2                   : ok=2    changed=0    unreachable=0    failed=0   
-
 ```
 
-:boom: Wouldn't it be nice if you could actually see the reply from the ping module? This can be done by using return values combined with the *msg* module. Change the *$WORK_DIR/ping.yml* file to the following
+:boom: Now let's explore the _-l_ or _--limit_ option, which allows you to run against just a subset of your servers, instead of all servers. Try the below commands to limit the playbook run to a specific group or server:
+```
+ansible-playbook -i hosts -l wildflyservers ping.yml
+ansible-playbook -i hosts -l lbservers ping.yml
+ansible-playbook -i hosts -l wildfly2 ping.yml
+```
+
+:boom: Now, wouldn't it be nice if you could actually see the reply from the ping module? This can be done by using return values combined with the *msg* module. Change the *$WORK_DIR/ping.yml* file to the following
 
 ```
 ---
