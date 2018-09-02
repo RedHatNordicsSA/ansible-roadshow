@@ -66,7 +66,7 @@ EOF
 
 As you can see, starting a WildFly Swarm application is pretty simple. There is no need for a 1 GB app server with a million dependencies here. We only need to copy the jar file to the server, create a service script (which starts and stops the wildfly) and run the application. But before we can start our application, we need to create the service script to be copied to the server. 
 
-:boom: To do so, create a new file named *wildflyapp.service* at location *$WORK_DIR/roles/wildflyapp/files/*.  Put the following content in the file:
+:boom: To do so, create the file *$WORK_DIR/roles/wildflyapp/files/wildflyapp.service* and put the following content in the file:
 
 ```
 [Unit]
@@ -88,7 +88,7 @@ LimitNOFILE=5555
 WantedBy=multi-user.target
 ```
 
-:boom: Finally you need to apply the newly created role to your *wildflyservers* group. In dir *$WORK_DIR* create a playbook named *site.yml*. Put the following content into the file:
+:boom: Finally you need to apply the newly created role to your *wildflyservers* group. In directory *$WORK_DIR* create a playbook named *site.yml*. Put the following content into the file:
 
 ```
 ---
@@ -104,9 +104,23 @@ As you can see we now include the role *wildflyapp* for all *wildflyservers*. Pl
 ```
   become: yes
 ```
-This is because we need a bit more access in order to install software and enable services. This line means that Ansible will (in this case) call upon a software called sudo running on the target systems, to gain admin access when running these tasks. To read more about your ability to control privledge escalation, go here: https://docs.ansible.com/ansible/latest/user_guide/become.html
+:thumbsup: This is because we need more access in order to install software and enable services on the target systems. This line means that Ansible will (in this case) call upon a software called _sudo_ installed on the target systems to gain admin access when running the wildflyapp role. This works because _sudo_ has been configured on the target systems for the student user - during the setup of this lab. Use _become_ to provide specific privledge escalation required to do specific things, instead of running as a user which is administrator. You can either define _become_ for a complete play and all the tasks in it (like above), or do it for a specific task by defining _become_ on the task level as shown below:
 
-:boom: With this said, now run the playbook with the command:
+Example:
+```
+- name: Start apache web server
+  hosts: webservers
+  tasks:
+  - name: Start the apache web service
+    service:
+      name: httpd
+      state: started
+    become: yes
+```
+
+:star: To read more about your ability to control privledge escalation, go here: https://docs.ansible.com/ansible/latest/user_guide/become.html
+
+:boom: With this said, let's run the playbook we created. It will install Wildfly on your servers in the wildflyservers group. Run below command to do this:
 
 ```
 ansible-playbook -i hosts site.yml
