@@ -46,7 +46,7 @@ You will find the following configuration _in the top of the config file_:
 #module_utils   = /usr/share/my_module_utils/
 ```
 
- :thumbsup: The most important for a beginning is the default location of the inventory file. The inventory file is used to define servers that you are managing. The servers can be grouped in any way you like. Best practices for grouping service in an inventory is to ask three simple questions, _WHAT_, _WHERE_, _WHEN_ and then fill in the blanks. An example inventory file can look like:
+ :thumbsup: Most important to note is the default location of the inventory file. The inventory file is used to define servers that you are managing. If you do not define a locate of an inventory when running a playbook, ansible will look in the default inventory file. Inside of the inventory, managed systems can be grouped in any way you like. Best practices for grouping service in an inventory is to ask three simple questions, _WHAT_, _WHERE_, _WHEN_ and then fill in the blanks. An example inventory file can look like:
 
 ```
 # WHAT                WHERE               WHEN
@@ -65,7 +65,7 @@ web[1:3]              web3                [test]
 
 For this lab, we will start and group the servers into _WHAT_ - load balancers (lbservers) and WildFly Swarm application servers (wildflyservers).
 
- :thumbsup: Another inventory best practice is that if you happen to have servers which are named 'srv1234-e445.gdml.oo.sld.foo' or as meaningless, you may want to think about giving your servers meaningful aliases in your inventory, such as web1 or etc. The reason for this is _readability_. Both your playbooks and your playbooks output will become more readable. We will soon implement some meaningful aliases for our systems.
+ :thumbsup: Another inventory best practice is that if you happen to have systems which are named 'srv1234-e445.gdml.oo.sld.foo' or as meaningless, you may want to think about giving your systems human meaningful aliases in your inventory, such as web1 or etc. The reason for this is _readability_. Both your playbooks and your playbooks output will become more readable. We will soon implement some human meaningful aliases for the systems in this lab.
 
  :exclamation: Before we continue on, make sure that the $WORK_DIR variable is defined. If $WORK_DIR is not defined, [take a look at the preparations.](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-0)\
 
