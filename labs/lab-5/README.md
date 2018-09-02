@@ -162,7 +162,7 @@ Howdy from Red Hat at 2018-08-31T08:45:39.489Z (from ip-172-31-28-91.eu-central-
 ```
 Observe the changes. Hint, you are no longer getting an anonymous greeting.
 
-:exclamation: If the output looks like below, you were just a bit quick to test the curl call. Wait for a second and try again.
+:exclamation: If the output looks like below, you were just a bit quick to test the curl call. Wait for a second or three and try again.
 ```
 $ curl -w '\n' 18.184.68.153
 <!DOCTYPE html>
