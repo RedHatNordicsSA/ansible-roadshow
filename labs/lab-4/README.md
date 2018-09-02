@@ -10,9 +10,9 @@ A role has already been written for installing Nginx with Ansible. The role can 
 
 ![Evaluate quality of content](../../content/images/nginx.png)
 
- :thumbsup: Look at development activity of the role. Ansible Galaxy makes this evaulation easy by putting it on the front page of each role, as marked above. If there is not a lot of activity, there may be a risk that the role is not maintained or has not seen a lot of use.
+ :thumbsup: Look at development activity of the role and number of downloads. Ansible Galaxy makes this evaulation easy by putting it on the front page of each role, as marked above. If there is not a lot of activity, there may be a risk that the role is not maintained.
 
-:boom: First we need to install the role for Nginx. Run:
+:boom: Now that we've seen that the nginx role seems solid. We need to install the role. Run:
 
 ```
 ansible-galaxy install --roles-path=$WORK_DIR/roles nginxinc.nginx
