@@ -64,7 +64,24 @@ cat << 'EOF' >$WORK_DIR/roles/wildflyapp/tasks/main.yml
 EOF
 ```
 
-As you can see, starting a WildFly Swarm application is pretty simple. There is no need for a 1 GB app server with a million dependencies here. We only need to copy the jar file to the server, create a service script (which starts and stops the wildfly) and run the application. But before we can start our application, we need to create the service script to be copied to the server. 
+:boom: Review the different tasks and make sure you understand what is done above. Information about how to use all modules included in Ansible is as mentioned before, available in the module index, here: https://docs.ansible.com/ansible/latest/modules/list_of_all_modules.html. But, the _ansible-doc_ command also helps you to get information about modules. Try it out on the modules used above by running:
+```
+ansible-doc yum
+ansible-doc file
+ansible-doc copy
+ansible-doc systemd
+```
+You can also find a full list of all modules availabe in your system by running (_command will take a couple of seconds to run_):
+```
+ansible-doc -l
+```
+
+:boom: Use the _grep_ command to quickly search for specific modules to do a specific task. Try it out. For example:
+```
+ansible-doc -l|grep -i "cisco"
+```
+
+Returning to the work at hand, our WildFly application. You can see that starting a WildFly Swarm application is pretty simple. There is no need for a 1 GB app server with a million dependencies here. We only need to copy the jar file to the server, create a service script (which starts and stops the wildfly) and run the application. But before we can start our application, we need to create the service script, which is to be copied to the server. 
 
 :boom: To do so, create the file *$WORK_DIR/roles/wildflyapp/files/wildflyapp.service* and put the following content in the file:
 
