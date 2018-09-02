@@ -6,7 +6,9 @@ You are the operator at Tangible Labs Inc. and tasked with setting up servers fo
 
 The first lab will help you verifying the Ansible installation and getting acquainted with basic Ansible concepts.
 
-:boom: But first, let's verify that Ansible has been installed. On the command-line interface run the following command:
+Please note that by installing Ansible on your control server in advance, we have not robbed you of any valuable experience. Installing Ansible is a _very_ simple thing to do. For later reference when you get home, you can look at this guide for installing Ansible on a host of different operating systems: https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
+
+:boom: With this said, let's verify that Ansible has been installed. On the command-line interface run the following command:
 
 ```
 ansible --version
