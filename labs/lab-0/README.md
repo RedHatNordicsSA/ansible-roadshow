@@ -31,6 +31,8 @@ Here is an example of expected output when running commands
 
 The Ansible Tower server will have the responsibility of provisioning the managed systems in later labs. For now, you will spend time in the Ansible Tower server.
 
+:exclamation: It's not possible to ping your managed systems. If you need to troubleshoot connectivity to your managed systems, use the ping playbook you will create in Lab 2.
+
 :exclamation: The systems you will be working on runs Red Hat Enterprise Linux (7.5), if you are new to Linux, see below for a simple guide for common commands: 
 * **Linux cheat sheet**: https://files.fosswire.com/2007/08/fwunixref.pdf
 
