@@ -1,15 +1,36 @@
 # ansible-roadshow
-This is a one day hands on lab with Ansible and Ansible Tower. This lab is ment to work as an introduction to Ansible, Ansible Tower, best practices for writing Ansible content and how to work with Ansible. At the end of the day, you know enough to go out and do real useful stuff.
+Hello and welcome. This is a hands on lab on using Ansible and Ansible Tower.
 
-_This lab is maintained by Red Hat's Nordics Solution Architect team._
+## What is this?
+This is a lab which provides an introduction to Ansible, Ansible Tower, how to write Ansible content and how to work with Ansible. At the end of the day, you will know enough to go out in the real world and do real useful stuff.
 
 ```
-Estimated time to complete this lab is 6-8 hours.
+Estimated time to complete this lab is 4-6 hours, depending on previous experience.
 ```
+
+## What is this NOT?
+A 100% complete walkthrough of all Ansible features and best practices. If you think something important is missing: contribute. For more information about contributing, see: [Contributing](#contributing)
 
 :exclamation: Some basic advise; This lab is not about doing it as fast as possible. It's about learning. Take your time to read the labs properly.
 
-This lab is an open source (GPL 3.0) project, so if you find any problems with it, feel free to open up an issue or send a pull request. **_For information about installing this lab, go to the bottom of this page_.**
+## Maintainers
+This lab is maintained by members of Red Hat's Nordic Solution Architect team.
+* Jacob Borella (@jacobborella)
+* Teemu Uotila (@teemu-u)
+* Ilkka Tengvall (@ikke-t)
+* Peter Gustafsson (@pgustafs)
+* Magnus Glantz (@mglantz)
+
+## Contributing
+This lab is an open source (GPL 3.0) project, so if you find any problems with it, feel free to open up an issue or send a pull request. For more information about contributing to this project, visit:
+
+* [CODE OF CONDUCT](CODE_OF_CONDUCT.md)
+* [CONTRIBUTING](CONTRIBUTING.md)
+* [PROJECT LICENSE](LICENSE.md)
+
+**_For information about installing this lab, go to the bottom of this page_.**
+
+## Lab overview
 
 The lab includes information about:
 
@@ -26,7 +47,6 @@ The lab includes information about:
 
 **BELOW is an overview of the labs. This is for the students in the lab.**\
 :exclamation: Start at 0 and go forward to 10. The labs depends on each other, so don't skip stuff.
-
 
 0. [Getting started](labs/lab-0/README.md)
 
@@ -50,7 +70,6 @@ The lab includes information about:
 
 10. [Developing Ansible Modules](labs/lab-10/README.md)
 
-```
-LOOK BELOW for information about installing the lab. This is for operators of the lab.
-```
+## Setting up the lab on AWS
+This is for operators of the lab. Go to below page for information about setting up this lab on Amazon:
 [Setting up the Ansible lab on AWS](content/README.md)
