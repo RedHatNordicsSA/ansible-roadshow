@@ -76,7 +76,7 @@ You can manage playbooks and playbook directories by either placing them manuall
 :boom: Then go ahead and put the information into the create project page.
 ![Create a project](../../content/images/create-project.png)
 
-:thumbsup: Please note that we've selected the _Update on launch_, so that when a playbook launch from this Git repository, we ensure that we have the latest version available.
+:exclamation: Please note that we've select the _Update on launch_ so that when a playbook launch from this Git repository we ensure that we have the latest version available. Also that we select _Clean_ to ensure we get a fresh download of everything.
 
 :boom: Verify that the project has synced with your Git repository by checking the details shown below.
 ![Project has synced](../../content/images/project-synced.png)
