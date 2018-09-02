@@ -37,7 +37,7 @@ and wait for the role to be installed. When that is done, we can use the role in
 ```
 ansible-playbook -i hosts lb.yml
 ```
-You can again run the playbook multiple times, to ensure that this role is idempotent and that nothing changes the second or third time you run it.
+Take a moment to appreciate how simple that was. You can again run the playbook multiple times, to ensure that this role is idempotent and that nothing changes the second time you run it.
 
 This installs _nginx_ on the servers in the lbservers group. 
 
