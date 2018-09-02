@@ -19,6 +19,8 @@ Here is an example of expected output when running commands
 
 :exclamation: Do not skip any labs, the labs depends on the previous ones to be completed. You need to do them in order, 0-10.
 
+:exclamation: On purpose, security in this lab has not been made a priority, that is so you as a student get more freedom to learn. You have passwordless admin access via _sudo_ on all systems. With that said, if you do something which is outside of the labs and break your systems, _you get to keep all the pieces_ ;) 
+
 :boom: Make sure you have the required tools to do the lab. The tools are listed below:
 * An SSH client. On Linux and Mac, use the native ssh client in a terminal. On Windows, you can use PuTTy https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) if nothing else is available.
 * A web browser. Ansible Tower officially supports latest version of Firefox and Chrome, so if you bump into any issues, try one of those web browsers.
