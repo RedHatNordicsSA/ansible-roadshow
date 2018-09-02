@@ -54,7 +54,30 @@ Example playbook to install a Tomcat application server:
         state: "{{ tomcat_service_state }}"
 ```
 
- :thumbsup: There are several ways you can write a playbook. Looking at the internet, you'll find them all. Again, what we recommend is to use the native YAML syntax. The reason for that is that reading vertically is _easier_ than reading horizontally. Observe below two example where both are valid Ansible, which one do you prefer reading? Which one is easier to scan for a specific value?
+:exclamation: Please note that a playbook (YAML) is sensitive to intendation. That means that below playbook has a serious syntax error and will not run.
+```
+- name: Install Tomcat and ensure it runs
+  hosts: tomcat-servers
+  tasks:
+    - name: Ensure that the Tomcat RPM is installed
+      yum:
+        name: tomcat
+         state: latest
+```
+While below playbook is flawless and runs without issues:
+```
+- name: Install Tomcat and ensure it runs
+  hosts: tomcat-servers
+  tasks:
+    - name: Ensure that the Tomcat RPM is installed
+      yum:
+        name: tomcat
+        state: latest
+```
+
+:star: To learn about all the ins and outs of the Ansible (YAML) syntax, go here: https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
+
+:thumbsup: There are several ways you can write a playbook. Looking at the internet, you'll find them all. Again, what we recommend is to use the native YAML syntax. The reason for that is that reading vertically is _easier_ than reading horizontally. Observe below two example where both are valid Ansible, which one do you prefer reading? Which one is easier to scan for a specific value?
 
 * Valid syntax
 ```
