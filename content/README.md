@@ -1,5 +1,16 @@
 # Installing the labs
 
+Here are instructions of installing the Ansible lab, see below for the different systems you provision for the lab.
+
+![Overview of labs](images/overview.png)
+
+# Pre-requisites
+
+## Planning/sizing the environment
+For the lab to work, you need to provision 1 Ansible Tower server and 3 Managed systems per student in the lab.
+All users share the same GitLab server. The current GitLab server should scale to up to atleast 400 concurrent students.
+
+## General preparations
 These instructions guide you how to let Ansible provision the environment to Amazon AWS. All installation material is in ```content/``` -directory, instructions assume you are working in that directory. Start with cloning this repository, moving into working directory, and adding your ssh key to ssh-agent for Ansible to use it:
 
 ```
@@ -7,8 +18,6 @@ git clone https://github.com/mglantz/ansible-roadshow.git
 cd content
 ssh-add /path/to/your/amazon-ssh-key-file.pem
 ```
-
-# Pre-requisites
 
 ## Install Ansible
 
