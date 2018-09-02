@@ -18,18 +18,18 @@ When in doubt about what to do, always go back to these three principles.
 
 :thumbsup: The autonomy of a basic playbook is as follows:
 ```
-- name: Describe what the purpose of all the tasks below is.
+- name: Description of the play, here you describe what the end goal of all the tasks below is.
   hosts: all/group-name
   vars:
     app1_meaningful-name: value 
   tasks:
-    - name: Describe what the task is going to do
+    - name: Describe what this specific task is going to do
       module-name:
         argument1: static-value
         argument2: "{{ app1_meaningful-name }}"
 ```
 :thumbsup: Playbook best practices includes:
-* Give everything human-meaningful names and descriptions. A huge advantage of Ansible is that it's very close to written language. Do not destroy that feature :)
+* Give everything human-meaningful names and descriptions. A huge advantage of Ansible is that it's very close to written language. Well written playbooks can be understood by everyone and also works as documentation. Do not destroy that feature :)
 * Ansible uses a flat naming space, so variables can easily collide, prefix variables with "owner" such as application or package name.
 * Separating logic from variables makes it easier to re-factor playbooks into roles and makes it easier to override behavior of the playbook.
 * Make variable names a part of the documentation by choosing human-meaningful names
