@@ -156,7 +156,7 @@ _if you don't use vault, ignore ```vault-password-file``` parameter_
 
 # HAPPY LABS!
 
-Systems should be up in 10 minutes. Ansible Tower servers will be up in aproximately 30 minutes. Happy learning!
+Ansible Tower server and managed systems should be up in 10 minutes. Ansible Tower itself will be up in aproximately 30 minutes and the GitLab server will be available in about 15 minutes. Happy learning!
 
 # ToD0
 
