@@ -8,7 +8,7 @@ In almost all cases, you will use a playbook for automating the management of yo
 
 A playbook can also describe sequences of actions and other process related concerns. The Ansible runtime is the (_state_) engine, which interprets and applies the playbooks to the servers.
 
- :thumbsup: But before we start, let's details some basic best practices when writing playbooks. We recommend following three guiding principles regarding all Ansible related.
+ :thumbsup: But before we start, let's introduce some basic best practices to follow when writing playbooks. We recommend the following three guiding principles when working with Ansible.
 
 * Complexity kills productivity (keep it simple, it makes it robust, scalable and easy to maintain)
 * Optimize for readability (makes for easier collaboration, maintenence and makes it more robust)
@@ -16,7 +16,7 @@ A playbook can also describe sequences of actions and other process related conc
 
 When in doubt about what to do, always go back to these three principles.
 
-:thumbsup: The autonomy of a basic playbook is as follows:
+:thumbsup: The anatomy of a basic playbook is as follows:
 ```
 - name: Description of the play, here you describe what the end goal of all the tasks below is.
   hosts: all/group-name
@@ -29,10 +29,10 @@ When in doubt about what to do, always go back to these three principles.
         argument2: "{{ app1_meaningful-name }}"
 ```
 :thumbsup: Playbook best practices includes:
-* Give everything human-meaningful names and descriptions. A huge advantage of Ansible is that it's very close to written language. Well written playbooks can be understood by everyone and also works as documentation. Do not destroy that feature :)
+* Give everything names and descriptions which are readable by humans. A huge advantage of Ansible is that it's syntax is resembles written english. Well written playbooks can be understood by everyone and also works as documentation. Do not destroy that feature :)
 * Ansible uses a flat naming space, so variables can easily collide, prefix variables with "owner" such as application or package name.
 * Separating logic from variables makes it easier to re-factor playbooks into roles and makes it easier to override behavior of the playbook.
-* Make variable names a part of the documentation by choosing human-meaningful names
+* Make variable names a part of the documentation by choosing human readable names
 * Use native YAML syntax because vertical reading is easier for _humans_. More on that below.
 
 Example playbook to install a Tomcat application server:
@@ -54,7 +54,7 @@ Example playbook to install a Tomcat application server:
         state: "{{ tomcat_service_state }}"
 ```
 
-:exclamation: Please note that a playbook (YAML) is sensitive to intendation. That means that below playbook has a serious syntax error and will not run.
+:exclamation: Please note that a playbook (YAML) is sensitive to intendation. That means that the playbook below has a serious syntax error and will not run.
 ```
 - name: Install Tomcat and ensure it runs
   hosts: tomcat-servers
@@ -64,7 +64,7 @@ Example playbook to install a Tomcat application server:
         name: tomcat
          state: latest
 ```
-While below playbook is flawless and runs without issues:
+While the playbook below is flawless and runs without issues:
 ```
 - name: Install Tomcat and ensure it runs
   hosts: tomcat-servers
