@@ -18,7 +18,7 @@ mkdir -p $WORK_DIR/binaries
 cp $LAB_DIR/labs/lab-3/lab-files/binaries/example-jaxrs-war-swarm.jar $WORK_DIR/binaries
 ```
 
-:boom: Create the rest of the structure for creating the playbook. Use the Ansible Galaxy init functionality to easily create a template for your new role. Run below commands:
+:boom: Create the rest of the structure for creating the playbook. Use the command *ansible-galaxy init* to easily create a template for your new role by running the commands below:
 
 ```
 cd $WORK_DIR
