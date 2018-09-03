@@ -9,14 +9,14 @@ The first step is to transfer your work that you did in $WORK_DIR on a local ser
 git config --global user.email "studentX@domain.suffix"
 git config --global user.name "studentX"
 ```
-:boom: Then we're going to check out the _git repository_ which you created earlier, in **lab 7**, where you again place the X in studentX with your assigned number. Run below commands in a terminal:
+:boom: Then we're going to check out the _git repository_ which you created earlier, in **lab 7** and should have named **studentX-project**. Replace the X in studentX with your assigned student number as well and then run below commands in a terminal:
 
 ```
 cd
 git clone https://GITLAB-SERVER-DOMAIN-NAME/studentX/studentX-project.git
 ```
 
-The output should be similair as follows:
+The output should be similar as follows:
 ```
 $ git clone https://ec2-52-57-173-62.eu-central-1.compute.amazonaws.com/student1/student1-project.git
 Cloning into 'student1-project'...
