@@ -9,14 +9,14 @@ The first step is to transfer your work that you did in $WORK_DIR on a local ser
 git config --global user.email "studentX@domain.suffix"
 git config --global user.name "studentX"
 ```
-:boom: Then we're going to check out the _git repository_ which you created earlier, in **lab 7**, where you again place the X in studentX with your assigned number. Run below commands in a terminal:
+:boom: Then we're going to check out the _git repository_ which you created earlier, in **lab 7** and should have named **studentX-project**. Replace the X in studentX with your assigned student number as well and then run below commands in a terminal:
 
 ```
 cd
 git clone https://GITLAB-SERVER-DOMAIN-NAME/studentX/studentX-project.git
 ```
 
-The output should be similair as follows:
+The output should be similar as follows:
 ```
 $ git clone https://ec2-52-57-173-62.eu-central-1.compute.amazonaws.com/student1/student1-project.git
 Cloning into 'student1-project'...
@@ -133,7 +133,7 @@ Congratulations, all your content is now in git. You can review it by looking in
  
 :boom: :boom: **Now that you have moved all work to _/home/student/studentX-project_ let's change the WORK_DIR variable. Change the X in studentX to your assigned number and run:**
 ```
-export WORK_DIR=/home/student/studentX-project
+sed -i '/WORK_DIR/d' ~/.bashrc && echo "export WORK_DIR=/home/student/studentX-project" >> ~/.bashrc && . ~/.bashrc
 ```
 
 Now you need to instruct Ansible Tower to use the Nginx module. You could install the module on Ansible Tower as previously, but this would have the unwanted effect that all projects on the Ansible Tower server would rely on this module. Furthermore the Ansible Tower server now needs special care if you need to reinstall it. Instead we'll instruct Ansible Tower to include the Nginx module as part of our project. 
