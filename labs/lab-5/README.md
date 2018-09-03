@@ -25,9 +25,9 @@ wildfly1 ansible_host=yyy.yyy.yyy.yyy
 wildfly2 ansible_host=zzz.zzz.zzz.zzz
 
 [dev]
-loadbalancer1
-wildfly1
-wildfly2
+loadbalancer1 ansible_host=xxx.xxx.xxx.xxx
+wildfly1 ansible_host=yyy.yyy.yyy.yyy
+wildfly2 ansible_host=zzz.zzz.zzz.zzz
 ```
 
  :exclamation: As before, change xxx.yyy.zzz to the IP-addresses assigned to you.
@@ -103,7 +103,7 @@ $
 ```
 :thumbsup: Notice the addition of no_log to ensure that no details about our secret is logged.
 
-:boom: Rename the service script to reflect that it is now a template file:
+:boom: Rename the service script from 'wildflyapp.service' to 'wildflyapp.template' to reflect that it is now a template file. Move it from the directory '$WORK_DIR/roles/wildflyapp/files/' to '$WORK_DIR/roles/wildflyapp/templates/':
 
 ```
 mv $WORK_DIR/roles/wildflyapp/files/wildflyapp.service $WORK_DIR/roles/wildflyapp/templates/wildflyapp.template
