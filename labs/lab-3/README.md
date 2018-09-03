@@ -57,7 +57,7 @@ cat << 'EOF' >$WORK_DIR/roles/wildflyapp/tasks/main.yml
 - name: Enable wildfly app service script
   systemd:
     name: wildflyapp
-    enabled: no
+    enabled: yes
     masked: no
 - name: Make sure the wildfly app service is running
   systemd:
