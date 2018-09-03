@@ -60,7 +60,9 @@ cat << 'EOF' >$WORK_DIR/roles/wildflyapp/tasks/main.yml
     enabled: no
     masked: no
 - name: Make sure the wildfly app service is running
-  systemd: state=started name=wildflyapp
+  systemd:
+    name: wildflyapp
+    state: started
 EOF
 ```
 
