@@ -90,14 +90,14 @@ END OF TEST FRAMEWORK
 ```
 cd $WORK_DIR
 cat << 'EOF' >problem.yml
-- name: Create directory and restart tomcat 
-  hosts: wildflyservers
+- name: Create directory and restart Nginx 
+  hosts: lbservers
   tasks: 
     - name: Create directory
       command: mkdir /tmp/logs
 
-    - name: Restart Tomcat
-       shell: systemctl restart tomcat
+    - name: Restart Nginx
+       shell: systemctl restart nginx
 EOF
 ```
 
