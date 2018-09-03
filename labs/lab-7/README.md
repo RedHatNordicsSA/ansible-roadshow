@@ -4,7 +4,7 @@ Red Hat Ansible Tower (build from the ![Open Source project, AWX](https://github
 
 >How can I control who can run what playbooks where?
 
-This is a central concerns which stimms from the fact that sharing access is difficult. Because of this, some companies don't even allow people to share access, because of (valid) security concerns, security compliance requirements on separation of duty, and more.
+This is a central concerns which stems from the fact that sharing access is difficult. Because of this, some companies don't even allow people to share access, because of (valid) security concerns, security compliance requirements on separation of duty, and more.
 
 Very often, you fail to automate things because it was not possible to share access. As an example, if you want to automate
 the configuration of SAN storage at your company, your SAN storage switches may not allow granular enough access so that the users which you use to do the automation - can only do what you need it to do (which in that case would be to zone-in a disk to one or more specific servers).
