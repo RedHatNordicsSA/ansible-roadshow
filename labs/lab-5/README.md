@@ -25,9 +25,9 @@ wildfly1 ansible_host=yyy.yyy.yyy.yyy
 wildfly2 ansible_host=zzz.zzz.zzz.zzz
 
 [dev]
-loadbalancer1 ansible_host=xxx.xxx.xxx.xxx
-wildfly1 ansible_host=yyy.yyy.yyy.yyy
-wildfly2 ansible_host=zzz.zzz.zzz.zzz
+loadbalancer1
+wildfly1
+wildfly2
 ```
 
  :exclamation: As before, change xxx.yyy.zzz to the IP-addresses assigned to you.
