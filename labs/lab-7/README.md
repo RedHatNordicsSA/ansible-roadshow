@@ -107,6 +107,11 @@ Next we are going to run this playbook via the Tower CLI. You can do it as your 
 
 :boom: From your terminal on the Ansible Tower server you use the _tower-cli_ tool to launch the job template you created earlier.
 
+:exclamation: To be able to use tower-cli, you need to provide username and password for most commands. Append any command with -u admin -p <password>
+```
+tower-cli job list -u admin -p <password>
+```
+
 :boom: Explore the tool by using
 ```
 $ tower-cli --help
