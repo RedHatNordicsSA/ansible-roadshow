@@ -65,9 +65,9 @@ web[1:3]              web3                [test]
 
 For this lab, we will start and group the servers into _WHAT_ - load balancers (lbservers) and WildFly Swarm application servers (wildflyservers).
 
- :thumbsup: Another inventory best practice is that if you happen to have systems which are named 'srv1234-e445.gdml.oo.sld.foo' or as meaningless, you may want to think about giving your systems human meaningful aliases in your inventory, such as web1 or etc. The reason for this is _readability_. Both your playbooks and your playbooks output will become more readable. We will soon implement some human meaningful aliases for the systems in this lab.
+ :thumbsup: Another inventory best practice is that if you happen to have systems which are named 'srv1234-e445.gdml.oo.sld.foo' or as meaningless, you may want to think about giving your systems human meaningful aliases in your inventory, such as web1 or similar. The reason for this is _readability_. Both your playbooks and your playbooks' output will become more readable. We will soon implement some human meaningful aliases for the systems in this lab.
 
- :exclamation: Before we continue on, make sure that the $WORK_DIR variable is defined. If $WORK_DIR is not defined, [take a look at the preparations.](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-0)\
+ :exclamation: Before we continue, make sure that the $WORK_DIR variable is defined. If $WORK_DIR is not defined, [take a look at the preparations.](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-0)\
 
 :boom: Now, create a file named *hosts* in the *$WORK_DIR* folder.
 

@@ -18,7 +18,7 @@ If by some reason you get stuck in a lab - then here's what you should do. **Fol
 
 1. If you do not understand what to do in a lab, or do not understand what you are doing, skip immediately to step 5. Also, the authors of this lab apologizes for that. This purpose of this lab is so that everyone can do it and understand it.
 2. This lab has seen plenty of use, so chances are that you have simply not followed the lab instructions. Start by reading the lab instructions again, carefully.
-3. If you are sure that you are doing things as describe in the labs, perhaps you typed something wrong or had a copy-paste accident. Double checking your files content and compare them with the content described here in the lab. If you typed things manually, try doing a clean copy-paste from the lab page instead.
+3. If you are sure that you are doing things as described in the labs, perhaps you typed something wrong or had a copy-paste accident. Double checking your files content and comparing them with the content described here in the lab. If you typed things manually, try doing a clean copy-paste from the lab page instead.
 4. Ask the person beside you if that person also had an issue with what you are doing. If so, that may indicate there is actually something wrong.
 5. Raise your hand and someone will come and help you :)
 
@@ -65,7 +65,7 @@ https://mediatemple.net/community/products/dv/204404604/using-ssh-in-putty-
 cd
 git clone https://github.com/mglantz/ansible-roadshow.git
 ```
-:boom: The variabel **$LAB_DIR** will refer to the root of the cloned repository, export it as an variable using below command:
+:boom: The variable **$LAB_DIR** will refer to the root of the cloned repository, export it as a variable using the below command:
 ```
 export LAB_DIR=/home/student/ansible-roadshow
 ```
