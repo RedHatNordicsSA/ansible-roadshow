@@ -14,7 +14,7 @@ echo 'wildfly_secret_vault: Red Hat' > $WORK_DIR/group_vars/dev/wildflyservers/v
 
 As you can see, some refactoring has been done to ensure that it is possible to use different configurations for different environments. This is achieved by having different environment folders in the *group_vars* directory. In this case a dev group variable file is created by adding specific settings in the folder *$WORK_DIR/group_vars/dev/*. 
 
-:boom: Servers can belong to several groups, so in the **$WORK_DIR/hosts** file we will now add the group *dev* with all servers listed. Change the content of **$WORK_DIR/hosts** so that it looks like below:
+:boom: Servers can belong to several groups, so in the **$WORK_DIR/hosts** file we will now add the group *dev* with all servers listed. Change the content of **$WORK_DIR/hosts** so that it looks like below. (Please note that the ansible_host statement is only done once):
 
 ```
 [lbservers]
@@ -103,7 +103,7 @@ $
 ```
 :thumbsup: Notice the addition of no_log to ensure that no details about our secret is logged.
 
-:boom: Rename the service script to reflect that it is now a template file:
+:boom: Rename the service script from 'wildflyapp.service' to 'wildflyapp.template' to reflect that it is now a template file. Move it from the directory '$WORK_DIR/roles/wildflyapp/files/' to '$WORK_DIR/roles/wildflyapp/templates/':
 
 ```
 mv $WORK_DIR/roles/wildflyapp/files/wildflyapp.service $WORK_DIR/roles/wildflyapp/templates/wildflyapp.template
