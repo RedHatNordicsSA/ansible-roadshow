@@ -81,7 +81,7 @@ You can manage playbooks and playbook directories by either placing them manuall
 :boom: Verify that the project has synced with your Git repository by checking the details shown below.
 ![Project has synced](../../content/images/project-synced.png)
 
-Next you will provide access to the playbook which [you put onto GitHub earlier in lab-6](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-6). This is done using so called job templates. A job template combines an Ansible playbook from a project and the settings required to launch it.
+Next you will provide access to the playbook which [you put onto GitLab earlier in lab-6](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-6). This is done using so called job templates. A job template combines an Ansible playbook from a project and the settings required to launch it.
 
 :boom: Create a job template called "workshop-template" which links to the playbook which you created earlier, as follows. Click "TEMPLATES" -> "ADD" -> "Job Template"
 ![Create a template](../../content/images/create-template.png)
