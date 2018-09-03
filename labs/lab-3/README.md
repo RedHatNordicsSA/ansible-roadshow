@@ -47,7 +47,7 @@ cat << 'EOF' >$WORK_DIR/roles/wildflyapp/tasks/main.yml
 - name: Create service script
   copy:
     src: roles/wildflyapp/files/wildflyapp.service
-    dest: /lib/systemd/system/wildflyapp.service
+    dest: /etc/systemd/system/wildflyapp.service
     owner: root
     group: root
     mode: 0644

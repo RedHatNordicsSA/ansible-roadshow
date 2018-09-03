@@ -78,7 +78,7 @@ $
 - name: Create service script
   template:
     src: wildflyapp.template
-    dest: /lib/systemd/system/wildflyapp.service
+    dest: /etc/systemd/system/wildflyapp.service
     owner: root
     group: root
     mode: 0644
