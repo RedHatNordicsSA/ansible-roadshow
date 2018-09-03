@@ -133,7 +133,7 @@ Congratulations, all your content is now in git. You can review it by looking in
  
 :boom: :boom: **Now that you have moved all work to _/home/student/studentX-project_ let's change the WORK_DIR variable. Change the X in studentX to your assigned number and run:**
 ```
-export WORK_DIR=/home/student/studentX-project
+sed -i '/WORK_DIR/d' ~/.bashrc && echo "export WORK_DIR=/home/student/studentX-project" >> ~/.bashrc && . ~/.bashrc
 ```
 
 Now you need to instruct Ansible Tower to use the Nginx module. You could install the module on Ansible Tower as previously, but this would have the unwanted effect that all projects on the Ansible Tower server would rely on this module. Furthermore the Ansible Tower server now needs special care if you need to reinstall it. Instead we'll instruct Ansible Tower to include the Nginx module as part of our project. 

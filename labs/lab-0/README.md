@@ -65,23 +65,16 @@ https://mediatemple.net/community/products/dv/204404604/using-ssh-in-putty-
 cd
 git clone https://github.com/mglantz/ansible-roadshow.git
 ```
-:boom: The variabel **$LAB_DIR** will refer to the root of the cloned repository, export it as an variable using below command:
+:boom: The variabel **$LAB_DIR** will refer to the root of the cloned repository and make it persistant, export it as an variable using below command:
 ```
-export LAB_DIR=/home/student/ansible-roadshow
+echo "export LAB_DIR=/home/student/ansible-roadshow" >>~/.bashrc && . ~/.bashrc
 ```
 
 :boom: In the **student** user's home directory create an empty dir named **work**, where you will do your assignments. This dir will be referred to as **$WORK_DIR**, export $WORK_DIR as a variable in your shell. To do this, run:
 ```
 cd
 mkdir work
-export WORK_DIR=/home/student/work
-```
-
-:exclamation: Keep in mind that if you get logged out from the Ansible Tower server, you need to set the **WORK_DIR** and **LAB_DIR** variables again by running the _export_ commands again, like such:
-
-```
-export LAB_DIR=/home/student/ansible-roadshow
-export WORK_DIR=/home/student/work
+echo "export WORK_DIR=/home/student/work" >>~/.bashrc && . ~/.bashrc
 ```
 
 ```
