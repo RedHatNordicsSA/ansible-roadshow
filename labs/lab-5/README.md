@@ -134,7 +134,7 @@ WantedBy=multi-user.target
 
 As you can see the secret name is added to the template.
 
-:boom: To run the playbook with your vault, you'll be required to give Ansible your password. Do so by creating a file named *.mypassword* and put the password in the file. You can do so by running below command in your terminal:
+:boom: To run the playbook with your vault, you'll be required to give Ansible your password. Do so by creating a file named *mypassword* and put the password in the file. You can do so by running below command in your terminal:
 ```
 echo "mypass123" >$WORK_DIR/mypassword
 ```
