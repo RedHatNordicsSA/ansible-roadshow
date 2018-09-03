@@ -35,10 +35,20 @@ export WORK_DIR=/home/student/work
 cp -R $WORK_DIR/* /home/student/studentX-project
 ```
 
-:boom: Next we need to tell git that we've added a bunch of new files. Run below commands to do that (_replace X in studentX with your assigned number_):
+:boom: Next we need to tell git that we've added a bunch of new files.
+First we'll create a `.gitignore` file to avoid pushing unwanted files to the git repository.
+We don't want to have the `mypassword` file pushed to a public repository!
+The `nginxinc.nginx` comes from [Ansible Galaxy](https://galaxy.ansible.com/nginxinc/nginx/) and shouldn't be part of our repository either.
+Run below commands to do that (_replace X in studentX with your assigned number_):
 ```
 cd ~/studentX-project
-git add *
+echo "mypassword" >> .gitignore
+echo "roles/nginxinc.nginx" >> .gitignore
+```
+
+:boom: We can now safely add all the files to git.
+```
+git add .
 ```
 
 :boom: Now we can create a commit message for the changes we've made. A commit message is ment to be useful for other people, when scanning a repository for what changes has been made. _Ensure you are in the /home/student/studentX-project directory_ and run:
@@ -57,7 +67,6 @@ $ git commit -m 'Added workshop workspace to git'
  create mode 100644 hosts
  create mode 100644 lb.yml
  create mode 100644 main.yml
- create mode 100644 mypassword
  create mode 100644 roles/nginx-config/README.md
  create mode 100644 roles/nginx-config/defaults/main.yml
  create mode 100644 roles/nginx-config/handlers/main.yml
