@@ -8,11 +8,11 @@ In almost all cases, you will use a playbook for automating the management of yo
 
 A playbook can also describe sequences of actions and other process related concerns. The Ansible runtime is the (_state_) engine, which interprets and applies the playbooks to the servers.
 
- :thumbsup: But before we start, let's introduce some basic best practices to follow when writing playbooks. We recommend the following three guiding principles when working with Ansible.
+ :thumbsup: But before we start, let's introduce some basic best practices to follow when writing playbooks. We recommend the following three guiding principles when working with Ansible:
 
 * Complexity kills productivity (keep it simple, it makes it robust, scalable and easy to maintain)
 * Optimize for readability (makes for easier collaboration, maintenance and makes it more robust)
-* Think declaritively (Ansible is a state engine, do not try to 'code' with playbooks)
+* Think declaratively (Ansible is a state engine, do not try to 'code' with playbooks)
 
 When in doubt about what to do, always go back to these three principles.
 
@@ -99,7 +99,7 @@ While the playbook below is flawless and runs without issues:
 
 # :boom: Writing your first Ansible Playbooks
 
-Now, we're ready to create our first playbook. Let's try to implement the ping example using a playbook. There is a good reason for doing that, which is that _ICMP echo / echo reply_ (aka ping) is not allowed in your network. If you going forward in the lab exercises suspect connectivity issues, you can always execute this playbook. 
+Now, we're ready to create our first playbook. Let's try to implement the ping example using a playbook. There is a good reason for doing that, which is that _ICMP echo / echo reply_ (aka ping) is not allowed in your network. If you - going forward in the lab exercises - suspect connectivity issues, you can always execute this playbook.
 
 :boom: Create the playbook: $WORK_DIR/ping.yml, by pasting below into your terminal: 
 
