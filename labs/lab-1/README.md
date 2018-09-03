@@ -46,7 +46,7 @@ You will find the following configuration _in the top of the config file_:
 #module_utils   = /usr/share/my_module_utils/
 ```
 
- :thumbsup: Most important to note is the default location of the inventory file. The inventory file is used to define servers that you are managing. If you do not define a locate of an inventory when running a playbook, ansible will look in the default inventory file. Inside of the inventory, managed systems can be grouped in any way you like. Best practices for grouping service in an inventory is to ask three simple questions, _WHAT_, _WHERE_, _WHEN_ and then fill in the blanks. An example inventory file can look like:
+ :thumbsup: Most important to note is the default location of the inventory file. The inventory file is used to define servers that you are managing. If you do not define a locate of an inventory when running a playbook, ansible will look in the default inventory file. Inside of the inventory, managed systems can be grouped in any way you like. Best practices for grouping service in an inventory is to ask three simple questions, _WHAT_, _WHERE_, _WHEN_ and then fill in the blanks. An example inventory file is shown below:
 
 ```
 # WHAT                WHERE               WHEN
