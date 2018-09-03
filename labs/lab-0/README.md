@@ -84,6 +84,7 @@ export LAB_DIR=/home/student/ansible-roadshow
 export WORK_DIR=/home/student/work
 ```
 
+```
 End of lab
 ```
 [Go to the next lab, lab 1](../lab-1/README.md)
