@@ -108,7 +108,7 @@ Source branch allows you to choose which branch you would like to merge to the t
 
 :boom: Let's tick the box for Gitlab to automatically remove it once the merge(pull) request has been accepted.
 
-:thumbsup: This is considered a best practice, to remove any branches which has been merged as this allows you to keep tabs on ongoing development. If a branch has existed for a long time, this may indicate that someone has bitten off a bit too large chunk to swallow in a reasonable time. If a branch lives for a longer time, that often means it will be more difficult to merge it, as there is risk that the development conflicts with other ongoing developmen. Rather than doing everything in one large merge/pull request, do it several small ones, if you are doing significant development.
+:thumbsup: This is considered a best practice, to remove any branches which has been merged as this allows you to keep tabs on ongoing development. If a branch has existed for a long time, this may indicate that someone has bitten off a bit too large chunk to swallow in a reasonable time. If a branch lives for a longer time, that often means it will be more difficult to merge it, as there is risk that the development conflicts with other ongoing development. Rather than doing everything in one large merge/pull request, do it several small ones, if you are doing significant development.
 
 You will now get redirected to the page which overviews your merge(pull) request. Here you can use the comment function displayed in the 'Discussions' tab to collaborate with other people.
 Perhaps your change needs a code review or you need some advise on how to solve a specific problem? The 'Commits' and 'Changes' allow you to overview all changes made into your newly created branch.

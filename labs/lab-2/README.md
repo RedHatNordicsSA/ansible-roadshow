@@ -11,7 +11,7 @@ A playbook can also describe sequences of actions and other process related conc
  :thumbsup: But before we start, let's introduce some basic best practices to follow when writing playbooks. We recommend the following three guiding principles when working with Ansible.
 
 * Complexity kills productivity (keep it simple, it makes it robust, scalable and easy to maintain)
-* Optimize for readability (makes for easier collaboration, maintenence and makes it more robust)
+* Optimize for readability (makes for easier collaboration, maintenance and makes it more robust)
 * Think declaritively (Ansible is a state engine, do not try to 'code' with playbooks)
 
 When in doubt about what to do, always go back to these three principles.
