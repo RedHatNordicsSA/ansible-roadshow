@@ -67,14 +67,14 @@ git clone https://github.com/mglantz/ansible-roadshow.git
 ```
 :boom: The variabel **$LAB_DIR** will refer to the root of the cloned repository and make it persistant, export it as an variable using below command:
 ```
-echo "export LAB_DIR=/home/student/ansible-roadshow" >>~/.bashrc && export LAB_DIR=/home/student/ansible-roadshow
+echo "export LAB_DIR=/home/student/ansible-roadshow" >>~/.bashrc && . ~/.bashrc
 ```
 
 :boom: In the **student** user's home directory create an empty dir named **work**, where you will do your assignments. This dir will be referred to as **$WORK_DIR**, export $WORK_DIR as a variable in your shell. To do this, run:
 ```
 cd
 mkdir work
-echo "export WORK_DIR=/home/student/work" >>~/.bashrc && export WORK_DIR=/home/student/work
+echo "export WORK_DIR=/home/student/work" >>~/.bashrc && . ~/.bashrc
 ```
 
 End of lab
