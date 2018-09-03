@@ -8,7 +8,7 @@ To reiterate, modules are Ansible's tools in a toolbox. Ansible playbooks calls 
  ![Playbooks calls upon modules](../../content/images/modules.png)
 
 ## Should you develop a module?
-thumbsup: The first thing you should ask yourself when developing an Ansible module is, should you develop a module? Before you get started on development, walk through this little checklist.
+:thumbsup: The first thing you should ask yourself when developing an Ansible module is, should you develop a module? Before you get started on development, walk through this little checklist.
 
 * Does a similar module exist?
 See: http://docs.ansible.com/ansible/latest/modules/modules_by_category.html
