@@ -14,7 +14,7 @@ echo 'wildfly_secret_vault: Red Hat' > $WORK_DIR/group_vars/dev/wildflyservers/v
 
 As you can see, some refactoring has been done to ensure that it is possible to use different configurations for different environments. This is achieved by having different environment folders in the *group_vars* directory. In this case a dev group variable file is created by adding specific settings in the folder *$WORK_DIR/group_vars/dev/*. 
 
-:boom: Servers can belong to several groups, so in the **$WORK_DIR/hosts** file we will now add the group *dev* with all servers listed. Change the content of **$WORK_DIR/hosts** so that it looks like below:
+:boom: Servers can belong to several groups, so in the **$WORK_DIR/hosts** file we will now add the group *dev* with all servers listed. Change the content of **$WORK_DIR/hosts** so that it looks like below. (Please note that the ansible_host statement is only done once):
 
 ```
 [lbservers]
@@ -25,9 +25,9 @@ wildfly1 ansible_host=yyy.yyy.yyy.yyy
 wildfly2 ansible_host=zzz.zzz.zzz.zzz
 
 [dev]
-loadbalancer1 ansible_host=xxx.xxx.xxx.xxx
-wildfly1 ansible_host=yyy.yyy.yyy.yyy
-wildfly2 ansible_host=zzz.zzz.zzz.zzz
+loadbalancer1
+wildfly1
+wildfly2
 ```
 
  :exclamation: As before, change xxx.yyy.zzz to the IP-addresses assigned to you.
