@@ -18,7 +18,7 @@ As you can see, some refactoring has been done to ensure that it is possible to 
 
 ```
 [lbservers]
-loadbalancer1=xxx.xxx.xxx.xxx
+loadbalancer1 ansible_host=xxx.xxx.xxx.xxx
 
 [wildflyservers]
 wildfly1 ansible_host=yyy.yyy.yyy.yyy
