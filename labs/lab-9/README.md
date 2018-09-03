@@ -24,10 +24,10 @@ ansible-lint playbook.yml
 ```
 
 3. Run the playbook and check for issues:
-* Run the playbook manually and check for any failures:
+* Run the playbook manually and check for any failures (add --check for dry-run):
 ```
 cd $WORK_DIR
-ansible-playbook -i hosts problem.yml
+ansible-playbook --check -i hosts problem.yml
 ```
 
 * Or better, create a script which does this, by pasting below into a terminal:
