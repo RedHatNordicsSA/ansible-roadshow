@@ -47,7 +47,7 @@ You should get the Nginx default page, as shown above. Take some extra time to a
 
 Next step is to configure Nginx as a loadbalancer for the two wildflyapp servers. To do so, we'll add an additional role for the configuration. We follow the [best practises for Ansible directory layout](http://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html) and place tasks, handlers, and vars in separate directories. This is done so that it's easier to collaborate and maintain your work. 
 
-:boom: To create a boilerplate for our new role, which features these best practices, we use the ansible-galax command. Run below commands:
+:boom: To create a boilerplate for our new role, which features these best practices, we use the ansible-galaxy command. Run below commands:
 
 ```
 cd $WORK_DIR
