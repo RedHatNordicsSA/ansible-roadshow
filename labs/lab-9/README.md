@@ -116,6 +116,14 @@ https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-9/lab
 :star: The testing practice is to integrate testing into your development pipeline for Ansible playbooks. Ensure that when your code merges, it's always tested. If you are interested in how this can be done using Jenkins and Ansible Tower, have a look here:
 https://github.com/mglantz/tomcat-playbook/
 
+# :star: More to read
+
+[Molecule](https://molecule.readthedocs.io/en/latest/) is a project designed to aid in the development and testing of Ansible roles.
+It's opinitated and help enforcing best practices by verifying syntax, style, idempotence... It can even run tests after your playbook was run
+with a framework like [Testinfra](https://testinfra.readthedocs.io/en/latest/).
+
+Check the documentation for more information: https://molecule.readthedocs.io/en/latest/
+
 ```
 End of lab
 ```
