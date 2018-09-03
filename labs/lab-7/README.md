@@ -68,7 +68,7 @@ You can manage playbooks and playbook directories by either placing them manuall
 
 :boom: Create a project called "workshop-playbooks" by following the instructions below.
 
-:boom: To create a new project, click on the 'Projects' tab and click on the add button. Make sure to link your project to the GitHub repository, which [you created earlier in lab-6](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-6). 
+:boom: To create a new project, click on the 'Projects' tab and click on the add button. Make sure to link your project to the GitLab repository, which [you created earlier in lab-6](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-6). 
 
 :boom: To get the correct URL, go to the GitLab server and click on the indicated button below.
 ![Create a project](../../content/images/copy-gitlab-url.png)
