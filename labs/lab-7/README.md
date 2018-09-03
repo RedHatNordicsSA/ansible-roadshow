@@ -112,6 +112,11 @@ Next we are going to run this playbook via the Tower CLI. You can do it as your 
 $ tower-cli --help
 $ tower-cli job --help
 ```
+:boom: Log in with:
+```
+tower-cli config username workshop-guest
+tower-cli config password verySecret
+```
 :boom: and launch your playbook.
 
 :star: If you have time, also try adding the below flag:
