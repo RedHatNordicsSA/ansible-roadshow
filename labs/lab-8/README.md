@@ -1,6 +1,6 @@
 # Installing WildFly and Nginx from Tower
 
-As the good developer you are, you now you want to make sure your playbooks for provisioning the WildFly app available for the whole organization to run and benefit from. This requires that you handle your Ansible content as code. This lab will describe how you can do so.
+As the good developer you are, you now want to make sure your playbooks for provisioning the WildFly app is available for the whole organization to run and benefit from. This requires that you handle your Ansible content as code. This lab will describe how you can do so.
 
 The first step is to transfer your work that you did in $WORK_DIR on a local server, to the central git repository. As the whole company is going to run this, you need to version control your work and you would also like to enable people to contribute to your work, to make it better.
 
