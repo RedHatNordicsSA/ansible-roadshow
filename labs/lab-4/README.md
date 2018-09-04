@@ -39,7 +39,13 @@ ansible-playbook -i hosts lb.yml
 ```
 Take a moment to appreciate how simple that was. You can again run the playbook multiple times, to ensure that this role is idempotent and that nothing changes the second time you run it.
 
-This installs _nginx_ on the servers in the lbservers group. 
+This installs _nginx_ on the servers in the lbservers group.
+
+:star: The attentive student saw an error message
+``` 
+[WARNING]: Ignoring invalid attribute: Name
+```
+This is due to a bug, which does not affect our run of this role, but ... what is the bug? And can you fix it?
 
 :boom: To verify the installation, in your web browser, go to: *http://$loadbalancer1-ip-address*.
 ![NGNIX welcome page](../../content/images/ngnix-welcome.png)
