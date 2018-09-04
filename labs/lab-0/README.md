@@ -1,6 +1,16 @@
 # Welcome to the lab
 
-Hello and welcome. In this lab, we use some basic graphics to make the lab easier to understand. Such as:
+Hello and welcome to the lab. First off, if you are not familiar with what Ansible is:
+
+Ansible is an powerful automation and orchestration engine, powerful enough to automate everything from IoT lightbulbs to cloud infrastructure - yet, simple enough for everyone to use. Even those who are not a programmer.
+
+The reason why Ansible has become so pupular is because it's simple. No coding skills are required. Even a lot of non technical staff in your organization can read and understand Ansible playbooks. This simplicity means that you get started in minutes. Ansible is clientless, using SSH, Win RM or application specific APIs. Ansible also works as you think, tasks are executed in order, top to bottom - much adding to the simplicity. While simple, it's power enough to model the most complex workflows in IT.
+
+Ansibles catch phrase is "automate all things" and this reflects fairly on what it can do. People use Ansible to automate all things. This differentiates it from the other automation frameworks or systems, which only automates parts of your IT landscape - adding fragmentation and lock-in while making collaboration more difficult.
+
+# Lab graphics
+
+In this lab, we use some basic graphics to make the lab easier to understand. Such as:
 
 :boom: This is something which you have to do.\
 :star: If you have time, you can also do this.\
