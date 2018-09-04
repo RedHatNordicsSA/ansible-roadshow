@@ -2,14 +2,9 @@
 
 :boom: What is Ansible? Check out this short description.
 
-![What is Ansible?](../../content/images/what_is_ansible.png)
-Ansible is an powerful automation and orchestration engine, powerful enough to automate everything from IoT lightbulbs to cloud infrastructure - yet, simple enough for everyone to use. Even those who are not a programmer.
-
-![Why Ansible?](../../content/images/why_ansible.png)
-The reason why Ansible has become so pupular is because it's simple. No coding skills are required. Even a lot of non technical staff in your organization can read and understand Ansible playbooks. This simplicity means that you get started in minutes. Ansible is clientless, using SSH, Win RM or application specific APIs. Ansible also works as you think, tasks are executed in order, top to bottom - much adding to the simplicity. While simple, it's power enough to model the most complex workflows in IT.
-
-![What can Ansible do?](../../content/images/what_can_it_do.png)
-Ansibles catch phrase is "automate all things" and this reflects fairly on what it can do. People use Ansible to automate all things. This differentiates it from the other automation frameworks or systems, which only automates parts of your IT landscape - adding fragmentation and lock-in while making collaboration more difficult.
+>Ansible is an powerful automation and orchestration engine, powerful enough to automate everything from IoT lightbulbs to cloud infrastructure - yet, simple enough for everyone to use. Even those who are not a programmer.
+>The reason why Ansible has become so pupular is because it's simple. No coding skills are required. Even a lot of non technical staff in your organization can read and understand Ansible playbooks. This simplicity means that you get started in minutes. Ansible is clientless, using SSH, Win RM or application specific APIs. Ansible also works as you think, tasks are executed in order, top to bottom - much adding to the simplicity. While simple, it's power enough to model the most complex workflows in IT.
+>Ansibles catch phrase is "automate all things" and this reflects fairly on what it can do. People use Ansible to automate all things. This differentiates it from the other automation frameworks or systems, which only automates parts of your IT landscape - adding fragmentation and lock-in while making collaboration more difficult.
 
 :exclamation: _Ensure that you are logged in to your Ansible Tower server as the **student** user._
 
