@@ -138,6 +138,11 @@ As you can see the secret name is added to the template.
 ```
 echo "mypass123" >$WORK_DIR/mypassword
 ```
+The above command will leave your password in the BASH History. To fix this run the below. The offset is obtained from running history and taking the line number of the command to remove
+```
+history -d <offset>
+```
+Alternatively edit the password file in an editor instead!
 
 :boom: Then run Ansible with the following command:
 
