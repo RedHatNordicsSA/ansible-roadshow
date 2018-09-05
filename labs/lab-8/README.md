@@ -56,7 +56,7 @@ git add .
 git commit -m 'Moving my local workspace to git'
 ```
 
-The output should be similair as:
+The output should be similar as:
 ```
 $ git commit -m 'Added workshop workspace to git'
 [master 726a864] Added workshop workspace to git
