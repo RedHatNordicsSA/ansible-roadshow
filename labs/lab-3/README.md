@@ -34,7 +34,7 @@ cat << 'EOF' >$WORK_DIR/roles/wildflyapp/tasks/main.yml
 # tasks file for roles/wildflyapp
 - name: Install java
   yum:
-    name: java
+    name: java-headless
 - name: Create directory to store binary
   file:
     path: /opt/wildflyapp
