@@ -75,7 +75,7 @@ https://mediatemple.net/community/products/dv/204404604/using-ssh-in-putty-
 cd
 git clone https://github.com/mglantz/ansible-roadshow.git
 ```
-:boom: The variabel **$LAB_DIR** will refer to the root of the cloned repository and make it persistant, export it as an variable using below command:
+:boom: The variable **$LAB_DIR** will refer to the root of the cloned repository and make it persistant, export it as an variable using below command:
 ```
 echo "export LAB_DIR=/home/student/ansible-roadshow" >>~/.bashrc && . ~/.bashrc
 ```
