@@ -200,8 +200,8 @@ $
 ![Add hosts to a group](../../content/images/add-host-to-group.png)
 
 :boom: Add all hosts to the dev group.\
-:boom: Add loadbalancer1 to the lbservers group\
-:boom: Add wilfly1 and wildfly2 to the wildflyservers group\
+:boom: Add loadbalancer1 to the lbservers group.\
+:boom: Add wildfly1 and wildfly2 to the wildflyservers group.\
 
 Using above described method.
 
