@@ -1,6 +1,6 @@
 # Handling Secrets with Ansible Vault
 
-Most applications have secret properties, which must not be shown to every person working with the playbooks. The application you're working with is no exception, so you've been asked to set a environment variable named *SECRET_NAME* on the WildFly application servers for the application to work properly - and that environment variable needs to be encrypted. Fortunately for you, this is pretty easy with Ansible.
+Most applications have secret properties, which must not be shown to every person working with the playbooks. The application you're working with is no exception, so you've been asked to set an environment variable named *SECRET_NAME* on the WildFly application servers for the application to work properly - and that environment variable needs to be encrypted. Fortunately for you, this is pretty easy with Ansible.
 
 :thumbsup: With Ansible you can encrypt any part of your playbooks or property files. Once the content or files has been encrypted, the content is unreadable. Ansible uses strong 256 bit symmetric encryption to do this. This has one unwanted effect, which is that you'll then be unable to search for the property. Therefore it's considered best practise to have an unencrypted file refer to the encrypted file. 
 
@@ -44,7 +44,7 @@ ansible-vault encrypt $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
 ```
 cat $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
 ```
-The output should be like something like below:
+The output should be something like below:
 ```
 $ cat $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
 $ANSIBLE_VAULT;1.1;AES256
@@ -149,8 +149,8 @@ ansible-playbook -i hosts site.yml --vault-password-file mypassword
 The playbook should complete as such:
 ```
 PLAY RECAP ****************************************************************
-wildfly1                   : ok=8    changed=3    unreachable=0    failed=0   
-wildfly2                   : ok=8    changed=3    unreachable=0    failed=0
+wildfly1                   : ok=8    changed=2    unreachable=0    failed=0   
+wildfly2                   : ok=8    changed=2    unreachable=0    failed=0
 ```
 
 :boom: And you should now be able to access the url of loadbalancer1 by running _curl_ again, try it, as shown below:
