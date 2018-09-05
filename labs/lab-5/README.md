@@ -136,12 +136,11 @@ As you can see the secret name is added to the template.
 
 :boom: To run the playbook with your vault, you'll be required to give Ansible your password. Do so by creating a file named *mypassword* and put the password in the file. You can do so by running below command in your terminal:
 ```
+export HISTFILE=/dev/null
 echo "mypass123" >$WORK_DIR/mypassword
+export HISTFILE=/home/student/.bash_history
 ```
-The above command will leave your password in the BASH History. To fix this run the below. The offset is obtained from running history and taking the line number of the command to remove
-```
-history -d <offset>
-```
+
 Alternatively edit the password file in an editor instead!
 
 :boom: Then run Ansible with the following command:
