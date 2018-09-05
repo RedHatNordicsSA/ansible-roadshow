@@ -4,7 +4,7 @@ A challenge when doing larger scale automation is to enable collaboration for pe
 
 Ansible does not require you to use git version handling, but there are some very good reasons why you should familiarize yourself with it.
 
-If you are familair with git, git workflows and modern collaboration platforms such as GitLab, GitHub or etc, you can skip down to the hands on part of this lab, here: [Working with your playbooks on GitLab](#working-with-your-playbooks-on-gitlab)
+If you are familiar with git, git workflows and modern collaboration platforms such as GitLab, GitHub or etc, you can skip down to the hands on part of this lab, here: [Working with your playbooks on GitLab](#working-with-your-playbooks-on-gitlab)
 
 When you scale out your Ansible usage (aka. automate all things) you’ll have many different teams collaborating, and:
 1. Git was invented to solve common collaboration challenges
