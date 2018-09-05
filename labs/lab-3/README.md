@@ -148,8 +148,8 @@ ansible-playbook -i hosts site.yml
 You should see Ansible executing the playbook. At the end of the Ansible output there is a recap of how running the playbook went:
 ```
 PLAY RECAP ****************************************************************
-wildfly1                   : ok=8    changed=5    unreachable=0    failed=0   
-wildfly2                   : ok=8    changed=5    unreachable=0    failed=0   
+wildfly1                   : ok=8    changed=6    unreachable=0    failed=0   
+wildfly2                   : ok=8    changed=6    unreachable=0    failed=0   
 ```
 
 Ansible should complete with no errors. You should see the changes applied to both WildFly Swarm servers.
