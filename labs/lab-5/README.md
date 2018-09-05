@@ -64,7 +64,7 @@ $
 ---
 - name: Install java
   yum:
-    name: java
+    name: java-headless
 - name: Create directory to store binary
   file:
     path: /opt/wildflyapp
