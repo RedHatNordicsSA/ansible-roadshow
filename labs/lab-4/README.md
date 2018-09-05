@@ -101,7 +101,7 @@ A template is used to setup the ngnix http listener. The template ensures that y
 wildfly_servers: "{{ groups['wildflyservers'] }}"
 ```
 
-:boom: Edit $WORK_DIR/lb.yml to include the newly created role:
+:boom: Edit $WORK_DIR/lb.yml to include the newly created role. *$WORK_DIR/lb.yml should now look as below:
 
 ```
 ---
