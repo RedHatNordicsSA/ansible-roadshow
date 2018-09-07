@@ -24,7 +24,7 @@ and wait for the role to be installed. When that is done, we can use the role in
 
 ```
 ---
-- name: Install NGNIX
+- name: Install NGINX
   hosts: lbservers
   become: true
   tasks:
@@ -48,8 +48,8 @@ This installs _nginx_ on the servers in the lbservers group.
 This is due to a bug, which does not affect our run of this role, but ... what is the bug? And can you fix it?
 
 :boom: To verify the installation, in your web browser, go to: *http://$loadbalancer1-ip-address*.
-![NGNIX welcome page](../../content/images/ngnix-welcome.png)
-You should get the Nginx default page, as shown above. Take some extra time to appreciate how very simple it was to install the NGNIX software, even though you may never have done that before.
+![NGINX welcome page](../../content/images/nginx-welcome.png)
+You should get the Nginx default page, as shown above. Take some extra time to appreciate how very simple it was to install the NGINX software, even though you may never have done that before.
 
 Next step is to configure Nginx as a loadbalancer for the two wildflyapp servers. To do so, we'll add an additional role for the configuration. We follow the [best practises for Ansible directory layout](http://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html) and place tasks, handlers, and vars in separate directories. This is done so that it's easier to collaborate and maintain your work. 
 
@@ -75,7 +75,7 @@ ansible-galaxy init roles/nginx-config
 
 ```
 ---
-- name: Configure ngnix to listen for http
+- name: Configure nginx to listen for http
   template:
     src: default.template
     dest: /etc/nginx/conf.d/default.conf
@@ -86,13 +86,13 @@ ansible-galaxy init roles/nginx-config
     enabled: yes
     masked: no
     state: started
-- name: Set and persist httpd_can_network_connect SELinux flag for ngnix
+- name: Set and persist httpd_can_network_connect SELinux flag for nginx
   seboolean:
     name: httpd_can_network_connect
     state: yes
     persistent: yes
 ```
-A template is used to setup the ngnix http listener. The template ensures that your configuration file doesn't have to be static. In this case, you need to add the servers to loadbalance between. This is done by introducing a variable *wildfly_servers*, which you'll use when writing the template shortly. The configuration file is saved instead of the default.conf nginx template. Other approaches applies. Please refer to the nginx documentation for more information. If the configuration file is changed, the previously defined handler (*notify: restart-nginx-service*) ensures that the Nginx process is restarted. Finally a SELinux rule has to be setup, to allow Nginx to connect to port 8080.
+A template is used to setup the nginx http listener. The template ensures that your configuration file doesn't have to be static. In this case, you need to add the servers to loadbalance between. This is done by introducing a variable *wildfly_servers*, which you'll use when writing the template shortly. The configuration file is saved instead of the default.conf nginx template. Other approaches applies. Please refer to the nginx documentation for more information. If the configuration file is changed, the previously defined handler (*notify: restart-nginx-service*) ensures that the Nginx process is restarted. Finally a SELinux rule has to be setup, to allow Nginx to connect to port 8080.
 
 :boom:  Define the variable *wildfly_servers* by replacing *$WORK_DIR/roles/nginx-config/vars/main.yml* with below content:
 
