@@ -90,13 +90,13 @@ END OF TEST FRAMEWORK
 ```
 cd $WORK_DIR
 cat << 'EOF' >problem.yml
-- name: Create directory and restart Nginx 
+- name: Create directory and restart NGINX
   hosts: lbservers
   tasks: 
     - name: Create directory
       command: mkdir /tmp/logs
 
-    - name: Restart Nginx
+    - name: Restart NGINX
        shell: systemctl restart nginx
 EOF
 ```
