@@ -26,7 +26,7 @@ ansible-galaxy init roles/wildflyapp
 ```
 This will create a full structure for the WildFly role named *wildflyapp*. In the folder *$WORK_DIR/roles/wildflyapp/tasks* there is a file named main.yml. This file will contain the tasks needed to configure the WildFly application on the server.
 
-:boom: Add the nessicary tasks to install WildFly by pasting in below in a terminal:
+:boom: Add the necessary tasks to install WildFly by pasting in below in a terminal:
 
 ```
 cat << 'EOF' >$WORK_DIR/roles/wildflyapp/tasks/main.yml
@@ -123,7 +123,7 @@ As you can see we now include the role *wildflyapp* for all *wildflyservers*. Pl
 ```
   become: yes
 ```
-:thumbsup: This is because we need more access in order to install software and enable services on the target systems. This line means that Ansible will (in this case) call upon a software called _sudo_ installed on the target systems to gain admin access when running the wildflyapp role. This works because _sudo_ has been configured on the target systems for the student user - during the setup of this lab. Best practice is to use _become_ to provide specific privledge escalation required to do specific things, instead of running as a user which is administrator all the time. You do this to mitigate risk of system compromise by someone with playbook access and to reduce risk that someone accidentally destroys a system. You can either define _become_ for a complete play and all the tasks in it (like above), or do it for a specific task by defining _become_ on the task level as shown below:
+:thumbsup: This is because we need more access in order to install software and enable services on the target systems. This line means that Ansible will (in this case) call upon a software called _sudo_ installed on the target systems to gain admin access when running the wildflyapp role. This works because _sudo_ has been configured on the target systems for the student user - during the setup of this lab. Best practice is to use _become_ to provide specific privilege escalation required to do specific things, instead of running as a user which is administrator all the time. You do this to mitigate risk of system compromise by someone with playbook access and to reduce risk that someone accidentally destroys a system. You can either define _become_ for a complete play and all the tasks in it (like above), or do it for a specific task by defining _become_ on the task level as shown below:
 
 Example:
 ```
