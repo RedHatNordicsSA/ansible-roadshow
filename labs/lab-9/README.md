@@ -82,6 +82,11 @@ cd $WORK_DIR
 curl http://wildfly1
 ```
 
+6. Check your playbooks against a standards baseline
+```
+ansible-review playbook.yml
+```
+
 ```
 END OF TEST FRAMEWORK
 ```
