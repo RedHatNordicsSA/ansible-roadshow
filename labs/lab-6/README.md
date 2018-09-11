@@ -67,8 +67,8 @@ GitLab is an open source software which provides both a git server and a place w
  ![Gitlab project creation](../../content/images/gitlab_project_creation.png)
 
 What you need to do is\
-:boom: Give your project (repository) a nice name\
-:boom: Tick the box, so that a `README.md` -file will be pre-populated to your new project (repository)\
+:boom: Name your project (repository) **studentX-project**. You will reference this later on in **lab 8** \
+:boom: Tick the box, so that a `README.md` -file will be pre-populated to your new project(repository)\
 :boom: Make the project public, so you can access the contents from Ansible Tower without using credentials (lab7)\
 :boom: ```Create project```\
 :boom: Once the project (repository) has been done, you should copy & paste contents of the ping playbook [that you created in lab-2](https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-2/lab-files/ping.yml) there:
