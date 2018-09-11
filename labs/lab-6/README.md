@@ -56,7 +56,7 @@ If you are using GitHub (you are not, chapter under construction), follow the in
 # Working with your playbooks on GitLab
 :boom: First step, with your web browser, go to the GitLab server: https://$gitlab_server and login with gitlab user and the password provided to you at the start of the lab. 
 
-GitLab is an open source software which provides both a git server and a place where you can collaborate easily around the code put in git.
+GitLab is an open core software which provides both a git server and a place where you can collaborate easily around the code put in git.
 
 :boom: When logged in go ahead and create a new repository on Gitlab. Name the project **studentX-project**. You will reference this later on in **lab 8**. The project is where you will store your files:
 
@@ -67,7 +67,7 @@ GitLab is an open source software which provides both a git server and a place w
  ![Gitlab project creation](../../content/images/gitlab_project_creation.png)
 
 What you need to do is\
-:boom: Give your project(repository) a nice name\
+:boom: Name your project(repository) **studentX-project**. You will reference this later on in **lab 8** \
 :boom: Tick the box, so that a README.md -file will be pre-populated to your new project(repository)\
 :boom: Make the project public, so you can access the contents from Ansible Tower without using credentials (lab7)\
 :boom: ```Create project```\
