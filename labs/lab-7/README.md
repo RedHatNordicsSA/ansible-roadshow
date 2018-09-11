@@ -124,6 +124,10 @@ tower-cli config password <password>
 ```
 :boom: and launch your playbook.
 
+```
+tower-cli job launch -J <template name>
+```
+
 :star: If you have time, also try adding the below flag:
 ```
 --monitor
