@@ -123,6 +123,10 @@ tower-cli config username workshop-guest
 tower-cli config password <password>
 ```
 :boom: and launch your playbook.
+```
+tower-cli job launch -J ping-template
+```
+
 
 ```
 tower-cli job launch -J <template name>
