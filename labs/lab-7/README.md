@@ -52,7 +52,7 @@ Next thing we'll do is to define a set of credentials to our systems. This is wh
 
 Credentials authenticate the Tower user to launch Ansible playbooks, which can then include passwords and SSH keys, against inventory hosts. You can also require the Tower user to enter a password or key phrase when a playbook launches using the credentials feature of Tower.
 
-:boom: Click on the gears in the top right corner, and select credentials\
+:boom: Click on the gears in the top right corner, and select `Credentials`\
 :boom: Create a new set of credentials which you call 'machine-credentials' as follows.
 * Credentials type: Machine
 * Username: student
@@ -90,7 +90,7 @@ Next you will provide access to the playbook which [you put onto GitLab earlier 
 ![Create a job template](../../content/images/create-template-ii.png)
 and click 'SAVE'.
 
-:boom: Now try to run your playbook. (press the rocket, next to the name of the template). This should run the ping playbook successfully. 
+:boom: Now try to run your playbook: click the rocket next to the name of the template. This should run the ping playbook successfully.
 
 If you now go to the 'Jobs' tab, you can review your specific run of the playbook, it lists information from the playbook run, who ran it and against what systems the playbook was run. This is all vital information as it allows visibility over what's being done in your infrastructure or application landscape.
 
@@ -98,8 +98,8 @@ If you now go to the 'Jobs' tab, you can review your specific run of the playboo
 
 Next we are going to provide this playbook, _as a service_ to a new user, to see how we (safely) can provide any Ansible automation as a self service.
 
-:boom: Create a new user, by going to 'Settings (the cog to the right of the admin user icon)' and then users. Call the user workshop-guest and set a password for it. After saving the user go to it and configure it further:\
-:boom: Click on the 'Permissions' tab and give your user access to run this one job template with Execute rights, not Admin. Do not provide access to either the project or the inventory, only the 'job template'.
+:boom: Create a new user, by going to 'Settings' (the cog to the right of the admin user icon) and then users. Call the user `workshop-guest` and set a password for it. After saving the user go to it and configure it further:\
+:boom: Click on the 'Permissions' tab and give your user access to run this one job template with `Execute` rights, not `Admin`. Do not provide access to either the project or the inventory, only the 'job template'.
 
 :boom: Login as the user and run the playbook again. Review what you can see and what you can change as this user. This is how you can provide any piece of Ansible automation as a service, in a secure manner, to specific users.
 
@@ -107,7 +107,7 @@ Next we are going to run this playbook via the Tower CLI. You can do it as your 
 
 :boom: From your terminal on the Ansible Tower server you use the _tower-cli_ tool to launch the job template you created earlier.
 
-:exclamation: To be able to use tower-cli, you need to provide username and password for most commands. Append any command with -u admin -p <password>
+:exclamation: To be able to use tower-cli, you need to provide username and password for most commands. Append any command with `-u admin -p <password>`
 ```
 tower-cli job list -u admin -p <password>
 ```
@@ -120,7 +120,7 @@ $ tower-cli job --help
 :boom: Log in with:
 ```
 tower-cli config username workshop-guest
-tower-cli config password verySecret
+tower-cli config password <password>
 ```
 :boom: and launch your playbook.
 
