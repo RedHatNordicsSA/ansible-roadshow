@@ -24,23 +24,23 @@ A simplified description of git follows.
 
 ![Git basics](../../content/images/git-repo.png)
 
-5. You may have different copies of a repository at the same time, these copies are called branches and are key when collaborating together with other people in the same repository. When copying content between branches, that is referred to as merging.
+5. You may have different copies of a repository at the same time, these copies are called branches and are the key when collaborating together with other people in the same repository. When copying content between branches, that is referred to as merging.
 
  ![Examples of commonly used git branches](../../content/images/git-branches.png)
 
 6. This may seem a bit cumbersome, but you will get used to it. Promise.
 
 # Git workflows
-1. There are many different workflows for git which describes how to work with git
-2. Some of these workflows are more complicated and all have their own challenges
-3. Keeping things simple is good
-4. You can always adapt things afterwards to fit your challenges better
+1. There are many different workflows for git which describes how to work with git.
+2. Some of these workflows are more complicated and all have their own challenges.
+3. Keeping things simple is good.
+4. You can always adapt things afterwards to fit your challenges better.
 
 # The GitHub workflow
-1. Does not require GitHub, the workflow model is just called that
-2. A very simple workflow
-3. Master branch is always possible to release
-4. Branches are where you develop and test new features and bugfixes
+1. Does not require GitHub, the workflow model is just called that.
+2. A very simple workflow.
+3. Master branch is always possible to release.
+4. Branches are where you develop and test new features and bugfixes.
 5. Yes, I wrote test. If you do not test your Ansible code you cannot keep the master branch releasable and this all fails.
 
  ![GitHub workflow branches](../../content/images/git-branches.png)
@@ -67,11 +67,11 @@ GitLab is an open source software which provides both a git server and a place w
  ![Gitlab project creation](../../content/images/gitlab_project_creation.png)
 
 What you need to do is\
-:boom: Name your project(repository) **studentX-project**. You will reference this later on in **lab 8** \
-:boom: Tick the box, so that a README.md -file will be pre-populated to your new project(repository)\
+:boom: Name your project (repository) **studentX-project**. You will reference this later on in **lab 8** \
+:boom: Tick the box, so that a `README.md` -file will be pre-populated to your new project(repository)\
 :boom: Make the project public, so you can access the contents from Ansible Tower without using credentials (lab7)\
 :boom: ```Create project```\
-:boom: Once the project(repository) has been done, you should copy & paste contents of the ping playbook [that you created in lab-2](https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-2/lab-files/ping.yml) there:
+:boom: Once the project (repository) has been done, you should copy & paste contents of the ping playbook [that you created in lab-2](https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-2/lab-files/ping.yml) there:
 
   ![Add a file to Gitlab project](../../content/images/gitlab_add_file.png)
 
@@ -94,7 +94,7 @@ Now let's try the so called GitHub workflow. Which is that when we make a modifi
 
 :thumbsup: What happens is that your change is copied into this new copy of your project, called a branch. As explained before, this is so that you and others can collaborate on this change, without affecting the code in the master branch (copy) of your project. This allows your master branch to be stable, while development is ongoing. This also allows for several people to work on the code in your repository, at the same time.
 
-:boom: By ticking the box __2.__ Gitlab will automatically create merge(pull) request for you:
+:boom: By ticking the box __2.__ Gitlab will automatically create merge (pull) request for you:
 
 ![Create merge request](../../content/images/gitlab_merge_request.png)
 
@@ -106,22 +106,22 @@ Once you've written the description for you modifications, at the bottom of the 
 
 Source branch allows you to choose which branch you would like to merge to the target branch of your choice, which is master in this case.
 
-:boom: Let's tick the box for Gitlab to automatically remove it once the merge(pull) request has been accepted.
+:boom: Let's tick the box for Gitlab to automatically remove it once the merge (pull) request has been accepted.
 
 :thumbsup: This is considered a best practice, to remove any branches which have been merged as this allows you to keep tabs on ongoing development. If a branch has existed for a long time, this may indicate that someone has bitten off a bit too large chunk to swallow in a reasonable time. If a branch lives for a longer time, that often means it will be more difficult to merge it, as there is risk that the development conflicts with other ongoing development. Rather than doing everything in one large merge/pull request, do it several small ones, if you are doing significant development.
 
-You will now get redirected to the page which overviews your merge(pull) request. Here you can use the comment function displayed in the 'Discussions' tab to collaborate with other people.
+You will now get redirected to the page which overviews your merge (pull) request. Here you can use the comment function displayed in the 'Discussions' tab to collaborate with other people.
 Perhaps your change needs a code review or you need some advise on how to solve a specific problem? The 'Commits' and 'Changes' allow you to overview all changes made into your newly created branch.
 
-:boom: Before you press 'Merge'. Explore the 'Discussions' feature and try add yet another change to your playbook and review how all your changes are visible on the merge(pull) request page.
+:boom: Before you press 'Merge'. Explore the 'Discussions' feature and try add yet another change to your playbook and review how all your changes are visible on the merge (pull) request page.
 
-The merge(pull) request has yet another function, which is to allow someone else than you to approve changes, before they get copied into your master branch. Normally, not everyone have rights to accept merge(pull) request which will copy all your changes into the master branch from this temporary branch where you do your work.
+The merge (pull) request has yet another function, which is to allow someone else than you to approve changes, before they get copied into your master branch. Normally, not everyone have rights to accept merge (pull) request which will copy all your changes into the master branch from this temporary branch where you do your work.
 
 :boom: In this case, accept the absolutely terrific changes that you've made and press the Merge button.
 
 ![Accept merge](../../content/images/gitlab_accept_merge2.png)
 
-After the merge(pull) request has been accepted on the main page of the project you will see the merge as commit to the main branch of the project:
+After the merge (pull) request has been accepted on the main page of the project you will see the merge as commit to the main branch of the project:
 
 ![Merge committed](../../content/images/gitlab_merge_committed.png)
 

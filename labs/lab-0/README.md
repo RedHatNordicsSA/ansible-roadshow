@@ -70,7 +70,7 @@ $ ssh student@IP-ADDRESS-OF-TOWER-SERVER
 On Windows with PuTTy, see this link:\
 https://mediatemple.net/community/products/dv/204404604/using-ssh-in-putty-
 
-:boom: Once logged in, run below commands to pull this repository to your system:
+:boom: Once logged in, run the below commands to pull this repository to your system:
 ```
 cd
 git clone https://github.com/mglantz/ansible-roadshow.git
