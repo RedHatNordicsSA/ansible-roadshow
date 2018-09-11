@@ -26,7 +26,7 @@ ansible-galaxy init roles/wildflyapp
 ```
 This will create a full structure for the WildFly role named *wildflyapp*. In the folder *$WORK_DIR/roles/wildflyapp/tasks* there is a file named main.yml. This file will contain the tasks needed to configure the WildFly application on the server.
 
-:boom: Add the nessicary tasks to install WildFly by pasting in below in a terminal:
+:boom: Add the necessary tasks to install WildFly by pasting in below in a terminal:
 
 ```
 cat << 'EOF' >$WORK_DIR/roles/wildflyapp/tasks/main.yml
