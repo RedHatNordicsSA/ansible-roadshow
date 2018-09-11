@@ -33,7 +33,7 @@ ansible-playbook --check -i hosts problem.yml
 * Or better, create a script which does this, by pasting below into a terminal:
 ```
 cat << 'EOF' >$WORK_DIR/playbook-test.sh
-ansible-playbook -i $WORK_DIR/hosts $1 >test.output 2>&1 --vault-password-file mypassword || true
+ansible-playbook --check -i $WORK_DIR/hosts $1 >test.output 2>&1 --vault-password-file mypassword || true
 if grep -q 'unreachable=0.*failed=0' test.output; then
   echo "Playbook $1 executed without issues."
 else
