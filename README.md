@@ -19,11 +19,11 @@ You may also want to have a look at https://github.com/ansible/lightbulb which i
 
 ## Maintainers
 This lab is maintained by members of Red Hat's Nordic Solution Architect team.
-* Jacob Borella (![@jacobborella](https://github.com/jacobborella))
-* Teemu Uotila (![@teemu-u](https://github.com/teemu-u))
-* Ilkka Tengvall (![@ikke-t](https://github.com/ikke-t)
-* Peter Gustafsson (![@pgustafs](https://github.com/pgustafs)
-* Magnus Glantz (![@mglantz](https://github.com/mglantz)
+* Jacob Borella ([@jacobborella](https://github.com/jacobborella))
+* Teemu Uotila ([@teemu-u](https://github.com/teemu-u))
+* Ilkka Tengvall ([@ikke-t](https://github.com/ikke-t))
+* Peter Gustafsson ([@pgustafs](https://github.com/pgustafs))
+* Magnus Glantz ([@mglantz](https://github.com/mglantz))
 
 ## Contributing
 This lab is an open source (GPL 3.0) project, so if you find any problems with it, feel free to open up an issue or send a pull request. For more information about contributing to this project, please see:
