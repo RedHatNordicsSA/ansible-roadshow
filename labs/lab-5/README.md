@@ -4,7 +4,7 @@ Most applications have secret properties, which must not be shown to every perso
 
 :thumbsup: With Ansible you can encrypt any part of your playbooks or property files. Once the content or files has been encrypted, the content is unreadable. Ansible uses strong 256 bit symmetric encryption to do this. This has one unwanted effect, which is that you'll then be unable to search for the property. Therefore it's considered best practise to have an unencrypted file refer to the encrypted file. 
 
-:boom: Now we're going to put our secret information into a a file named **$WORK_DIR/group_vars/dev/wildflyservers/vault.yml** and refer to it from a file called **$WORK_DIR/group_vars/dev/wildflyservers/vars.yml**. This is achieved with below following steps. In your terminal, run:
+:boom: Now we're going to put our secret information into a a file named **$WORK_DIR/group_vars/dev/wildflyservers/vault.yml** and refer to it from a file called **$WORK_DIR/group_vars/dev/wildflyservers/vars.yml**. This is achieved with the following steps. In your terminal, run:
 
 ```
 mkdir -p $WORK_DIR/group_vars/dev/wildflyservers
@@ -34,13 +34,13 @@ wildfly2
 
 Now Ansible will include all variables defined in *$WORK_DIR/group_vars/dev/* for the servers listed, each time the playbook is run.
 
-:boom: Finally let's encrypt the vault file, which contains our secret. Please note that you will be prompted for a password, **it's important that you remember which password you choose**. In the prompt write:
+:boom: Finally, let's encrypt the vault file, which contains our secret. Please note that you will be prompted for a password and **it's important that you remember which password you choose**. In the prompt write:
 
 ```
 ansible-vault encrypt $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
 ```
 
-:boom: Have a look at the content of the file by running below command.
+:boom: Have a look at the content of the file by running the following command:
 ```
 cat $WORK_DIR/group_vars/dev/wildflyservers/vault.yml
 ```
@@ -56,7 +56,7 @@ $ANSIBLE_VAULT;1.1;AES256
 $
 ```
 
- :thumbsup: Next step is to add the newly created variable as an environment variable to the playbook for the WildFly app role. At the same time we'll make some other changes. It's considered best practise to only set the environment variable locally for the wildflyapp service. Thus we are required to change the service script file from a static file to a template file in order to be able to change the secret name. Furthermore we want to restart the WildFly service in order to ensure that the service is restarted in case there are changes in the jar file or in the configuration. 
+ :thumbsup: The next step is to add the newly created variable as an environment variable to the playbook for the WildFly app role. At the same time we'll make some other changes. It's considered best practise to only set the environment variable locally for the wildflyapp service. Thus we are required to change the service script file from a static file to a template file in order to be able to change the secret name. Furthermore, we want to restart the WildFly service in order to ensure that the service is restarted in case there are changes in the jar file or in the configuration. 
 
 :boom: To do so, change the content of *$WORK_DIR/roles/wildflyapp/tasks/main.yml* to the following:
 
@@ -132,7 +132,7 @@ LimitNOFILE=5555
 WantedBy=multi-user.target
 ```
 
-As you can see the secret name is added to the template.
+As you can see, the secret name is added to the template.
 
 :boom: To run the playbook with your vault, you'll be required to give Ansible your password. Do so by creating a file named *mypassword* and put the password in the file. You can do so by running below command in your terminal:
 ```
@@ -141,7 +141,7 @@ echo "mypass123" >$WORK_DIR/mypassword
 export HISTFILE=/home/student/.bash_history
 ```
 
-Alternatively edit the password file in an editor instead!
+Alternatively edit the password file in an editor!
 
 :boom: Then run Ansible with the following command:
 
@@ -157,7 +157,7 @@ wildfly1                   : ok=8    changed=2    unreachable=0    failed=0
 wildfly2                   : ok=8    changed=2    unreachable=0    failed=0
 ```
 
-:boom: And you should now be able to access the url of loadbalancer1 by running _curl_ again, try it, as shown below:
+:boom: And you should now be able to access the url of loadbalancer1 by running _curl_ again. Try it as shown below:
 ```
 $ curl -w '\n' http://18.184.24.113/
 Howdy from Red Hat at 2018-08-31T08:45:38.084Z (from ip-172-31-25-165.eu-central-1.compute.internal)
@@ -166,7 +166,7 @@ Howdy from Red Hat at 2018-08-31T08:45:39.489Z (from ip-172-31-28-91.eu-central-
 ```
 Observe the changes. Hint, you are no longer getting an anonymous greeting.
 
-:exclamation: If the output looks like below, you were just a bit quick to test the curl call. Wait for a second or three and try again.
+:exclamation: If the output looks like the one below, you were just a bit quick to test the curl call. Wait for a second or three and try again.
 ```
 $ curl -w '\n' 18.184.68.153
 <!DOCTYPE html>
