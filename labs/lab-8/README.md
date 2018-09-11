@@ -38,12 +38,12 @@ cp -R $WORK_DIR/* /home/student/studentX-project
 :boom: Next we need to tell git that we've added a bunch of new files.
 First we'll create a `.gitignore` file to avoid pushing unwanted files to the git repository.
 We don't want to have the `mypassword` file pushed to a public repository!
-The `nginxinc.nginx` comes from [Ansible Galaxy](https://galaxy.ansible.com/nginxinc/nginx/) and shouldn't be part of our repository either.
+The `nginx` comes from [Ansible Galaxy](https://galaxy.ansible.com/nginxinc/nginx/) and shouldn't be part of our repository either.
 Run below commands to do that (_replace X in studentX with your assigned number_):
 ```
 cd ~/studentX-project
 echo "mypassword" >> .gitignore
-echo "roles/nginxinc.nginx" >> .gitignore
+echo "roles/nginx" >> .gitignore
 ```
 
 :boom: We can now safely add all the files to git.
@@ -143,7 +143,7 @@ Now you need to instruct Ansible Tower to use the NGINX module. You could instal
 ---
 - src: https://github.com/nginxinc/ansible-role-nginx
   version: master
-  name: nginxinc.nginx
+  name: nginx
 ```
 
 :boom: Check in the change and you are ready to go. Do that by running below in a terminal:
