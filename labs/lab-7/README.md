@@ -4,7 +4,7 @@ Red Hat Ansible Tower (build from the [Open Source project, AWX](https://github.
 
 >How can I control who can run what playbooks where?
 
-This is a central concerns which stems from the fact that sharing access is difficult. Because of this, some companies don't even allow people to share access, because of (valid) security concerns, security compliance requirements on separation of duty, and more.
+This is a central concern which stems from the fact that sharing access is difficult. Because of this, some companies don't even allow people to share access, because of (valid) security concerns, security compliance requirements on separation of duty, and more.
 
 Very often, you fail to automate things because it was not possible to share access. As an example, if you want to automate
 the configuration of SAN storage at your company, your SAN storage switches may not allow granular enough access so that the users which you use to do the automation - can only do what you need it to do (which in that case would be to zone-in a disk to one or more specific servers).
@@ -13,7 +13,7 @@ Because of this, it's not uncommon that attempts to automate things fails with c
 
 ![Typical situation](../../content/images/you-cannot-have-access.png)
 
-Ansible Tower allows you to share access safely to other people via it's web GUI, CLI client and REST API. Let's explore how this works.
+Ansible Tower allows you to share access safely to other people via its web GUI, CLI client and REST API. Let's explore how this works.
 
 :boom: First step, with your web browser, go to your Ansible Tower server: https://$Tower_Server and login with the _admin_ user and the password provided to you at the start of the lab.
 
@@ -76,7 +76,7 @@ You can manage playbooks and playbook directories by either placing them manuall
 :boom: Then go ahead and put the information into the create project page.
 ![Create a project](../../content/images/create-project.png)
 
-:exclamation: Please note that we've select the _Update on launch_ so that when a playbook launch from this Git repository we ensure that we have the latest version available. Also that we select _Clean_ to ensure we get a fresh download of everything.
+:exclamation: Please note that we've selected the _Update on launch_ so that when a playbook is launched from this Git repository we ensure that we have the latest version available. Also that we select _Clean_ to ensure we get a fresh download of everything.
 
 :boom: Verify that the project has synced with your Git repository by checking the details shown below.
 ![Project has synced](../../content/images/project-synced.png)
@@ -90,11 +90,11 @@ Next you will provide access to the playbook which [you put onto GitLab earlier 
 ![Create a job template](../../content/images/create-template-ii.png)
 and click 'SAVE'.
 
-:boom: Now try to run your playbook. (press the rocket, next to the name of the template). This should run the ping playbook successfully. 
+:boom: Now try to run your playbook (press the rocket, next to the name of the template). This should run the ping playbook successfully. 
 
 If you now go to the 'Jobs' tab, you can review your specific run of the playbook, it lists information from the playbook run, who ran it and against what systems the playbook was run. This is all vital information as it allows visibility over what's being done in your infrastructure or application landscape.
 
-:thumbsup: This may seem as a poor first _playbook as a service_, but the concept is rather useful actually. People often want to know what the status of systems are, or if two different systems can reach each other or not - to troubleshoot e.g. network related problems. This very simple playbook does allow people with access to it to check connectivity from the Ansible Tower server to the managed systems - without having terminal/shell access to either the Ansible Tower server or to the managed systems. With small modifications, your "ping" playbook could for example allow people to ping any server from any server. That could be a really useful troubleshooting tool. This is a friendly reminder that you can use Ansible to do more things than setting up complex systems ;)
+:thumbsup: This may seem as a poor first _playbook as a service_, but the concept is rather useful actually. People often wants to know what the status of systems are, or if two different systems can reach each other or not - to troubleshoot etc network related problems. This very simple playbook does allow people with access to it to check connectivity from the Ansible Tower server to the managed systems - without having terminal/shell access to either the Ansible Tower server or to the managed systems. With a little modifications, your "ping" playbook could for example allow people to ping any server from any server. That could be really useful troubleshooting tool. This is a friendly reminder that you can use Ansible to do more things than setting up complex systems ;)
 
 Next we are going to provide this playbook, _as a service_ to a new user, to see how we (safely) can provide any Ansible automation as a self service.
 
