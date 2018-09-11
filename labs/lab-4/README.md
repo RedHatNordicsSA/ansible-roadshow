@@ -1,6 +1,6 @@
 # Writing the load balancer playbook
 
-In the previous lab, we created two WildFly Swarm servers running our application. The next step is to setup a loadbalancer. We will use Nginx as the loadbalancer in this lab. Let's overview which part of the system which you will be working on.
+In the previous lab, we created two WildFly Swarm servers running our application. The next step is to setup a load balancer. We will use Nginx as the load balancer in this lab. Let's overview which part of the system which you will be working on.
 
 ![Overview of lab environment](../../content/images/app-arch2.png)
 
