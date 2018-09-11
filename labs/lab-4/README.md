@@ -92,7 +92,7 @@ ansible-galaxy init roles/nginx-config
     state: yes
     persistent: yes
 ```
-A template is used to setup the NGINX HTTP listener. The template ensures that your configuration file doesn't have to be static. In this case, you need to add the servers to loadbalance between. This is done by introducing a variable *wildfly_servers*, which you'll use when writing the template shortly. The configuration file is saved instead of the default.conf nginx template. Other approaches applies. Please refer to the NGINX documentation for more information. If the configuration file is changed, the previously defined handler (*notify: restart-nginx-service*) ensures that the NGINX process is restarted. Finally a SELinux rule has to be setup, to allow NGINX to connect to port 8080.
+A template is used to setup the NGINX HTTP listener. The template ensures that your configuration file doesn't have to be static. In this case, you need to add the servers to loadbalance between. This is done by introducing a variable *wildfly_servers*, which you'll use when writing the template shortly. The configuration file is saved instead of the default.conf nginx template. Other approaches apply. Please refer to the NGINX documentation for more information. If the configuration file is changed, the previously defined handler (*notify: restart-nginx-service*) ensures that the NGINX process is restarted. Finally a SELinux rule has to be setup, to allow NGINX to connect to port 8080.
 
 :boom:  Define the variable *wildfly_servers* by replacing *$WORK_DIR/roles/nginx-config/vars/main.yml* with below content:
 
