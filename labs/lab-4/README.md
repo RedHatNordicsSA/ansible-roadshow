@@ -45,7 +45,7 @@ This installs _nginx_ on the servers in the lbservers group.
 ``` 
 [WARNING]: Ignoring invalid attribute: Name
 ```
-This is due to a bug, which does not affect our run of this role, but ... what is the bug? And can you fix it?
+This is due to a bug, which does not affect our run of this role, but it can be fixed by executing sed -i -e 's/Name/name/g' $WORK_DIR/roles/nginxinc.nginx/tasks/prerequisites/setup-debian.yml
 
 :boom: To verify the installation, in your web browser, go to: *http://$loadbalancer1-ip-address*.
 ![NGINX welcome page](../../content/images/nginx-welcome.png)
