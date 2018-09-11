@@ -24,7 +24,7 @@ A simplified description of git follows.
 
 ![Git basics](../../content/images/git-repo.png)
 
-5. You may have different copies of a repository at the same time, these copies are called branches and are key when collaborating together with other people in the same repository. When copying content between branches, that is referred to as merging.
+5. You may have different copies of a repository at the same time, these copies are called branches and are the key when collaborating together with other people in the same repository. When copying content between branches, that is referred to as merging.
 
  ![Examples of commonly used git branches](../../content/images/git-branches.png)
 
