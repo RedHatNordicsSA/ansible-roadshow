@@ -67,11 +67,11 @@ GitLab is an open core software which provides both a git server and a place whe
  ![Gitlab project creation](../../content/images/gitlab_project_creation.png)
 
 What you need to do is\
-:boom: Give your project(repository) a nice name\
-:boom: Tick the box, so that a README.md -file will be pre-populated to your new project(repository)\
+:boom: Give your project (repository) a nice name\
+:boom: Tick the box, so that a `README.md` -file will be pre-populated to your new project (repository)\
 :boom: Make the project public, so you can access the contents from Ansible Tower without using credentials (lab7)\
 :boom: ```Create project```\
-:boom: Once the project(repository) has been done, you should copy & paste contents of the ping playbook [that you created in lab-2](https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-2/lab-files/ping.yml) there:
+:boom: Once the project (repository) has been done, you should copy & paste contents of the ping playbook [that you created in lab-2](https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-2/lab-files/ping.yml) there:
 
   ![Add a file to Gitlab project](../../content/images/gitlab_add_file.png)
 
@@ -94,7 +94,7 @@ Now let's try the so called GitHub workflow. Which is that when we make a modifi
 
 :thumbsup: What happens is that your change is copied into this new copy of your project, called a branch. As explained before, this is so that you and others can collaborate on this change, without affecting the code in the master branch (copy) of your project. This allows your master branch to be stable, while development is ongoing. This also allows for several people to work on the code in your repository, at the same time.
 
-:boom: By ticking the box __2.__ Gitlab will automatically create merge(pull) request for you:
+:boom: By ticking the box __2.__ Gitlab will automatically create merge (pull) request for you:
 
 ![Create merge request](../../content/images/gitlab_merge_request.png)
 
@@ -106,22 +106,22 @@ Once you've written the description for you modifications, at the bottom of the 
 
 Source branch allows you to choose which branch you would like to merge to the target branch of your choice, which is master in this case.
 
-:boom: Let's tick the box for Gitlab to automatically remove it once the merge(pull) request has been accepted.
+:boom: Let's tick the box for Gitlab to automatically remove it once the merge (pull) request has been accepted.
 
 :thumbsup: This is considered a best practice, to remove any branches which have been merged as this allows you to keep tabs on ongoing development. If a branch has existed for a long time, this may indicate that someone has bitten off a bit too large chunk to swallow in a reasonable time. If a branch lives for a longer time, that often means it will be more difficult to merge it, as there is risk that the development conflicts with other ongoing development. Rather than doing everything in one large merge/pull request, do it several small ones, if you are doing significant development.
 
-You will now get redirected to the page which overviews your merge(pull) request. Here you can use the comment function displayed in the 'Discussions' tab to collaborate with other people.
+You will now get redirected to the page which overviews your merge (pull) request. Here you can use the comment function displayed in the 'Discussions' tab to collaborate with other people.
 Perhaps your change needs a code review or you need some advise on how to solve a specific problem? The 'Commits' and 'Changes' allow you to overview all changes made into your newly created branch.
 
-:boom: Before you press 'Merge'. Explore the 'Discussions' feature and try add yet another change to your playbook and review how all your changes are visible on the merge(pull) request page.
+:boom: Before you press 'Merge'. Explore the 'Discussions' feature and try add yet another change to your playbook and review how all your changes are visible on the merge (pull) request page.
 
-The merge(pull) request has yet another function, which is to allow someone else than you to approve changes, before they get copied into your master branch. Normally, not everyone have rights to accept merge(pull) request which will copy all your changes into the master branch from this temporary branch where you do your work.
+The merge (pull) request has yet another function, which is to allow someone else than you to approve changes, before they get copied into your master branch. Normally, not everyone have rights to accept merge (pull) request which will copy all your changes into the master branch from this temporary branch where you do your work.
 
 :boom: In this case, accept the absolutely terrific changes that you've made and press the Merge button.
 
 ![Accept merge](../../content/images/gitlab_accept_merge2.png)
 
-After the merge(pull) request has been accepted on the main page of the project you will see the merge as commit to the main branch of the project:
+After the merge (pull) request has been accepted on the main page of the project you will see the merge as commit to the main branch of the project:
 
 ![Merge committed](../../content/images/gitlab_merge_committed.png)
 
