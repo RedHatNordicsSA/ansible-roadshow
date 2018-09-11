@@ -33,7 +33,7 @@ cat << 'EOF' >$WORK_DIR/roles/wildflyapp/tasks/main.yml
 ---
 # tasks file for roles/wildflyapp
 - name: Install java
-  yum:
+  package:
     name: java-headless
 - name: Create directory to store binary
   file:
@@ -68,7 +68,7 @@ EOF
 
 :boom: Review the different tasks and make sure you understand what is done above. Information about how to use all modules included in Ansible is as mentioned before, available in the module index, here: https://docs.ansible.com/ansible/latest/modules/list_of_all_modules.html. But, the _ansible-doc_ command also helps you to get information about modules. Try it out on the modules used above by running:(in order to Quit- press"Q")
 ```
-ansible-doc yum
+ansible-doc package
 ansible-doc file
 ansible-doc copy
 ansible-doc systemd
