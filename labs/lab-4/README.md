@@ -80,7 +80,7 @@ ansible-galaxy init roles/nginx-config
     src: default.template
     dest: /etc/nginx/conf.d/default.conf
   notify: restart-nginx-service
-- name: Ensure nginx is started and persisted across reboot
+- name: Ensure nginx is started and persistent across reboot
   systemd:
     name: nginx
     enabled: yes
