@@ -26,17 +26,17 @@ Here is an example of expected output when running commands
 # :exclamation: If something goes wrong
 If by some reason you get stuck in a lab - then here's what you should do. **Follow below steps 1-5**. _Do not skip any steps if not told to._
 
-1. If you do not understand what to do in a lab, or do not understand what you are doing, skip immediately to step 5. Also, the authors of this lab apologize for that. The purpose of this lab is so that everyone can do it and understand it.
+1. If you do not understand what to do in a lab, or do not understand what you are doing, skip immediately to step 5. Also, the authors of this lab apologizes for that. This purpose of this lab is so that everyone can do it and understand it.
 2. This lab has seen plenty of use, so chances are that you have simply not followed the lab instructions. Start by reading the lab instructions again, carefully.
-3. If you are sure that you are doing things as described in the labs, perhaps you typed something wrong or had a copy-paste accident. Double-checking your file's content and comparing them with the content described here in the lab. If you typed things manually, try doing a clean copy-paste from the lab page instead.
+3. If you are sure that you are doing things as described in the labs, perhaps you typed something wrong or had a copy-paste accident. Double checking your files content and comparing them with the content described here in the lab. If you typed things manually, try doing a clean copy-paste from the lab page instead.
 4. Ask the person beside you if that person also had an issue with what you are doing. If so, that may indicate there is actually something wrong.
 5. Raise your hand and someone will come and help you :)
 
 # Preparations to do the lab
 
-:exclamation: To get started with the labs, you first needs to get your assigned username and servers. This will be provided to you by the people who operates this lab. 
+:exclamation: To get started with the labs, you first need to get your assigned username and servers. This will be provided to you by the people who operate this lab. 
 
-:exclamation: Do not skip any labs, the labs depends on the previous ones to be completed. You need to do them in order, 0-10.
+:exclamation: Do not skip any labs, the labs depend on the previous ones to be completed. You need to do them in order, 0-10.
 
 :exclamation: On purpose, security in this lab has not been made a priority, that is so you as a student get more freedom to learn. You have passwordless admin access via _sudo_ on all systems. With that said, if you do something which is outside of the labs and break your systems, _you get to keep all the pieces_ ;) 
 
