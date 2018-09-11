@@ -31,16 +31,16 @@ A simplified description of git follows.
 6. This may seem a bit cumbersome, but you will get used to it. Promise.
 
 # Git workflows
-1. There are many different workflows for git which describes how to work with git
-2. Some of these workflows are more complicated and all have their own challenges
-3. Keeping things simple is good
-4. You can always adapt things afterwards to fit your challenges better
+1. There are many different workflows for git which describes how to work with git.
+2. Some of these workflows are more complicated and all have their own challenges.
+3. Keeping things simple is good.
+4. You can always adapt things afterwards to fit your challenges better.
 
 # The GitHub workflow
-1. Does not require GitHub, the workflow model is just called that
-2. A very simple workflow
-3. Master branch is always possible to release
-4. Branches are where you develop and test new features and bugfixes
+1. Does not require GitHub, the workflow model is just called that.
+2. A very simple workflow.
+3. Master branch is always possible to release.
+4. Branches are where you develop and test new features and bugfixes.
 5. Yes, I wrote test. If you do not test your Ansible code you cannot keep the master branch releasable and this all fails.
 
  ![GitHub workflow branches](../../content/images/git-branches.png)
