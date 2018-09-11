@@ -86,7 +86,7 @@ curl http://wildfly1
 END OF TEST FRAMEWORK
 ```
 
-:boom: Let's apply above test framework on below playbook. Create a new playbook $WORK_DIR/problem.yml by copying below code into your terminal:
+:boom: Let's apply the above test framework on below playbook. Create a new playbook $WORK_DIR/problem.yml by copying below code into your terminal:
 ```
 cd $WORK_DIR
 cat << 'EOF' >problem.yml
