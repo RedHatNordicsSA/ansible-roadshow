@@ -212,7 +212,7 @@ Using above described method.
 ![filling in vault values](../../content/images/img1.png)
 Click *SAVE* and you're done with this part.
 
-Phew that's a lot of work. Luckily there is other ways of doing this, but the GUI is the easiest way to help you understand what's going on. Maybe grab a cup of :coffee: at this point - almost there.
+Phew that's a lot of work. Luckily there are other ways of doing this, but the GUI is the easiest way to help you understand what's going on. Maybe grab a cup of :coffee: at this point - almost there.
 
 :boom: The template is where it all comes together. So now click the *TEMPLATES* menu item and click *ADD* and select *Job Template*. Fill in values as below
 ![WildFly template](../../content/images/img7.png)
