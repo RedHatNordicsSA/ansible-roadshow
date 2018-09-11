@@ -137,7 +137,7 @@ Example:
     become: yes
 ```
 
-:star: To read more about your ability to control privledge escalation, go here: https://docs.ansible.com/ansible/latest/user_guide/become.html
+:star: To read more about your ability to control priviledge escalation, go here: https://docs.ansible.com/ansible/latest/user_guide/become.html
 
 :boom: With this said, let's run the playbook we created. It will install Wildfly on your servers in the wildflyservers group. Run below command to do this:
 
