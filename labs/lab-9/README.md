@@ -101,14 +101,14 @@ cat << 'EOF' >problem.yml
 EOF
 ```
 
-:boom: Use the testing framework your learned and fix all issues in the above playbook. The playbook should pass all steps of this test framework to be deemed OK for production. Output such as below, can be ignored.
+:boom: Use the testing framework you learned and fix all issues in the above playbook. The playbook should pass all steps of this test framework to be deemed OK for production. Output such as below, can be ignored.
 ```
 [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match
 'all'
 ```
  :exclamation: Have a look at other available modules, listed here: https://docs.ansible.com/ansible/latest/modules/modules_by_category.html and how to use them in a playbook.
 
- :exclamation: If you get stuck or want to compare with your _fixed_ playbook, have a look here at a problem free version of the playbook:
+ :exclamation: If you get stuck or want to compare with your _fixed_ playbook, have a look here at the problem free version of the playbook:
 https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-9/lab-files/problem-free.yml
 
 :star: As an optional exercise, if you have time, create a single script which implements the testing framework and which can be run on arbitrary playbooks. Use any language you like.
@@ -119,7 +119,7 @@ https://github.com/mglantz/tomcat-playbook/
 # :star: More to read
 
 [Molecule](https://molecule.readthedocs.io/en/latest/) is a project designed to aid in the development and testing of Ansible roles.
-It's opinionated and helps enforcing best practices by verifying syntax, style, idempotence... It can even run tests after your playbook was run
+It's opinitated and help enforcing best practices by verifying syntax, style, idempotence... It can even run tests after your playbook was run
 with a framework like [Testinfra](https://testinfra.readthedocs.io/en/latest/).
 
 Check the documentation for more information: https://molecule.readthedocs.io/en/latest/
