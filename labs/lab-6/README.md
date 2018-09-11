@@ -121,7 +121,7 @@ The merge(pull) request has yet another function, which is to allow someone else
 
 ![Accept merge](../../content/images/gitlab_accept_merge2.png)
 
-After the merge(pull) request has been accepted on the main page of the project you will se the merge as commit to the main branch of the project:
+After the merge(pull) request has been accepted on the main page of the project you will see the merge as commit to the main branch of the project:
 
 ![Merge committed](../../content/images/gitlab_merge_committed.png)
 
