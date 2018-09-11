@@ -66,7 +66,7 @@ When you have saved your credentials, please note that the SSH Private key now r
 Next thing that we'll do is to create a project. A Project is a logical collection of Ansible playbooks, represented in Tower.
 You can manage playbooks and playbook directories by either placing them manually under the Project Base Path on your Tower server, or by placing your playbooks into a source code management (SCM) system supported by Tower, including Git, Subversion, and Mercurial.
 
-:boom: Create a project called "workshop-playbooks" by following the instructions below.
+:boom: In Ansible Tower create a project called "workshop-playbooks" by following the instructions below.
 
 :boom: To create a new project, click on the 'Projects' tab and click on the add button. Make sure to link your project to the GitLab repository, which [you created earlier in lab-6](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-6). 
 
