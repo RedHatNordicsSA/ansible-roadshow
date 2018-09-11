@@ -46,7 +46,7 @@ echo "mypassword" >> .gitignore
 echo "roles/nginxinc.nginx" >> .gitignore
 ```
 
-:boom: We can now safely add all the files to git.
+:boom: We can now safely add all the files to git:
 ```
 git add .
 ```
@@ -177,7 +177,7 @@ $
 
 :boom: Now, login to the Ansible Tower server using your web browser on with the url and username/password provided to you by the instructors.
 
-:exclamation: If you are still logged in as your unpriviledged workshop-guest user, you will not see anything ;) Login back as with the credentials provided to you by the instructors.
+:exclamation: If you are still logged in as your unprivileged "workshop-guest" user, you will not see anything ;) Login back as with the credentials provided to you by the instructors.
 
 :boom: You created a project in Ansible Tower in **lab 7**. Let's go to the Project tab and issue a sync of that project, as there is quite a lot of new stuff there now (all playbooks and roles you added from /home/student/work).
 
@@ -185,7 +185,7 @@ $
 
 :boom: Ensure that the sync updates the _REVISION_ number. 
 
-:boom: Now it's time to modify the Inventory you created in **lab 7** so that it also has the same groups you have in your 'hosts' inventory file. To do so go to "INVENTORIES" -> "workshop-inventory" -> GROUPS". Here click "+ADD GROUP".
+:boom: Now it's time to modify the Inventory you created in **lab 7** so that it also has the same groups you have in your 'hosts' inventory file. To do so go to "INVENTORIES" -> "workshop-inventory" -> "GROUPS". Here click "+ADD GROUP".
 ![create a group](../../content/images/create-group.png)
 
 :boom: Create three groups named:
@@ -200,15 +200,15 @@ $
 ![Add hosts to a group](../../content/images/add-host-to-group.png)
 
 :boom: Add all hosts to the dev group.\
-:boom: Add loadbalancer1 to the lbservers group.\
-:boom: Add wildfly1 and wildfly2 to the wildflyservers group.\
+:boom: Add "loadbalancer1" to the "lbservers" group.\
+:boom: Add "wildfly1" and "wildfly2" to the "wildflyservers" group.
 
-Using above described method.
+Using the method described above.
 
-:boom: Next you need to setup the vault password for your playbooks. To do so click the *settings* menu item in top of the menu
+:boom: Next you need to setup the vault password for your playbooks. To do so click the *Settings* menu item in top of the menu
 ![settings location image](../../content/images/img0.png)
 
-:boom: On the items, which appear click *credentials*. Then click *ADD*. Select Vault as credential type and the fill in values as provided in below screenshot (the password should be what you selected earlier and saved in _/home/student/work/mypassword_).
+:boom: On the items, which appear click *Credentials*. Then click *ADD*. Select Vault as credential type and the fill in values as provided in below screenshot (the password should be what you selected earlier and saved in _/home/student/work/mypassword_).
 ![filling in vault values](../../content/images/img1.png)
 Click *SAVE* and you're done with this part.
 
@@ -219,13 +219,13 @@ Phew that's a lot of work. Luckily there are other ways of doing this, but the G
  :exclamation: Be aware that to select the credentials you must use the search button and select credential type as appropriate.
 
 
-:boom: Now, we'll do the same for installing the _loadbalancer_. Everything should be the same, except for the playbook, which should be lb.yml, as shown below:
+:boom: Now, we'll do the same for installing the _loadbalancer_. Everything should be the same, except for the playbook, which should be *lb.yml*, as shown below:
 
 ![WildFly run](../../content/images/loadbalancer-template.png)
 
 :boom: Try running it as well, when you're done.
 
-:boom: Now you should be able to launch your playbooks. Click the *TEMPLATES* menu item. Then click the rocket to the right of the 'Install WildFly App' template.
+:boom: Now you should be able to launch your playbooks. Click the *TEMPLATES* menu item and then click the rocket to the right of the 'Install WildFly App' template.
 
 ![WildFly template](../../content/images/img9.png)
 
