@@ -49,7 +49,8 @@ Modules can be written in any language an author wishes, they just need to speci
 ## Module writing strategies
 There are three different strategies when writing Ansible modules, each one with some different pros and cons.
 
-* Wrap a CLI command
+### Wrap a CLI command
+
 _PROs:_
 ```
 Easy to write, low learning curve.
@@ -62,7 +63,8 @@ cli_command|awk ‘{ print $6 ‘}|cut -d’/’ -f2|sed ‘s/old/new/'
 Depending on use-case - only slightly more useful than using command/shell modules.
 ```
 
-* Using 3rd Party Libraries
+### Using 3rd Party Libraries
+
 _PROs_:
 ```
 Also very easy to get started with, since someone else has done the hard work for you.
@@ -75,7 +77,8 @@ Modules may not cover API features you need (especially new features).
 Bugs and abandonment (don’t forget to evaluate).
 ```
 
-* Interacting With the API Directly
+### Interacting With the API Directly
+
 _PROs_:
 ```
 No extra dependencies (Ansible provides helper code in module_utils/urls.py to make HTTP calls).
