@@ -1,4 +1,4 @@
-# Installing WildFly and Nginx from Tower
+# Installing WildFly and NGINX from Tower
 
 As the good developer you are, you now want to make sure your playbooks for provisioning the WildFly app is available for the whole organization to run and benefit from. This requires that you handle your Ansible content as code. This lab will describe how you can do so.
 
@@ -136,7 +136,7 @@ Congratulations, all your content is now in git. You can review it by looking in
 sed -i '/WORK_DIR/d' ~/.bashrc && echo "export WORK_DIR=/home/student/studentX-project" >> ~/.bashrc && . ~/.bashrc
 ```
 
-Now you need to instruct Ansible Tower to use the Nginx module. You could install the module on Ansible Tower as previously, but this would have the unwanted effect that all projects on the Ansible Tower server would rely on this module. Furthermore the Ansible Tower server now needs special care if you need to reinstall it. Instead we'll instruct Ansible Tower to include the Nginx module as part of our project. 
+Now you need to instruct Ansible Tower to use the NGINX module. You could install the module on Ansible Tower as previously, but this would have the unwanted effect that all projects on the Ansible Tower server would rely on this module. Furthermore the Ansible Tower server now needs special care if you need to reinstall it. Instead we'll instruct Ansible Tower to include the `nginx` module as part of our project.
 
 :boom: To do so, add a file *$WORK_DIR/roles/requirements.yml*, with the following content
 ```

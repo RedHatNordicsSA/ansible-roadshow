@@ -56,7 +56,7 @@ If you are using GitHub (you are not, chapter under construction), follow the in
 # Working with your playbooks on GitLab
 :boom: First step, with your web browser, go to the GitLab server: https://$gitlab_server and login with gitlab user and the password provided to you at the start of the lab. 
 
-GitLab is an open core software which provides both provides a git server and a place where you can collaborate easily around the code put in git.
+GitLab is an open source software which provides both a git server and a place where you can collaborate easily around the code put in git.
 
 :boom: When logged in go ahead and create a new repository on Gitlab. Name the project **studentX-project**. You will reference this later on in **lab 8**. The project is where you will store your files:
 
@@ -121,7 +121,7 @@ The merge(pull) request has yet another function, which is to allow someone else
 
 ![Accept merge](../../content/images/gitlab_accept_merge2.png)
 
-After the merge(pull) request has been accepted on the main page of the project you will se the merge as commit to the main branch of the project:
+After the merge(pull) request has been accepted on the main page of the project you will see the merge as commit to the main branch of the project:
 
 ![Merge committed](../../content/images/gitlab_merge_committed.png)
 

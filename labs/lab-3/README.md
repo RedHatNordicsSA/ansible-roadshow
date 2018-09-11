@@ -7,7 +7,7 @@ Let's overview which part of the system which you will be working on in this lab
 
 Running WildFly Swarm is a bit different than running traditional application servers, which often are hundreds of MB or even GB in size. You package your application into a fat jar file, which you run from the command-line interface. The jar file is very small (measured in few MB) and only contains the libraries necessary to run your application. In order to ensure that your application is easily maintainable and that it'll come up in the case of a server restart, you'll register the application as a service using systemctl.
 
-For this excercise we assume that you've already packaged your application, using maven and pushed it to Nexus. From there you've pulled the file to the location *$LAB_DIR/labs/lab-3/lab-files/binaries/example-jaxrs-war-swarm.jar*
+For this exercise we assume that you've already packaged your application, using maven and pushed it to Nexus. From there you've pulled the file to the location *$LAB_DIR/labs/lab-3/lab-files/binaries/example-jaxrs-war-swarm.jar*
 
  :thumbsup: In order to ensure that you don't end up with a large unmaintainable yaml-file and so that you can more easily re-use Ansible automation, the lead architect of your company has decided that you must structure your playbook using [roles](http://docs.ansible.com/ansible/latest/playbooks_reuse_roles.html). Roles is a way to structure your playbook around different aspects of your configuration. In this case, you will make a role for your WildFly application and only apply that role to your wildflyservers.
 
@@ -33,7 +33,7 @@ cat << 'EOF' >$WORK_DIR/roles/wildflyapp/tasks/main.yml
 ---
 # tasks file for roles/wildflyapp
 - name: Install java
-  yum:
+  package:
     name: java-headless
 - name: Create directory to store binary
   file:
@@ -68,12 +68,12 @@ EOF
 
 :boom: Review the different tasks and make sure you understand what is done above. Information about how to use all modules included in Ansible is as mentioned before, available in the module index, here: https://docs.ansible.com/ansible/latest/modules/list_of_all_modules.html. But, the _ansible-doc_ command also helps you to get information about modules. Try it out on the modules used above by running:(in order to Quit- press"Q")
 ```
-ansible-doc yum
+ansible-doc package
 ansible-doc file
 ansible-doc copy
 ansible-doc systemd
 ```
-:boom: You can also find a full list of all modules availabe in your system by running (_command will take a couple of seconds to run_):
+:boom: You can also find a full list of all modules available in your system by running (_command will take a couple of seconds to run_):
 ```
 ansible-doc -l
 ```
@@ -167,7 +167,7 @@ $ curl http://18.197.135.122:8080
 Howdy from unknown at 2018-08-30T22:25:09.897Z (from ip-172-31-25-165.eu-central-1.compute.internal)
 ```
 
-This is pretty cool, by using the simple role you just created, people can now get their own WilfFly servers, using a 7 lines long playbook.
+This is pretty cool, by using the simple role you just created, people can now get their own WildFly servers, using a 7 lines long playbook.
 
 ```
 ---

@@ -27,7 +27,7 @@ ansible 2.6.3
 
  :boom: As you can see Ansible uses Python. Inspect the config file (/etc/ansible/ansible.cfg) file by running:
 ```
-more /etc/ansible/ansible.cfg
+less /etc/ansible/ansible.cfg
 ```
 You will find the following configuration _in the top of the config file_:
 
@@ -45,7 +45,7 @@ You will find the following configuration _in the top of the config file_:
 #module_utils   = /usr/share/my_module_utils/
 ```
 
- :thumbsup: Most important to note is the default location of the inventory file. The inventory file is used to define servers that you are managing. If you do not define the location of the inventory when running a playbook, ansible will look in the default inventory file. Inside of the inventory, managed systems can be grouped in any way you like. Best practices for grouping service in an inventory is to ask three simple questions, _WHAT_, _WHERE_, _WHEN_ and then fill in the blanks. An example inventory file can look like. This way, we can refer to the same servers in different ways depending on the perspective (WHAT, WHERE or WHEN):
+ :thumbsup: Most important to note is the default location of the inventory file. The inventory file is used to define servers that you are managing. If you do not define the location of the inventory when running a playbook, ansible will look in the default inventory file. Inside of the inventory, managed systems can be grouped in any way you like. Best practices for grouping service in an inventory is to ask three simple questions, _WHAT_, _WHERE_, _WHEN_ and then fill in the blanks. An example inventory file can look like the one below. This way, we can refer to the same servers in different ways depending on the perspective (WHAT, WHERE or WHEN):
 
 ```
 # WHAT                WHERE               WHEN
@@ -151,6 +151,12 @@ Congratulations! :smile: :tada: You've run your first Ansible command.
 ```
 cd $WORK_DIR
 ansible -vvv -i hosts all -m ping
+```
+or *-vvvv* parameter for connection debugging
+
+```
+cd $WORK_DIR
+ansible -vvvv -i hosts all -m ping
 ```
 
  :star: What happens here is that the command will ssh to each host and run the ping module on the host. The result is captured by Ansible in a return variable. (If you are interested in the content of a module, see the source code for the ping module [in the github repo for modules](https://github.com/ansible/ansible-modules-core/blob/devel/system/ping.py). You don't have to. Modules will be covered in a later lab.)

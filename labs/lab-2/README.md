@@ -29,7 +29,7 @@ When in doubt about what to do, always go back to these three principles.
         argument2: "{{ app1_meaningful-name }}"
 ```
 :thumbsup: Playbook best practices includes:
-* Give everything names and descriptions which are readable by humans. A huge advantage of Ansible is that it's syntax is resembles written english. Well written playbooks can be understood by everyone and also works as documentation. Do not destroy that feature :)
+* Give everything names and descriptions which are readable by humans. A huge advantage of Ansible is that its syntax resembles written English. Well-written playbooks can be understood by everyone and also works as documentation. Do not destroy that feature :)
 * Ansible uses a flat naming space, so variables can easily collide, prefix variables with "owner" such as application or package name.
 * Separating logic from variables makes it easier to re-factor playbooks into roles and makes it easier to override behavior of the playbook.
 * Make variable names a part of the documentation by choosing human readable names
@@ -44,7 +44,7 @@ Example playbook to install a Tomcat application server:
     tomcat_enabled_across_reboot: yes
   tasks:
     - name: Ensure that the Tomcat RPM is installed
-      yum:
+      package:
         name: tomcat
         state: latest
     - name: Ensure that the tomcat service is enabled and started
@@ -54,13 +54,13 @@ Example playbook to install a Tomcat application server:
         state: "{{ tomcat_service_state }}"
 ```
 
-:exclamation: Please note that a playbook (YAML) is sensitive to intendation. That means that the playbook below has a serious syntax error and will not run.
+:exclamation: Please note that a playbook (YAML) is sensitive to indentation. That means that the playbook below has a serious syntax error and will not run.
 ```
 - name: Install Tomcat and ensure it runs
   hosts: tomcat-servers
   tasks:
     - name: Ensure that the Tomcat RPM is installed
-      yum:
+      package:
         name: tomcat
          state: latest
 ```
@@ -70,14 +70,14 @@ While the playbook below is flawless and runs without issues:
   hosts: tomcat-servers
   tasks:
     - name: Ensure that the Tomcat RPM is installed
-      yum:
+      package:
         name: tomcat
         state: latest
 ```
 
 :star: To learn about all the ins and outs of the Ansible (YAML) syntax, go here: https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
 
-:thumbsup: There are several ways you can write a playbook. Looking at the internet, you'll find them all. Again, what we recommend is to use the native YAML syntax. The reason for that is that reading vertically is _easier_ than reading horizontally. Observe below two example where both are valid Ansible, which one do you prefer reading? Which one is easier to scan for a specific value?
+:thumbsup: There are several ways you can write a playbook. Looking at the internet, you'll find them all. Again, what we recommend is to use the native YAML syntax. The reason for that is that reading vertically is _easier_ than reading horizontally. Observe below two examples where both are valid Ansible, which one do you prefer reading? Which one is easier to scan for a specific value?
 
 * Valid syntax
 ```
