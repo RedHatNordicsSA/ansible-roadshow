@@ -16,6 +16,12 @@ cd
 git clone https://GITLAB-SERVER-DOMAIN-NAME/studentX/studentX-project.git
 ```
 
+Note: If you are getting "server certificate verification failed" you may also need to disable ssl verifications before doing clone:
+```
+git config --global http.sslVerify false
+```
+
+
 The output should be similar as follows:
 ```
 $ git clone https://ec2-52-57-173-62.eu-central-1.compute.amazonaws.com/student1/student1-project.git
