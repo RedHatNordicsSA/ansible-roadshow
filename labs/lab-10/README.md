@@ -178,9 +178,9 @@ echo {\"failed\": true, \"msg\": \"${msg}\"}
 :exclamation: If you get stuck, have a look at a solution here:
 https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-10/lab-solutions/module-v2.sh
 
-:boom: Re-run your test.yml playbook to ensure your modifications work, then you can try and replace _/tmp/module-arguments_ in the module to _/tmp/doesnotexist/module-arguments_ to cause it to fail. Then change it back to _/tmp/module-arguments_
+:boom: Re-run your test.yml playbook to ensure your modifications work, then you can try and replace _/tmp/module-file_ in the module to _/tmp/doesnotexist/module-file_ to cause it to fail. Then change it back to _/tmp/module-file_
 
-:boom: Next step is to create a simple check if the _/tmp/module-arguments_ file already exists and then return JSON output with _changed: false_. Remember that idempotency is key in Ansible, so ofcourse we want our module to be idempotent.
+:boom: Next step is to create a simple check if the _/tmp/module-file_ file already exists and then return JSON output with _changed: false_. Remember that idempotency is key in Ansible, so ofcourse we want our module to be idempotent.
 
 :exclamation: If you get stuck, have a look at a solution here:
 https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-10/lab-solutions/module-v3.sh
