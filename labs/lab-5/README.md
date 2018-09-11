@@ -168,7 +168,7 @@ Observe the changes. Hint, you are no longer getting an anonymous greeting.
 
 :exclamation: If the output looks like below, you were just a bit quick to test the curl call. Wait for a second or three and try again.
 ```
-$ curl -w '\n' 18.184.68.153
+$ curl -w '\n' 18.184.24.113
 <!DOCTYPE html>
 <html>
 <head>
