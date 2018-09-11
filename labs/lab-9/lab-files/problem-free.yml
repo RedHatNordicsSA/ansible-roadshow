@@ -6,7 +6,7 @@
         path: /tmp/logs
         state: directory
 
-    - name: Restart Tomcat
+    - name: Restart Nginx
       service:
-        name: tomcat
+        name: nginx
         state: restarted
