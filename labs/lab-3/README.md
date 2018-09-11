@@ -7,7 +7,7 @@ Let's overview which part of the system which you will be working on in this lab
 
 Running WildFly Swarm is a bit different than running traditional application servers, which often are hundreds of MB or even GB in size. You package your application into a fat jar file, which you run from the command-line interface. The jar file is very small (measured in few MB) and only contains the libraries necessary to run your application. In order to ensure that your application is easily maintainable and that it'll come up in the case of a server restart, you'll register the application as a service using systemctl.
 
-For this excercise we assume that you've already packaged your application, using maven and pushed it to Nexus. From there you've pulled the file to the location *$LAB_DIR/labs/lab-3/lab-files/binaries/example-jaxrs-war-swarm.jar*
+For this exercise we assume that you've already packaged your application, using maven and pushed it to Nexus. From there you've pulled the file to the location *$LAB_DIR/labs/lab-3/lab-files/binaries/example-jaxrs-war-swarm.jar*
 
  :thumbsup: In order to ensure that you don't end up with a large unmaintainable yaml-file and so that you can more easily re-use Ansible automation, the lead architect of your company has decided that you must structure your playbook using [roles](http://docs.ansible.com/ansible/latest/playbooks_reuse_roles.html). Roles is a way to structure your playbook around different aspects of your configuration. In this case, you will make a role for your WildFly application and only apply that role to your wildflyservers.
 
