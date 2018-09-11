@@ -2,7 +2,7 @@
 
 Hello and welcome to the lab. First off, if you are not familiar with what Ansible is:
 
-Ansible is an powerful automation and orchestration engine, powerful enough to automate everything from IoT lightbulbs to cloud infrastructure - yet, simple enough for everyone to use. Even those who are not a programmer.
+Ansible is a powerful automation and orchestration engine, powerful enough to automate everything from IoT lightbulbs to cloud infrastructure - yet, simple enough for everyone to use. Even those who are not a programmer.
 
 The reason why Ansible has become so popular is because it's simple. No coding skills are required. Even a lot of non-technical staff in your organization can read and understand Ansible playbooks. This simplicity means that you get started in minutes. Ansible is clientless, using SSH, Win RM or application specific APIs. Ansible also works as you think, tasks are executed in order, top to bottom - much adding to the simplicity. While simple, it's powerful enough to model the most complex workflows in IT.
 
