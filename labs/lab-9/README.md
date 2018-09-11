@@ -1,7 +1,7 @@
 #  :thumbsup: Testing Ansible playbooks
 
 In order to handle Ansible as code you need to do testing. Without testing, there is no way that you can keep your main git branch releasable.
-It's neither possible for you to keep up the quality of your code or to scale out the usage of Ansible, as without proper testing, less people can contribute.
+It's neither possible for you to keep up the quality of your code or to scale out the usage of Ansible, as without proper testing, fewer people can contribute.
 
 Take the time to apply this basic 5 step framework for testing your Ansible.
 
