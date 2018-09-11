@@ -27,7 +27,7 @@ ansible 2.6.3
 
  :boom: As you can see Ansible uses Python. Inspect the config file (/etc/ansible/ansible.cfg) file by running:
 ```
-more /etc/ansible/ansible.cfg
+less /etc/ansible/ansible.cfg
 ```
 You will find the following configuration _in the top of the config file_:
 
