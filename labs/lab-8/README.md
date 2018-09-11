@@ -4,7 +4,7 @@ As the good developer you are, you now want to make sure your playbooks for prov
 
 The first step is to transfer your work that you did in $WORK_DIR on a local server, to the central git repository. As the whole company is going to run this, you need to version control your work and you would also like to enable people to contribute to your work, to make it better.
 
-:boom: First, we need to configure the git client with your information. Replace the X in studentX with your assigned number., then run below commands in a terminal:
+:boom: First, we need to configure the git client with your information. Replace the X in studentX with your assigned number, then run below commands in a terminal:
 ```
 git config --global user.email "studentX@domain.suffix"
 git config --global user.name "studentX"
@@ -51,7 +51,7 @@ echo "roles/nginxinc.nginx" >> .gitignore
 git add .
 ```
 
-:boom: Now we can create a commit message for the changes we've made. A commit message is ment to be useful for other people, when scanning a repository for what changes has been made. _Ensure you are in the /home/student/studentX-project directory_ and run:
+:boom: Now we can create a commit message for the changes we've made. A commit message is meant to be useful for other people, when scanning a repository for what changes has been made. _Ensure you are in the /home/student/studentX-project directory_ and run:
 ```
 git commit -m 'Moving my local workspace to git'
 ```
@@ -91,7 +91,7 @@ $ git commit -m 'Added workshop workspace to git'
  $
 ```
 
-:boom: There is now only one last thing to do, that is to upload the files to the central GitLab server. _Ensure you are in the /home/student/studentX-project directory_ and run below command. You will there be queried for the studentX credentials to the GitLab server:
+:boom: There is now only one last thing to do, that is to upload the files to the central GitLab server. _Ensure you are in the /home/student/studentX-project directory_ and run below commands. You will there be queried for the studentX credentials to the GitLab server:
 ```
 git push
 git config --global push.default matching
@@ -154,7 +154,7 @@ git commit -m 'Requirements file for roles'
 git push
 ```
 
-The output should be similair as this:
+The output should be similar to this:
 ```
 $ cd $WORK_DIR/roles
 $ git add requirements.yml
@@ -229,7 +229,7 @@ Phew that's a lot of work. Luckily there are other ways of doing this, but the G
 
 ![WildFly template](../../content/images/img9.png)
 
-Expect a simlair output as below:
+Expect a similar output as below:
 ![WildFly run](../../content/images/wildfly-tower-run.png)
 
 Isn't that beautiful? You are now in control of who runs what Ansible automation, on what systems. Everything is logged and kept safe. It's no longer just an Ansible playbook and a role, it's _automation as a service_, available via GUI, CLI and RestAPI.
@@ -246,7 +246,7 @@ Isn't that beautiful? You are now in control of who runs what Ansible automation
 
 :boom: The changes made in lab 8 will break the ping template. This is because the addition of groups to the inventory also adds some secrets. Add the vault password to the ping template as you did with the other templates made. 
 
- :star: You can also schedule _job templates_ to run at a later date. If you have spare time, try playing around with that and others features.
+ :star: You can also schedule _job templates_ to run at a later date. If you have spare time, try playing around with that and other features.
 
 Imagine that you had playbooks which patched servers and applications, for example.
 Or a playbook which triggered a backup.
