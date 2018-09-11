@@ -159,7 +159,7 @@ PLAY RECAP *****************************************************************
 loadbalancer1              : ok=8    changed=3    unreachable=0    failed=0
 ```
 
-:boom: Now test, that you can access the application on both application servers. For this we'll use a simple http client, called _curl_, in your terminal write:
+:boom: Now test, that you can access the application on both application servers. For this we'll use a simple http client, called _curl_. In your terminal write:
 
 ```
 curl -w '\n' http://IP-address-of-loadbalancer1/
