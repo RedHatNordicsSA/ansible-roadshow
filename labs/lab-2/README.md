@@ -44,7 +44,7 @@ Example playbook to install a Tomcat application server:
     tomcat_enabled_across_reboot: yes
   tasks:
     - name: Ensure that the Tomcat RPM is installed
-      yum:
+      package:
         name: tomcat
         state: latest
     - name: Ensure that the tomcat service is enabled and started
@@ -60,7 +60,7 @@ Example playbook to install a Tomcat application server:
   hosts: tomcat-servers
   tasks:
     - name: Ensure that the Tomcat RPM is installed
-      yum:
+      package:
         name: tomcat
          state: latest
 ```
@@ -70,7 +70,7 @@ While the playbook below is flawless and runs without issues:
   hosts: tomcat-servers
   tasks:
     - name: Ensure that the Tomcat RPM is installed
-      yum:
+      package:
         name: tomcat
         state: latest
 ```
