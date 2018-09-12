@@ -119,7 +119,7 @@ https://github.com/mglantz/tomcat-playbook/
 # :star: More to read
 
 [Molecule](https://molecule.readthedocs.io/en/latest/) is a project designed to aid in the development and testing of Ansible roles.
-It's opinitated and help enforcing best practices by verifying syntax, style, idempotence... It can even run tests after your playbook was run
+It's opinionated and helps enforcing best practices by verifying syntax, style, idempotence... It can even run tests after your playbook was run
 with a framework like [Testinfra](https://testinfra.readthedocs.io/en/latest/).
 
 Check the documentation for more information: https://molecule.readthedocs.io/en/latest/

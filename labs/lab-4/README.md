@@ -12,10 +12,19 @@ A role has already been written for installing NGINX with Ansible. The role can 
 
  :thumbsup: Look at development activity of the role and number of downloads. Ansible Galaxy makes this evaluation easy by putting it on the front page of each role, as marked above. If there is not a lot of activity, there may be a risk that the role is not maintained.
 
-:boom: Now that we've seen that the `nginx` role seems solid. We need to install the role. Run:
+:boom: Now that we've seen that the `nginx` role seems solid. We need to install the role. First create file for pulling required roles with ansible-galaxy:
 
 ```
-ansible-galaxy install --roles-path=$WORK_DIR/roles nginxinc.nginx
+cat << 'EOF' > $WORK_DIR/requirements.yml
+- src: nginxinc.nginx
+  name: nginx
+EOF
+```
+
+And do run the install command to pull all required external roles:
+
+```
+ansible-galaxy install --roles-path=$WORK_DIR/roles -r requirements.yml
 ```
 
 and wait for the role to be installed. When that is done, we can use the role in our playbooks.
@@ -29,7 +38,7 @@ and wait for the role to be installed. When that is done, we can use the role in
   become: true
   tasks:
   - include_role:
-      name: nginxinc.nginx
+      name: nginx
 ```
 
 :boom: Now, run the playbook to install NGINX on your server in the lbservers group, use the command
@@ -110,7 +119,7 @@ wildfly_servers: "{{ groups['wildflyservers'] }}"
   become: true
   tasks:
   - include_role:
-      name: nginxinc.nginx
+      name: nginx
   - include_role:
       name: nginx-config
 ```

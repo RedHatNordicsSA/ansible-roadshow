@@ -1,12 +1,12 @@
-- name: Create directory and restart tomcat
-  hosts: wildflyservers
+- name: Create directory and restart Nginx
+  hosts: lbservers
   tasks:
     - name: Create directory
       file:
         path: /tmp/logs
         state: directory
 
-    - name: Restart Tomcat
+    - name: Restart Nginx
       service:
-        name: tomcat
+        name: nginx
         state: restarted

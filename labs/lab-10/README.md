@@ -49,7 +49,8 @@ Modules can be written in any language an author wishes, they just need to speci
 ## Module writing strategies
 There are three different strategies when writing Ansible modules, each one with some different pros and cons.
 
-* Wrap a CLI command
+### Wrap a CLI command
+
 _PROs:_
 ```
 Easy to write, low learning curve.
@@ -62,7 +63,8 @@ cli_command|awk ‘{ print $6 ‘}|cut -d’/’ -f2|sed ‘s/old/new/'
 Depending on use-case - only slightly more useful than using command/shell modules.
 ```
 
-* Using 3rd Party Libraries
+### Using 3rd Party Libraries
+
 _PROs_:
 ```
 Also very easy to get started with, since someone else has done the hard work for you.
@@ -75,7 +77,8 @@ Modules may not cover API features you need (especially new features).
 Bugs and abandonment (don’t forget to evaluate).
 ```
 
-* Interacting With the API Directly
+### Interacting With the API Directly
+
 _PROs_:
 ```
 No extra dependencies (Ansible provides helper code in module_utils/urls.py to make HTTP calls).
@@ -178,9 +181,9 @@ echo {\"failed\": true, \"msg\": \"${msg}\"}
 :exclamation: If you get stuck, have a look at a solution here:
 https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-10/lab-solutions/module-v2.sh
 
-:boom: Re-run your test.yml playbook to ensure your modifications work, then you can try and replace _/tmp/module-arguments_ in the module to _/tmp/doesnotexist/module-arguments_ to cause it to fail. Then change it back to _/tmp/module-arguments_
+:boom: Re-run your test.yml playbook to ensure your modifications work, then you can try and replace _/tmp/module-file_ in the module to _/tmp/doesnotexist/module-file_ to cause it to fail. Then change it back to _/tmp/module-file_
 
-:boom: Next step is to create a simple check if the _/tmp/module-arguments_ file already exists and then return JSON output with _changed: false_. Remember that idempotency is key in Ansible, so ofcourse we want our module to be idempotent.
+:boom: Next step is to create a simple check if the _/tmp/module-file_ file already exists and then return JSON output with _changed: false_. Remember that idempotency is key in Ansible, so ofcourse we want our module to be idempotent.
 
 :exclamation: If you get stuck, have a look at a solution here:
 https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-10/lab-solutions/module-v3.sh
