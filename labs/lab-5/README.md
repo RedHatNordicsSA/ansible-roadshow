@@ -159,16 +159,16 @@ wildfly2                   : ok=8    changed=2    unreachable=0    failed=0
 
 :boom: And you should now be able to access the url of loadbalancer1 by running _curl_ again, try it, as shown below:
 ```
-$ curl -w '\n' http://18.184.24.113/
-Howdy from Red Hat at 2018-08-31T08:45:38.084Z (from ip-172-31-25-165.eu-central-1.compute.internal)
-$ curl -w '\n' http://18.184.24.113/
-Howdy from Red Hat at 2018-08-31T08:45:39.489Z (from ip-172-31-28-91.eu-central-1.compute.internal)
+$ curl -w '\n' http://<loadbalancer_IP>/
+Howdy from Red Hat at 2018-08-31T08:45:38.084Z (from <loadbalancer_FQDN>)
+$ curl -w '\n' http://<loadbalancer_IP>/
+Howdy from Red Hat at 2018-08-31T08:45:39.489Z (from <loadbalancer_FQDN>)
 ```
 Observe the changes. Hint, you are no longer getting an anonymous greeting.
 
 :exclamation: If the output looks like below, you were just a bit quick to test the curl call. Wait for a second or three and try again.
 ```
-$ curl -w '\n' 18.184.24.113
+$ curl -w '\n' <loadbalancer_IP>
 <!DOCTYPE html>
 <html>
 <head>
