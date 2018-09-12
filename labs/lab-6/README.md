@@ -100,7 +100,7 @@ Now let's try the so called GitHub workflow. That means that when we make a modi
 
 :thumbsup: A merge request (also called pull request) is a place where you can collaborate around ongoing development. It is a good practice to write a brief description of the changes you've done, so that anyone reviewing or collaborating with you doesn't necessarily have to read your code to figure out what was done.
 
-Once you've written the description for you modifications, at the bottom of the page you will see this:
+Once you've written the description for your modifications, at the bottom of the page you will see this:
 
 ![Merge request](../../content/images/gitlab_merge_request2.png)
 
