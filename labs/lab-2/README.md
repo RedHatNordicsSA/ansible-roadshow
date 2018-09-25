@@ -96,6 +96,11 @@ While the playbook below is flawless and runs without issues:
     enablerepo: telegraf
   notify: restart telegraf
 ```
+:thumbsup: If your favourite editor is Emacs let it help you with the YAML syntax by colourising your code. Install the 'emacs-yaml-mode' package:
+```
+sudo yum install emacs-yaml-mode
+```
+If your favourite editor is vim you are already covered.
 
 # :boom: Writing your first Ansible Playbooks
 
@@ -119,6 +124,7 @@ Please note _hosts: all_, the _all_ keyword ensures that when this playbook is r
 :boom: This will do the same as the previous lab, except the ping message is different. The ping message takes an argument *data*, which is the reply message from the ping module. You can now run the playbook with the command below. Notice, that we are now using the command 'ansible-playbook', not the command 'ansible' which we used in the previous lab.
 
 ```
+cd $WORK_DIR
 ansible-playbook -i hosts ping.yml
 ```
 
@@ -211,7 +217,7 @@ Also, isn't it nice to see loadbalancer1 instead of _ec2-18-184-79-97.eu-central
 
 Another useful feature of Ansible is the PLAY RECAP. Here you can see how running the playbooks went. For now just notice that no state has changed (changed=0 for each server). This is because the ping message never changes state of the server and thus is idempotent. Idempotency is an important concept in Ansible. Idempotency means that the module called will have the same effect on the server, no matter how many times you run it on the server (more about that later).
 
-:star: Try changing the ping message to 'crash'. What happens? HINT:
+:star: Try changing the ping message (the data field to the ping module) to 'crash'. What happens? HINT:
 1. Look in the [source code for the ping module](https://github.com/ansible/ansible-modules-core/blob/devel/system/ping.py)
 2. Do appropriate change in ping.yml and run the playbook again. It may look like an exception, but don't worry, that's expected, read the code...
 

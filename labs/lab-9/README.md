@@ -79,11 +79,12 @@ cd $WORK_DIR
 
 5. Check result of change (Check webpage of http server, etc)
 ```
-curl http://wildfly1
+curl http://wildfly1:8080
 ```
 
 6. Check your playbooks against a standards baseline
 ```
+sudo pip install ansible-review
 ansible-review playbook.yml
 ```
 

@@ -159,7 +159,7 @@ cd $WORK_DIR
 ansible -vvvv -i hosts all -m ping
 ```
 
- :star: What happens here is that the command will ssh to each host and run the ping module on the host. The result is captured by Ansible in a return variable. (If you are interested in the content of a module, see the source code for the ping module [in the github repo for modules](https://github.com/ansible/ansible-modules-core/blob/devel/system/ping.py). You don't have to. Modules will be covered in a later lab.)
+ :star: What happens here is that the command will ssh to each host and run the ping module on the host. This is possible because we, the lab makers have allready copied the public key from the Ansible Tower server to the Managed Systems servers. The result is captured by Ansible in a return variable. (If you are interested in the content of a module, see the source code for the ping module [in the github repo for modules](https://github.com/ansible/ansible-modules-core/blob/devel/system/ping.py). You don't have to. Modules will be covered in a later lab.)
 
 In the next lab, you'll write your first playbook using the ping module to get a better understanding of how Ansible works.
 
