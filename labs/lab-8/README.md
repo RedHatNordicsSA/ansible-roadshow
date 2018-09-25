@@ -93,27 +93,14 @@ $ git commit -m 'Added workshop workspace to git'
 
 :boom: There is now only one last thing to do, that is to upload the files to the central GitLab server. _Ensure you are in the /home/student/studentX-project directory_ and run below commands. You will there be queried for the studentX credentials to the GitLab server:
 ```
-git push
 git config --global push.default matching
+git push
 ```
 
 Output should be something similair as this:
 ```
+$ git config --global push.default matching
 $ git push
-warning: push.default is unset; its implicit value is changing in
-Git 2.0 from 'matching' to 'simple'. To squelch this message
-and maintain the current behavior after the default changes, use:
-
-  git config --global push.default matching
-
-To squelch this message and adopt the new behavior now, use:
-
-  git config --global push.default simple
-
-See 'git help config' and search for 'push.default' for further information.
-(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
-'current' instead of 'simple' if you sometimes use older versions of Git)
-
 Username for 'https://ec2-52-57-173-62.eu-central-1.compute.amazonaws.com': student1
 Password for 'https://student1@ec2-52-57-173-62.eu-central-1.compute.amazonaws.com': 
 Counting objects: 47, done.
@@ -123,7 +110,6 @@ Writing objects: 100% (46/46), 54.50 MiB | 94.66 MiB/s, done.
 Total 46 (delta 1), reused 0 (delta 0)
 To https://ec2-52-57-173-62.eu-central-1.compute.amazonaws.com/student1/student1-project.git
    10ed357..726a864  master -> master
-$ git config --global push.default matching
 $
 ```
 
