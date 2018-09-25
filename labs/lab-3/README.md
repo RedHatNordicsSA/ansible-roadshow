@@ -157,14 +157,13 @@ Ansible should complete with no errors. You should see the changes applied to bo
 :boom: You can now access the service at the address *http://$HOSTNAME:8080*, where *$HOSTNAME* points to one of the servers mentioned in the play recap. Try it out by running below command:
 
 ```
-curl http://111.222.333.444:8080
+for i in `cat hosts | grep ^wildfly | cut -d '=' -f 2`; do curl http://$i:8080 && echo ''; done
 ```
-Where 111.222.. is the IP address of one of your wildfly servers.
-
 Example output should be:
 ```
-$ curl http://18.197.135.122:8080
-Howdy from unknown at 2018-08-30T22:25:09.897Z (from ip-172-31-25-165.eu-central-1.compute.internal)
+$ for i in `cat hosts | grep ^wildfly | cut -d '=' -f 2`; do curl http://$i:8080 && echo ''; done
+Howdy from unknown at 2018-09-25T12:09:15.052Z (from ip-172-31-18-89.eu-west-1.compute.internal)
+Howdy from unknown at 2018-09-25T12:09:15.061Z (from ip-172-31-29-186.eu-west-1.compute.internal)
 ```
 
 This is pretty cool, by using the simple role you just created, people can now get their own WildFly servers, using a 7 lines long playbook.
