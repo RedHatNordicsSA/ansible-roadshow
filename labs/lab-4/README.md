@@ -50,12 +50,6 @@ Take a moment to appreciate how simple that was. You can again run the playbook 
 
 This installs _NGINX_ on the servers in the lbservers group.
 
-:star: The attentive student saw an error message
-```
-[WARNING]: Ignoring invalid attribute: Name
-```
-This is due to a bug, which does not affect our run of this role, but ... what is the bug? And can you fix it?
-
 :boom: To verify the installation, in your web browser, go to: *http://$loadbalancer1-ip-address*.
 ![NGINX welcome page](../../content/images/nginx-welcome.png)
 You should get the NGINX default page, as shown above. Take some extra time to appreciate how very simple it was to install the NGINX software, even though you may never have done that before.
