@@ -114,7 +114,7 @@ wildfly2 ansible_host=18.184.165.148
 To speed up the process, we use the ssh-keyscan command to accept identities. Run below command:
 
 ```
-cat hosts | grep host | cut -d '=' -f 2 | xargs ssh-keyscan -H >> ~/.ssh/known_hosts
+cat $WORK_DIR/hosts | grep host | cut -d '=' -f 2 | xargs ssh-keyscan -H >> ~/.ssh/known_hosts
 ```
 
 :boom: You are now ready to run your first Ansible module. To do so, run the following command from *$WORK_DIR*
