@@ -4,7 +4,7 @@ Most applications have secret properties, which must not be shown to every perso
 
 :thumbsup: With Ansible you can encrypt any part of your playbooks or property files. Once the content or files has been encrypted, the content is unreadable. Ansible uses strong 256 bit symmetric encryption to do this. This has one unwanted effect, which is that you'll then be unable to search for the property. Therefore it's considered best practise to have an unencrypted file refer to the encrypted file. 
 
-:boom: Now we're going to put our secret information into a a file named **$WORK_DIR/group_vars/dev/wildflyservers/vault.yml** and refer to it from a file called **$WORK_DIR/group_vars/dev/wildflyservers/vars.yml**. This is achieved with the following steps. In your terminal, run:
+:boom: Now we're going to put our secret information into a a file named *$WORK_DIR/group_vars/dev/wildflyservers/**vault**.yml* and refer to it from a file called *$WORK_DIR/group_vars/dev/wildflyservers/**vars**.yml*. This is achieved with the following steps. In your terminal, run:
 
 ```
 mkdir -p $WORK_DIR/group_vars/dev/wildflyservers
@@ -14,7 +14,7 @@ echo 'wildfly_secret_vault: Red Hat' > $WORK_DIR/group_vars/dev/wildflyservers/v
 
 As you can see, some refactoring has been done to ensure that it is possible to use different configurations for different environments. This is achieved by having different environment folders in the *group_vars* directory. In this case a dev group variable file is created by adding specific settings in the folder *$WORK_DIR/group_vars/dev/*. 
 
-:boom: Servers can belong to several groups, so in the **$WORK_DIR/hosts** file we will now add the group *dev* with all servers listed. Change the content of **$WORK_DIR/hosts** so that it looks like below. (Please note that the ansible_host statement is only done once):
+:boom: Servers can belong to several groups, so in the *$WORK_DIR/hosts* file we will now add the group *dev* with all servers listed. Change the content of *$WORK_DIR/hosts* so that it looks like below. (Please note that the ansible_host statement is only done once):
 
 ```
 [lbservers]
