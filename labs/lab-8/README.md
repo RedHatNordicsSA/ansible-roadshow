@@ -97,7 +97,7 @@ git config --global push.default matching
 git push
 ```
 
-Output should be something similair as this:
+Output should be something similar as this:
 ```
 $ git config --global push.default matching
 $ git push
