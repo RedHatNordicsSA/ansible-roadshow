@@ -96,6 +96,11 @@ While the playbook below is flawless and runs without issues:
     enablerepo: telegraf
   notify: restart telegraf
 ```
+:thumbsup: If your favourite editor is Emacs let it help you with the YAML syntax by colourising your code. Install the 'emacs-yaml-mode' package:
+```
+sudo yum install emacs-yaml-mode
+```
+If your favourite editor is vim you are already covered.
 
 # :boom: Writing your first Ansible Playbooks
 
