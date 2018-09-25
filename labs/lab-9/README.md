@@ -84,6 +84,7 @@ curl http://wildfly1
 
 6. Check your playbooks against a standards baseline
 ```
+sudo pip install ansible-review
 ansible-review playbook.yml
 ```
 
