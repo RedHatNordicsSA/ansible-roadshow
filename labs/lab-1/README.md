@@ -17,7 +17,7 @@ You should see output similar to this:
 
 ```
 $ ansible --version
-ansible 2.6.3
+ansible 2.6.4
   config file = /etc/ansible/ansible.cfg
   configured module search path = [u'/home/student/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
   ansible python module location = /usr/lib/python2.7/site-packages/ansible
@@ -114,7 +114,7 @@ wildfly2 ansible_host=18.184.165.148
 To speed up the process, we use the ssh-keyscan command to accept identities. Run below command:
 
 ```
-ssh-keyscan -H xxx.xxx.xxx.xxx yyy.yyy.yyy.yyy zzz.zzz.zzz.zzz >> ~/.ssh/known_hosts
+cat $WORK_DIR/hosts | grep host | cut -d '=' -f 2 | xargs ssh-keyscan -H >> ~/.ssh/known_hosts
 ```
 
 :boom: You are now ready to run your first Ansible module. To do so, run the following command from *$WORK_DIR*
