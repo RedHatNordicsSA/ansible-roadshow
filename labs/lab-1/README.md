@@ -17,7 +17,7 @@ You should see output similar to this:
 
 ```
 $ ansible --version
-ansible 2.6.3
+ansible 2.6.4
   config file = /etc/ansible/ansible.cfg
   configured module search path = [u'/home/student/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
   ansible python module location = /usr/lib/python2.7/site-packages/ansible
