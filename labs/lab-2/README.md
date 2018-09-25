@@ -119,6 +119,7 @@ Please note _hosts: all_, the _all_ keyword ensures that when this playbook is r
 :boom: This will do the same as the previous lab, except the ping message is different. The ping message takes an argument *data*, which is the reply message from the ping module. You can now run the playbook with the command below. Notice, that we are now using the command 'ansible-playbook', not the command 'ansible' which we used in the previous lab.
 
 ```
+cd $WORK_DIR
 ansible-playbook -i hosts ping.yml
 ```
 
