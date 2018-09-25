@@ -61,6 +61,7 @@ The Ansible Tower server will have the responsibility of provisioning the manage
 Use below links as reference when needed. For now, continue on:
 * **nano**: https://wiki.gentoo.org/wiki/Nano/Basics_Guide
 * **vi/vim**: https://vim.rtorr.com/ 
+* **emacs** Congratulations, you obviously know what you are doing already
 
 :boom: Using your SSH client, log in as the **student** user on your assigned Ansible Tower server.
 On Linux/Mac/Windows with shell:
