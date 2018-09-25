@@ -88,7 +88,7 @@ Now let's try the so called GitHub workflow. That means that when we make a modi
 :boom: On this section you should modify the playbook on the web UI by pushing the ```Edit``` -button:
  ![Edit file](../../content/images/gitlab_edit_file.png)
 
-:boom: Once you've done some modifications, on the bottom of the page you can see the fields descibed in the image below. You should save your modifications on a separate branch, and to do that you need to define a name for it. By default the setting on target branch (see __1.__) is master, but you should change it to something different, for example feature-1.
+:boom: Once you've done some modifications, on the bottom of the page you can see the fields descibed in the image below. You should save your modifications on a separate branch, and to do that you need to define a name for it. By default the setting on target branch (see __1.__) is master, but you should change it to something different, for example branch-1.
 
 ![Commit changes](../../content/images/gitlab_commit_changes.png)
 
