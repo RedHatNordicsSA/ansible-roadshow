@@ -149,6 +149,10 @@ Alternatively edit the password file in an editor!
 cd $WORK_DIR
 ansible-playbook -i hosts site.yml --vault-password-file mypassword
 ```
+:boom: Alternatively, you can interactively enter the vault password when running the playbook:
+```
+ansible-playbook -i hosts site.yml --ask-vault-pass
+```
 
 The playbook should complete as such:
 ```
