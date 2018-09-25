@@ -41,7 +41,7 @@ and wait for the role to be installed. When that is done, we can use the role in
       name: nginx
 ```
 
-:boom: Now, run the playbook to install NGINX on your server in the lbservers group, use the command
+:boom: Now, run the playbook to install NGINX on your server in the lbservers group with the command
 
 ```
 ansible-playbook -i hosts lb.yml
