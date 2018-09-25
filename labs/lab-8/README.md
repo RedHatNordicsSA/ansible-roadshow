@@ -31,7 +31,6 @@ This will have created a directory called /home/student/studentX-project where y
 
 :boom: Do this by running below commands (_replace X in studentX with your assigned number_):
 ```
-export WORK_DIR=/home/student/work
 cp -R $WORK_DIR/* /home/student/studentX-project
 ```
 
@@ -203,6 +202,8 @@ Phew that's a lot of work. Luckily there are other ways of doing this, but the G
 :boom: The template is where it all comes together. So now click the *TEMPLATES* menu item and click *ADD* and select *Job Template*. Fill in values as below
 ![WildFly template](../../content/images/img7.png)
  :exclamation: Be aware that to select the credentials you must use the search button and select credential type as appropriate.
+ 
+ :exclamation: Since we specified *become: true* on certain tasks in the playbook files, we do not need to turn on "Enable Privilege Escalation"
 
 
 :boom: Now, we'll do the same for installing the _loadbalancer_. Everything should be the same, except for the playbook, which should be *lb.yml*, as shown below:
