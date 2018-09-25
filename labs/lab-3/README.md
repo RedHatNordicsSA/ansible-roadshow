@@ -157,13 +157,13 @@ Ansible should complete with no errors. You should see the changes applied to bo
 :boom: You can now access the service at the address *http://$HOSTNAME:8080*, where *$HOSTNAME* points to one of the servers mentioned in the play recap. Try it out by running below command:
 
 ```
-curl http://111.222.333.444:8080
+curl -w '\n' http://111.222.333.444:8080
 ```
 Where 111.222.. is the IP address of one of your wildfly servers.
 
 Example output should be:
 ```
-$ curl http://18.197.135.122:8080
+$ curl -w '\n' http://18.197.135.122:8080
 Howdy from unknown at 2018-08-30T22:25:09.897Z (from ip-172-31-25-165.eu-central-1.compute.internal)
 ```
 
