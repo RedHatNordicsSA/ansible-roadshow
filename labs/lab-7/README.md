@@ -28,12 +28,6 @@ Create an inventory called "workshop-inventory" by following the instructions be
 :boom: Insert values as in below screenshot.
 ![Inventory values](../../content/images/inventory-values.png)
 
-Now we need to add our hosts to the newly created inventory.
-
-:boom: Click "INVENTORIES" -> "workshop-inventory"
-
-![Inventory add hosts](../../content/images/inventory-add-hosts.png)
-
 :boom: From the inventory view, we click "Hosts" and then "Add host"
 ![Inventory add hosts](../../content/images/inventory-add-hosts-ii.png)
 
