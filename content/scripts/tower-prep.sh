@@ -253,10 +253,10 @@ cat << 'EOF' >>/root/tower-install.yml
           company_name: "Red Hat"
           contact_email: "sudo@redhat.com"
           contact_name: "Red Hat"
-          hostname: "b3d94995b8fb44a0978d4b55c3ce3387"
+          hostname: "771433237031459fac9ca3eff2f0f8ed"
           instance_count: 5
-          license_date: 1536251747
-          license_key: "a2d38fa12e8317289a125f917620e97562864712f1a2ddc52842b0562a8e04f6"
+          license_date: 1539542228
+          license_key: "3a37f801fe2edd79152dec68cf1e9f357bd509c94f77e0ddb0655d90a7bf7d38"
           license_type: "enterprise"
           subscription_name: "Red Hat Ansible Tower, Standard (5 Managed Nodes) Trial" 
           trial: true
