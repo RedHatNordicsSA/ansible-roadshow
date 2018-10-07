@@ -267,6 +267,7 @@ cat << 'EOF' >>/root/tower-install.yml
         path: /etc/tower/settings.py
         state: present
         regexp: '.*GIT_SSL_NO_VERIFY.*'
+        insertafter: '^# PENDO_TRACKING_STATE.*'
         line: AWX_TASK_ENV['GIT_SSL_NO_VERIFY'] = 'True'
       
     - name: Restart Ansible Tower
