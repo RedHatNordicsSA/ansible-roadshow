@@ -68,13 +68,16 @@ You can manage playbooks and playbook directories by either placing them manuall
 
 :boom: In Ansible Tower create a project called "workshop-playbooks" by following the instructions below.
 
-:boom: To create a new project, click on the 'Projects' tab and click on the add button. Make sure to link your project to the GitLab repository, which [you created earlier in lab-6](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-6). 
+:boom: To create a new project, click on the 'Projects' on the left side menu.
+![Create a project](../../content/images/create-project-i.png)
+
+Make sure to link your project to the GitLab repository, which [you created earlier in lab-6](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-6). 
 
 :boom: To get the correct URL, go to the GitLab server and click on the indicated button below.
 ![Create a project](../../content/images/copy-gitlab-url.png)
 
 :boom: Then go ahead and put the information into the create project page.
-![Create a project](../../content/images/create-project.png)
+![Create a project](../../content/images/create-project-ii.png)
 
 :exclamation: Please note that we've selected the _Update on launch_ so that when a playbook is launched from this Git repository we ensure that we have the latest version available. Also that we select _Clean_ to ensure we get a fresh download of everything.
 
