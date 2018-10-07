@@ -237,37 +237,36 @@ cat << 'EOF' >/root/tower-install.yml
         state: present
       when: tower_cli.stat.exists == False
 
-    - name: Add license
-      uri:
-EOF
-echo "        url: https://${PUBLIC_IPV4}/api/v2/config/" >>/root/tower-install.yml
-cat << 'EOF' >>/root/tower-install.yml
-        method: POST
-        user: admin
-        password: RHforum18Pass
-        validate_certs: False
-        header: application/json
-        status_code: 200
-        body:
-          eula_accepted : "true"
-          company_name: "Red Hat"
-          contact_email: "sudo@redhat.com"
-          contact_name: "Red Hat"
-          hostname: "771433237031459fac9ca3eff2f0f8ed"
-          instance_count: 5
-          license_date: 1539542228
-          license_key: "3a37f801fe2edd79152dec68cf1e9f357bd509c94f77e0ddb0655d90a7bf7d38"
-          license_type: "enterprise"
-          subscription_name: "Red Hat Ansible Tower, Standard (5 Managed Nodes) Trial" 
-          trial: true
-        body_format: json
+#
+# Hello internet person, below does not work. Goto: https://www.ansible.com/workshop-license
+#    - name: Add license
+#      uri:
+#echo "        url: https://${PUBLIC_IPV4}/api/v2/config/" >>/root/tower-install.yml
+#        method: POST
+#        user: admin
+#        password: RHforum18Pass
+#        validate_certs: False
+#        header: application/json
+#        status_code: 200
+#        body:
+#          eula_accepted : "true"
+#          company_name: "Red Hat"
+#          contact_email: "sudo@redhat.com"
+#          contact_name: "Red Hat"
+#          hostname: "771433237031459fac9ca3eff2f0f8ed"
+#          instance_count: 5
+#          license_date: 1539542228
+#          license_key: "3a37f801fe2edd79152dec68cf1e9f357bd509c94f77e0ddb0655d90a7bf7d38"
+#          license_type: "enterprise"
+#          subscription_name: "Red Hat Ansible Tower, Standard (5 Managed Nodes) Trial" 
+#          trial: true
+#        body_format: json
       
     - name: Disable SSL verification
       lineinfile:
         path: /etc/tower/settings.py
         state: present
         regexp: '.*GIT_SSL_NO_VERIFY.*'
-        insertafter: '^# PENDO_TRACKING_STATE.*'
         line: AWX_TASK_ENV['GIT_SSL_NO_VERIFY'] = 'True'
       
     - name: Restart Ansible Tower
