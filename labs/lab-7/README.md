@@ -17,7 +17,9 @@ Ansible Tower allows you to share access safely to other people via its web GUI,
 
 :boom: First step, with your web browser, go to your Ansible Tower server: https://$Tower_Server and login with the _admin_ user and the password provided to you at the start of the lab.
 
-:boom: First task will be to provide a working license for the Tower server, get your license here: https://www.ansible.com/workshop-license. Download it to your laptop and upload it to the Tower server to get started.
+:boom: If you have not yet downloaded a subscription for the Tower server, get your license here: https://www.ansible.com/workshop-license. 
+
+:boom: Once you have logged in to your Tower server, upload the license file to enable your Tower instance.
 
 What we'll do first is to create an inventory in Ansible Tower, an inventory is a collection of hosts you can run playbooks against in Tower; just like your *hosts* file in the previous examples. Inventories are assigned to organizations, while permissions to launch playbooks against inventories are controlled at the user, team or playbook level.
 
