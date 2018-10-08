@@ -36,6 +36,8 @@ If by some reason you get stuck in a lab - then here's what you should do. **Fol
 
 :exclamation: To get started with the labs, you first need to get your assigned username and servers. This will be provided to you by the people who operate this lab. 
 
+:boom: Go here: https://www.ansible.com/workshop-license and download a free Ansible Tower subscription. You will use it later on in the lab.
+
 :exclamation: Do not skip any labs, the labs depend on the previous ones to be completed. You need to do them in order, 0-10.
 
 :exclamation: On purpose, security in this lab has not been made a priority, that is so you as a student get more freedom to learn. You have passwordless admin access via _sudo_ on all systems. With that said, if you do something which is outside of the labs and break your systems, _you get to keep all the pieces_ ;) 
