@@ -138,6 +138,7 @@ As you can see, the secret name is added to the template.
 ```
 export HISTFILE=/dev/null
 echo "mypass123" >$WORK_DIR/mypassword
+chmod 400 $WORK_DIR/mypassword
 export HISTFILE=/home/student/.bash_history
 ```
 
@@ -168,7 +169,7 @@ Howdy from Red Hat at 2018-08-31T08:45:38.084Z (from <loadbalancer_FQDN>)
 $ curl -w '\n' http://<loadbalancer_IP>/
 Howdy from Red Hat at 2018-08-31T08:45:39.489Z (from <loadbalancer_FQDN>)
 ```
-Observe the changes. Hint, you are no longer getting an anonymous greeting.
+Observe the changes. Hint, you are no longer getting an anonymous greeting.  If you get 404 errors from either Wild Fire server please wait a wile and try again.
 
 :exclamation: If the output looks like the one below, you were just a bit quick to test the curl call. Wait for a second or three and try again.
 ```
