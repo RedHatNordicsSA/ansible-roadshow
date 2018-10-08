@@ -19,6 +19,8 @@ cd content
 ssh-add /path/to/your/amazon-ssh-key-file.pem
 ```
 
+To enable the Ansible Tower instances, you need to fetch a subscription from https://www.ansible.com/workshop-license. If you want you can do this in advance for the students, or just have them follow the instructions which are a part of the lab, which has them fetch a subscription (it get's e-mailed automatically within a minute or two from registering).
+
 ## Install Ansible
 
 This setup was tested at the time of writing this README with Ansible version 2.6.
