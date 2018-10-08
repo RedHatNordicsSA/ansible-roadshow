@@ -30,7 +30,7 @@ wildfly1
 wildfly2
 ```
 
- :exclamation: As before, change xxx.yyy.zzz to the IP-addresses assigned to you.
+ :exclamation: Keep your current ip addresses that you set in Lab-1.
 
 Now Ansible will include all variables defined in *$WORK_DIR/group_vars/dev/* for the servers listed, each time the playbook is run.
 
