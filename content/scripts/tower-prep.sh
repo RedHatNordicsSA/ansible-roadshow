@@ -108,6 +108,9 @@ chmod 700 /home/student/.ssh
 chmod 600 /home/student/.ssh/*
 chown student:student /home/student/.ssh -R
 
+# Add YAML style indent for VIM to student .vimrc
+echo "autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab" >> /home/student/.vimrc
+
 cat << 'EOF' >/root/tower-inventory
 [tower]
 localhost              ansible_connection=local
