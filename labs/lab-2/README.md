@@ -54,7 +54,7 @@ Example playbook to install a Tomcat application server:
         state: "{{ tomcat_service_state }}"
 ```
 
-:exclamation: Please note that a playbook (YAML) is sensitive to indentation. That means that the playbook below has a serious syntax error and will not run. For VIM, you can add ```autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab``` to your ~/.vimrc file for easier editing of YAML.
+:exclamation: Please note that a playbook (YAML) is sensitive to indentation. That means that the playbook below has a serious syntax error and will not run. For students which uses VI/M as a text editor, we have added a YAML compliant tab space (to  ~/.vimrc) so that when you use <TAB> that will be YAML compliant and not break your playbooks.
 ```
 - name: Install Tomcat and ensure it runs
   hosts: tomcat-servers
