@@ -73,6 +73,8 @@ $ ssh student@IP-ADDRESS-OF-TOWER-SERVER
 On Windows with PuTTy, see this link:\
 https://mediatemple.net/community/products/dv/204404604/using-ssh-in-putty-
 
+If you are to setup setup key authentication (instead of using a password), view this link: https://support.rackspace.com/how-to/log-into-a-linux-server-with-an-ssh-private-key-on-windows/ and use the key from here: https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/id_rsa
+
 :boom: Once logged in, run the below commands to pull this repository to your system:
 ```
 cd
