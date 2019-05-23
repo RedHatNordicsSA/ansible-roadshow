@@ -127,7 +127,7 @@ Once you click on the "Create personal access token" -button, Access Token will 
 
 Next, we're going to turn off the automatic pipeline feature in GitLab, as it makes a bit of a mess for students.
 Click on the "admin area tool wrench", select "Settings" and then "CI/CD".
-When you are there, de-select "Default to Auto DevOps pipeline for all projects" and "Enable shared runner for new projects" as shown below.
+When you are there, de-select "Default to Auto DevOps pipeline for all projects" and "Enable shared runner for new projects" as shown below and click the "Save settings" button at the bottom.
 
 ![gitlab disable cicd](images/gitlab-disable-cicd.png)
 
