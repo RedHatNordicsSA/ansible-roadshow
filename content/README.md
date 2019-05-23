@@ -19,6 +19,12 @@ cd content
 ssh-add /path/to/your/amazon-ssh-key-file.pem
 ```
 
+Export the AWS credentials (without this, the ec2.py inventory will bail out).
+```
+export AWS_ACCESS_KEY_ID=asdfasdfasdfasdfasdf
+export AWS_SECRET_ACCESS_KEY='the-keyasdfasdfasdfasdf'
+```
+
 To enable the Ansible Tower instances, you need to fetch a subscription from https://www.ansible.com/workshop-license. If you want you can do this in advance for the students, or just have them follow the instructions which are a part of the lab, which has them fetch a subscription (it get's e-mailed automatically within a minute or two from registering).
 
 ## Install Ansible
@@ -118,6 +124,12 @@ You can name the Access Token how ever you like, but make sure to tick all the b
 Once you click on the "Create personal access token" -button, Access Token will be generated for you, be sure to copy it to your clipboard:
 
 ![gitlab token created](images/gitlab-token-created.png)
+
+Next, we're going to turn off the automatic pipeline feature in GitLab, as it makes a bit of a mess for students.
+Click on the "admin area tool wrench", select "Settings" and then "CI/CD".
+When you are there, de-select "Default to Auto DevOps pipeline for all projects" and "Enable shared runner for new projects" as shown below.
+
+![gitlab_disable_cicd](images/gitlab-disable-cicd.png]
 
 Once you have the access token on your clipboard, copy it to gitlab_token -variable in vars.yml -file and run the gitlab-setup.yml -playbook:
 
