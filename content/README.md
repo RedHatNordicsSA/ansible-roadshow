@@ -129,7 +129,7 @@ Next, we're going to turn off the automatic pipeline feature in GitLab, as it ma
 Click on the "admin area tool wrench", select "Settings" and then "CI/CD".
 When you are there, de-select "Default to Auto DevOps pipeline for all projects" and "Enable shared runner for new projects" as shown below.
 
-![gitlab_disable_cicd](images/gitlab-disable-cicd.png]
+![gitlab disable cicd](images/gitlab-disable-cicd.png)
 
 Once you have the access token on your clipboard, copy it to gitlab_token -variable in vars.yml -file and run the gitlab-setup.yml -playbook:
 
