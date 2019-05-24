@@ -36,6 +36,14 @@ To install Ansible follow [Ansible install guidance](https://docs.ansible.com/an
 
 Before running the installer, you need to install boto Python modules on your Ansible machine using [the Ansible AWS documentation](http://docs.ansible.com/ansible/latest/scenario_guides/guide_aws.html).
 
+Install the boto library using python pip, as follows:
+```
+sudo pip install boto
+sudo pip install boto3
+```
+Before running the installer, you need to install boto Python modules on your Ansible machine using [the Ansible AWS documentation](http://docs.ansible.com/ansible/latest/scenario_guides/guide_aws.html).
+Before running the installer, you need to install boto Python modules on your Ansible machine using [the Ansible AWS documentation](http://docs.ansible.com/ansible/latest/scenario_guides/guide_aws.html).
+
 ## Known issues
 * When running the installer, a task regarding the GitLab server may fail as shown below, just wait a minute and then re-run the playbook if that is the case.
 
