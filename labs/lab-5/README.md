@@ -165,9 +165,9 @@ wildfly2                   : ok=8    changed=2    unreachable=0    failed=0
 :boom: And you should now be able to access the url of loadbalancer1 by running _curl_ again. Try it as shown below:
 ```
 $ curl -w '\n' http://<loadbalancer_IP>/
-Howdy from Red Hat at 2018-08-31T08:45:38.084Z (from <loadbalancer_FQDN>)
+Howdy from Red Hat at 2018-08-31T08:45:38.084Z (from <wildfly_FQDN>)
 $ curl -w '\n' http://<loadbalancer_IP>/
-Howdy from Red Hat at 2018-08-31T08:45:39.489Z (from <loadbalancer_FQDN>)
+Howdy from Red Hat at 2018-08-31T08:45:39.489Z (from <other_wildfly_FQDN>)
 ```
 Observe the changes. Hint, you are no longer getting an anonymous greeting.  If you get 404 errors from either Wild Fire server please wait a while and try again.
 

@@ -1,5 +1,5 @@
 ---
-
+  
 - hosts:
     - "tag_identity_git"
     - "tag_identity_tower"
@@ -7,13 +7,13 @@
   connection: "local"
   gather_facts: false
   vars_files:
-    - vars.yml
+    - vars/vars.yml
 
   tasks:
   - name: "Remove tagged EC2 instances from security group"
     ec2:
       state: "running"
-      region: "{{ region }}"
+      region: "{{ ec2_region }}"
       instance_ids: "{{ ec2_id }}"
       group_id: ""
     delegate_to: "localhost"
@@ -21,7 +21,7 @@
   - name: "Terminate tagged EC2 instances"
     ec2:
       state: "absent"
-      region: "{{ region }}"
+      region: "{{ ec2_region }}"
       instance_ids: "{{ ec2_id }}"
       wait: true
     delegate_to: "localhost"
@@ -31,10 +31,22 @@
   connection: "local"
   gather_facts: false
   vars_files:
-    - vars.yml
+    - vars/vars.yml
   tasks:
-  - name: "Remove security group"
+  - name: "Remove security group for tower"
     ec2_group:
-      name: "{{ security_group }}"
-      region: "{{ region }}"
+      name: "{{ ec2_security_group_tower }}"
+      region: "{{ ec2_region }}"
+      state: "absent"
+
+  - name: "Remove security group for clients"
+    ec2_group:
+      name: "{{ ec2_security_group_client_systems }}"
+      region: "{{ ec2_region }}"
+      state: "absent"
+
+  - name: "Remove security group for gitlab"
+    ec2_group:
+      name: "{{ ec2_security_group_gitlab }}"
+      region: "{{ ec2_region }}"
       state: "absent"
