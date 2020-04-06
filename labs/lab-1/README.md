@@ -76,6 +76,28 @@ For this lab, we will start and group the servers into _WHAT_ - load balancers (
 cd $WORK_DIR
 touch hosts
 ```
+
+:boom: IF you do not know text editors in Linux, try out this excercise to learn a simple one
+ ```vi```.
+
+```
+# Edit a file called textfile, if it doesn't exist, create it.
+vi textfile
+
+# Active the insert mode, to be able to insert text into the file
+# this also allows you to use backspace to delete content
+i
+
+# Exit insert mode, this is needed to be able to save a file and exit the editor
+<ESC>
+
+# Exit editing the file and save any changes you made
+:wq
+
+# Check the content of the file
+cat textfile
+```
+
 :exclamation: You got three servers assigned to you, referred to as **'Managed Systems'** when given to you. It doesn't matter which one is put in the [lbservers] section and which remaining two are put in the [wildflyservers] section.
 
 :boom: Add the following text to the _$WORK_DIR/hosts_ file using an editor of choice:
