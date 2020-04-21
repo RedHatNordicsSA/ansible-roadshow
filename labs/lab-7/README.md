@@ -107,37 +107,40 @@ Next we are going to provide this playbook, _as a service_ to a new user, to see
 
 Next we are going to run this playbook via the Tower CLI. You can do it as your normal user or the guest user you created earlier.
 
-:boom: From your terminal on the Ansible Tower server you use the _tower-cli_ tool to launch the job template you created earlier.
+:boom: From your terminal on the Ansible Tower server you use the _awx-cli_ tool to launch the job template you created earlier.
 
-:exclamation: To be able to use tower-cli, you need to provide username and password for most commands. Append any command with `-u admin -p <password>`
+:boom: First we will configure the tool to ignore our self signed SSL certificate
 ```
-tower-cli job list -u admin -p <password>
+awx-cli config verify_ssl false
+```
+
+:exclamation: To be able to use awx-cli, you need to provide username and password for most commands. Append commands with `-u admin -p <password>`
+```
+awx-cli job list -u admin -p <password>
+```
+or configure a user and a password like such:
+```
+awx-cli config username admin
+awx-cli config password <password>
 ```
 
 :boom: Explore the tool by using
 ```
-$ tower-cli --help
-$ tower-cli job --help
+$ awx-cli --help
+$ awx-cli job --help
 ```
-:boom: Log in with:
-```
-tower-cli config username workshop-guest
-tower-cli config password <password>
-```
+
 :boom: and launch your playbook.
 ```
-tower-cli job launch -J ping-template
+awx-cli job launch -J ping-template
 ```
 
-
-```
-tower-cli job launch -J <template name>
-```
-
-:star: If you have time, also try adding the below flag:
+:boom: Also try adding the below flag:
 ```
 --monitor
 ```
+
+:star: If you have time, remove your ping-template job template and re-created it only using the ``awx-cli`` tool.
 
 ```
 End of lab
