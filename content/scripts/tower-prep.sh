@@ -180,7 +180,7 @@ cat << 'EOF' >/root/tower-install.yml
 
     - name: Unzip the latest tower software
       unarchive:
-        src: "https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz"
+        src: "https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-3.5.6-1.tar.gz"
         dest: /opt/tower
         remote_src: yes
 
