@@ -71,7 +71,7 @@ You can manage playbooks and playbook directories by either placing them manuall
 
 Make sure to link your project to the GitLab repository, which [you created earlier in lab-6](https://github.com/mglantz/ansible-roadshow/tree/master/labs/lab-6). 
 
-:boom: To get the correct URL, go to the GitLab server and click on the indicated button below.
+:boom: To get the correct URL, click on the 'Clone' button and then select 'Copy URL' as indicated below.
 ![Create a project](../../content/images/copy-gitlab-url.png)
 
 :boom: Then go ahead and put the information into the create project page.
