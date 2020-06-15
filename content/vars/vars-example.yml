@@ -20,7 +20,7 @@ ec2_region: eu-west-1, or whatever-you-like
 ec2_security_group_tower: ansibleroadshow-tower
 ec2_security_group_client_systems: ansibleroadshow-client
 ec2_security_group_gitlab: ansibleroadshow-gitlab
-ami_id: ami-7c491f05, RHEL7.5 standard image, if something else than eu-west-1: ami-c86c3f23
+ami_id: ami-07dfba995513840b5, RHEL8.2 standard image in EU-CENTRAL, may need to change
 number_of_tower_systems: 1
 number_of_client_systems: 3
 number_of_git_systems: 1
