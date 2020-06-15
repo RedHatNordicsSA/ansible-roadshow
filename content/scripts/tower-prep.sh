@@ -3,7 +3,7 @@
 # Tower prereqs
 
 # RPM prereqs
-yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 ITER=0
 while true; do
   if [ "$ITER" -eq 10 ]; then
@@ -17,7 +17,7 @@ while true; do
   else
     sleep 30
     yum clean all
-    yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
     rpm -q epel-release
     if [ "$?" -eq 0 ]; then
       echo "EPEL installed, going forward with install."
@@ -62,7 +62,7 @@ if [ ! -d /root/.ssh ]; then
 fi
 
 useradd student
-echo "RHforum18Pass" | passwd student --stdin
+echo "RHforum20Pass" | passwd student --stdin
 mkdir /home/student/.ssh
 
 for THEDIR in /home/student/.ssh/id_rsa /root/.ssh/id_rsa; do
@@ -154,7 +154,7 @@ cat << 'EOF' >/root/tower-install.yml
   
     - name: Enable EPEL yum repo
       yum:
-        name: http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+        name: http://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
         state: present
 
     - name: Install Python Pip
@@ -180,7 +180,7 @@ cat << 'EOF' >/root/tower-install.yml
 
     - name: Unzip the latest tower software
       unarchive:
-        src: "https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-3.5.6-1.tar.gz"
+        src: "https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz"
         dest: /opt/tower
         remote_src: yes
 
@@ -212,19 +212,13 @@ cat << 'EOF' >/root/tower-install.yml
       lineinfile:
         path: "{{ tower_inventory_path.stdout }}"
         regexp: '^admin_password='
-        line: 'admin_password=RHforum18Pass'
+        line: 'admin_password=RHforum20Pass'
 
     - name: Set PostgreSQL password in inventory file
       lineinfile:
         path: "{{ tower_inventory_path.stdout }}"
         regexp: '^pg_password='
-        line: 'pg_password=RHforum18Pass'
-
-    - name: Set rabbitmq password in inventory file
-      lineinfile:
-        path: "{{ tower_inventory_path.stdout }}"
-        regexp: '^rabbitmq_password='
-        line: 'rabbitmq_password=RHforum18Pass'
+        line: 'pg_password=RHforum20Pass'
 
     - name: Run Ansible Tower installer
       shell: "{{tower_installer_path.stdout}} -i {{tower_inventory_path.stdout}}"
@@ -239,31 +233,6 @@ cat << 'EOF' >/root/tower-install.yml
         name: ansible-tower-cli
         state: present
       when: tower_cli.stat.exists == False
-
-#
-# Hello internet person, below does not work. Goto: https://www.ansible.com/workshop-license
-#    - name: Add license
-#      uri:
-#echo "        url: https://${PUBLIC_IPV4}/api/v2/config/" >>/root/tower-install.yml
-#        method: POST
-#        user: admin
-#        password: RHforum18Pass
-#        validate_certs: False
-#        header: application/json
-#        status_code: 200
-#        body:
-#          eula_accepted : "true"
-#          company_name: "Red Hat"
-#          contact_email: "sudo@redhat.com"
-#          contact_name: "Red Hat"
-#          hostname: "771433237031459fac9ca3eff2f0f8ed"
-#          instance_count: 5
-#          license_date: 1539542228
-#          license_key: "3a37f801fe2edd79152dec68cf1e9f357bd509c94f77e0ddb0655d90a7bf7d38"
-#          license_type: "enterprise"
-#          subscription_name: "Red Hat Ansible Tower, Standard (5 Managed Nodes) Trial" 
-#          trial: true
-#        body_format: json
       
     - name: Disable SSL verification
       lineinfile:
@@ -275,7 +244,7 @@ cat << 'EOF' >/root/tower-install.yml
     - name: Restart Ansible Tower
       shell: ansible-tower-service restart
       
-    - name: Git, disable SSL certificate checking. Don't do this in production!!!
+    - name: Git, disable SSL certificate checking. Don't do this in production.
       become_user: "{{ item }}"
       become: yes
       command: git config --global http.sslVerify "false"
