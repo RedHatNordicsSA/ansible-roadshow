@@ -119,8 +119,7 @@ https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/labs/lab-9/lab
 
 :star: As an optional exercise, if you have time, create a single script which implements the testing framework and which can be run on arbitrary playbooks. Use any language you like.
 
-:star: The testing practice is to integrate testing into your development pipeline for Ansible playbooks. Ensure that when your code merges, it's always tested. If you are interested in how this can be done using Jenkins and Ansible Tower, have a look here:
-https://github.com/mglantz/tomcat-playbook/
+:star: :star: As an additional optional exercise, if you want to learn how to implement testing on a large scale - using Molecule and containers. Try out the instructions listed in this blog: https://redhatnordicssa.github.io/test-ansible-role-molecule-podman on your Tower server, using your normal student user.
 
 # :star: More to read
 
