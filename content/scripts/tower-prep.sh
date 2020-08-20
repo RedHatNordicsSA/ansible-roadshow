@@ -114,7 +114,23 @@ echo "autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab" >> /home/student
 cat << 'EOF' >/root/tower-inventory
 [tower]
 localhost ansible_connection=local
+EOF
 
+cat <<'EOF' >/root/tower-install-inventory
+[tower]
+localhost ansible_connection=local
+
+[database]
+
+[all:vars]
+admin_password='RHforum20Pass'
+
+pg_host=''
+pg_port=''
+
+pg_database='awx'
+pg_username='awx'
+pg_password='password'
 EOF
 
 PUBLIC_IPV4=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
@@ -209,17 +225,11 @@ cat << 'EOF' >/root/tower-install.yml
       debug:
         msg: "Base path: {{ tower_base_path.stdout }}"
 
-    - name: Set admin password in inventory file
-      lineinfile:
-        path: "{{ tower_inventory_path.stdout }}"
-        regexp: '^admin_password='
-        line: 'admin_password=RHforum20Pass'
-
-    - name: Set PostgreSQL password in inventory file
-      lineinfile:
-        path: "{{ tower_inventory_path.stdout }}"
-        regexp: '^pg_password='
-        line: 'pg_password=RHforum20Pass'
+    - name: Copy tower install inventory into place
+      copy:
+        src: /root/tower-install-inventory
+        dest: "{{ tower_inventory_path.stdout }}"
+        force: yes
 
     - name: Run Ansible Tower installer
       shell: "{{tower_installer_path.stdout}} -i {{tower_inventory_path.stdout}}"
