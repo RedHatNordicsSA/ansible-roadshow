@@ -1,5 +1,5 @@
 #!/bin/bash
-# Magnus Glantz, sudo@redhat.com, 2018
+# Magnus Glantz, sudo@redhat.com, 2020
 # Tower prereqs
 
 # RPM prereqs
@@ -113,7 +113,8 @@ echo "autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab" >> /home/student
 
 cat << 'EOF' >/root/tower-inventory
 [tower]
-localhost              ansible_connection=local
+localhost ansible_connection=local
+
 EOF
 
 PUBLIC_IPV4=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
