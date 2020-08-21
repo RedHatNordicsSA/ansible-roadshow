@@ -33,6 +33,7 @@ This will have created a directory called /home/student/studentX-project where y
 ```
 cp -R $WORK_DIR/* /home/student/studentX-project
 ```
+:exclamation: It's common to miss the * in the ```cp -R $WORK_DIR/* /home/student/studentX-project```, so pay attention that you included it.
 
 :boom: Next we need to tell git that we've added a bunch of new files.
 First we'll create a `.gitignore` file to avoid pushing unwanted files to the git repository.
