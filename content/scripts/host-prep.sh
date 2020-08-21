@@ -59,7 +59,7 @@ if [ ! -d /root/.ssh ]; then
 fi
 
 useradd student
-echo "RHforum18Pass" | passwd student --stdin
+echo "RHforum20Pass" | passwd student --stdin
 usermod -aG wheel student
 # I know I shouldn't edit the /etc/sudoers file with any sort of script. There's a reason for the visudo command.
 # That being said...
