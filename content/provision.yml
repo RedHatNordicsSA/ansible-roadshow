@@ -6,14 +6,14 @@
   tasks:
   - name: Download Tower user data file
     get_url:
-      url: https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/scripts/tower-prep.sh
+      url: https://raw.githubusercontent.com/RedHatNordicsSA/ansible-roadshow/master/content/scripts/tower-prep.sh
       dest: /tmp/tower-prep.sh
       validate_certs: no
       force: yes
 
   - name: Download regular hosts user data file
     get_url:
-      url: https://raw.githubusercontent.com/mglantz/ansible-roadshow/master/content/scripts/host-prep.sh
+      url: https://raw.githubusercontent.com/RedHatNordicsSA/ansible-roadshow/master/content/scripts/host-prep.sh
       dest: /tmp/host-prep.sh
       validate_certs: no
       force: yes
