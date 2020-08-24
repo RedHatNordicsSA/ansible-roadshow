@@ -19,7 +19,6 @@ You may also want to have a look at https://github.com/ansible/lightbulb which i
 
 ## Maintainers
 This lab is maintained by members of Red Hat's Nordic Solution Architect team.
-* Jacob Borella ([@jacobborella](https://github.com/jacobborella))
 * Teemu Uotila ([@teemu-u](https://github.com/teemu-u))
 * Ilkka Tengvall ([@ikke-t](https://github.com/ikke-t))
 * Peter Gustafsson ([@pgustafs](https://github.com/pgustafs))
