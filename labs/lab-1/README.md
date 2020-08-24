@@ -17,12 +17,12 @@ You should see output similar to this:
 
 ```
 $ ansible --version
-ansible 2.7.6
+ansible 2.9.11
   config file = /etc/ansible/ansible.cfg
-  configured module search path = [u'/home/student/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
-  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  configured module search path = ['/home/student/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3.6/site-packages/ansible
   executable location = /usr/bin/ansible
-  python version = 2.7.5 (default, Sep 12 2018, 05:31:16) [GCC 4.8.5 20150623 (Red Hat 4.8.5-36)]
+  python version = 3.6.8 (default, Dec  5 2019, 15:45:45) [GCC 8.3.1 20191121 (Red Hat 8.3.1-5)]
 ```
 
  :boom: As you can see Ansible uses Python. Inspect the config file (/etc/ansible/ansible.cfg) file by running:
@@ -77,8 +77,7 @@ cd $WORK_DIR
 touch hosts
 ```
 
-:boom: IF you do not know text editors in Linux, try out this excercise to learn a simple one
- ```vi```.
+:boom: IF you do not know text editors in Linux, try out this excercise to learn a simple one, ```vi```.
 
 ```
 # Edit a file called textfile, if it doesn't exist, create it.
