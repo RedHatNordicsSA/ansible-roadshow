@@ -89,6 +89,35 @@ There are some dependencies for external roles in this setup. You can use Ansibl
 ansible-galaxy install -p roles -r roles/requirements.yml
 ```
 
+As of now, 2002-08-24, the gitlab role is a bit broken, fix it by changing the file ``roles/gitlab/tasks/main.yml`` as follows.
+
+1) Below the ``Install GitLab repository.`` task, add the following two tasks:
+
+```
+- name: Fix repo_gpgcheck in repository file
+  lineinfile:
+    path: /etc/yum.repos.d/gitlab_gitlab-ce.repo
+    regexp: '^repo_gpgcheck='
+    line: repo_gpgcheck=0
+
+- name: Fix gpgcheck in repository file
+  lineinfile:
+    path: /etc/yum.repos.d/gitlab_gitlab-ce.repo
+    regexp: '^gpgcheck='
+    line: gpgcheck=0
+```
+
+2) In the ``Install GitLab`` task, change ``async: 300``` to ``async: 900, so the task reads as follows.
+```
+- name: Install GitLab
+  package:
+    name: "{{ gitlab_package_name | default(gitlab_edition) }}"
+    state: present
+  async: 900
+  poll: 5
+  when: not gitlab_file.stat.exists
+```
+
 # Provision the lab environment
 
 ## Ansible run
