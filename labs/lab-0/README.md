@@ -78,7 +78,7 @@ If you are to setup setup key authentication (instead of using a password), view
 :boom: Once logged in, run the below commands to pull this repository to your system:
 ```
 cd
-git clone https://github.com/mglantz/ansible-roadshow.git
+git clone https://github.com/RedHatNordicsSA/ansible-roadshow.git
 ```
 :boom: The variable **$LAB_DIR** will refer to the root of the cloned repository and make it persistant, export it as an variable using below command:
 ```
