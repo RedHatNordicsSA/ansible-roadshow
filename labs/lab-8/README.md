@@ -128,7 +128,7 @@ Now you need to instruct Ansible Tower to use the NGINX module. You could instal
 ```
 ---
 - src: https://github.com/nginxinc/ansible-role-nginx
-  version: master
+  version: main
   name: nginx
 ```
 
