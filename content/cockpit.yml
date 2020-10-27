@@ -1,0 +1,73 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  vars_files:
+    - vars/vars.yml
+  tasks:
+  - name: Create empty file to store cockpit servers public IPs
+    file:
+      path: "./cockpit_servers.out"
+      state: touch
+
+  - name: Download Tower user data file
+    get_url:
+      url: https://raw.githubusercontent.com/RedHatNordicsSA/ansible-roadshow/master/content/scripts/cockpit-prep
+.sh
+      dest: /tmp/cockpit-prep.sh
+      validate_certs: no
+      force: yes
+
+  - name: Ensure a security group for Cockpit servers is in place
+    ec2_group:
+      name: "cockpit"
+      description: Security Group for Cockpit servers
+      region: "{{ ec2_region }}"
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      rules:
+        - proto: tcp
+          from_port: 22
+          to_port: 22
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          from_port: 80
+          to_port: 80
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          from_port: 443
+          to_port: 443
+          cidr_ip: 0.0.0.0/0
+      
+  - name: Provision Cockpit servers
+    ec2:
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      key_name: "{{ec2_key}}"
+      region: "{{ ec2_region }}"
+      group: "cockpit"
+      instance_type: t2.medium
+      image: "{{ ami_id }}"
+      user_data: "{{ lookup('file', '/tmp/cockpit.sh') }}"
+      wait: true
+      exact_count: "{{ cockpit_count }}"
+      count_tag:
+        identity: cockpit
+      instance_tags:
+        identity: cockpit
+    register: cockpit
+    
+  - name: Add Cockpit instance public IPs to host group
+    add_host: hostname={{ item.public_ip }} groups=cockpit
+    with_items: "{{ cockpit.tagged_instances }}"
+    
+  - name: Print IP address of Ansible Tower server
+    debug:
+      msg: "{{ groups['cockpit'] }}"
+ 
+  - name: Print IP addresses of Cockpit servers to ./cockpit_servers.out
+    lineinfile:
+      path: ./cockpit_servers.out
+      line: "{{ item.public_ip }}"
+      create: yes
+    with_items: "{{ cockpit.tagged_instances }}"
