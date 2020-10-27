@@ -24,5 +24,7 @@ ami_id: ami-07dfba995513840b5, RHEL8.2 standard image in EU-CENTRAL, may need to
 number_of_tower_systems: 1
 number_of_client_systems: 3
 number_of_git_systems: 1
+# Should be 0 if you do not need a web based SSH client as workaround for firewall issues
+number_of_cockpit_systems: 0
 gitlab_email: do-not-reply@redhat.com
 gitlab_token:
