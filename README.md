@@ -73,6 +73,12 @@ The lab includes information about:
 
 10. [Developing Ansible Modules](labs/lab-10/README.md)
 
+## Lab prerequisites
+* Internet access
+* A web browser
+* A SSH client installed on your laptop/workstation
+* Ability to SSH to thing on the internet (port: 22/tcp)
+
 ## Setting up the lab on AWS
 This is for operators of the lab. Go to below page for information about setting up this lab on Amazon:
 [Setting up the Ansible lab on AWS](content/README.md)
