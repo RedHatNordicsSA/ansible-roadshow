@@ -159,7 +159,7 @@
       key_name: "{{ec2_key}}"
       region: "{{ ec2_region }}"
       group: "{{ ec2_security_group_tower }}"
-      instance_type: t2.medium
+      instance_type: t2.large
       image: "{{ ami_id }}"
       user_data: "{{ lookup('file', '/tmp/tower-prep.sh') }}"
       wait: true
